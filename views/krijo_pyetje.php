@@ -1,0 +1,150 @@
+<?php
+	$page_title = "Krijo_pyetje";
+	include("core/init.php");
+	protect_page();
+	include("inc/overall/header.php");	
+	$errors = array();
+?><html>
+<head>
+ <script type="text/javascript" src="jquery/jquery_1_10_1.js"></script>
+  <script type="text/javascript" src="scripts/shto-fshi-fusha-script.js"></script>
+ 
+<style type="text/css">
+	div{
+		padding:8px;
+	}
+</style>
+<title>Krijo Pyetje</title>
+ 
+</head>
+
+<h1>Krijo pyetjet per teste: </h1>
+
+<form action="" method="post">
+
+    <!-- <label>Emri i testit :</label><input type="text" id="krijo_test" name="name"></li> -->
+    
+    
+        
+    <div id='TextBox'>
+	<div id="TextBoxDiv1">
+		<label>Pyetja #1 : </label><input type='text' id='q1' name="question[]" > <br>
+      
+        <label>Pergjigjja A : </label><input type='text' id='a1' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a1]" value="0">
+        <input type="checkbox" name="check[c0][a1]" value="1"><br>
+        <label>Pergjigjja B : </label><input type='text' id='a2' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a2]" value="0">
+        <input type="checkbox" name="check[c0][a2]" value="1"><br>
+        <label>Pergjigjja C : </label><input type='text' id='a3' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a3]" value="0">
+        <input type="checkbox" name="check[c0][a3]" value="1"><br>
+        <label>Pergjigjja D : </label><input type='text' id='a4' name="answer[q0][]" >
+       <input type="hidden" name="check[c0][a4]" value="0">
+        <input type="checkbox" name="check[c0][a4]" value="1"><br>
+        <label>Pergjigjja E : </label><input type='text' id='a5' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a5]" value="0">
+        <input type="checkbox" name="check[c0][a5]" value="1"><br>
+	</div>
+</div>
+<input type='button' value='Shto fushe' id='addButton'>
+<input type='button' value='Fshi fushe' id='removeButton'>
+
+       
+<input type="submit" id="krijo_pyetje" value="Krijo pyetjet">
+    
+</form><?php
+
+	if(empty($_POST) === false)	// nese eshte dergu forma
+	{
+		
+		
+		
+		foreach ($_POST['question'] as $q)	// validimi i pyetjeve
+		{
+			
+			if(empty($q))
+			{
+				$errors[] = 'Ju lutemi shkruani te gjitha pyetjet...';
+				//errorat i shfaqim ne fund ne qoftse egzistojn ( te else )
+				break; // mos mi shfaq krejt errorat
+			}
+		}
+		
+		
+		foreach ($_POST['answer'] as $key=>$value)	// validimi i pergjigjjeve marrim vlerat
+		{
+			
+			foreach ($value as $v)	// tash shkojm per secilen pergjigjje vec e vec
+			{
+				if(empty($v))
+				{					
+					$errors[] = 'Ju lutemi shkruani te gjitha pergjigjjet...';
+					break;	// break mos me qit 5 errora per secilen pergjigjje, por per secilen pytje del error
+					//errorat i shfaqim ne fund ne qoftse egzistojn ( te else )
+				}
+			}
+			
+			if (empty($errors) == false)	// mos mi paraqit errorat krejt
+			break;
+		}
+		
+	
+	}
+	
+	if((empty($_POST) === false) && empty($errors) === true)	// nese ska errora inserto edhe redirect
+	{
+			
+			
+			$questions = $_POST['question'];	// ruaj pyetjet ne nje array
+		
+			$codes = array("A","B","C","D","E");
+			for($i = 0; $i <  sizeof($questions); $i++)
+			{
+				$shto_pyetje = mysql_query("INSERT INTO `question` (`text`) VALUES ('$questions[$i]')"); // insert te question
+				
+				$question_id = mysql_insert_id();	// kthen id e fundit te insertuar (id e pyetjes)
+				
+			
+				$answers = $_POST['answer']['q'.$i];	// marrim pergjigjjet nje nga nje
+				
+				for ($j=0; $j< sizeof($answers); $j++){	
+				$n = $j+1;	// percdo pyetje fusim pergjigjje	rrisim j sepse answers fillojn prej 1 jo prej 0
+				$correct_ans = $_POST['check']['c'.$i]['a'.$n];
+				//marrim correct answer nese osht check e marrim checked nese jo e marrim hidden field
+				
+			    $shto_pergjigjje = mysql_query("INSERT INTO `answer` (`text`, `code`) VALUES ('$answers[$j]', '$codes[$j]')");
+				// shto nje pergjigjje
+				$answer_id = mysql_insert_id(); // id e fundit e insertuar (id e pergjigjjes)
+				
+				$shto_question_answer = mysql_query("INSERT INTO `question_answer` (`question_id`, `answer_id`, `correct_answer`) VALUES ('$question_id', '$answer_id', '$correct_ans')"); 
+				// shto te question_answer te dhenat perkatese
+				
+				}
+				
+				
+				
+				
+				
+			}			
+	
+			header('Location:krijo_pyetje.php?success');
+			exit();
+	}
+	else echo implode(', ---', $errors); // shfaqja e errorave ne qofte se egzistojne
+	
+			
+	
+	
+	if(isset($_GET['success']) && empty($_GET['success']))	// nese eshte regjistruar shfaq notifikimin
+	{
+			echo "<h4> " . "Ju keni regjistruar pyetjet perkatese me sukses!" . "</h4>";
+	}
+	
+	
+		
+		
+	
+?>
+
+<?php include("inc/overall/footer.php"); ?>
