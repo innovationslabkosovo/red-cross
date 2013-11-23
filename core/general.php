@@ -15,7 +15,7 @@ function protect_page()
 {
     if(logged_in() === false)
     {
-        header('Location: ../../views/protected.php');
+        header('Location: ../views/protected.php');
         exit();
     }
 }
