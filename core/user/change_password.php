@@ -1,14 +1,15 @@
 <?php
-include '../core/init.php';
-protect_page();
+include '../../core/init.php';
+//protect_page();
 
 if(empty($_POST) === false)
 {
-    $required_fields = array ('current_password', 'password', 'password_again');
-    foreach($_POST as $key=>$value)
+    $required_fields = array('current_password', 'password', 'password_again');
+    foreach($_POST as $key => $value)
     {
         if(empty($value) && in_array($key, $required_fields) === true)
         {
+
             $errors[] = 'Fields marked with an asterisk are required';
             break 1;
         }
@@ -31,10 +32,7 @@ if(empty($_POST) === false)
     }
 
 }
-
-include 'inc/overall/header.php'; ?>
-
-    <h1>Change password</h1>
+?>
 
 <?php
 if(isset($_GET['success']) && empty($_GET['success']))
@@ -45,36 +43,15 @@ else
 {
     if(empty($_POST) === false && empty($errors) === true)
     {
-        change_password($session_user_id, $_POST['password']);
-        header('Location: changepassword.php?success');
+        change_password($_SESSION['id'], $_POST['password']);
+        header("location: ../../views/user/change_password_view.php?message=success&object=user");
     }
-    else if(empty($errors) === false)
+    else if (empty($errors) === false)
     {
         echo output_errors($errors);
+        //header("location: ../../views/user/change_password_view.php?message=fail&object=user");
     }
     ?>
-
-    <form action="" method="post">
-        <ul>
-            <li>
-                Current password*<br>
-                <input type="password" name="current_password">
-            </li>
-            <li>
-                New password*<br>
-                <input type="password" name="password">
-            </li>
-            <li>
-                Repeat new password*<br>
-                <input type="password" name="password_again">
-            </li>
-            <li>
-                <input type="submit" value="Change">
-            </li>
-        </ul>
-    </form>
-
-
 <?php
 }
-include 'inc/overall/footer.php'; ?>
+?>

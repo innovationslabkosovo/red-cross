@@ -1,6 +1,9 @@
 <?php
 
-$display_messages = array("class"=>array("success"=>"Klasa eshte shtuar me sukses", "fail"=>"Klasa nuk eshte shtuar "));
+$display_messages = array("class"=>array("success"=>"Klasa eshte shtuar me sukses", "fail"=>"Klasa nuk eshte shtuar "), "user"=> array("success"=>"Fjalkalimi u perditsu"));
+
+
+echo "<pre></pre>";
 
 function logged_in_redirect()
 {

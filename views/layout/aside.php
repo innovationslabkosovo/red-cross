@@ -2,12 +2,12 @@
     <?php
     if(logged_in() === true)
     {
-        include 'user/logged_in.php';
+        include $project_root.'views/user/logged_in.php';
     }
     else
     {
-        include 'user/login_view.php';
+        include $project_root.'views/user/login_view.php';
     }
-    include 'user/user_count.php';
+    include $project_root.'views/user/user_count.php';
     ?>
 </aside>
