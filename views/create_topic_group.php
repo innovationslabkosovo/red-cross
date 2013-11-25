@@ -1,5 +1,5 @@
 <?php
-$page_title = "Shto klase te re";
+$page_title = "Shto topic te ri!!";
 
 include '../core/init.php';
 protect_page();
