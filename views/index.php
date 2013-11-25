@@ -1,5 +1,5 @@
 <?php
-$titulli_faqes = "Ballina";
+$page_title = "Ballina";
 include '../core/init.php';
 include 'layout/header.php';
 

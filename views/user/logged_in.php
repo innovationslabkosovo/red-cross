@@ -3,10 +3,10 @@
     <div class="inner">
         <ul>
             <li>
-                <a href="../core/user/logout.php">Log out</a>
+                <a href="<?php echo BASE_URL; ?>/core/user/logout.php">Log out</a>
             </li>
             <li>
-                <a href="../../core/changepassword.php">Change password</a>
+                <a href="<?php echo BASE_URL; ?>/views/user/change_password_view.php">Change password</a>
             </li>
         </ul>
     </div>
