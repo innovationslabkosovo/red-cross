@@ -7,12 +7,9 @@
  */
 
 include '../../core/init.php';
-$page_title = "Change Password";
+$page_title = 'Perditeso Fjalkalimin';
 protect_page();
 include $project_root.'views/layout/header.php';
-
-$page_title = "Change password";
-
 ?>
 
 
@@ -21,16 +18,16 @@ $page_title = "Change password";
 <form action="<?php echo BASE_URL; ?>/core/user/change_password.php" method="post">
     <ul>
         <li>
-            Current password*<br>
-            <input type="password" name="current_password">
+            <label for="current_password">Current password*</label><br>
+            <input type="password" name="current_password" id="current_password">
         </li>
         <li>
-            New password*<br>
-            <input type="password" name="password">
+            <label for="password">New password*</label><br>
+            <input type="password" name="password" id="password">
         </li>
         <li>
-            Repeat new password*<br>
-            <input type="password" name="password_again">
+            <label for="password_again">Repeat new password*</label><br>
+            <input type="password" name="password_again" id="password_again">
         </li>
         <li>
             <input type="submit" value="Change">
