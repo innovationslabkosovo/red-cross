@@ -7,6 +7,7 @@
             </li>
             <li>
                 <a href="<?php echo BASE_URL; ?>/views/user/change_password_view.php">Change password</a>
+                <a href="#">AAA</a>
             </li>
         </ul>
     </div>
