@@ -9,7 +9,7 @@
 include '../../core/init.php';
 $page_title = 'Perditeso Fjalkalimin';
 protect_page();
-include $project_root.'views/layout/header.php';
+include $project_root.'/views/layout/header.php';
 ?>
 
 
@@ -41,6 +41,6 @@ if (isset($_GET['message']) && isset($_GET['object']))
     echo $display_messages[$_GET['object']][$_GET['message']];
 }
 
-include $project_root.'views/layout/footer.php';
+include $project_root.'/views/layout/footer.php';
 
 ?>
