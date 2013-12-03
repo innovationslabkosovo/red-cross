@@ -1,7 +1,6 @@
 <?php
 
-$display_messages = array("class"=>array("success"=>"Klasa eshte shtuar me sukses", "fail"=>"Klasa nuk eshte shtuar "), "user"=> array("success"=>"Fjalkalimi u perditsu"),
-    "TopicGroup"=>array("success"=>"Grupi Tematik u shtua me sukses", "fail"=>"Grupi Tematik nuk u shtua me sukses"));
+$display_messages = array("class"=>array("success"=>"Klasa eshte shtuar me sukses", "fail"=>"Klasa nuk eshte shtuar "), "user"=> array("success"=>"Fjalkalimi u perditsu"));
 
 
 echo "<pre></pre>";

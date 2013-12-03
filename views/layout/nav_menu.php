@@ -2,7 +2,7 @@
     <ul>
         <li><a href="<?php echo BASE_URL; ?>/views/index.php">Home</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Class</a></li>
-        <li><a href="<?php echo BASE_URL; ?>/views/location.php">Locations</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/newlecturer.php">New lecturers</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/category.php">Categories</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/lecturer.php">Lecturers</a></li>
