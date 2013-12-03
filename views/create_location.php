@@ -17,7 +17,6 @@ $municipalities = mysql_query($get_municipalities);
 ?>
 
 <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
-<script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"></script> 
 <meta charset=utf-8 />
 <title>Red Cross - Location</title>
 <style>
@@ -30,23 +29,14 @@ $municipalities = mysql_query($get_municipalities);
 </style>
 
 
-<form name="input" action="<?php echo BASE_URL; ?>/core/application/location.php" method="post">
-<?php
-
-
-
-$query="SELECT id, name from municipality ";
-$result = mysql_query($query);
-
- ?>
-
+<form name="input" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="post">
 <h1>Add new location</h1>
 <table border="0">
 <tr>
 <td>Komuna:</td>
 <td>
 	<select name="komuna">
-        <option value="">--Select Municipality--</option>
+        <option value="">--Zgjedh Komunen--</option>
         <?php
             create_options($municipalities, "municipality_id", "name");
         ?>
@@ -88,26 +78,10 @@ if (empty ($_POST) == false)	// nese eshte dergu forma
 	}
 }
 
-
-if((empty($_POST) === false) && empty($errors) === true)
-{
-	$komuna=$_POST["komuna"];
-	$lokacioni=$_POST["name"];
-	$lon=$_POST["lon"];
-	$lat=$_POST["lat"];
-
-
-	$query="INSERT INTO location(id, name, lat, lon, municipality_id)
-		VALUES ('', '$lokacioni', '$lat', '$lon', '$komuna')";
-
-	mysql_query($query);
-	header('Location: create_location.php?success');
-	exit();
-}
-else echo implode(", ", $errors); // shfaqja e errorave ne qofte se egzistojne	
-
-if (isset($_GET['message']) && isset($_GET['object'])) {
-    echo $display_messages[$_GET['object']][$_GET['message']];
+if (empty($_POST) == false) {
+    if (isset($_GET['message']) && isset($_GET['object'])) {
+        echo $display_messages[$_GET['object']][$_GET['message']];
+    }
 }
 
 
