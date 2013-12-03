@@ -59,8 +59,8 @@ $result = mysql_query($query);
 <tr colspan="2">
 <div id="map" class="smallmap" style="width:625px; height:350px"></div>
 </tr>
-<tr><td>Latitude: </td><td><input type="text" id="lat" name="lat"></td></tr>
-<tr><td>Longitude: </td><td><input type="text" id="lon" name="lon"></td></tr>
+<tr><td><input type="hidden" id="lat" name="lat"></td></tr>
+<tr><td><input type="hidden" id="lon" name="lon"></td></tr>
 <tr><td>&nbsp;</td><td><input type ="submit" value="Ruaj!"></td></tr>
 
 </table>
@@ -101,14 +101,13 @@ if((empty($_POST) === false) && empty($errors) === true)
 		VALUES ('', '$lokacioni', '$lat', '$lon', '$komuna')";
 
 	mysql_query($query);
-	header('Location: view_location.php?success');
+	header('Location: create_location.php?success');
 	exit();
 }
 else echo implode(", ", $errors); // shfaqja e errorave ne qofte se egzistojne	
-	
-if(isset($_GET['success']) && empty($_GET['success']))	// nese eshte regjistruar shfaq notifikimin
-{
-		echo "Te dhenat u ruajten me sukses ne databaze";
+
+if (isset($_GET['message']) && isset($_GET['object'])) {
+    echo $display_messages[$_GET['object']][$_GET['message']];
 }
 
 
