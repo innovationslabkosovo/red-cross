@@ -11,7 +11,7 @@ $topic_groups = mysql_query($get_topic_groups);
 
 <h2>Shto grup tematik te ri</h2>
 
-    <form action="../core/application/create_class.php" method="post">
+    <form action="../core/application/create_topic_group.php" method="post">
 
         <div class="row">
 

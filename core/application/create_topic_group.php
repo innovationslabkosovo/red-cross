@@ -16,7 +16,7 @@ if(empty($_POST) === false)
     }
 
 
-    if (mysql_query("INSERT INTO TopicGroup(name, active) VALUES ('', '$topic_group' ,  '$active')"))
+    if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
         header("location: ../../views/create_topic_group.php?message=success&object=TopicGroup");
     else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
 
