@@ -1,2 +1,5 @@
-/red_cross/.idea/*
-/red_cross/config/config.php
+# Created by http://gitignore.io
+
+### PhPStorm ###
+.idea/
+ config/
