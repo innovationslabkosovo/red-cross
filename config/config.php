@@ -1,6 +1,6 @@
 <?php
 $username = "root";
-$password = "1dff352a54835700";
+$password = "root";
 $hostname = "localhost";
 $dbname = "red_cross";
 

@@ -1,9 +1,20 @@
-<?php 
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lulzim
+ * Date: 11/23/13
+ * Time: 10:25 PM
+ */
+
 $page_title = "Shto lokacion";
 include '../core/init.php';
 protect_page();
 $errors = array();
-include 'layout/header.php';?>
+include 'layout/header.php';
+
+$get_municipalities = "SELECT municipality_id, name FROM Municipality ";
+$municipalities = mysql_query($get_municipalities);
+?>
 
 <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
 <script src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.2&mkt=en-us"></script> 
@@ -19,7 +30,7 @@ include 'layout/header.php';?>
 </style>
 
 
-<form name="input" action="" method="post">
+<form name="input" action="<?php echo BASE_URL; ?>/core/application/location.php" method="post">
 <?php
 
 
@@ -35,14 +46,10 @@ $result = mysql_query($query);
 <td>Komuna:</td>
 <td>
 	<select name="komuna">
-	<option value=''>-Select-</option>
-<?php
-while($row = mysql_fetch_array($result))
-  {
-	echo '<option value='.$row['id'].' >'.$row['name'].' </option>';
-}
- ?>
-		
+        <option value="">--Select Municipality--</option>
+        <?php
+            create_options($municipalities, "municipality_id", "name");
+        ?>
 	</select>
 </td>
 </tr>
@@ -50,10 +57,10 @@ while($row = mysql_fetch_array($result))
 <td>Lokacioni: </td><td><input type="text" name="name"></td></tr>
 
 <tr colspan="2">
-<div id="map" class="smallmap" style="width:400px; height:300px"></div>
+<div id="map" class="smallmap" style="width:625px; height:350px"></div>
 </tr>
-<tr><td>Latitude: </td><td><p id="lat"></td></tr>
-<tr><td>Longitude: </td><td><p id="lon" ></td></tr>
+<tr><td>Latitude: </td><td><input type="text" id="lat" name="lat"></td></tr>
+<tr><td>Longitude: </td><td><input type="text" id="lon" name="lon"></td></tr>
 <tr><td>&nbsp;</td><td><input type ="submit" value="Ruaj!"></td></tr>
 
 </table>
@@ -94,7 +101,7 @@ if((empty($_POST) === false) && empty($errors) === true)
 		VALUES ('', '$lokacioni', '$lat', '$lon', '$komuna')";
 
 	mysql_query($query);
-	header('Location: location.php?success');
+	header('Location: view_location.php?success');
 	exit();
 }
 else echo implode(", ", $errors); // shfaqja e errorave ne qofte se egzistojne	
@@ -107,6 +114,6 @@ if(isset($_GET['success']) && empty($_GET['success']))	// nese eshte regjistruar
 
 ?>
 
-<script type="text/javascript" src="<?php //include $project_root . 'js/map.js'; ?>"></script>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
