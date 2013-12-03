@@ -1,15 +1,20 @@
 <?php
-
 $display_messages = array(
     "class" => array(
         "success" => "Klasa eshte shtuar me sukses",
-        "fail" => "Klasa nuk eshte shtuar "),
+        "fail" => "Klasa nuk eshte shtuar "
+    ),
     "user" => array(
         "success" => "Fjalkalimi u perditsu",
-        "fail" => "Fjalkalimi nuk u perditesua"),
+        "fail" => "Fjalkalimi nuk u perditesua"
+    ),
     "location" => array(
         "success" => "Lokacioni eshte shtuar me sukses",
         "fail" => "Lokacioni nuk eshte shtuar"
+    ),
+    "TopicGroup" => array(
+        "success" => "Grupi Tematik u shtua me sukses",
+        "fail" => "Grupi Tematik nuk u shtua me sukses",
     ),
 );
 
