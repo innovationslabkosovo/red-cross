@@ -1,7 +1,7 @@
 <?php
 $username = "root";
-$password = "123456";
-$hostname = "localhost";
+$password = "1dff352a54835700";
+$hostname = "77.81.240.20";
 $dbname = "red_cross";
 
 //connection to the database
