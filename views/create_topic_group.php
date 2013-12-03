@@ -1,5 +1,5 @@
 <?php
-$page_title = "Shto topic te ri - red_cross_1";
+$page_title = "Shto grup tematik te ri";
 
 include '../core/init.php';
 protect_page();
