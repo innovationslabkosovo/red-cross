@@ -18,7 +18,7 @@ $municipalities = mysql_query($get_municipalities);
 
 <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
 <meta charset=utf-8 />
-<title>Red Cross - Location</title>
+<title>Red Cross - Lokacionet</title>
 <style>
   article, aside, figure, footer, header, hgroup, 
   menu, nav, section { display: block; }
@@ -30,7 +30,7 @@ $municipalities = mysql_query($get_municipalities);
 
 
 <form name="input" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="post">
-<h1>Add new location</h1>
+<h1>Shto nje lokacion te ri</h1>
 <table border="0">
 <tr>
 <td>Komuna:</td>
@@ -56,35 +56,14 @@ $municipalities = mysql_query($get_municipalities);
 </table>
 </form>
 
+<?php
+$query = "SELECT municipality_id FROM Location WHERE municipality_id = :muni";
+?>
 
 <?php
-if (empty ($_POST) == false)	// nese eshte dergu forma
-{
-	if(empty ($_POST['komuna']))
-	{
-		$errors[] = "Ju lutemi plotesoni komunen";
-	}
-	if(empty ($_POST['name']))
-	{
-		$errors[] = "Ju lutemi plotesoni lokacionin";
-	}
-	if(empty($_POST['lon']))
-	{
-		$errors[] = "Ju lutemi plotesoni longituden";
-	}
-	if(empty($_POST['lat']))
-	{
-		$errors[] = "Ju lutemi plotesoni latituden";
-	}
-}
-
-if (empty($_POST) == false) {
     if (isset($_GET['message']) && isset($_GET['object'])) {
         echo $display_messages[$_GET['object']][$_GET['message']];
     }
-}
-
-
 ?>
 
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
