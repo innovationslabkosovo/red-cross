@@ -56,3 +56,9 @@ function create_options($query_result , $value , $text)
         echo "<option value=\"{$data[$value]}\">$data[$text]</option>";
 }
 
+function create_options_municipality($query_result , $value , $text, $optional)
+{
+    while ($data = mysql_fetch_assoc($query_result))
+        echo "<option value=\"{$data[$value]}\" id=\"{$data[$optional]}\">$data[$text]</option>";
+}
+
