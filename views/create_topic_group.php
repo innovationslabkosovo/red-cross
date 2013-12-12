@@ -9,7 +9,7 @@ $get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
 $topic_groups = mysql_query($get_topic_groups);
 ?>
 
-<h2>Shto grup tematik te ri</h2>
+<h2>Shto grup tematik te ri!</h2>
 
     <form action="../core/application/create_topic_group.php" method="post">
 
