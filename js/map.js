@@ -15,19 +15,19 @@ map.addLayer(mapnik);
 
 var markers = new OpenLayers.Layer.Markers("Markers");
 map.addLayer(markers);
-//markers.addMarker(new OpenLayers.Marker(position));
-
+markers.addMarker(new OpenLayers.Marker(position));
 map.setCenter(position, zoom);
+markers.
 
 map.events.register("click", map, function (e) {
     "use strict";
-    var point = map.getLonLatFromViewPortPx(e.xy).transform(fromProjection, toProjection), getPoint; // Get latitude, longitude pixel values and transform it
+    var point, transformedMarker;
+    point = map.getLonLatFromPixel(e.xy);
     markers.clearMarkers(); // Clear markers first
-    getPoint = new OpenLayers.LonLat(point.lon, point.lat); // Get Point
-    markers.addMarker(new OpenLayers.Marker(getPoint)); // Add marker with latitude, longitude
-    OpenLayers.Util.getElement("lat").value = point.lat.toFixed(6); // Update hidden fields with latitude
-    OpenLayers.Util.getElement("lon").value = point.lon.toFixed(6); // Update hidden fields with longitude
-
+    markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(point.lon, point.lat))); // New Location
+    transformedMarker = point.transform(fromProjection, toProjection); // Transform marker
+    OpenLayers.Util.getElement("lon").value = transformedMarker.lon.toFixed(6); // Update hidden values
+    OpenLayers.Util.getElement("lat").value = transformedMarker.lat.toFixed(6); // Update hidden values
 });
 
 (function () {
@@ -43,5 +43,13 @@ map.events.register("click", map, function (e) {
             OpenLayers.Util.getElement("lat").value = LonLatFromID[1]; // Update hidden fields with latitude
             OpenLayers.Util.getElement("lon").value = LonLatFromID[0]; // Update hidden fields with longitude
         }
+    });
+}());
+
+(function clearMarkers() {
+    "use strict";
+    $("#clearMarkers").on("click", function () {
+        markers.clearMarkers();
+        $("#lat, #lon").val("");
     });
 }());
