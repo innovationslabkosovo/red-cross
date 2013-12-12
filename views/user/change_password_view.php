@@ -13,7 +13,7 @@ include $project_root.'/views/layout/header.php';
 ?>
 
 
-<h1>Change password!</h1>
+<h1>Ndryshoni Fjalekalimin!</h1>
 
 <form action="<?php echo BASE_URL; ?>/core/user/change_password.php" method="post">
     <ul>
