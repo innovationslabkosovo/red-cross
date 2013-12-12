@@ -1,16 +1,19 @@
 <?php
 	$page_title = "Saktesia e pergjigjjeve";
-	include("core/init.php");
+	include '../core/init.php';
 	protect_page();
-	include("inc/overall/header.php");	
+	include $project_root . 'views/layout/header.php';
 	$errors = array();
 ?>
+<htm
 
 <?php
 $id = $_REQUEST['part_id'];	// me marr permes url linkut
 
+// $part_id = mysql_query("SELECT q.question_id AS q_id, q.desctiption AS q_text, p.participant_id AS p_id, t.test_id AS t_id from Participant as p INNER JOIN Test as t on c.test_id = t.id INNER JOIN Testquestion as tq on t.id = tq.test_id INNER JOIN Question as q on tq.question_id = q.id WHERE p.id = $id");
 
-$part_id = mysql_query("SELECT q.id AS q_id, q.text AS q_text, p.id AS p_id, t.id AS t_id from participant as p INNER JOIN class as c on p.class_id = c.id INNER JOIN test as t on c.test_id = t.id INNER JOIN test_question as tq on t.id = tq.test_id INNER JOIN question as q on tq.question_id = q.id WHERE p.id = $id");
+$query = mysql_query("SELECT * FROM ParticipantAnswer pa inner join Question q inner join Test t WHERE t.test_id = pa.test_id and participant_id = '$id' and  q.question_id = pa.question_id
+ 		");
 
 ?>
 
@@ -19,22 +22,23 @@ $part_id = mysql_query("SELECT q.id AS q_id, q.text AS q_text, p.id AS p_id, t.i
 <form action="" method="post">  <!-- forma per shtimin e pergjigjjeve -->
 
 <table border="1"> 
+
 		<tr>
 			<td> Pyetjet </td>
 			<td> Para </td>
 			<td> Pas </td>
-			<td>Test_id</td>
+			<td> Test_id</td>
 		</tr>
 
 <?php
-while($record = mysql_fetch_array($part_id))	//paraqit query-n
+while($record = mysql_fetch_array($query))	//paraqit query-n
 	{
-		echo ' 
+		echo '
 		<tr>
-			<td>' . $record['q_text'] . '</td>
-			<td>T<input type="radio" name="para['.$record['q_id'].']" value="1"> F<input type="radio" name="para['.$record['q_id'].']" value="0"> </td>
-			<td>T<input type="radio" name="pas['.$record['q_id'].']" value="1"> F<input type="radio" name="pas['.$record['q_id'].']" value="0"> </td>
-			<td>' . $test_id = $record['t_id'] . '</td>
+			<td>' . $record['description'] . '</td>
+			<td>T<input type="radio" name="para['.$record['question_id'].']" value="1"> F<input type="radio" name="para['.$record['question_id'].']" value="0"> </td>
+			<td>T<input type="radio" name="pas['.$record['question_id'].']" value="1"> F<input type="radio" name="pas['.$record['question_id'].']" value="0"> </td>
+			<td>' . $test_id = $record['test_id'] . '</td>
 		</tr>';
 	}
 
@@ -47,6 +51,7 @@ while($record = mysql_fetch_array($part_id))	//paraqit query-n
 </form>
 <?php 
 if (isset($_POST['submit']))
+	
 {
 	foreach ($_POST['para'] as $key => $value)	// type = 0 eshte paratesti
 	{	
@@ -69,7 +74,9 @@ if (isset($_POST['submit']))
 		mysql_query("INSERT INTO `participant_result` (`participant_id`, `test_id`, `question_id`, `answer`, `type`) VALUES ('$id', '$test_id', '$q_id', '$pas', '1')");
 		
 	}
+
 	echo "Pergjigjjet u insertuan";
+	
 }
 
 
@@ -77,5 +84,4 @@ if (isset($_POST['submit']))
 	// exportoje edhe niher db
 ?>
 
-
-<?php include("inc/overall/footer.php"); ?>
+<?php include $project_root . 'views/layout/footer.php'; ?>

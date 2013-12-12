@@ -1,7 +1,23 @@
 <?php
 
-$display_messages = array("class"=>array("success"=>"Klasa eshte shtuar me sukses", "fail"=>"Klasa nuk eshte shtuar "), "user"=> array("success"=>"Fjalkalimi u perditsu"),
-    "TopicGroup"=>array("success"=>"Grupi Tematik u shtua me sukses", "fail"=>"Grupi Tematik nuk u shtua me sukses"));
+$display_messages = array(
+    "class" => array(
+        "success" => "Klasa eshte shtuar me sukses",
+        "fail" => "Klasa nuk eshte shtuar "
+    ),
+    "user" => array(
+        "success" => "Fjalkalimi u perditsu",
+        "fail" => "Fjalkalimi nuk u perditesua"
+    ),
+    "location" => array(
+        "success" => "Lokacioni eshte shtuar me sukses",
+        "fail" => "Lokacioni nuk eshte shtuar"
+    ),
+    "TopicGroup" => array(
+        "success" => "Grupi Tematik u shtua me sukses",
+        "fail" => "Grupi Tematik nuk u shtua me sukses",
+    ),
+);
 
 
 echo "<pre></pre>";
@@ -38,5 +54,11 @@ function create_options($query_result , $value , $text)
 {
     while ($data = mysql_fetch_assoc($query_result))
         echo "<option value=\"{$data[$value]}\">$data[$text]</option>";
+}
+
+function create_options_municipality($query_result , $value , $text, $optional)
+{
+    while ($data = mysql_fetch_assoc($query_result))
+        echo "<option value=\"{$data[$value]}\" id=\"{$data[$optional]}\">$data[$text]</option>";
 }
 

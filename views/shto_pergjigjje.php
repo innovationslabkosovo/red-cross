@@ -1,8 +1,8 @@
 <?php
 	$page_title = "Shto_pergjigjje";
-	include("core/init.php");
+	include '../core/init.php';
 	protect_page();
-	include("inc/overall/header.php");	
+	include $project_root . 'views/layout/header.php';
 	$errors = array();
 ?>
 
@@ -39,7 +39,7 @@
 		$id = $_POST['part_id'];
 		
 		
-		$result = mysql_query("Select * FROM participant WHERE `id` = $id"); // a egziston participanti
+		$result = mysql_query("Select * FROM Participant WHERE `participant_id` = $id"); // a egziston participanti
 		
 		if(mysql_num_rows($result) > 0)	// nese egziston participanti
 		{
@@ -69,4 +69,4 @@
 
 
 
-<?php include("inc/overall/footer.php"); ?>
+<?php include $project_root . 'views/layout/footer.php'; ?>

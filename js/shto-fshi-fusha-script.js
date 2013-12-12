@@ -23,42 +23,38 @@ $(document).ready(function(){
 	
 	
 	
-
-	
-	
-	
 	
 	newTextBoxDiv.after().html('<label>Pyetja #'+ text + ' : </label>' +
 	      '<input type="text" name="question[]" id="q'+ counter + '" value="" > <br> <label>Pergjigjja A : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" > ' +
-		  '<input type="hidden" name="check[c'+ counter +'][a1]" value="0">' +
-		  '<input type="checkbox" name="check[c'+ counter +'][a1]" value="1"><br>'
+		  '<input type="hidden" name="check[c'+ counter +'][a1]" value="0"><br>' 
+		  // '<input type="checkbox" name="check[c'+ counter +'][a1]" value="1"><br>'
 		  
 		  
 		  + '<label> Pergjigjja B : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
-		  '<input type="hidden" name="check[c'+ counter +'][a2]" value="0">' +
-		  '<input type="checkbox" name="check[c'+ counter +'][a2]" value="1"><br>'
+		  '<input type="hidden" name="check[c'+ counter +'][a2]" value="0"><br>' 
+		  // '<input type="checkbox" name="check[c'+ counter +'][a2]" value="1"><br>'
 		  
 		  
 		  + '<label> Pergjigjja C : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
-		  '<input type="hidden" name="check[c'+ counter +'][a3]" value="0">' +
-		  '<input type="checkbox" name="check[c'+ counter +'][a3]" value="1"><br>'
+		  '<input type="hidden" name="check[c'+ counter +'][a3]" value="0"><br>' 
+		  // '<input type="checkbox" name="check[c'+ counter +'][a3]" value="1"><br>'
 		  
 
 		  
 		  + '<label> Pergjigjja D : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
-		  '<input type="hidden" name="check[c'+ counter +'][a4]" value="0">' +
-		  '<input type="checkbox" name="check[c'+ counter +'][a4]" value="1"><br>'
+		  '<input type="hidden" name="check[c'+ counter +'][a4]" value="0"><br>' 
+		  // '<input type="checkbox" name="check[c'+ counter +'][a4]" value="1"><br>'
 		  	
 		  
 		  
 		  + '<label> Pergjigjja E : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
-		  '<input type="hidden" name="check[c'+ counter +'][a5]" value="0">' +
-		  '<input type="checkbox" name="check[c'+ counter +'][a5]" value="1"><br>');
+		  '<input type="hidden" name="check[c'+ counter +'][a5]" value="0"><br>');
+		  // '<input type="checkbox" name="check[c'+ counter +'][a5]" value="1"><br>');
 		  
  
 	newTextBoxDiv.appendTo("#TextBox");
@@ -77,10 +73,7 @@ $(document).ready(function(){
 	counter--;
 	text--;
 	
- 
         $("#TextBoxDiv" + text).remove();
-		
-		
  
      });
  
