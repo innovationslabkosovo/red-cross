@@ -5,11 +5,11 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active = 1";
+$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
 $topic_groups = mysql_query($get_topic_groups);
 ?>
 
-<h2>Shto grup tematik te ri</h2>
+<h2>Shto grup tematik te ri!</h2>
 
     <form action="../core/application/create_topic_group.php" method="post">
 
@@ -21,6 +21,7 @@ $topic_groups = mysql_query($get_topic_groups);
                 while ($data_tg = mysql_fetch_assoc($topic_groups)) {
                     echo "<input type='hidden' name='topic_group_id' value='" . $data_tg['topic_group_id'] . "' >";
                     echo "<li>" . $data_tg['name'] . "</li>";
+                    echo "<li>" . $data_tg['active'] . "</li>";
                 }
                 ?>
             </ul>
