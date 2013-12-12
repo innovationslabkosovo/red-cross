@@ -32,6 +32,8 @@ $municipalities = mysql_query($get_municipalities);
         <div id="map" class="smallmap" style="width:625px; height:350px"></div>
         <input type="hidden" id="lat" name="lat">
         <input type="hidden" id="lon" name="lon">
+        <label for="clearMarkers"></label>
+        <input type="button" value="Clear Map" id="clearMarkers"/>
 
         <br/>
         <label for="select_city"></label>
@@ -52,6 +54,6 @@ if (isset($_GET['message']) && isset($_GET['object'])) {
 ?>
 
     <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
-    <script type="text/javascript"> $.validate(); </script>
+    <script type="text/javascript"> //$.validate(); </script>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
