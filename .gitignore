@@ -1,2 +1,5 @@
-./idea/
+# Created by http://gitignore.io
+
+### PhPStorm ###
+.idea/
 /config/config.php
