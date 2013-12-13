@@ -44,7 +44,7 @@ $municipalities = mysql_query($get_municipalities);
             ?>
         </select><br/><br/>
         <label for="name"></label>
-        <input type="text" name="name" id="name" value="-Lokacioni-" onfocus="if(this.value == '-Lokacioni-') this.value=''"><br/><br/>
+        <input type="text" name="name" id="name" value="-Emri i Lokacionit-" onfocus="if(this.value == '-Emri i Lokacionit-') this.value=''"><br/><br/>
         <input type="submit" value="Ruaj!">
     </form>
 <?php
