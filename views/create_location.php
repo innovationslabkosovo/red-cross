@@ -6,7 +6,7 @@
  * Time: 10:25 PM
  */
 
-$page_title = "Shto lokacion";
+$page_title = "Shto Lokacion";
 include '../core/init.php';
 protect_page();
 $errors = array();
