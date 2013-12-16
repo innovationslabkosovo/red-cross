@@ -32,7 +32,7 @@ if(empty($_POST) === false)
        try
         {
 
-            mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'");
+            if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'"))
                 header("location: ../../views/create_topic_group.php?message=success&object=TopicGroupDelete");
             else throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
 
