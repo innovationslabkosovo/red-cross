@@ -21,7 +21,7 @@ $status[0]="Jo-aktiv";
 
 
 
-    <form name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
+    <form class="txfform-wrapper cf" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
         <input type="hidden" name="hidDelete" id="hidDelete" value="" />
         <div class="row">
 
@@ -46,9 +46,13 @@ $status[0]="Jo-aktiv";
         <h3>Shto Grup Tematik te Ri!</h3>
         <div class="row">
             <label>Titulli i Grupit Tematik: </label>
-            <input type="text" name="topic_group" id="topic_group">
-            <br>
-            <input type="checkbox" name="active" value="active">Ky grup tematik eshte aktiv<br>
+
+             <input type="text" placeholder="Name" name="topic_group" id="topic_group">
+            <label class="myCheckbox">
+                <input type="checkbox" name="active" value="active">Ky grup tematik eshte aktiv
+                <span></span>
+            </label>
+
         </div>
         <br>
         <input type="submit" value="Submit">
