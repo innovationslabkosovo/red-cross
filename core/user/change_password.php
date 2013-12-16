@@ -44,7 +44,7 @@ else
     if(empty($_POST) === false && empty($errors) === true)
     {
         change_password($_SESSION['id'], $_POST['password']);
-        header("location: ../../views/user/change_password_view.php?message=success&object=user");
+        //header("location: ../../views/user/change_password_view.php?message=success&object=user");
     }
     else if (empty($errors) === false)
     {
