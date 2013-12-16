@@ -28,10 +28,20 @@ if(empty($_POST) === false)
     else if(isset($_POST["hidDelete"]) || $_POST["hidDelete"] != "")
     {
         $rowID = $_POST["hidDelete"];
-        if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'"))
-            header("location: ../../views/create_topic_group.php?message=success&object=TopicGroupDelete");
-        else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroupDelete");
-        exit;
+
+       try
+        {
+
+            mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'");
+                header("location: ../../views/create_topic_group.php?message=success&object=TopicGroupDelete");
+            else throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
+
+        }
+        catch (Exception $e) {
+                header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroupDelete");
+        }
+
+
     }
 
 }
