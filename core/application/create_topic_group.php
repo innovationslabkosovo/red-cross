@@ -1,24 +1,37 @@
 <?php
 include '../../config/config.php';
+
 if(empty($_POST) === false)
 {
 
-    $topic_group=$_POST["topic_group"];
+    if(isset($_POST['topic_group']) && $_POST["topic_group"] != "") {
 
-    if(isset($_POST['active']) &&
-        $_POST['active'] == 'active')
-    {
-        $active = 1;
+        $topic_group=$_POST["topic_group"];
+
+
+        if(isset($_POST['active']) && $_POST['active'] == 'active')
+            {
+                $active = 1;
+            }
+        else
+            {
+                $active = 0;
+            }
+
+
+        if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
+            header("location: ../../views/create_topic_group.php?message=success&object=TopicGroup");
+        else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
+
     }
-    else
+
+    else if(isset($_POST["hidDelete"]) || $_POST["hidDelete"] != "")
     {
-        $active = 0;
+        $rowID = $_POST["hidDelete"];
+        if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'"))
+            header("location: ../../views/create_topic_group.php?message=success&object=TopicGroupDelete");
+        else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroupDelete");
+        exit;
     }
-
-
-    if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
-        header("location: ../../views/create_topic_group.php?message=success&object=TopicGroup");
-    else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
-
 
 }
