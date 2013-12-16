@@ -370,11 +370,11 @@ li:hover li a:hover {
     height: 22px;
     display: block;
     cursor: pointer;
-    background: url("images/bg-checkbox.png");
+    background: url("../img/bg-checkbox.png");
 }
 
 .myCheckbox input:checked + span {
-    background: url("images/checkImg.png");
+    background: url("../img/checkImg.png");
 }
 /* CHECKBOX ENDS **********************************/
 
@@ -392,11 +392,11 @@ li:hover li a:hover {
     height: 22px;
     display: block;
     cursor: pointer;
-    background: url("images/RadioBtn.png");
+    background: url("../img/RadioBtn.png");
 }
 
 .myRadiobox input:checked + span {
-    background: url("images/RadioBtnChecked.png");
+    background: url("../img/RadioBtnChecked.png");
 }
 /* RADIO CHECKBOX ENDS **********************************/
 
