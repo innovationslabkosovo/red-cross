@@ -1,22 +1,20 @@
 $(document).ready(function () {
-    var change_password = $("form");
+    var this_form = $("form");
     var message = $("#message");
-    var loading_gif = '<?php echo BASE_URL."/img/loading.gif"; ?>';
-    change_password.on("submit", function (e) {
-        message.html("<img src=''/>");
+    this_form.on("submit", function (e) {
         var postData = $(this).serializeArray();
-        var formURL = $(this).attr("action");
+        var formURL = $(this).attr('action');
         $.ajax(
             {
                 url: formURL,
-                type: "POST",
+                type: 'POST',
                 data: postData,
-                success: function (data, textStatus, jqXHR) {
-                    message.html('<pre><code class="prettyprint">' + data + '</code></pre>');
+                success: function (data) {
+                    message.html('<pre><code class=\"prettyprint\">' + data + '</code></pre>');
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    message.html('<pre><code class="prettyprint">AJAX Request Failed<br/> textStatus=' + textStatus + ', errorThrown=' + errorThrown + '</code></pre>');
+                    message.html('<pre><code class=\"prettyprint\">AJAX Request Failed<br/> textStatus=' + textStatus + ', errorThrown=' + errorThrown + '</code></pre>');
                 }
             });
         e.preventDefault();
