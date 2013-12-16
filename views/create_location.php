@@ -25,13 +25,14 @@ $municipalities = mysql_query($get_municipalities);
             display: block;
         }
     </style>
+    <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
 
-    <form name="input" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="post">
+    <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
         <h1>Shto nje lokacion te ri</h1>
 
         <div id="map" class="smallmap" style="width:625px; height:350px"></div>
-        <input type="hidden" id="lat" name="lat">
-        <input type="hidden" id="lon" name="lon">
+        <input type="text" id="lat" name="lat">
+        <input type="text" id="lon" name="lon">
         <label for="clearMarkers"></label>
         <input type="button" value="Clear Map" id="clearMarkers"/>
 
@@ -44,12 +45,13 @@ $municipalities = mysql_query($get_municipalities);
             ?>
         </select><br/><br/>
         <label for="name"></label>
-        <input type="text" name="name" id="name" value="-Emri i Lokacionit-" onfocus="if(this.value == '-Emri i Lokacionit-') this.value=''"><br/><br/>
+        <input type="text" name="name" id="name" value="" placeholder="Emri i Lokacionit"><br/><br/>
         <input type="submit" value="Ruaj!">
     </form>
+    <div id="message"></div>
 <?php
 if (isset($_GET['message']) && isset($_GET['object'])) {
-    echo $display_messages[$_GET['object']][$_GET['message']];
+    //echo $display_messages[$_GET['object']][$_GET['message']];
 }
 ?>
 
