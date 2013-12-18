@@ -831,7 +831,7 @@ body .ui-tooltip {
 .ui-state-default a:link,
 .ui-state-default a:visited {
     color: #555555;
-    text-decoration: none;
+    text-decoration: none;a
 }
 .ui-state-hover,
 .ui-widget-content .ui-state-hover,
