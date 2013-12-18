@@ -5,6 +5,7 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
+$i = 0;
 
 $get_trainers = "SELECT trainer_id, name, surname FROM Trainer ";
 $trainers = mysql_query($get_trainers);
@@ -23,6 +24,20 @@ $topics = mysql_query($get_topics);
 
 $get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active = 1";
 $topic_groups = mysql_query($get_topic_groups);
+
+while($row = mysql_fetch_assoc($topics)) {
+    $topic_rows[$i]['topic_id'] = $row['topic_id'];
+    $topic_rows[$i]['topic_group_id'] = $row['topic_group_id'];
+    $topic_rows[$i]['description'] = $row['description'];
+    $i++;
+}
+
+$i=0;
+while($row = mysql_fetch_assoc($topic_groups)) {
+    $topic_group_rows[$i]['topic_group_id'] = $row['topic_group_id'];
+    $topic_group_rows[$i]['name'] = $row['name'];
+    $i++;
+}
 
 
 ?>
@@ -51,11 +66,11 @@ $topic_groups = mysql_query($get_topic_groups);
         <br>
 
         <div class="row">
-            <label>Date From : </label><input type="text" name="date_from" id="datepicker"><br>
+            <label>Date From : </label><input type="text" name="date_from" id="datefrom"><br>
         </div>
 
         <div class="row">
-            <label>Date To: </label><input type="text" name="date_to" id="datepicker"><br>
+            <label>Date To: </label><input type="text" name="date_to" id="dateto"><br>
         </div>
 
         <div class="row">
@@ -84,17 +99,19 @@ $topic_groups = mysql_query($get_topic_groups);
             <h4>Topics</h4>
             <ul>
                 <?php
-                while ($data_tg = mysql_fetch_assoc($topic_groups)) {
-                    echo "<input type='hidden' name='topic_group_id' value='" . $data_tg['topic_group_id'] . "' >";
-                    echo "<li>" . $data_tg['name'] . "</li>";
-                    echo "<ul>";
-                    while ($data_topic = mysql_fetch_assoc($topics)) {
-                        if ($data_tg['topic_group_id'] == $data_topic['topic_group_id'])
-                            echo "<li>" . $data_topic['description'] . "</li>";
-                    }
-                    echo "</ul>";
-                }
 
+                foreach ((array)$topic_group_rows as $tg_value) {
+                    echo "<input type='hidden' name='topic_group_id' value='" . $tg_value['topic_group_id'] . "' >";
+                    echo "<li>" . $tg_value['name'] . "</li>";
+                    echo "<ol>";
+                    foreach ((array)$topic_rows as $t_value) {
+                        echo $data_topic['topic_group_id'];
+                        if ($tg_value['topic_group_id'] == $t_value['topic_group_id'])
+                            echo "<li>" . $t_value['description'] . "</li>";
+                    }
+                    echo "</ol>";
+
+                }
 
                 ?>
             </ul>
