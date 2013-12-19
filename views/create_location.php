@@ -67,10 +67,10 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
             echo "</pre>";
             echo '<tr>';
             echo '<td>';
-            echo '<a href="http://www.openstreetmap.org/#map=13/'.$results['latitude'].'/'.$results['longitude'].'" target="_blank">' .$results['location_name'] .'</a>';
+            echo '<a href="http://www.openstreetmap.org/?mlat='.$results['latitude'].'&mlon='.$results['longitude'].'" target="_blank">' .$results['location_name'] .'</a>';
             echo '</td>';
             echo '<td>';
-            echo '<a href="http://www.openstreetmap.org/#map=13/'.$coords['1'].'/'.$coords['0'].'" target="_blank">' .$results['municipality_name'] .'</a>';
+            echo '<a href="http://www.openstreetmap.org/?mlat='.$coords['1'].'&mlon='.$coords['0'].'" target="_blank">' .$results['municipality_name'] .'</a>';
             echo '</td>';
             echo '</tr>';
         }
