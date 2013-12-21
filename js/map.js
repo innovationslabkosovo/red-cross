@@ -1,4 +1,4 @@
-/*global $, jQuery, console*/
+/*global $, jQuery*/
 var lat = 42.6258687;
 var lon = 20.8911131;
 var zoom = 9;
@@ -17,7 +17,6 @@ var markers = new OpenLayers.Layer.Markers("Markers");
 map.addLayer(markers);
 markers.addMarker(new OpenLayers.Marker(position));
 map.setCenter(position, zoom);
-markers.
 
 map.events.register("click", map, function (e) {
     "use strict";
