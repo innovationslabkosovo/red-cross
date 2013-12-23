@@ -33,6 +33,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <input type="hidden" id="lat" name="lat">
     <input type="hidden" id="lon" name="lon">
     <label for="clearMarkers"></label>
+    <input type="text" value="Testing">
     <input type="button" value="Clear Map" id="clearMarkers"/>
 
     <br/>
