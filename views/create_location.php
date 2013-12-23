@@ -25,12 +25,6 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
 <meta charset=utf-8/>
 <title>Red Cross - Lokacionet</title>
-<style>
-    article, aside, figure, footer, header, hgroup,
-    menu, nav, section {
-        display: block;
-    }
-</style>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
 
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
@@ -84,7 +78,7 @@ while($results = mysql_fetch_array($locations_municipalities))
 <script type="text/javascript">
     $.validate({
             validateOnBlur : false, // disable validation when input looses focus
-            //errorMessagePosition : 'top', // Instead of 'element' which is default
+            //errorMessagePosition : 'top', // Instead of 'element' which is default;
             //scrollToTopOnError : false, // Set this property to true if you have a long form
             errorPlacement: function(error, element) {
                 error.appendTo($("#message"));

@@ -1,4 +1,4 @@
-/*global $, jQuery*/
+/*global $*/
 var lat = 42.6258687;
 var lon = 20.8911131;
 var zoom = 9;
