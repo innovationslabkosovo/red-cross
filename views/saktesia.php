@@ -5,7 +5,7 @@
 	include $project_root . 'views/layout/header.php';
 	$errors = array();
 ?>
-<htm
+<html>
 
 <?php
 $id = $_REQUEST['part_id'];	// me marr permes url linkut
@@ -15,38 +15,41 @@ $id = $_REQUEST['part_id'];	// me marr permes url linkut
 $query = mysql_query("SELECT * FROM ParticipantAnswer pa inner join Question q inner join Test t WHERE t.test_id = pa.test_id and participant_id = '$id' and  q.question_id = pa.question_id
  		");
 
+
 ?>
 
 <h3>Tabela per pergjigjjet e participantit me id:  <?php echo $id; ?></h3>
-
 <form action="" method="post">  <!-- forma per shtimin e pergjigjjeve -->
 
-<table border="1"> 
+<table border="1">
 
 		<tr>
 			<td> Pyetjet </td>
 			<td> Para </td>
 			<td> Pas </td>
-			<td> Test_id</td>
+			<td> Test_id </td>
 		</tr>
 
 <?php
+
 while($record = mysql_fetch_array($query))	//paraqit query-n
 	{
 		echo '
+		
 		<tr>
 			<td>' . $record['description'] . '</td>
 			<td>T<input type="radio" name="para['.$record['question_id'].']" value="1"> F<input type="radio" name="para['.$record['question_id'].']" value="0"> </td>
 			<td>T<input type="radio" name="pas['.$record['question_id'].']" value="1"> F<input type="radio" name="pas['.$record['question_id'].']" value="0"> </td>
 			<td>' . $test_id = $record['test_id'] . '</td>
 		</tr>';
+		
 	}
 
 ?>
 
 </table><br>
 
-<input type="submit" name="submit" value="Shto pegjigjje">
+<input type="submit" name="submit" value="Shto pergjigjje">
 
 </form>
 <?php 
@@ -76,11 +79,9 @@ if (isset($_POST['submit']))
 	}
 
 	echo "Pergjigjjet u insertuan";
-	
+
 }
 
-
-		
 	// exportoje edhe niher db
 ?>
 

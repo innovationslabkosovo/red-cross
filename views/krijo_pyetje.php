@@ -45,12 +45,13 @@ include $project_root . 'views/layout/header.php';
         <label>Pergjigjja E : </label><input type='text' id='a5' name="answer[q0][]" >
         <input type="hidden" name="check[c0][a5]" value="0">
         <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
+        
 	</div>
 </div>
 <input type='button' value='Shto fushe' id='addButton'>
 <input type='button' value='Fshi fushe' id='removeButton'>
 
-       
+
 <input type="submit" id="krijo_pyetje" value="Krijo pyetjet">
     
 </form><?php

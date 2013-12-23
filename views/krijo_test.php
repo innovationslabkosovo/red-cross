@@ -8,15 +8,6 @@
 <html>
 <head>
   <script type="text/javascript" src="<?php echo BASE_URL  ?>/js/shto-fshi-fusha-script.js"></script>
-
-  	<script>
-		function formReset()
-		{
-			document.getElementById("form1").reset();
-		}
-		
-	</script>
-
 <form action="" method="post" id = "form1">
 
 <label>Emri i testit: </label><input type="text" name="emri_testit">
