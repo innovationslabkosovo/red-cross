@@ -28,7 +28,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
 
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
-    <h1>Shto nje lokacion te ri</h1>
+    <h1>Shto nje lokacion te ri!!!</h1>
 
     <div id="map" class="smallmap" style="width:625px; height:350px"></div>
     <input type="hidden" id="lat" name="lat">
