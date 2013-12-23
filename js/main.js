@@ -3,5 +3,5 @@
  */
 
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $("#datefrom, #dateto").datepicker();
 });
