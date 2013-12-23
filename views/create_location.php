@@ -23,7 +23,6 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
 <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
-<meta charset=utf-8/>
 <title>Red Cross - Lokacionet</title>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
 
@@ -86,4 +85,4 @@ while($results = mysql_fetch_array($locations_municipalities))
         });
 </script>
 
-    <?php include $project_root . 'views/layout/footer.php'; ?>
+<?php include $project_root . 'views/layout/footer.php'; ?>
