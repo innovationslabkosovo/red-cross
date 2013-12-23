@@ -18,8 +18,8 @@ $display_messages = array(
         "fail" => "Grupi Tematik nuk u shtua me sukses",
     ),
     "TopicGroupDelete" => array(
-        "success" => "Grupi Tematik u fshi me sukses",
-        "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!",
+        "success" => "Grupi Tematik u u fshi me sukses!",
+        "fail" => "Grupi tematik nuk mund te tte fshihet per shkak se ka tema aktive qe i takojne!!!",
     ),
 );
 
