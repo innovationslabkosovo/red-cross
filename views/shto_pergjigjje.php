@@ -16,20 +16,18 @@
 </form>
 
 <?php
+
 	if(empty ($_POST) == false)	// nese eshte dergu forma (klikohet butoni)
 	{
 		if(empty ($_POST['part_id']) == true)
 		{
 			$errors[] = "Ju lutem shkruani id e participantit...";
 		}
-	}
-	
+	}	
 	
 	$part_id = "";
 	
 ?>
-
-
         
 <?php
 	
@@ -38,16 +36,18 @@
 		//selekto gjithcka qe ka id e participantit dhe redirect
 		$id = $_POST['part_id'];
 		
-		
-		$result = mysql_query("Select * FROM Participant WHERE `participant_id` = $id"); // a egziston participanti
+		$result = mysql_query("SELECT * FROM Participant WHERE `participant_id` = $id"); // a egziston participanti
 		
 		if(mysql_num_rows($result) > 0)	// nese egziston participanti
 		{
+
 			header("Location: saktesia.php?part_id=$id");
 			
 		}
+
 		else
 		{
+
 			$errors[] = "Nuk egziston participant me id: " . $id;
 			echo implode("", $errors);
 			
