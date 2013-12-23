@@ -86,3 +86,4 @@ while($results = mysql_fetch_array($locations_municipalities))
 </script>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
+<?php include $project_root . 'views/layout/footer.php'; ?>
