@@ -6,5 +6,5 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/main.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/jquery-ui.js"></script>
-    <scasdasdript src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.27/jquery.form-validator-min.js"></script>
-</head>asdasdsadsad -- -- -- --
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.27/jquery.form-validator-min.js"></script>
+</head>
