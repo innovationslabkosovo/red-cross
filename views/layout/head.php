@@ -19,4 +19,4 @@
 
 
 
-<p>a jeni a ku jeni seksat e DC</p>
+<p>a jeni a ku jeni seksat e DiC-ja</p>
