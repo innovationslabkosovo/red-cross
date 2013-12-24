@@ -47,7 +47,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <div class="row">
             <label>Municipality : </label>
             <select id="municipality_id" name="municipality">
-                <option value="">--Select Municipality--</option>
+                <option value="">--Zgjedh Komunen--</option>
                 <?php
                 create_options($municipalities, "municipality_id", "name");
                 ?>
@@ -57,7 +57,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <div class="row">
             <label>Location : </label>
             <select id="location_id" name="location">
-                <option value="">--Select Location--</option>
+                <option value="">--Zgjedh Fshatin--</option>
                 <?php
                 create_options($locations, "location_id", "name");
                 ?>
@@ -65,6 +65,11 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         </div>
         <br>
 
+        <div class="row">
+            <label>Vendi: </label><input type="text" name="vendi" id="vendi" placeholder="Shtepi Private, Shkolle ..."><br>
+        </div>
+
+        <br>
         <div class="row">
             <label>Date From : </label><input type="text" name="date_from" id="datefrom"><br>
         </div>
@@ -76,7 +81,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <div class="row">
             Test model:
             <select id="test_id" name="test">
-                <option value="">--Select Test--</option>
+                <option value="">--Zgjedh Testin--</option>
                 <?php
                 create_options($tests, "test_id", "name");
                 ?>
@@ -87,6 +92,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <div class="row">
             <label>Trainer : </label>
             <select id="trainer_id" name="trainer">
+                <option value="">--Zgjedh Trainerin--</option>
                 <?php
                 create_options($trainers, "trainer_id", "name");
                 ?>
@@ -101,8 +107,11 @@ while($row = mysql_fetch_assoc($topic_groups)) {
                 <?php
 
                 foreach ((array)$topic_group_rows as $tg_value) {
-                    echo "<input type='hidden' name='topic_group_id' value='" . $tg_value['topic_group_id'] . "' >";
+                    echo "<input type='hidden' name='topic[topic_group_id][]' value='" . $tg_value['topic_group_id'] . "' >";
                     echo "<li>" . $tg_value['name'] . "</li>";
+                    echo "<label>Data: </label><input type='text' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic'><br>";
+                    echo "<label>Koha prej: </label><input type='text' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'><br>";
+                    echo "<label>Koha deri: </label><input type='text' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'><br>";
                     echo "<ol>";
                     foreach ((array)$topic_rows as $t_value) {
                         echo $data_topic['topic_group_id'];
