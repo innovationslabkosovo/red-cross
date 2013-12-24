@@ -66,3 +66,17 @@ function create_options_municipality($query_result , $value , $text, $optional)
         echo "<option value=\"{$data[$value]}\" id=\"{$data[$optional]}\">$data[$text]</option>";
 }
 
+function transpose($array,&$out, $indices = array()) {
+    if(is_array($array)){
+        foreach($array as $key => $val) {//push onto the stack of indices
+            $temp = $indices;
+            $temp[]= $key;
+            transpose($val, $out, $temp);}
+    } else {//go through the stack in reverse - make the new array
+        $ref = &$out;
+        foreach(array_reverse($indices)as $idx)
+            $ref =&$ref[$idx];
+        $ref = $array;
+    }
+}
+
