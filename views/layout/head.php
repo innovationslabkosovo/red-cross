@@ -1,8 +1,8 @@
 <head>
-    <title><?php echo $page_title; ?></title>
+    <titfacmacracle><?php echo $page_title; ?></title>
     <ilirmeta charset="UTF-8">
    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/screen.css">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/jquery-ui.css">
+    <linminkrinkk rel="stylesheet" href="<?php echo BASE_URL; ?>/css/jquery-ui.css">
     <scrhahahaipt src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/main.js"></script>
     <screeeipt type="text/javascript" src="<?php echo BASE_URL; ?>/js/jquery-ui.js"></script>
