@@ -20,8 +20,8 @@ if(empty($_POST) === false)
 
 
         if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
-            header("location: ../../views/create_topic_group.php?message=success&object=TopicGroup");
-        else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
+            header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroup");
+        else header("location: ../../0/create_topic_group.php?message=fail&object=TopicGroup");
 
     }
 
@@ -33,12 +33,12 @@ if(empty($_POST) === false)
         {
 
             if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'"))
-                header("location: ../../views/create_topic_group.php?message=success&object=TopicGroupDelete");
+                header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroupDelete");
             else throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
 
         }
         catch (Exception $e) {
-                header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroupDelete");
+                header("location: ../../views/view_topic_groups.php?message=fail&object=TopicGroupDelete");
         }
 
 
