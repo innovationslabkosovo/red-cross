@@ -3,5 +3,6 @@
  */
 
 $(function() {
-    $("#datefrom, #dateto").datepicker();
+    $("#datefrom, #dateto, .date_topic").datepicker();
+    $(".time_topic").timepicker();
 });
