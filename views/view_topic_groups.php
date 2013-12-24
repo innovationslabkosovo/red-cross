@@ -43,7 +43,8 @@ $status[0]="Jo-aktiv";
             {
             $id=$data_tg['topic_group_id'];
             $name=$data_tg['name'];
-            $status=$status[$data_tg['active']];
+            $active = $status[$data_tg['active']];
+
             ?>
 
             <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -54,8 +55,8 @@ $status[0]="Jo-aktiv";
                 </td>
 
                 <td>
-                    <span id="results_<?php echo $id; ?>" class="text"><?php echo $status; ?></span>
-                    <input name="status" type="text" value="<?php echo $status; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                    <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
+                    <input name="status" type="text" value="<?php echo $active; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
                     <!-- Shtine ID ne rreshtin e fundit -->
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">

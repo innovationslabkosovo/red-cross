@@ -6,6 +6,8 @@ $(function() {
     $("#datefrom, #dateto").datepicker();
 });
 
+$(document).ready(function() {
+
 $(".edit_tr").on("click", function () {
     var ID = $(this).attr('id');
     $("td").find("#results_" + ID).hide();
@@ -39,4 +41,5 @@ $(".editbox").mouseup(function () {
 $(document).mouseup(function (){
     $(".editbox, .save").hide();
     $(".text").show();
+});
 });
