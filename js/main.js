@@ -3,8 +3,11 @@
  */
 
 $(function() {
-    $("#datefrom, #dateto").datepicker();
+    $("#datefrom, #dateto, .date_topic").datepicker({dateFormat: 'yy-mm-dd' });
+    $(".time_topic").timepicker();
 });
+
+$(document).ready(function() {
 
 $(".edit_tr").on("click", function () {
     var ID = $(this).attr('id');
@@ -39,4 +42,5 @@ $(".editbox").mouseup(function () {
 $(document).mouseup(function (){
     $(".editbox, .save").hide();
     $(".text").show();
+});
 });

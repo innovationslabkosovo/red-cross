@@ -24,9 +24,8 @@ $status[0]="Jo-aktiv";
     <div class="row">
 
         <h3>Grupet Tematike Ekzistuese</h3>
-        <ul>
             <?php
-            while ($data_tg = mysql_fetch_assoc($topic_groups)) {
+/*            while ($data_tg = mysql_fetch_assoc($topic_groups)) {
                 echo "<input type='hidden' name='topic_group_id' value='" . $data_tg['topic_group_id'] . "' >";
                 echo "<table border='1'><tr>";
                 echo "<td>".$data_tg['name']."</td>";
@@ -34,10 +33,40 @@ $status[0]="Jo-aktiv";
                 echo "<td><input type=\"button\" value=\"Fshij Grupin Tematik\" onclick=\"deleteThis({$data_tg['topic_group_id']})\" /></td>";
                 //echo "<td>".."</td>";
                 echo "</tr></table>";
+            }*/
+            ?>
+        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic_group.php"></div>
+        <table border="1" id="editable">
+            <?php
+
+            while ($data_tg = mysql_fetch_assoc($topic_groups))
+            {
+            $id=$data_tg['topic_group_id'];
+            $name=$data_tg['name'];
+            $active = $status[$data_tg['active']];
+
+            ?>
+
+            <tr id="<?php echo $id; ?>" class="edit_tr">
+
+                <td>
+                    <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                    <input name="name" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                </td>
+
+                <td>
+                    <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
+                    <input name="status" type="text" value="<?php echo $active; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                    <!-- Shtine ID ne rreshtin e fundit -->
+                    <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
+                    <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+                </td>
+
+            </tr>
+            <?php
             }
             ?>
-        </ul>
-
+        </table>
     </div>
 </form>
 <?php
