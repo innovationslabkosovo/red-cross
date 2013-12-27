@@ -20,7 +20,7 @@ include $project_root . 'views/layout/header.php';
                 </label>
             </div>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Regjistro">
     </div>
 </form>
 
