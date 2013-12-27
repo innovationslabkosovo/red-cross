@@ -23,11 +23,19 @@
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
     <!-- Top Menu-->
     <li>
-        Manage and Create Topics
-        <ul id="sub_menu">
+        Menaxho Temat
+        <ul>
             <!-- Child Menu -->
-            <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Manage Topic Groups</a></li>
-            <li><a href="<?php echo BASE_URL; ?>/views/create_topic.php">Manage Topics</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Teme te Re</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Temat</a></li>
+        </ul>
+    </li>
+    <li>
+        Menaxho Grupet Tematike
+        <ul>
+            <!-- Child Menu -->
+            <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
         </ul>
     </li>
 </ul>
