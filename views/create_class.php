@@ -1,5 +1,5 @@
 <?php
-$page_title = "Shto klase te re";
+$page_title = "Krijo klase te re";
 
 include '../core/init.php';
 protect_page();
@@ -25,15 +25,15 @@ $topics = mysql_query($get_topics);
 $get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active = 1";
 $topic_groups = mysql_query($get_topic_groups);
 
-while($row = mysql_fetch_assoc($topics)) {
+while ($row = mysql_fetch_assoc($topics)) {
     $topic_rows[$i]['topic_id'] = $row['topic_id'];
     $topic_rows[$i]['topic_group_id'] = $row['topic_group_id'];
     $topic_rows[$i]['description'] = $row['description'];
     $i++;
 }
 
-$i=0;
-while($row = mysql_fetch_assoc($topic_groups)) {
+$i = 0;
+while ($row = mysql_fetch_assoc($topic_groups)) {
     $topic_group_rows[$i]['topic_group_id'] = $row['topic_group_id'];
     $topic_group_rows[$i]['name'] = $row['name'];
     $i++;
@@ -42,6 +42,9 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
 ?>
 
+    <h1>Krijo klase te re</h1>
+
+    <br>
     <form action="../core/application/create_class.php" method="post">
 
         <div class="row">
@@ -59,23 +62,27 @@ while($row = mysql_fetch_assoc($topic_groups)) {
             <select id="location_id" name="location" data-validation="required">
                 <option value="">--Zgjedh Fshatin--</option>
                 <?php
-//                create_options($locations, "location_id", "name");
+                //                create_options($locations, "location_id", "name");
                 ?>
             </select>
         </div>
         <br>
 
         <div class="row">
-            <label>Vendi: </label><input type="text" name="vendi" id="vendi" placeholder="Shtepi Private, Shkolle ..."><br>
+            <label>Vendi: </label><input type="text" name="vendi" id="vendi"
+                                         placeholder="Shtepi Private, Shkolle ..."><br>
         </div>
 
         <br>
+
         <div class="row">
-            <label>Data prej: </label><input type="text" name="date_from" id="datefrom" data-validation='required date' data-validation-format='yyyy-mm-dd'><br>
+            <label>Data prej: </label><input type="text" name="date_from" id="datefrom" data-validation='required date'
+                                             data-validation-format='yyyy-mm-dd'><br>
         </div>
 
         <div class="row">
-            <label>Data deri: </label><input type="text" name="date_to" id="dateto" data-validation='required date' data-validation-format='yyyy-mm-dd'><br>
+            <label>Data deri: </label><input type="text" name="date_to" id="dateto" data-validation='required date'
+                                             data-validation-format='yyyy-mm-dd'><br>
         </div>
 
         <div class="row">
@@ -127,9 +134,9 @@ while($row = mysql_fetch_assoc($topic_groups)) {
                             echo "<li>" . $t_value['description'] . "</li>";
                     }
                     echo "</ul></td>";
-                    echo "<td><input type='text' size='12' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic' data-validation='required date' data-validation-format='yyyy-mm-dd'></td>";
-                    echo "<td><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic' data-validation='required time'></td>";
-                    echo "<td><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic' data-validation='required time'></td>";
+                    echo "<td><input type='text' size='12' name='topic[date_topic][]' id='date_topic_" . $tg_value['topic_group_id'] . "' class='date_topic' data-validation='required date' data-validation-format='yyyy-mm-dd'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic' data-validation='required time'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic' data-validation='required time'></td>";
 
                     echo "</tr>";
 
@@ -147,31 +154,30 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
     <script>
         $.validate({
-            modules : 'date',
-            validateOnBlur : false, // disable validation when input looses focus
-            errorMessagePosition : 'top' // Instead of 'element' which is default
-             });
+            modules: 'date',
+            validateOnBlur: false, // disable validation when input looses focus
+            errorMessagePosition: 'top',// Instead of 'element' which is default
+//            borderColorOnError : 'red',
+            addValidClassOnAll : true
+        });
 
-        $("#municipality_id").change(function()
-        {
-            var id=$(this).val();
+        $("#municipality_id").change(function () {
 
             var parent_value = $(this).val();
             var parent_id_field = "municipality_id";
             var child_table = "Location";
             var child_id_field = "location_id";
             var child_text_field = "name";
-            var dataString = 'parent_value='+ parent_value +'&parent_id_field='+ parent_id_field +'&child_table='+ child_table +'&child_id_field='+ child_id_field +'&child_text_field='+ child_text_field ;
+            var dataString = 'parent_value=' + parent_value + '&parent_id_field=' + parent_id_field + '&child_table=' + child_table + '&child_id_field=' + child_id_field + '&child_text_field=' + child_text_field;
 
-            console.log (dataString);
+            console.log(dataString);
             $.ajax
             ({
                 type: "POST",
                 url: "../core/return_children_dropdown.php",
                 data: dataString,
                 cache: false,
-                success: function(html)
-                {
+                success: function (html) {
                     $('#location_id')
                         .find('option:gt(0)')
                         .remove('')
@@ -186,8 +192,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
     </script>
 <?php
-if (isset($_GET['message']) && isset($_GET['object']))
-{
+if (isset($_GET['message']) && isset($_GET['object'])) {
     echo $display_messages[$_GET['object']][$_GET['message']];
 }
 include $project_root . 'views/layout/footer.php';
