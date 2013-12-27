@@ -9,11 +9,11 @@ $(document).ready(function(){
 		
 		
  
-	if(text>30){
-            alert("Vetem 30 fusha lejohen");
-            return false;
-	}   
- 
+		if(text>30){
+	            alert("Vetem 30 fusha lejohen");
+	            return false;
+		}   
+	 
  	
  
 	var newTextBoxDiv = $(document.createElement('div'))
