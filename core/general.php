@@ -15,11 +15,15 @@ $display_messages = array(
     ),
     "TopicGroup" => array(
         "success" => "Grupi Tematik u shtua me sukses",
-        "fail" => "Grupi Tematik nuk u shtua me sukses",
+        "fail" => "Grupi Tematik nuk u shtua me sukses!",
     ),
     "TopicGroupDelete" => array(
         "success" => "Grupi Tematik u fshi me sukses",
         "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!",
+    ),
+    "Category" => array(
+        "success" => "Kategoria eshte shtuar me sukses",
+        "fail" => "Kategoria nuk eshte shtuar",
     ),
 );
 
