@@ -1,9 +1,9 @@
 <?php 
 $page_title = "Shto kategori";
-include 'core/init.php';
+include '../core/init.php';
 protect_page();
 $errors = array();
-include 'inc/overall/header.php'; ?>
+include $project_root . 'views/layout/header.php'; ?>
 	<h1>Add new category</h1>
 <form action="" method="post">
 
