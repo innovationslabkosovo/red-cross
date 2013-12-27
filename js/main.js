@@ -9,18 +9,20 @@ $(function() {
 
 $(document).ready(function() {
 
-$(".edit_tr").on("click", function () {
+$(".edit_tr").not("a").on("click", function () {
     var ID = $(this).attr('id');
-    $("td").find("#results_" + ID).hide();
-    $("td").find("#editbox_" + ID).attr("style","display:block");
-    $("td").find("#" + ID).attr("style","display:block");
+    var td = $("td");
+    td.find("#results_" + ID).hide();
+    td.find("#editbox_" + ID).attr("style","display:block");
+    td.find("#" + ID).attr("style","display:inline");
 });
 
 $(".save").click(function () {
         ID = $(this).attr("id");
+        td = $("td");
         var fileUrl = $("#url").attr("url");
-        var first = $("td").find("#editbox_" + ID);
-        var dataString = $("td").find("#editbox_" + ID).serialize();
+        //var first = td.find("#editbox_" + ID);
+        var dataString = td.find("#editbox_" + ID).serialize();
             $.ajax({
                 type: "POST",
                 url: fileUrl,
