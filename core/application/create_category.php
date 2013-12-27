@@ -23,12 +23,18 @@ if(empty($_POST['category']) == false && empty($errors) == true)
     $name=$_POST["category"];
 
     $query="INSERT INTO Category(category_id, name)
-				VALUES ('','$name')";
-    mysql_query($query);
-    echo "Te dhenat u ruajten me sukses ne databaze!\n";
+			VALUES ('','$name')";
+    if (mysql_query($query)) {
+
+        header("location: ../../views/category.php?message=success&object=Category");
+
     }
-    else {
-    echo "Ju lutemi mbushni te dhenat";
-         }
-//else echo implode("", $errors);
+else {
+    header("location: ../../views/category.php?message=fail&object=Category");
+}
+}
+else {
+    header("location: ../../views/category.php?message=fail&object=Category");
+}
+ //echo implode("", $errors);
 ?>
