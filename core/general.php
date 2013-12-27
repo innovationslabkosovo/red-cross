@@ -20,6 +20,7 @@ $display_messages = array(
     "TopicGroupDelete" => array(
         "success" => "Grupi Tematik u fshi me sukses",
         "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!",
+        "partialfail" => "Ju lutemi plotesoni te dhenat per emrin e Grupit Tematik",
     ),
 );
 

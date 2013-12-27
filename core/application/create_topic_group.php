@@ -45,3 +45,7 @@ if(empty($_POST) === false)
     }
 
 }
+
+else {
+    header("location: ../../views/create_topic_group.php?message=partialfail&object=TopicGroupDelete");
+}
