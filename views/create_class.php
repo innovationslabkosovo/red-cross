@@ -45,7 +45,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
     <form action="../core/application/create_class.php" method="post">
 
         <div class="row">
-            <label>Municipality : </label>
+            <label>Komuna : </label>
             <select id="municipality_id" name="municipality">
                 <option value="">--Zgjedh Komunen--</option>
                 <?php
@@ -55,7 +55,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         </div>
 
         <div class="row">
-            <label>Location : </label>
+            <label>Fshati : </label>
             <select id="location_id" name="location">
                 <option value="">--Zgjedh Fshatin--</option>
                 <?php
@@ -71,15 +71,15 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <br>
         <div class="row">
-            <label>Date From : </label><input type="text" name="date_from" id="datefrom"><br>
+            <label>Data prej: </label><input type="text" name="date_from" id="datefrom"><br>
         </div>
 
         <div class="row">
-            <label>Date To: </label><input type="text" name="date_to" id="dateto"><br>
+            <label>Data deri: </label><input type="text" name="date_to" id="dateto"><br>
         </div>
 
         <div class="row">
-            Test model:
+            Modeli i testit:
             <select id="test_id" name="test">
                 <option value="">--Zgjedh Testin--</option>
                 <?php
@@ -90,9 +90,9 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <br>
 
         <div class="row">
-            <label>Trainer : </label>
+            <label>Ligjeruesi : </label>
             <select id="trainer_id" name="trainer">
-                <option value="">--Zgjedh Trainerin--</option>
+                <option value="">--Zgjedh Ligjeruesin--</option>
                 <?php
                 create_options($trainers, "trainer_id", "name");
                 ?>
@@ -102,29 +102,57 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row">
 
-            <h4>Topics</h4>
-            <ul>
+            <h4>Temat</h4>
+
+            <table border="1" style="width: 100%">
+
+                <tr>
+                    <th>
+                        Numri
+                    </th>
+
+                    <th>
+                        Temat
+                    </th>
+
+                    <th>
+                        Data
+                    </th>
+
+                    <th>
+                        Koha Prej
+                    </th>
+
+                    <th>
+                        Koha Deri
+                    </th>
+
+                </tr>
+
                 <?php
 
                 foreach ((array)$topic_group_rows as $tg_value) {
+                    echo "<tr>";
                     echo "<input type='hidden' name='topic[topic_group_id][]' value='" . $tg_value['topic_group_id'] . "' >";
-                    echo "<li>" . $tg_value['name'] . "</li>";
-                    echo "<label>Data: </label><input type='text' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic'><br>";
-                    echo "<label>Koha prej: </label><input type='text' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'><br>";
-                    echo "<label>Koha deri: </label><input type='text' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'><br>";
-                    echo "<ol>";
+                    echo "<td>" . $tg_value['name'] . "</td>";
+                    echo "<td><ul>";
                     foreach ((array)$topic_rows as $t_value) {
                         echo $data_topic['topic_group_id'];
                         if ($tg_value['topic_group_id'] == $t_value['topic_group_id'])
                             echo "<li>" . $t_value['description'] . "</li>";
                     }
-                    echo "</ol>";
+                    echo "</ul></td>";
+                    echo "<td><label>Data: </label><input type='text' size='12' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic'></td>";
+                    echo "<td><label>Koha prej: </label><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'></td>";
+                    echo "<td><label>Koha deri: </label><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'></td>";
+
+                    echo "</tr>";
 
                 }
 
                 ?>
-            </ul>
 
+            </table>
         </div>
 
         <br>
