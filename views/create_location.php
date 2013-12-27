@@ -15,7 +15,7 @@ include 'layout/header.php';
 $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality ";
 $municipalities = mysql_query($get_municipalities);
 
-$get_locations_municipalities = "SELECT Location.name as location_name,Location.latitude,Location.longitude,Municipality.coords as coords,Municipality.name as municipality_name
+$get_locations_municipalities = "SELECT Location.location_id, Location.name as location_name,Location.latitude,Location.longitude,Municipality.coords as coords,Municipality.name as municipality_name
 FROM Location
 INNER JOIN Municipality
 ON Location.municipality_id=Municipality.municipality_id";
@@ -49,41 +49,54 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <input type="submit" value="Ruaj!">
 </form>
 <div id="message"></div>
-<table border="1">
-  <tr>
-    <th>Location Name</th>
-    <th>Municipality Name</th>
+
+
+<div id="url" url="<?php echo BASE_URL; ?>/core/application/create_location.php"></div>
+<table border="1" id="editable">
+<tr>
+    <th>Vendndodhja</th>
+    <th>Komuna</th>
 </tr>
 <?php
 while($results = mysql_fetch_array($locations_municipalities))
 {
-    $coords = explode(",", $results['coords']);
-    $location_name = $results['location_name'];
-    $municipality_name = $results['municipality_name'];
-    $latitude = $results['latitude'];
-    $longitude = $results['longitude'];
-    ?>
-    <tr>
-        <td>
-            <a href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
-        </td>
-        <td>
-            <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
-        </td>
-    </tr>
-    <?php }; ?>
+$id=$results['location_id'];
+$coords = explode(",", $results['coords']);
+$location_name = $results['location_name'];
+$municipality_name = $results['municipality_name'];
+$latitude = $results['latitude'];
+$longitude = $results['longitude'];
+?>
+
+<tr id="<?php echo $id; ?>" class="edit_tr">
+<td>
+    <a id="results_<?php echo $id; ?>" class="text" href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
+    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+</td>
+
+<td>
+    <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
+    <!-- ID ne rreshtin e fundit -->
+    <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
+    <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+</td>
+</tr>
+<?php
+}
+?>
 </table>
+
+
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
 <script type="text/javascript">
-    $.validate({
-            validateOnBlur : false, // disable validation when input looses focus
-            //errorMessagePosition : 'top', // Instead of 'element' which is default;
-            //scrollToTopOnError : false, // Set this property to true if you have a long form
-            errorPlacement: function(error, element) {
-                error.appendTo($("#message"));
-            }
-        });
+    // $.validate({
+    //         validateOnBlur : false, // disable validation when input looses focus
+    //         //errorMessagePosition : 'top', // Instead of 'element' which is default;
+    //         //scrollToTopOnError : false, // Set this property to true if you have a long form
+    //         errorPlacement: function(error, element) {
+    //             error.appendTo($("#message"));
+    //         }
+    //     });
 </script>
 
-<?php include $project_root . 'views/layout/footer.php'; ?>
 <?php include $project_root . 'views/layout/footer.php'; ?>
