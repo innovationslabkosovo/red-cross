@@ -147,3 +147,13 @@ cursor:pointer;
 table {
     width:600px;
 }
+
+div.form-error {
+    padding: 6px 12px;
+    line-height: 180%;
+    background: #ffe5ed;
+    border-radius: 4px;
+    margin-bottom: 22px;
+    color: darkred;
+    width: 60%;
+}
