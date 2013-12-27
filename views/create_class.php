@@ -46,7 +46,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row">
             <label>Komuna : </label>
-            <select id="municipality_id" name="municipality">
+            <select id="municipality_id" name="municipality" data-validation="required">
                 <option value="">--Zgjedh Komunen--</option>
                 <?php
                 create_options($municipalities, "municipality_id", "name");
@@ -56,7 +56,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row">
             <label>Fshati : </label>
-            <select id="location_id" name="location">
+            <select id="location_id" name="location" data-validation="required">
                 <option value="">--Zgjedh Fshatin--</option>
                 <?php
                 create_options($locations, "location_id", "name");
@@ -71,16 +71,16 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <br>
         <div class="row">
-            <label>Data prej: </label><input type="text" name="date_from" id="datefrom"><br>
+            <label>Data prej: </label><input type="text" name="date_from" id="datefrom" data-validation='required date' data-validation-format='yyyy-mm-dd'><br>
         </div>
 
         <div class="row">
-            <label>Data deri: </label><input type="text" name="date_to" id="dateto"><br>
+            <label>Data deri: </label><input type="text" name="date_to" id="dateto" data-validation='required date' data-validation-format='yyyy-mm-dd'><br>
         </div>
 
         <div class="row">
             Modeli i testit:
-            <select id="test_id" name="test">
+            <select id="test_id" name="test" data-validation="required">
                 <option value="">--Zgjedh Testin--</option>
                 <?php
                 create_options($tests, "test_id", "name");
@@ -91,7 +91,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row">
             <label>Ligjeruesi : </label>
-            <select id="trainer_id" name="trainer">
+            <select id="trainer_id" name="trainer" data-validation="required">
                 <option value="">--Zgjedh Ligjeruesin--</option>
                 <?php
                 create_options($trainers, "trainer_id", "name");
@@ -142,9 +142,9 @@ while($row = mysql_fetch_assoc($topic_groups)) {
                             echo "<li>" . $t_value['description'] . "</li>";
                     }
                     echo "</ul></td>";
-                    echo "<td><label>Data: </label><input type='text' size='12' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic'></td>";
-                    echo "<td><label>Koha prej: </label><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'></td>";
-                    echo "<td><label>Koha deri: </label><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic'></td>";
+                    echo "<td><input type='text' size='12' name='topic[date_topic][]' id='date_topic_".$tg_value['topic_group_id']."' class='date_topic' data-validation='required date' data-validation-format='yyyy-mm-dd'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic' data-validation='required time'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_".$tg_value['topic_group_id']."' class='time_topic' data-validation='required time'></td>";
 
                     echo "</tr>";
 
@@ -159,6 +159,12 @@ while($row = mysql_fetch_assoc($topic_groups)) {
         <input type="submit" value="Submit">
 
     </form>
+
+    <script> $.validate({
+            modules : 'date',
+            validateOnBlur : false, // disable validation when input looses focus
+            errorMessagePosition : 'top' // Instead of 'element' which is default
+             }); </script>
 <?php
 if (isset($_GET['message']) && isset($_GET['object']))
 {
