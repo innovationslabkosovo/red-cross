@@ -16,8 +16,8 @@ $tests = mysql_query($get_tests);
 $get_municipalities = "SELECT municipality_id, name FROM Municipality ";
 $municipalities = mysql_query($get_municipalities);
 
-$get_locations = "SELECT location_id, name FROM Location ";
-$locations = mysql_query($get_locations);
+//$get_locations = "SELECT location_id, name FROM Location ";
+//$locations = mysql_query($get_locations);
 
 $get_topics = "SELECT topic_id, description, topic_group_id  FROM Topic where active = 1";
 $topics = mysql_query($get_topics);
@@ -59,7 +59,7 @@ while($row = mysql_fetch_assoc($topic_groups)) {
             <select id="location_id" name="location" data-validation="required">
                 <option value="">--Zgjedh Fshatin--</option>
                 <?php
-                create_options($locations, "location_id", "name");
+//                create_options($locations, "location_id", "name");
                 ?>
             </select>
         </div>
@@ -107,26 +107,11 @@ while($row = mysql_fetch_assoc($topic_groups)) {
             <table border="1" style="width: 100%">
 
                 <tr>
-                    <th>
-                        Numri
-                    </th>
-
-                    <th>
-                        Temat
-                    </th>
-
-                    <th>
-                        Data
-                    </th>
-
-                    <th>
-                        Koha Prej
-                    </th>
-
-                    <th>
-                        Koha Deri
-                    </th>
-
+                    <th>Numri</th>
+                    <th>Temat</th>
+                    <th>Data</th>
+                    <th>Koha Prej</th>
+                    <th>Koha Deri</th>
                 </tr>
 
                 <?php
@@ -160,11 +145,46 @@ while($row = mysql_fetch_assoc($topic_groups)) {
 
     </form>
 
-    <script> $.validate({
+    <script>
+        $.validate({
             modules : 'date',
             validateOnBlur : false, // disable validation when input looses focus
             errorMessagePosition : 'top' // Instead of 'element' which is default
-             }); </script>
+             });
+
+        $("#municipality_id").change(function()
+        {
+            var id=$(this).val();
+
+            var parent_value = $(this).val();
+            var parent_id_field = "municipality_id";
+            var child_table = "Location";
+            var child_id_field = "location_id";
+            var child_text_field = "name";
+            var dataString = 'parent_value='+ parent_value +'&parent_id_field='+ parent_id_field +'&child_table='+ child_table +'&child_id_field='+ child_id_field +'&child_text_field='+ child_text_field ;
+
+            console.log (dataString);
+            $.ajax
+            ({
+                type: "POST",
+                url: "../core/return_children_dropdown.php",
+                data: dataString,
+                cache: false,
+                success: function(html)
+                {
+                    $('#location_id')
+                        .find('option:gt(0)')
+                        .remove('')
+                        .end()
+                        .append(html)
+                    ;
+                }
+            });
+
+        });
+
+
+    </script>
 <?php
 if (isset($_GET['message']) && isset($_GET['object']))
 {
