@@ -9,6 +9,7 @@
         <li><a href="<?php echo BASE_URL; ?>/views/krijo_pyetje.php">Test questions</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/listo_pytje.php">Questions listing</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/krijo_test.php">Create test</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/views/listo_testet.php">Tests listing</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/krijo_participant.php">Participants</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/shto_pergjigjje.php">Add answers</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Manage Topic Groups</a></li>

@@ -53,17 +53,13 @@
 			
 		}
 		
-		
-	
-		        
-		
 	}
-	else echo implode("", $errors);		// shfaq errorat	
-	
-	
+
+	else echo implode("", $errors);		// shfaq errorat
+
 	//==================//
 	// marrim id e qesim permes linkut n faqen tjeter, e shkrujm pergjigjjet per participantin me id 13
-	//i paraqesim me tabele te dhenat dhe insertojme ne db---- 
+	//i paraqesim me tabele te dhenat dhe insertojme ne db----
 
 ?>
 
