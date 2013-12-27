@@ -3,7 +3,6 @@ include '../../config/config.php';
 
 if(empty($_POST) === false)
 {
-
     if(isset($_POST['topic_group']) && $_POST["topic_group"] != "") {
 
         $topic_group=$_POST["topic_group"];
@@ -21,8 +20,12 @@ if(empty($_POST) === false)
 
         if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
             header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroup");
-        else header("location: ../../0/create_topic_group.php?message=fail&object=TopicGroup");
+        else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
 
+    }
+
+    if(isset($_POST['topic_group']) && $_POST["topic_group"] == "") {
+        header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
     }
 
     else if(isset($_POST["hidDelete"]) || $_POST["hidDelete"] != "")
@@ -40,12 +43,8 @@ if(empty($_POST) === false)
         catch (Exception $e) {
                 header("location: ../../views/view_topic_groups.php?message=fail&object=TopicGroupDelete");
         }
-
-
     }
 
 }
 
-else {
-    header("location: ../../views/create_topic_group.php?message=partialfail&object=TopicGroupDelete");
-}
+

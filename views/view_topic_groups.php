@@ -61,6 +61,9 @@ $status[0]="Jo-aktiv";
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
                 </td>
+                <td>
+                    <input type="button" value="Fshij Grupin Tematik" onclick="deleteThis(<?php echo $id; ?>)">
+                </td>
 
             </tr>
             <?php
