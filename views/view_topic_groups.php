@@ -2,10 +2,25 @@
 
 
     function ajaxCall(id){
-        $.post( "../core/application/create_topic_group.php", { hidDelete: id })
-            .done(function( data ) {
-                window.location.href = data;
-            });
+
+
+        $.ajax({
+
+            type: "POST",
+
+            url: '../core/application/create_topic_group.php',
+
+            data:{hidDelete: id},
+
+            dataType: "json",
+
+
+            success:function( data ) {
+                console.log(data);
+                $('#'+data.rowID).remove();
+                window.location.href = location.href+'?'+'message='+data.message+'&object='+data.object;
+            }
+    });
     };
 </script>
 
@@ -63,6 +78,7 @@ $status[0]="Jo-aktiv";
                     <!-- Shtine ID ne rreshtin e fundit -->
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+                    <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
 
                 </td>
                 <td>
@@ -78,6 +94,8 @@ $status[0]="Jo-aktiv";
         </table>
     </div>
 </form>
+<p  name="message" id="message"/></p>
+<p  name="object" id="object" value="" />
 <?php
 if (isset($_GET['message']) && isset($_GET['object']))
 {

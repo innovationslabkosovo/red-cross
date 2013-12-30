@@ -36,11 +36,15 @@ if(empty($_POST) === false)
         {
 
             if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'")){
-           //header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroupDelete");
-                $newlocation = "../../views/view_topic_groups.php?message=success&object=TopicGroupDelete";
-                return $newlocation;
+                 //header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroupDelete");
+                $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'TopicGroupDelete');
+                ob_clean();
+                echo json_encode($data);
             }
             else throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
+            $data = array( 'message' => 'fail', 'object'=>'TopicGroupDelete');
+            ob_clean();
+            echo json_encode($data);
 
         }
         catch (Exception $e) {
