@@ -51,7 +51,7 @@ $status[0]="Jo-aktiv";
 
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                    <input name="name" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
                 </td>
 
                 <td>
@@ -60,6 +60,7 @@ $status[0]="Jo-aktiv";
                     <!-- Shtine ID ne rreshtin e fundit -->
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+
                 </td>
                 <td>
                     <input type="button" value="Fshij Grupin Tematik" onclick="deleteThis(<?php echo $id; ?>)">
