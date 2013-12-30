@@ -292,14 +292,14 @@ a.button:hover {
 
 
 /* NAVIGATION ENDS **********************************/
-ul {
+ul#menu {
     font-family: Arial, Verdana;
     font-size: 14px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
-ul li {
+ul#menu li {
     display: block;
     position: relative;
     width: 150px;
@@ -310,7 +310,7 @@ li ul {
     display: none;
     padding-top: 4px;
 }
-ul li a {
+ul#menu li a {
     display: block;
     text-decoration: none;
     color: #929292;
@@ -322,7 +322,7 @@ ul li a {
     border:none;
     text-align: center;
 }
-ul li a:hover {
+ul#menu li a:hover {
     background: #d84141;
     color: #fff;
     border: none;
