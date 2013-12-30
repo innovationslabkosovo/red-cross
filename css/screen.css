@@ -197,6 +197,7 @@ ul#menu li:hover {
 }
 ul#menu li:hover a {
     color:#fff;
+    display: block;
 }
 ul#menu li ul {
     padding: 0;
@@ -230,6 +231,8 @@ ul#menu li:hover ul {
     visibility: visible;
 }
 ul#menu li > a {
-    list-style-type: none;
     text-decoration: none;
+}
+.hide {
+    display:none !important;
 }
