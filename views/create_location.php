@@ -79,6 +79,7 @@ $longitude = $results['longitude'];
     <!-- ID ne rreshtin e fundit -->
     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+    <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
 </td>
 </tr>
 <?php
@@ -88,15 +89,4 @@ $longitude = $results['longitude'];
 
 
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
-<script type="text/javascript">
-    // $.validate({
-    //         validateOnBlur : false, // disable validation when input looses focus
-    //         //errorMessagePosition : 'top', // Instead of 'element' which is default;
-    //         //scrollToTopOnError : false, // Set this property to true if you have a long form
-    //         errorPlacement: function(error, element) {
-    //             error.appendTo($("#message"));
-    //         }
-    //     });
-</script>
-
 <?php include $project_root . 'views/layout/footer.php'; ?>

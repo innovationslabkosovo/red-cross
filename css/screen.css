@@ -197,6 +197,7 @@ ul#menu li:hover {
 }
 ul#menu li:hover a {
     color:#fff;
+    display: block;
 }
 ul#menu li ul {
     padding: 0;
@@ -230,9 +231,9 @@ ul#menu li:hover ul {
     visibility: visible;
 }
 ul#menu li > a {
-    list-style-type: none;
     text-decoration: none;
 }
+<<<<<<< HEAD
 
 /* table flat design */
 
@@ -389,3 +390,8 @@ table {
 }
 
 /* table flat design*/
+=======
+.hide {
+    display:none !important;
+}
+>>>>>>> b4dd5210c4557ac8d5a5465ff2f9135e5f46b28d
