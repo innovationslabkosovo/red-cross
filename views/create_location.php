@@ -79,6 +79,7 @@ $longitude = $results['longitude'];
     <!-- ID ne rreshtin e fundit -->
     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
+    <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
 </td>
 </tr>
 <?php
