@@ -88,15 +88,4 @@ $longitude = $results['longitude'];
 
 
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
-<script type="text/javascript">
-    // $.validate({
-    //         validateOnBlur : false, // disable validation when input looses focus
-    //         //errorMessagePosition : 'top', // Instead of 'element' which is default;
-    //         //scrollToTopOnError : false, // Set this property to true if you have a long form
-    //         errorPlacement: function(error, element) {
-    //             error.appendTo($("#message"));
-    //         }
-    //     });
-</script>
-
 <?php include $project_root . 'views/layout/footer.php'; ?>
