@@ -1,9 +1,12 @@
 <script type="text/javascript">
-    function deleteThis(id)
-    {
-        document.getElementById("hidDelete").value = id;
-        document.topic_group_form.submit();
-    }
+
+
+    function ajaxCall(id){
+        $.post( "../core/application/create_topic_group.php", { hidDelete: id })
+            .done(function( data ) {
+                window.location.href = data;
+            });
+    };
 </script>
 
 <?php
@@ -63,7 +66,9 @@ $status[0]="Jo-aktiv";
 
                 </td>
                 <td>
-                    <input type="button" value="Fshij Grupin Tematik" onclick="deleteThis(<?php echo $id; ?>)">
+                    <!--<input type="button" value="Fshij Grupin Tematik" onclick="deleteThis(<?php /*echo $id; */?>)">-->
+                    <input type="button" value="Fshij Grupin Tematik" onclick="ajaxCall(<?php echo $id; ?>)">
+
                 </td>
 
             </tr>
