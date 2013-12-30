@@ -233,3 +233,6 @@ ul#menu li:hover ul {
 ul#menu li > a {
     text-decoration: none;
 }
+.hide {
+    display:none !important;
+}
