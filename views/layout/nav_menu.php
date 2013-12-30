@@ -17,7 +17,14 @@
 <ul id="menu">
     <!-- Top Menu without children -->
     <li><a href="<?php echo BASE_URL; ?>/views/index.php">Home</a></li>
-    <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Class</a></li>
+    <li>
+        Menaxho Klasat
+        <ul>
+            <!-- Child Menu -->
+            <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Krijo Klase te re</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/list_class.php">Listo Klasat</a></li>
+        </ul>
+    </li>
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
     <!-- Top Menu-->
     <li>
