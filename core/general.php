@@ -15,6 +15,7 @@ $display_messages = array(
     ),
     "TopicGroup" => array(
         "success" => "Grupi Tematik u shtua me sukses",
+        "success_edit" => "Grupi Tematik u editua me sukses",
         "fail" => "Grupi Tematik nuk u shtua!",
     ),
     "TopicGroupDelete" => array(
