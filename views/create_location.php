@@ -32,21 +32,24 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <div id="map" class="smallmap" style="width:625px; height:350px"></div>
     <input type="hidden" id="lat" name="lat">
     <input type="hidden" id="lon" name="lon">
+    <br>
     <label for="clearMarkers"></label>
-    <input type="button" value="Clear Map" id="clearMarkers"/>
+    <input type="button" value="Clear Map" id="clearMarkers" class="button" />
 
     <br/>
-    <label for="select_city"></label>
-    <select name="municipality" id="select_city" data-validation="required">
-        <option value="">-Zgjidhni Qytetin-</option>
-        <?php
-        create_options_municipality($municipalities, "municipality_id", "name", "coords");
-        ?>
-    </select><br/><br/>
+    <div class="dropdown">
+        <label for="select_city"></label>
+        <select name="municipality" id="select_city" data-validation="required" class="dropdown-select">
+            <option value="">-Zgjidhni Qytetin-</option>
+            <?php
+            create_options_municipality($municipalities, "municipality_id", "name", "coords");
+            ?>
+        </select>
+    </div>
+    <br/><br/>
     <label for="name"></label>
-    <input type="text" name="name" id="name" value="" placeholder="Emri i Lokacionit" data-validation="required"
-    data-validation-error-msg="Emri i lokacionit duhet plotesuar"><br/><br/>
-    <input type="submit" value="Ruaj!">
+    <input type="text" name="name" id="name" class="txfform-wrapper input" value="" placeholder="Emri i Lokacionit" data-validation="required" data-validation-error-msg="Emri i lokacionit duhet plotesuar"><br/><br/>
+    <input type="submit" value="Ruaj!" class="submitSmlBtn">
 </form>
 <div id="message"></div>
 
@@ -71,22 +74,20 @@ $longitude = $results['longitude'];
 <tr id="<?php echo $id; ?>" class="edit_tr">
 <td>
     <a id="results_<?php echo $id; ?>" class="text" href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
-    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox txfform-wrapper input" id="editbox_<?php echo $id; ?>" />
 </td>
 
 <td>
     <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
     <!-- ID ne rreshtin e fundit -->
     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
-    <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
-    <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
+    <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
+    <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
 </td>
 </tr>
 <?php
 }
 ?>
 </table>
-
-
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
