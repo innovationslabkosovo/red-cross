@@ -15,30 +15,27 @@
     </ul>
 </nav>
 <ul id="menu">
-    <!-- Top Menu without children -->
-    <li><a href="<?php echo BASE_URL; ?>/views/index.php">Home</a></li>
     <li>
-        Menaxho Klasat
-        <ul>
-            <!-- Child Menu -->
+        <a href="<?php echo BASE_URL; ?>/views/index.php">Home</a>
+    </li>
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Klasat</a>
+        <ul class="sub-menu">
             <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Krijo Klase te re</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/list_class.php">Listo Klasat</a></li>
         </ul>
     </li>
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
-    <!-- Top Menu-->
-    <li>
-        Menaxho Temat
-        <ul>
-            <!-- Child Menu -->
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Temat</a>
+        <ul class="sub-menu">
             <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Teme te Re</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Temat</a></li>
         </ul>
     </li>
-    <li>
-        Menaxho Grupet Tematike
-        <ul>
-            <!-- Child Menu -->
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Grupet Tematike</a>
+        <ul class="sub-menu">
             <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
         </ul>
