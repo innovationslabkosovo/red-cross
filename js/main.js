@@ -48,8 +48,8 @@ $(document).ready(function () {
 
     // Add active class to the menu
     $('#menu li a').each(function (){
-        var path = location.pathname.split("/")[3];
-        var current_page = $(this).attr("href").split("/")[4];
+        var path = location.pathname.split("/").pop(-1);
+        var current_page = $(this).attr("href").split("/").pop(-1);
         if(path == current_page) {
             $(this).addClass('active').siblings().removeClass('active');
         }
