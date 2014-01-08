@@ -8,7 +8,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-
+    // Start General Edit Function
     $(".edit").on("click", function () {
         var ID = $(this).attr('id');
         var td = $("td");
@@ -29,10 +29,8 @@ $(document).ready(function () {
             data: dataString,
             cache: false,
             dataType: "html",
-            async: false,
-            success: function () {
-                alert("U editua me sukses!");
-                location.reload();
+            success: function (html) {
+                  $("#msg").append(html);
             }
         });
     });
@@ -45,5 +43,15 @@ $(document).ready(function () {
         $(".editbox, .save").hide();
         $(".hide").removeClass("hide");
         $(".text").show();
+    });
+    // End General Edit Function
+
+    // Add active class to the menu
+    $('#menu li a').each(function (){
+        var path = location.pathname.split("/")[3];
+        var current_page = $(this).attr("href").split("/")[4];
+        if(path == current_page) {
+            $(this).addClass('active').siblings().removeClass('active');
+        }
     });
 });
