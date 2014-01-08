@@ -1,26 +1,17 @@
 <script type="text/javascript">
-
-
     function ajaxCall(id){
-
-
         $.ajax({
 
             type: "POST",
-
             url: '../core/application/create_topic_group.php',
-
             data:{hidDelete: id},
-
             dataType: "json",
-
-
             success:function( data ) {
                 console.log(data);
                 $('#'+data.rowID).remove();
-                window.location.href = location.href+'?'+'message='+data.message+'&object='+data.object;
+                window.location.href = location.pathname+'?'+'message='+data.message+'&object='+data.object;
             }
-    });
+        });
     };
 </script>
 

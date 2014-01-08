@@ -3,7 +3,7 @@ include '../../config/config.php';
 
 if(empty($_POST) === false)
 {
-    if(isset($_POST['topic_group']) && $_POST["topic_group"] != "") {
+    if(isset($_POST['topic_group']) && $_POST["topic_group"] != "" && $_POST['id'] == "") {
 
         $topic_group=$_POST["topic_group"];
 
@@ -25,7 +25,19 @@ if(empty($_POST) === false)
     }
 
     if(isset($_POST['topic_group']) && $_POST["topic_group"] == "") {
-        header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
+        //header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
+        $data = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'TopicGroup');
+        ob_clean();
+        echo json_encode($data);
+    }
+
+    if($_POST['id']) {
+        $id=mysql_real_escape_string($_POST['id']);
+        $topic_group_edit=mysql_real_escape_string($_POST['topic_group']);
+        mysql_query("update TopicGroup set name='$topic_group_edit' where topic_group_id='$id'");
+        $data = array( 'rowID' => '0', 'message' => 'success_edit', 'object'=>'TopicGroup');
+        ob_clean();
+        echo json_encode($data);
     }
 
     else if(isset($_POST["hidDelete"]) || $_POST["hidDelete"] != "")
@@ -41,11 +53,13 @@ if(empty($_POST) === false)
                 ob_clean();
                 echo json_encode($data);
             }
-            else throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
-            $data = array( 'message' => 'fail', 'object'=>'TopicGroupDelete');
-            ob_clean();
-            echo json_encode($data);
+            else {
 
+                throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!');
+                $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'TopicGroupDelete');
+                ob_clean();
+                echo json_encode($data1);
+            }
         }
         catch (Exception $e) {
                 header("location: ../../views/view_topic_groups.php?message=fail&object=TopicGroupDelete");
