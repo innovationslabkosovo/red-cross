@@ -65,17 +65,17 @@ $status[0]="Jo-aktiv";
 
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
-                    <input name="status" type="text" value="<?php echo $active; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
-                    <!-- Shtine ID ne rreshtin e fundit -->
+                    <!--<input name="status" type="text" value="<?php /*echo $active; */?>" class="editbox" id="editbox_<?php /*echo $id; */?>" />-->
+                    <select name="status" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $active; ?>">
+                        <option value="1">Aktiv</option>
+                        <option value="0">Jo-aktiv</option>
+                    </select>
+                </td>
+                <td>
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
                     <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
-
-                </td>
-                <td>
-                    <!--<input type="button" value="Fshij Grupin Tematik" onclick="deleteThis(<?php /*echo $id; */?>)">-->
                     <input type="button" value="Fshij Grupin Tematik" onclick="ajaxCall(<?php echo $id; ?>)">
-
                 </td>
 
             </tr>

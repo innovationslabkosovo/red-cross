@@ -34,7 +34,8 @@ if(empty($_POST) === false)
     if($_POST['id']) {
         $id=mysql_real_escape_string($_POST['id']);
         $topic_group_edit=mysql_real_escape_string($_POST['topic_group']);
-        mysql_query("update TopicGroup set name='$topic_group_edit' where topic_group_id='$id'");
+        $topic_group_status_edit=mysql_real_escape_string($_POST['status']);
+        mysql_query("update TopicGroup set name='$topic_group_edit', active='$topic_group_status_edit' where topic_group_id='$id'");
         $data = array( 'rowID' => '0', 'message' => 'success_edit', 'object'=>'TopicGroup');
         ob_clean();
         echo json_encode($data);
