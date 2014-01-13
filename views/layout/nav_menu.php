@@ -29,8 +29,8 @@
     <li class="top-menu">
         <a href="javascript:void(0);">Menaxho Temat</a>
         <ul class="sub-menu">
-            <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Teme te Re</a></li>
-            <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Temat</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/create_topic.php">Krijo Teme te Re</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/view_topics.php">Listo Temat</a></li>
         </ul>
     </li>
     <li class="top-menu">
