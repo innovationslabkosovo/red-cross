@@ -63,7 +63,9 @@ if(empty($_POST) === false)
             }
         }
         catch (Exception $e) {
-                header("location: ../../views/view_topic_groups.php?message=fail&object=TopicGroupDelete");
+            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'TopicGroupDelete');
+            ob_clean();
+            echo json_encode($data1);
         }
     }
 }
