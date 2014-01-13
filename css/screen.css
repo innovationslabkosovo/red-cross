@@ -634,3 +634,9 @@ table {
     background: #d84141 !important;
     color: #fff !important;
 }
+.paginate_class, .current {
+    padding: 0 7px;
+}
+.current {
+    padding-left: 0;
+}
