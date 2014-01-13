@@ -20,15 +20,15 @@ include $project_root . '/views/layout/header.php';
         <ul>
             <li>
                 <label for="current_password">Current password <span class="required">*</span></label><br>
-                <input type="password" name="current_password" id="current_password">
+                <input type="password" name="current_password" id="current_password" class="txfform-wrapper input" placeholder="Current password">
             </li>
             <li>
                 <label for="password">New password <span class="required">*</span></label><br>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" class="txfform-wrapper input" placeholder="New password">
             </li>
             <li>
                 <label for="password_again">Repeat new password <span class="required">*</span></label><br>
-                <input type="password" name="password_again" id="password_again">
+                <input type="password" name="password_again" id="password_again" class="txfform-wrapper input" placeholder="Repeat new password">
             </li>
             <li>
                 <input type="submit" value="Change">

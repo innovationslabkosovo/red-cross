@@ -6,12 +6,12 @@
                 <li>
                     Username:<br>
                     <label for="username"></label>
-                    <input type="text" name="username" id="username">
+                    <input type="text" name="username" id="username" class="txfform-wrapper input" placeholder="Username">
                 </li>
                 <li>
                     Password:<br>
                     <label for="password"></label>
-                    <input type="password" name="password" id="password">
+                    <input type="password" name="password" id="password" class="txfform-wrapper input" placeholder="Password">
                 </li>
                 <li>
                     <input type="submit" value="Log in">
