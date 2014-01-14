@@ -22,15 +22,18 @@ $(document).ready(function () {
         var ID = $(this).attr("id");
         var td = $("td");
         var fileUrl = $("#url").attr("url");
-        var dataString = td.find("#editbox_" + ID).serialize();
+        var dataString = td.find("#editbox_" + ID).serializeArray();
         $.ajax({
             type: "POST",
             url: fileUrl,
             data: dataString,
             cache: false,
-            dataType: "html",
-            success: function (html) {
-                  $("#msg").append(html);
+            success: function (data) {
+                var data = $.parseJSON(data);
+                $.each(data,function(index, value) {
+                    var this_id = data.id;
+                    $("[name="+index+"]").prev("#results_"+this_id).html(value);
+                });
             }
         });
     });
