@@ -104,4 +104,3 @@ class Paginator{
         return $this->return;
     }
 }
-?>
