@@ -14,7 +14,9 @@ if(empty($_POST) === false)
         $id=mysql_real_escape_string($_POST['id']);
         $loc_name=mysql_real_escape_string($_POST['location_name']);
         mysql_query("update Location set name='$loc_name' where location_id='$id'");
-        echo "Lokacioni eshte perditesuar me sukses!";
+        ob_clean();
+        echo json_encode($_POST);
+        // echo "Lokacioni eshte perditesuar me sukses!";
     } else {
         //header("location: ../../views/create_location.php?message=fail&object=location");
         echo "Lokacioni nuk eshte shtuar";
