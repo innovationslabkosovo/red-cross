@@ -62,13 +62,20 @@ $status[0]="Jo-aktiv";
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                         <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
-
+                    <?php
+                        $selected = 'Jo-aktiv';
+                        if ($selected == $active) {
+                            $selected = "selected='selected'";
+                        } else {
+                            $selected = '';
+                        }
+                    ?>
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
                         <!--<input name="status" type="text" value="<?php /*echo $active; */?>" class="editbox" id="editbox_<?php /*echo $id; */?>" />-->
                         <select name="status" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $active; ?>">
-                            <option value="1">Aktiv</option>
-                            <option value="0">Jo-aktiv</option>
+                            <option value="Aktiv" <?php echo $selected; ?>>Aktiv</option>
+                            <option value="Jo-aktiv" <?php echo $selected; ?>>Jo-aktiv</option>
                         </select>
                     </td>
                     <td>
