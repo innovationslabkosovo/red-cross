@@ -139,11 +139,11 @@ background-color:#ffffcc;
 border:solid 1px #000;
 padding:4px;
 }
-.edit_tr:hover
+/*.edit_tr:hover
 {
 background:url(../img/edit.png) right no-repeat #80C8E5;
 cursor:pointer;
-}
+}*/
 table {
     width:600px;
 }
