@@ -12,6 +12,7 @@ $(document).ready(function () {
     $(".edit").on("click", function () {
         var ID = $(this).attr('id');
         var td = $("td");
+        $("tr" + ID).children();
         td.find("#results_" + ID).hide();
         td.find("#editbox_" + ID).attr("style", "display:block");
         td.find("#" + ID).attr("style", "display:inline");
@@ -28,12 +29,22 @@ $(document).ready(function () {
             url: fileUrl,
             data: dataString,
             cache: false,
+            dataType: "json",
             success: function (data) {
-                var data = $.parseJSON(data);
-                $.each(data,function(index, value) {
-                    var this_id = data.id;
-                    $("[name="+index+"]").prev("#results_"+this_id).html(value);
+                $.each(data,function(key, val) {
+                    if($.isArray(val)) {
+                        $.each(val, function(k, v) {
+                            $("[name="+key+"\\[\\]][id=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
+                            $("[name="+key+"\\[\\]][id=editbox_"+ID+"][history="+k+"]").attr("value", v);
+                        });
+                    }
+                    $("[name="+key+"]").prev("#results_"+ID).html(val);
                 });
+
+                $(".editbox, .save").hide();
+                $(".hide").removeClass("hide");
+                $(".text").show();
+                $("#cancel_edit").addClass("hide");
             }
         });
     });
@@ -42,10 +53,11 @@ $(document).ready(function () {
         return false;
     });
 
-    $(document).mouseup(function () {
+    $("#cancel_edit").click(function () {
         $(".editbox, .save").hide();
         $(".hide").removeClass("hide");
         $(".text").show();
+        $("#cancel_edit").addClass("hide");
     });
     // End General Edit Function
 
