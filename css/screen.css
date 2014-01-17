@@ -640,4 +640,10 @@ table {
 .current {
     padding-left: 0;
 }
-
+.alphabet {
+    float: left;
+    padding-right: 5px;
+}
+.text {
+    display: block;
+}

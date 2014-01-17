@@ -26,7 +26,6 @@
 		$answers = mysql_query("SELECT * FROM Answer where `question_id` = {$result["question_id"]}");
 
 		while($answer_res = mysql_fetch_assoc($answers)){
-
 			$question_id[$c] = $answer_res['question_id'];
 			$answer_description[$c] = $answer_res['description'];
 			$answer_id[$c] = $answer_res['answer_id'];
@@ -34,9 +33,8 @@
 			if($question_id[$c] == $result["question_id"]){
 				$alphabet = range("A", "Z");
 				// echo $alphabet[$c]." : ".$answer_description[$c]."<br>";
-				echo $alphabet[$c]." : "
-				."<span id='results_{$result["question_id"]}' class='text'>{$answer_description[$c]}</span>"."<br>"
-				."<input name='answers_description[]' type='text' class='editbox' value='{$answer_description[$c]}' id='editbox_{$result["question_id"]}' />"
+				echo "<span class='alphabet'>$alphabet[$c]:</span><span id='results_{$result["question_id"]}' class='text'>{$answer_description[$c]}</span>"
+				."<input name='answers_description[]' history='{$c}' type='text' class='editbox' value='{$answer_description[$c]}' id='editbox_{$result["question_id"]}' />"
 				."<input name='answers_id[]' type='hidden' class='editbox' value='{$answer_id[$c]}' id='editbox_{$result["question_id"]}' />";
 				$c++;
 			}
