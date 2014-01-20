@@ -3,7 +3,7 @@
         $.ajax({
 
             type: "POST",
-            url: '../core/application/create_topic_group.php',
+            url: '../core/application/create_topic.php',
             data:{hidDelete: id},
             dataType: "json",
             success:function( data ) {
@@ -16,23 +16,23 @@
 </script>
 
 <?php
-$page_title = "Menaxho Grupet Tematike";
+$page_title = "Menaxho Temat";
 
 include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
-$topic_groups = mysql_query($get_topic_groups);
+$get_topics = "SELECT topic_id, description, active FROM Topic";
+$topics = mysql_query($get_topics);
 
 $status[1]="Aktiv";
 $status[0]="Jo-aktiv";
 ?>
-<form class="txfform-wrapper cf" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
+<form class="txfform-wrapper cf" name="topic_form" action="../core/application/create_topic.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 
-        <h3>Grupet Tematike Ekzistuese</h3>
+        <h3>Temat Ekzistuese</h3>
         <?php
         /*            while ($data_tg = mysql_fetch_assoc($topic_groups)) {
                         echo "<input type='hidden' name='topic_group_id' value='" . $data_tg['topic_group_id'] . "' >";
@@ -44,14 +44,14 @@ $status[0]="Jo-aktiv";
                         echo "</tr></table>";
                     }*/
         ?>
-        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic_group.php"></div>
+        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic.php"></div>
         <table border="1" id="editable">
             <?php
 
-            while ($data_tg = mysql_fetch_assoc($topic_groups))
+            while ($data_tg = mysql_fetch_assoc($topics))
             {
-                $id=$data_tg['topic_group_id'];
-                $name=$data_tg['name'];
+                $id=$data_tg['topic_id'];
+                $name=$data_tg['description'];
                 $active = $status[$data_tg['active']];
 
                 ?>
@@ -60,7 +60,7 @@ $status[0]="Jo-aktiv";
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="topic" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
                     <?php
                         $selected = 'Jo-aktiv';
