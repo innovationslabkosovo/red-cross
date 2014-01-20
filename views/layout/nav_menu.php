@@ -40,4 +40,7 @@
             <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
         </ul>
     </li>
+    <li>
+        <a href="<?php echo BASE_URL; ?>/views/map.php">Harta</a>
+    </li>
 </ul>
