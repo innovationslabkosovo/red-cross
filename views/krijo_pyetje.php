@@ -107,7 +107,7 @@ include $project_root . 'views/layout/header.php';
 			
 				$answers = $_POST['answer']['q'.$i];	// marrim pergjigjjet nje nga nje
 				
-				for ($j=0; $j< sizeof($answers); $j++){	
+				for ($j=0; $j < sizeof($answers); $j++){	
 					
 					$n = $j+1;	// percdo pyetje fusim pergjigjje	rrisim j sepse answers fillojn prej 1 jo prej 0
 					// $correct_ans = $_POST['check']['c'.$i]['a'.$n];

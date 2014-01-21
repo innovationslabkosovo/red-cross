@@ -37,9 +37,7 @@ if(empty($_POST) === false)
         $topic_group_status_edit=mysql_real_escape_string($_POST['status']);
         ($topic_group_status_edit == "Aktiv") ? $topic_group_status_edit = 1 : $topic_group_status_edit = 0;
         mysql_query("update TopicGroup set name='$topic_group_edit', active='$topic_group_status_edit' where topic_group_id='$id'");
-        $data = array( 'rowID' => '0', 'message' => 'success_edit', 'object'=>'TopicGroup');
         ob_clean();
-        // echo json_encode($data);
         $post = $_POST;
         echo json_encode($post);
     }
