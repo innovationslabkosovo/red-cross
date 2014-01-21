@@ -93,3 +93,9 @@ function transpose($array,&$out, $indices = array()) {
     }
 }
 
+/* Beautify array or object */
+function pre($array) {
+    echo "<pre style='font-size:12px;'>";
+    print_r($array);
+    echo "</pre>";
+}
