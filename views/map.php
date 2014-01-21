@@ -40,9 +40,6 @@ $location_to_json = json_encode($location_data);
 
             var markers = L.markerClusterGroup();
             var addressPoints = <?php print_r($location_to_json); ?>;
-            console.log(addressPoints);
-
-
             for (var i = 0; i < addressPoints.length; i++) {
                 var a = addressPoints[i];
                 var title = a[0];
