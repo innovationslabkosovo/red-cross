@@ -76,12 +76,12 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
         <br>
 
         <div class="row">
-            <label>Data prej: </label><input type="text" name="date_from" id="datefrom" data-validation='required date'
+            <label>Data prej: </label><input type="text" name="date_from" id="datefrom" class="datefrom" data-validation='required date'
                                              data-validation-format='yyyy-mm-dd'><br>
         </div>
 
         <div class="row">
-            <label>Data deri: </label><input type="text" name="date_to" id="dateto" data-validation='required date'
+            <label>Data deri: </label><input type="text" name="date_to" id="dateto" class="dateto" data-validation='required date'
                                              data-validation-format='yyyy-mm-dd'><br>
         </div>
 
