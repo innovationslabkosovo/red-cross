@@ -59,10 +59,21 @@ function output_errors($errors)
     return '<ul><li>'. implode('</li><li>', $errors) .'</li></ul>';
 }
 
-function create_options($query_result , $value , $text)
+function create_options($query_result , $value , $text, $selected=NULL)
 {
+
+
     while ($data = mysql_fetch_assoc($query_result))
-        echo "<option value=\"{$data[$value]}\">$data[$text]</option>";
+    {
+        //print_r($data);
+
+        if ($data[$value] == $selected)
+            echo "<option value=\"{$data[$value]}\" selected>$data[$text]</option>";
+        else
+            echo "<option value=\"{$data[$value]}\">$data[$text]</option>";
+
+    }
+
 }
 
 function create_options_municipality($query_result , $value , $text, $optional)
