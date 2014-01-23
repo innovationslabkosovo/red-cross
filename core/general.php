@@ -20,7 +20,15 @@ $display_messages = array(
     ),
     "TopicGroupDelete" => array(
         "success" => "Grupi Tematik u fshi me sukses",
-        "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema aktive qe i takojne!",
+        "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema  aktive apo klasa qe i takojne!",
+    ),
+    "Topic" => array(
+        "success" => "Tema u shtua me sukses",
+        "success_edit" => "Tema u editua me sukses",
+        "fail" => "Tema nuk u shtua!",
+    ),
+    "TopicDelete" => array(
+        "success" => "Tema u fshi me sukses",
     ),
     "Category" => array(
         "success" => "Kategoria eshte shtuar me sukses",
@@ -96,3 +104,9 @@ function transpose($array,&$out, $indices = array()) {
     }
 }
 
+/* Beautify array or object */
+function pre($array) {
+    echo "<pre style='font-size:12px;'>";
+    print_r($array);
+    echo "</pre>";
+}

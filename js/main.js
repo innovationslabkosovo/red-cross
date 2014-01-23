@@ -16,6 +16,7 @@ $(document).ready(function () {
         td.find("#results_" + ID).hide();
         td.find("#editbox_" + ID).attr("style", "display:block");
         td.find("#" + ID).attr("style", "display:inline");
+        td.find("#" + ID).next().removeClass("hide");
         $(this).addClass("hide");
     });
 

@@ -34,10 +34,27 @@
         </ul>
     </li>
     <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Pyetjet</a>
+        <ul class="sub-menu">
+            <li><a href="<?php echo BASE_URL; ?>/views/krijo_pyetje.php">Krijo Pyetje</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/listo_pytje.php">Listo Pyetjet</a></li>
+        </ul>
+    </li>
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Testet</a>
+        <ul class="sub-menu">
+            <li><a href="<?php echo BASE_URL; ?>/views/krijo_test.php">Krijo Test</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/listo_testet.php">Listo Testet</a></li>
+        </ul>
+    </li>
+    <li class="top-menu">
         <a href="javascript:void(0);">Menaxho Grupet Tematike</a>
         <ul class="sub-menu">
             <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
         </ul>
+    </li>
+    <li>
+        <a href="<?php echo BASE_URL; ?>/views/map.php">Harta</a>
     </li>
 </ul>

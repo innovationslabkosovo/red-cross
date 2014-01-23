@@ -10,8 +10,8 @@
 <?php
 
 	$query = mysql_query("SELECT * FROM Question");
-	echo "<div id='url' url='{$base_url}/core/application/edit_questions.php' ></div>";
-	echo "<table border = '1' class = 'bordered'>";
+	echo "<div id='url' url='{$base_url}/core/application/edit_questions.php'></div>";
+	echo "<table border = '1' class='bordered'>";
 	echo "<tr><th>Pyejta</th><th>Pergjigjet</th><th>Edito</th></tr>";
 
 	while ($result = mysql_fetch_assoc($query)) {

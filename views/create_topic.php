@@ -20,6 +20,17 @@ $topic_groups = mysql_query($get_topic_groups);
                 <input type="checkbox" name="active" value="active">Kjo teme eshte aktive
                 <span></span>
             </label>
+            <select name=topic_group>
+                <option value=0>Zgjidh Grupin Tematik
+                    <?php
+                    while($row = mysql_fetch_array($topic_groups))
+                    {
+                        $name=$row["name"];
+                        $select=$row["topic_group_id"];
+                        echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+                    }
+                    ?>
+            </select>
         </div>
         <br>
         <input type="submit" value="Regjistro">
