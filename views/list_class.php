@@ -7,7 +7,9 @@ include $project_root . 'views/layout/header.php';
 
 
 
-$get_class_details = "SELECT c.class_id, tr.name as tr_name, tr.surname as tr_surname, l.name as l_name, m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
+
+
+$get_class_details = "SELECT c.class_id,tr.trainer_id as tr_id,  tr.name as tr_name, tr.surname as tr_surname,l.location_id as l_id, l.name as l_name,m.municipality_id as m_id,  m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
                       FROM Class c, Trainer tr, Location l, Municipality m, Test test
                       WHERE c.trainer_id = tr.trainer_id
                       and c.location_id = l.location_id
@@ -38,7 +40,7 @@ while ($row_class_topics = mysql_fetch_assoc($class_topics)) {
 
 //print_r($class_topic);
 
-
+//$visar = echo "visaraa";
 
 $get_topics = "SELECT topic_id, description, topic_group_id  FROM Topic where active = 1";
 $topics = mysql_query($get_topics);
@@ -53,9 +55,12 @@ while ($row = mysql_fetch_assoc($topics)) {
 
 }
 
-
 ?>
+    <select id="municipality_id" name="municipality" data-validation="required">
+        <option value="">--Zgjedh Komunen--</option>
+        <?php  ?>
 
+    </select><br>
 <h1>Lista e klasave</h1>
 
 <table class="bordered">
@@ -64,7 +69,7 @@ while ($row = mysql_fetch_assoc($topics)) {
         <th >ID</th>
         <th >Komuna</th>
         <th style="width: 15%">Fshati</th>
-        <th style="width: 20%">Traineri</th>
+        <th style="width: 20%">Ligjeruesi</th>
         <th style="width: 10%">Data prej</th>
         <th style="width: 10%">Data deri</th>
         <th style="width: 10%">Detajet e Temave</th>
@@ -72,15 +77,55 @@ while ($row = mysql_fetch_assoc($topics)) {
     </tr>
     <?php
     while ($row_class = mysql_fetch_assoc($class_details)) {
+
+        // get locations for each municipality of each class
+        $current_municipality = $row_class["m_id"];
+        $current_location = $row_class["l_id"];
+        $current_trainer = $row_class["tr_id"];
+
+
+        $get_locations = "SELECT location_id, name FROM Location where municipality_id =".$current_municipality;
+        $locations = mysql_query($get_locations);
+        $get_municipalities = "SELECT municipality_id, name FROM Municipality ";
+        $municipalities = mysql_query($get_municipalities);
+        $get_trainers = "SELECT trainer_id, name, surname FROM Trainer ";
+        $trainers = mysql_query($get_trainers);
+
+
         echo "<tr>";
         echo "<td> $row_class[class_id]</td >";
-        echo "<td> $row_class[m_name]</td >";
-        echo "<td> $row_class[l_name]</td >";
-        echo " <td> $row_class[tr_name]  $row_class[tr_surname]</td >";
-        echo " <td> $row_class[date_from] </td >";
-        echo " <td> $row_class[date_to] </td >";
-        echo " <td> <span class='show_details' id='$row_class[class_id]'>+</span> </td >";
-        echo " <td> </td >";
+        echo "<input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>";
+        // municipality span
+        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span>
+              <select style='max-width:60%;' id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox municipality'>
+              <option value=''>--Zgjedh Komunen--</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
+        echo " </select></td>";
+
+        // village span
+        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[l_name]</span>
+              <select id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox location_{$row_class["class_id"]}'>
+              <option value=''>--Zgjedh Fshatin--</option> "; create_options($locations, 'location_id', 'name',$current_location);
+        echo " </select>
+              <input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>
+              </td>";
+
+        // trainer span
+        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[tr_name]</span>
+              <select id='editbox_{$row_class["class_id"]}' name='trainer' class='editbox trainer_{$row_class["class_id"]}'>
+              <option value=''>--Zgjedh Ligjeruesin--</option> "; create_options($trainers, "trainer_id", "name", $current_trainer);;
+        echo " </select></td>";
+
+        echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_from] </span>
+               <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_from]' class='editbox datefrom'>
+        </td >";
+
+        echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_to] </span>
+               <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_to]' class='editbox dateto'>
+        </td >";
+        echo " <td> <span class='show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'>+</span> </td >";
+        echo " <td><input type='hidden' name='id' class='editbox' id='editbox_{$row_class["class_id"]}' value='{$row_class["class_id"]}' />"
+            ."<input type='button' value='Ruaj' class='save' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Perditeso' class='edit' id='{$row_class["class_id"]}'> </td >";
 
         echo "</tr>";
         echo "<tr  style='display: none' id='details_row_$row_class[class_id]' class='details'>";
@@ -109,9 +154,22 @@ while ($row = mysql_fetch_assoc($topics)) {
             }
             echo "</td>";
 
-            echo "<td> $display_topic[date]</td >";
-            echo " <td> $display_topic[time_from] </td>";
-            echo " <td> $display_topic[time_to] </td >";
+            echo " <td>
+                     <span id='results_{$row_class["class_id"]}' class='text'> $display_topic[date] </span>
+                     <input type='text' size='10' name='topic[date_topic][]' id='editbox_{$row_class["class_id"]}' value='$display_topic[date]' class='editbox date_topic'>
+                   </td >";
+
+            echo " <td>
+                     <span id='results_{$row_class["class_id"]}' class='text'>  $display_topic[time_from]  </span>
+                     <input type='text' size='10' name='topic[time_from_topic][]' id='editbox_{$row_class["class_id"]}' value=' $display_topic[time_from] ' class='editbox time_topic'>
+                   </td >";
+
+            echo " <td>
+                     <span id='results_{$row_class["class_id"]}' class='text'>  $display_topic[time_to]  </span>
+                     <input type='text' size='10' name='topic[time_to_topic][]' id='editbox_{$row_class["class_id"]}' value=' $display_topic[time_to] ' class='editbox time_topic'>
+                   </td >";
+
+
             echo "</tr>";
         }
         echo "</table>";
@@ -129,7 +187,48 @@ while ($row = mysql_fetch_assoc($topics)) {
         $(".show_details").click(function(){
             var class_id = $(this).attr('id');
             $(".details").hide(100);
-            $("#details_row_"+class_id).show(800);
+
+            if (!$("#details_row_"+class_id).is(":visible") || $("#edit_mode_"+class_id).attr('edit_mode') == "off")
+                $("#details_row_"+class_id).show();
+        });
+
+        $(".edit").click(function(){
+            var c_id = $(this).attr('id');
+            $(".show_details_"+c_id).trigger("click");
+            $("#edit_mode_"+c_id).attr('edit_mode','on')
+
+
+        });
+
+        $(".municipality").change(function () {
+
+            var id_split = $(this).attr('id').split("_");
+            var class_number = id_split[1];
+            console.log(class_number);
+            var parent_value = $(this).val();
+            var parent_id_field = "municipality_id";
+            var child_table = "Location";
+            var child_id_field = "location_id";
+            var child_text_field = "name";
+            var dataString = 'parent_value=' + parent_value + '&parent_id_field=' + parent_id_field + '&child_table=' + child_table + '&child_id_field=' + child_id_field + '&child_text_field=' + child_text_field;
+
+            console.log(dataString);
+            $.ajax
+            ({
+                type: "POST",
+                url: "../core/return_children_dropdown.php",
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    $('.location_'+class_number)
+                        .find('option:gt(0)')
+                        .remove('')
+                        .end()
+                        .append(html)
+                    ;
+                }
+            });
+
         });
 
     </script>
