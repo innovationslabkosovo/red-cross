@@ -1,4 +1,3 @@
-
 <?php
 $page_title = "Krijo Teme te Re";
 
@@ -6,11 +5,11 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
+$get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active='1'";
 $topic_groups = mysql_query($get_topic_groups);
 
 ?>
-<form class="txfform-wrapper cf" name="topic_group_form" action="../core/application/create_topic.php" method="post">
+<form class="txfform-wrapper cf" name="topic_form" action="../core/application/create_topic.php" method="post">
     <div class="row">
         <h3>Shto Teme te Re!</h3>
         <div class="row">
@@ -20,7 +19,7 @@ $topic_groups = mysql_query($get_topic_groups);
                 <input type="checkbox" name="active" value="active">Kjo teme eshte aktive
                 <span></span>
             </label>
-            <select name=topic_group>
+            <select name="topic_group">
                 <option value=0>Zgjidh Grupin Tematik
                     <?php
                     while($row = mysql_fetch_array($topic_groups))
@@ -47,6 +46,6 @@ include $project_root . 'views/layout/footer.php';
 
 <script>
 
-    $.validate();
+    //$.validate();
 
 </script>
