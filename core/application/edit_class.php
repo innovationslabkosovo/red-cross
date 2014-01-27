@@ -2,8 +2,6 @@
 include '../init.php';
 if(empty($_POST) === false) {
 
-    print_r($_POST);
-    exit;
     $class_id = $_POST["id"];
     $municipality = $_POST["municipality"];
     $location=$_POST["location"];
