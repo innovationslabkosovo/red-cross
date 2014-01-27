@@ -145,7 +145,7 @@ background:url(../img/edit.png) right no-repeat #80C8E5;
 cursor:pointer;
 }*/
 table {
-    width:600px;
+    width:620px;
 }
 
 div.form-error {
@@ -231,7 +231,7 @@ li.top-menu:hover li a:hover {
 table {
     *border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .bordered {
@@ -308,7 +308,9 @@ table {
     -webkit-border-radius: 0 0 6px 0;
     border-radius: 0 0 6px 0;
 }
-
+.bordered .last_td {
+    text-align: center;
+}
 
 
 /*----------------------*/
