@@ -56,15 +56,26 @@ while ($row = mysql_fetch_assoc($topics)) {
 }
 
 ?>
-    <select id="municipality_id" name="municipality" data-validation="required">
-        <option value="">--Zgjedh Komunen--</option>
-        <?php  ?>
 
-    </select><br>
 <h1>Lista e klasave</h1>
 <?php $base_url = BASE_URL; ?>
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_class.php' ></div>";?>
-<table class="bordered">
+<?php
+
+if ($_GET['message'] != NULL)
+{
+    if ($_GET['message'] == 'success')
+    {
+        echo $display_messages[$_GET['object']][$_GET['message']];
+
+    }else{
+        echo $display_messages[$_GET['object']][$_GET['message']];
+    }
+
+}
+
+?>
+    <table class="bordered">
 
     <tr>
         <th >ID</th>
@@ -235,9 +246,4 @@ while ($row = mysql_fetch_assoc($topics)) {
 
     </script>
 
-<?php
-if (isset($_GET['message']) && isset($_GET['object'])) {
-    echo $display_messages[$_GET['object']][$_GET['message']];
-}
-include $project_root . 'views/layout/footer.php';
-?>
+<?php include $project_root . 'views/layout/footer.php'; ?>
