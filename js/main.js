@@ -3,7 +3,7 @@
  */
 
 $(function () {
-    $("#datefrom, #dateto, .date_topic").datepicker({dateFormat: 'yy-mm-dd' });
+    $(".datefrom, .dateto, .date_topic").datepicker({dateFormat: 'yy-mm-dd' });
     $(".time_topic").timepicker();
 });
 
@@ -32,6 +32,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 $.each(data,function(key, val) {
+                    console.log(data);
                     if($.isArray(val)) {
                         $.each(val, function(k, v) {
                             // k = key, v = value
