@@ -22,7 +22,7 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topics = "SELECT topic_id, description, Topic.active, TopicGroup.name FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id";
+$get_topics = "SELECT topic_id, description, Topic.active, TopicGroup.name FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id";
 $topics = mysql_query($get_topics);
 
 $status[1]="Aktiv";
