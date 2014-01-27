@@ -25,7 +25,7 @@ if(empty($_POST) === false)
         {
             mysql_query("INSERT INTO ClassTopic(topic_group_id, class_id, date, time_from, time_to) VALUES (".$value['topic_group_id'].", '$class_id' ,  '".$value['date_topic']."', '".$value['time_from_topic']."', '".$value['time_to_topic']."')");
         }
-        header("location: ../../views/create_class.php?message=success&object=Klasa");
+        header("location: ../../views/list_class.php?message=success&object=Klasa");
     }
     else
     {
