@@ -57,4 +57,10 @@
     <li>
         <a href="<?php echo BASE_URL; ?>/views/map.php">Harta</a>
     </li>
+    <li class="top-menu">
+        <a href="javascript:void(0);">Raportet</a>
+        <ul class="sub-menu">
+            <li><a href="<?php echo BASE_URL; ?>/views/municipal_report.php">Raporti Mujor Komunal</a></li>
+        </ul>
+    </li>
 </ul>
