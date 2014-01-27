@@ -56,14 +56,26 @@ while ($row = mysql_fetch_assoc($topics)) {
 }
 
 ?>
-    <select id="municipality_id" name="municipality" data-validation="required">
-        <option value="">--Zgjedh Komunen--</option>
-        <?php  ?>
 
-    </select><br>
 <h1>Lista e klasave</h1>
+<?php $base_url = BASE_URL; ?>
+<?php echo "<div id='url' url='{$base_url}/core/application/edit_class.php' ></div>";?>
+<?php
 
-<table class="bordered">
+if ($_GET['message'] != NULL)
+{
+    if ($_GET['message'] == 'success')
+    {
+        echo $display_messages[$_GET['object']][$_GET['message']];
+
+    }else{
+        echo $display_messages[$_GET['object']][$_GET['message']];
+    }
+
+}
+
+?>
+    <table class="bordered">
 
     <tr>
         <th >ID</th>
@@ -97,14 +109,14 @@ while ($row = mysql_fetch_assoc($topics)) {
         echo "<input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>";
         // municipality span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span>
-              <select style='max-width:60%;' id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox municipality'>
-              <option value=''>--Zgjedh Komunen--</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
+              <select size='1' id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox municipality'>
+              <option value=''>Zgjedh Komunen</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
         echo " </select></td>";
 
         // village span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[l_name]</span>
-              <select id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox location_{$row_class["class_id"]}'>
-              <option value=''>--Zgjedh Fshatin--</option> "; create_options($locations, 'location_id', 'name',$current_location);
+              <select id='editbox_{$row_class["class_id"]}' name='location' class='editbox location_{$row_class["class_id"]}'>
+              <option value=''>Zgjedh Fshatin</option> "; create_options($locations, 'location_id', 'name',$current_location);
         echo " </select>
               <input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>
               </td>";
@@ -112,7 +124,7 @@ while ($row = mysql_fetch_assoc($topics)) {
         // trainer span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[tr_name]</span>
               <select id='editbox_{$row_class["class_id"]}' name='trainer' class='editbox trainer_{$row_class["class_id"]}'>
-              <option value=''>--Zgjedh Ligjeruesin--</option> "; create_options($trainers, "trainer_id", "name", $current_trainer);;
+              <option value=''>Zgjedh Ligjeruesin</option> "; create_options($trainers, "trainer_id", "name", $current_trainer);;
         echo " </select></td>";
 
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_from] </span>
@@ -145,7 +157,8 @@ while ($row = mysql_fetch_assoc($topics)) {
         foreach ($class_topic[$row_class['class_id']] as $display_topic)
         {
             echo "<tr>";
-            echo "<td> $display_topic[tg_name]</td >";
+            echo "<td> $display_topic[tg_name]";
+            echo "<input type='hidden' value='$display_topic[topic_group_id]' name='topic[topic_group_id][]' id='editbox_{$row_class["class_id"]}'></td >";
 
             echo "<td>";
             foreach ((array)$topic_rows as $t_value) {
@@ -233,9 +246,4 @@ while ($row = mysql_fetch_assoc($topics)) {
 
     </script>
 
-<?php
-if (isset($_GET['message']) && isset($_GET['object'])) {
-    echo $display_messages[$_GET['object']][$_GET['message']];
-}
-include $project_root . 'views/layout/footer.php';
-?>
+<?php include $project_root . 'views/layout/footer.php'; ?>
