@@ -60,7 +60,7 @@ $(document).ready(function () {
         var ID = $(this).attr("id");
         console.log(ID);
         td.find("#results_" + ID).show();
-        td.find(".editbox_" + ID).hide();
+        td.find("#editbox_" + ID).hide();
         td.find("#" + ID).hide();
         $(this).hide();
         $(".edit").attr("style","display:inline !important");
