@@ -19,14 +19,25 @@
 $page_title = "Menaxho Temat";
 
 include '../core/init.php';
+require_once('../core/application/Paginator.php');
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topics = "SELECT topic_id, description, Topic.active, TopicGroup.name FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id";
-$topics = mysql_query($get_topics);
+$count_rows = mysql_query("SELECT count(*) FROM Topic");
+$num_rows = mysql_result($count_rows, 0);
 
 $status[1]="Aktiv";
 $status[0]="Jo-aktiv";
+
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+echo $pages->display_pages();
+echo $pages->display_jump_menu();
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
+$topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id $pages->limit");
 ?>
 <form class="txfform-wrapper cf" name="topic_form" action="../core/application/create_topic.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
