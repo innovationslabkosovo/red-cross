@@ -80,8 +80,8 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
                         <select name="status" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $active; ?>">
-                            <option value="1" <?php echo $selected; ?>>Aktiv</option>
-                            <option value="0" <?php echo $selected; ?>>Jo-aktiv</option>
+                            <option value="Aktiv" <?php echo $selected; ?>>Aktiv</option>
+                            <option value="Jo-aktiv" <?php echo $selected; ?>>Jo-aktiv</option>
                         </select>
                     </td>
 
