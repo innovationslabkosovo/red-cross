@@ -30,14 +30,16 @@ if(empty($_POST) === false)
     }
 
     if($_POST['id']) {
+        ob_clean();
         $id=mysql_real_escape_string($_POST['id']);
         $topic_edit=mysql_real_escape_string($_POST['topic']);
         $topic_status_edit=mysql_real_escape_string($_POST['status']);
         $topic_group_edit=mysql_real_escape_string($_POST['topic_group']);
+        ($topic_status_edit == "Aktiv") ? $topic_status_edit = 1 : $topic_status_edit = 0;
         mysql_query("update Topic set description='$topic_edit', active='$topic_status_edit', topic_group_id='$topic_group_edit'  where topic_id='$id'");
-        ob_clean();
-        $post = $_POST;
-        echo json_encode($post);
+        $topic_group = mysql_query("SELECT name from TopicGroup where topic_group_id=".$topic_group_edit);
+        $_POST['topic_group'] = mysql_result($topic_group, 0, 'name');
+        echo json_encode($_POST);
     }
 
     else if(isset($_POST["hidDelete"]) || $_POST["hidDelete"] != "")
@@ -48,7 +50,6 @@ if(empty($_POST) === false)
         {
 
             if (mysql_query("DELETE FROM Topic where topic_id='$rowID'")){
-                //header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroupDelete");
                 $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'TopicDelete');
                 ob_clean();
                 echo json_encode($data);
