@@ -19,10 +19,23 @@
 $page_title = "Menaxho Grupet Tematike";
 
 include '../core/init.php';
+require_once('../core/application/Paginator.php');
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
+$count_rows = mysql_query("SELECT count(*) FROM TopicGroup");
+$num_rows = mysql_result($count_rows, 0);
+
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+echo $pages->display_pages();
+echo $pages->display_jump_menu();
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
+
+$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup $pages->limit";
 $topic_groups = mysql_query($get_topic_groups);
 
 $status[1]="Aktiv";
@@ -81,9 +94,10 @@ $status[0]="Jo-aktiv";
                 </td>
                 <td>
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
-                    <input type="button" value="Ruaj" class="save" id="<?php echo $id; ?>">
-                    <input type="button" value="Perditeso" class="edit" id="<?php echo $id; ?>">
-                    <input type="button" value="Fshij Grupin Tematik" onclick="ajaxCall(<?php echo $id; ?>)">
+                    <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
+                    <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+                    <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
+                    <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                 </td>
 
             </tr>

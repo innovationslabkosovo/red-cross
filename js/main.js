@@ -16,7 +16,6 @@ $(document).ready(function () {
         td.find("#results_" + ID).hide();
         td.find("#editbox_" + ID).attr("style", "display:block");
         td.find("#" + ID).attr("style", "display:inline");
-        td.find("#" + ID).next().removeClass("hide");
         $(this).addClass("hide");
     });
 
@@ -36,8 +35,11 @@ $(document).ready(function () {
                     console.log(data);
                     if($.isArray(val)) {
                         $.each(val, function(k, v) {
-                            $("[name="+key+"\\[\\]][id=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
-                            $("[name="+key+"\\[\\]][id=editbox_"+ID+"][history="+k+"]").attr("value", v);
+                            // k = key, v = value
+                            //$("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
+                            //$("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").attr("value", v);
+                            console.log(v);
+                            $("[id=results_"+ID+"][history="+k+"]");
                         });
                     }
                     $("[name="+key+"]").prev("#results_"+ID).html(val);
@@ -46,7 +48,6 @@ $(document).ready(function () {
                 $(".editbox, .save").hide();
                 $(".hide").removeClass("hide");
                 $(".text").show();
-                $("#cancel_edit").addClass("hide");
             }
         });
     });
@@ -55,11 +56,15 @@ $(document).ready(function () {
         return false;
     });
 
-    $("#cancel_edit").click(function () {
-        $(".editbox, .save").hide();
-        $(".hide").removeClass("hide");
-        $(".text").show();
-        $("#cancel_edit").addClass("hide");
+    $(".cancel").click(function () {
+        var td = $("td");
+        var ID = $(this).attr("id");
+        console.log(ID);
+        td.find("#results_" + ID).show();
+        td.find("#editbox_" + ID).hide();
+        td.find("#" + ID).hide();
+        $(this).hide();
+        $(".edit").attr("style","display:inline !important");
     });
     // End General Edit Function
 

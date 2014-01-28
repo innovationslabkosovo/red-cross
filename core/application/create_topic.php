@@ -8,7 +8,6 @@ if(empty($_POST) === false)
         $topic=$_POST["topic"];
         $topic_group_id=$_POST["topic_group"];
 
-
         if(isset($_POST['active']) && $_POST['active'] == 'active')
         {
             $active = 1;
@@ -17,7 +16,6 @@ if(empty($_POST) === false)
         {
             $active = 0;
         }
-
 
         if (mysql_query("INSERT INTO Topic(topic_id, description, topic_group_id, active) VALUES ('', '$topic' , '$topic_group_id', '$active')"))
             header("location: ../../views/view_topics.php?message=success&object=Topic");
@@ -35,7 +33,8 @@ if(empty($_POST) === false)
         $id=mysql_real_escape_string($_POST['id']);
         $topic_edit=mysql_real_escape_string($_POST['topic']);
         $topic_status_edit=mysql_real_escape_string($_POST['status']);
-        mysql_query("update Topic set description='$topic_edit', active='$topic_status_edit' where topic_id='$id'");
+        $topic_group_edit=mysql_real_escape_string($_POST['topic_group']);
+        mysql_query("update Topic set description='$topic_edit', active='$topic_status_edit', topic_group_id='$topic_group_edit'  where topic_id='$id'");
         ob_clean();
         $post = $_POST;
         echo json_encode($post);

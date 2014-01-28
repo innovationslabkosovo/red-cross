@@ -59,6 +59,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 <tr>
     <th>Vendndodhja</th>
     <th>Komuna</th>
+    <th>Modifiko</th>
 </tr>
 <?php
 while($results = mysql_fetch_array($locations_municipalities))
@@ -81,8 +82,11 @@ $longitude = $results['longitude'];
     <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
     <!-- ID ne rreshtin e fundit -->
     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
+</td>
+<td>
     <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
     <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+    <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
 </td>
 </tr>
 <?php
