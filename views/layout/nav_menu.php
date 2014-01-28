@@ -25,6 +25,13 @@
             <li><a href="<?php echo BASE_URL; ?>/views/list_class.php">Listo Klasat</a></li>
         </ul>
     </li>
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Participantet</a>
+        <ul class="sub-menu">
+            <li><a href="<?php echo BASE_URL; ?>/views/create_participant.php">Krijo Participant te ri</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/list_participant.php">Listo Participantet</a></li>
+        </ul>
+    </li>
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
     <li class="top-menu">
         <a href="javascript:void(0);">Menaxho Temat</a>
