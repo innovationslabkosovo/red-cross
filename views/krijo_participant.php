@@ -2,7 +2,7 @@
 	$page_title = "Krijo_participant";
 	include("core/init.php");
 	protect_page();
-	include("inc/overall/header.php");	
+	include("inc/overall/header.php");
 	$errors = array();
 ?>
 

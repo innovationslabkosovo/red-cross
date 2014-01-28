@@ -3,6 +3,7 @@ include '../init.php';
 if(empty($_POST) === false) {
 
     $class_id = $_POST["id"];
+    $municipality = $_POST["municipality"];
     $location=$_POST["location"];
     $date_from=$_POST["date_from"];
     $date_to=$_POST["date_to"];
@@ -19,6 +20,16 @@ if(empty($_POST) === false) {
     if (mysql_query($edit_class_qs))
     {
         ob_clean();
+
+        $mun_query = mysql_query("SELECT name from Municipality where municipality_id=".$municipality);
+        $_POST['municipality'] = mysql_result($mun_query, 0, 'name');
+
+        $location_query = mysql_query("SELECT name from Location where location_id=".$location);
+        $_POST['location'] = mysql_result($location_query, 0, 'name');
+
+        $trainer_query = mysql_query("SELECT name from Trainer where trainer_id=".$trainer);
+        $_POST['trainer'] = mysql_result($trainer_query, 0, 'name');
+
         foreach ($output as $key=>$value)
         {
             //print_r($output);

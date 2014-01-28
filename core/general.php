@@ -2,16 +2,20 @@
 
 $display_messages = array(
     "class" => array(
-        "success" => "Klasa eshte shtuar me sukses",
-        "fail" => "Klasa nuk eshte shtuar "
+        "success" => "Klasa u shtua me sukses",
+        "fail" => "Klasa nuk u shtua!"
+    ),
+    "participant" => array(
+        "success" => "Participanti u shtua me sukses",
+        "fail" => "Participanti nuk u shtua !"
     ),
     "user" => array(
         "success" => "Fjalkalimi u perditsu",
         "fail" => "Fjalkalimi nuk u perditesua"
     ),
     "location" => array(
-        "success" => "Lokacioni eshte shtuar me sukses",
-        "fail" => "Lokacioni nuk eshte shtuar"
+        "success" => "Lokacioni u shtua me sukses",
+        "fail" => "Lokacioni nuk u shtua"
     ),
     "TopicGroup" => array(
         "success" => "Grupi Tematik u shtua me sukses",
@@ -31,8 +35,8 @@ $display_messages = array(
         "success" => "Tema u fshi me sukses",
     ),
     "Category" => array(
-        "success" => "Kategoria eshte shtuar me sukses",
-        "fail" => "Kategoria nuk eshte shtuar",
+        "success" => "Kategoria u shtua me sukses",
+        "fail" => "Kategoria nuk u shtua",
     ),
 );
 
