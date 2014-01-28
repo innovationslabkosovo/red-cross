@@ -1,14 +1,17 @@
 <?php
-$page_title = "Lista e klasave";
+
+$page_title = "Lista e participanteve";
 
 include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
 $get_participants = "SELECT p.*, c.name as class_name, c.class_id as class_id
-                     FROM Participant p INNER JOIN ParticipantClass pc on p.participant_id=pc.participant_id INNER JOIN Class c on pc.class_id=c.class_id
+                     FROM Participant as p INNER JOIN ParticipantClass as pc on p.participant_id=pc.participant_id INNER JOIN Class as c on pc.class_id=c.class_id
                      ORDER BY p.name";
 $participants = mysql_query($get_participants);
+
+
 
 $get_class = "SELECT class_id, name FROM Class ";
 $classes = mysql_query($get_class);
@@ -43,8 +46,10 @@ if ($_GET['message'] != NULL)
         <th >Klasa</th>
     </tr>
 <?php
+
 while ($row_participant = mysql_fetch_assoc($participants))
 {
+    echo 2;
     $participant_id = $row_participant["participant_id"];
     $name = $row_participant["name"];
     $surname = $row_participant["surname"];
