@@ -34,14 +34,10 @@ $get_municipality = mysql_query("SELECT name FROM Municipality where municipalit
 $municipality = mysql_fetch_assoc($get_municipality);
 
 
-//get locations of all classes
-$get_classes=mysql_query("SELECT Class.name as class, Location.name as location, ParticipantClass.participant_id as participants FROM Class inner join Location on Class.location_id = Location.location_id
-                            inner join ParticipantClass on ParticipantClass.class_id = Class.class_id WHERE participant_id in
-                            (SELECT COUNT(participant_id) from ParticipantClass inner join Class on ParticipantClass.class_id = Class.class_id) and Location.location_id IN
-                           (Select location_id from Location where municipality_id = '$selected') and date_from >= '$datefrom' and date_to <= '$dateto'");
-
-
-
+//get locations of all classes, number of participants, class names and IDs
+$get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, Location.name as location, (SELECT COUNT(*) from ParticipantClass as ipc WHERE ipc.class_id = Class.class_id ) as participants
+                          FROM Class inner join Location on Class.location_id = Location.location_id inner join ParticipantClass on ParticipantClass.class_id = Class.class_id
+                          WHERE Location.location_id IN (Select location_id from Location where municipality_id = '$selected') and date_from >= '$datefrom' and date_to <= '$dateto'");
 
 ?>
 <html>
@@ -60,13 +56,18 @@ $get_classes=mysql_query("SELECT Class.name as class, Location.name as location,
     </tr>
     <?php
     while ($classes = mysql_fetch_assoc($get_classes)){
+
+        //get only IDs of classes
+        $classes_id = $classes['class_id'];
+        $get_pre_success=mysql_query("SELECT SUM(answer) FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+        $get_post_success=mysql_query("SELECT SUM(answer) FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
         ?>
     <tr>
         <td><?php echo $classes['location'];?></td>
         <td><?php echo $classes['class'];?></td>
         <td><?php echo $classes['participants'];?></td>
-        <td></td>
-        <td></td>
+        <td><?php echo $get_pre_success*100/$classes['participants']; echo"%";?></td>
+        <td><?php echo $get_post_success*100/$classes['participants']; echo"%"; ?></td>
     </tr>
     <?php
     }
@@ -76,10 +77,6 @@ $get_classes=mysql_query("SELECT Class.name as class, Location.name as location,
 
 </body>
 <?php
-if (isset($_GET['message']) && isset($_GET['object']))
-{
-    echo $display_messages[$_GET['object']][$_GET['message']];
-}
 include $project_root . 'views/layout/footer.php';
 ?>
 </html>
