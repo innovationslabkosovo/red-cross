@@ -59,15 +59,17 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, L
 
         //get only IDs of classes
         $classes_id = $classes['class_id'];
-        $get_pre_success=mysql_query("SELECT SUM(answer) FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
-        $get_post_success=mysql_query("SELECT SUM(answer) FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $get_pre_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+        $get_post_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $q1 = mysql_fetch_assoc($get_pre_success);
+        $q2 = mysql_fetch_assoc($get_post_success);
         ?>
     <tr>
         <td><?php echo $classes['location'];?></td>
         <td><?php echo $classes['class'];?></td>
         <td><?php echo $classes['participants'];?></td>
-        <td><?php echo $get_pre_success*100/$classes['participants']; echo"%";?></td>
-        <td><?php echo $get_post_success*100/$classes['participants']; echo"%"; ?></td>
+        <td><?php echo $q1['sum']*100/$classes['participants']; echo"%";?></td>
+        <td><?php echo $q2['sum']*100/$classes['participants']; echo"%"; ?></td>
     </tr>
     <?php
     }
