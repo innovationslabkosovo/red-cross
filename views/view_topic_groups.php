@@ -23,7 +23,19 @@ require_once('../core/application/Paginator.php');
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup";
+$count_rows = mysql_query("SELECT count(*) FROM TopicGroup");
+$num_rows = mysql_result($count_rows, 0);
+
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+echo $pages->display_pages();
+echo $pages->display_jump_menu();
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
+
+$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup $pages->limit";
 $topic_groups = mysql_query($get_topic_groups);
 
 $status[1]="Aktiv";
