@@ -13,7 +13,9 @@ if(empty($_POST) === false) {
 
     transpose($topic_data, $output);
 
-    $class_name = "Kursi".$location;
+    $loc_query = mysql_query("SELECT name from Location where location_id=".$location);
+    $location_name = mysql_result($loc_query, 0, 'name');
+    $class_name = "Kursi-".$location_name."-".$date_from;
 
 
     $edit_class_qs = "UPDATE Class set name='$class_name', trainer_id=$trainer, location_id=$location, date_from='$date_from', date_to='$date_to' WHERE class_id='$class_id'";

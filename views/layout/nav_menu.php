@@ -38,6 +38,13 @@
                     <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:void(0);">Menaxho Kategorite</a>
+                <ul class="third_level">
+                    <li><a href="<?php echo BASE_URL; ?>/views/create_category.php">Krijo Kategori te Re</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/view_categories.php">Listo Kategorite</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
     <li><a href="javascript:void(0);">Raportet</a>
