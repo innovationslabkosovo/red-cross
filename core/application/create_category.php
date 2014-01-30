@@ -26,15 +26,15 @@ if(empty($_POST['category']) == false && empty($errors) == true)
 			VALUES ('','$name')";
     if (mysql_query($query)) {
 
-        header("location: ../../views/category.php?message=success&object=Category");
+        header("location: ../../views/create_category.php?message=success&object=Category");
 
     }
 else {
-    header("location: ../../views/category.php?message=fail&object=Category");
+    header("location: ../../views/create_category.php?message=fail&object=Category");
 }
 }
 else {
-    header("location: ../../views/category.php?message=fail&object=Category");
+    header("location: ../../views/create_category.php?message=fail&object=Category");
 }
  //echo implode("", $errors);
 ?>

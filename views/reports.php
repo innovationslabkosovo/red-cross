@@ -1,5 +1,5 @@
 <?php
-$page_title = "Raporti Mujor Komunal";
+$page_title = "Raportet e Punes se Kryqit te Kuq";
 
 include '../core/init.php';
 protect_page();
@@ -19,10 +19,22 @@ $municipality = $_GET["municipality"];
 ?>
 <html>
 <head>
-    <title>Raporti Mujor Komunal</title>
+    <title>Raportet e Punes se Kryqit te Kuq</title>
 </head>
 <body>
-<h2>Raporti Komunal per Muajin: <?php print_r($month); ?> </h2>
+<h1>Zgjidhni Vitin per Raportin Vjetor</h1>
+<form action="../core/application/annual_report.php" method="POST">
+    <select name="year">
+        <option value="">Zgjidh Vitin</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+    </select>
+    <input type="submit" name="GO" value="Gjenero"/>
+</form>
+<hr>
+<h1>Zgjidhni Vitin, Muajin dhe Komunen per Raportin Komunal</h1>
 
 <form action="../core/application/municipal_report.php" method="POST">
     <select name="year">

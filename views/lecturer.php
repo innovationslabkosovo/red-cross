@@ -1,6 +1,6 @@
 <?php 
 $page_title = "Ligjeruesit";
-include 'core/init.php';
+include '../init.php';
 protect_page();
 include 'inc/overall/header.php'; ?>
   <h1>Lecturers</h1>
