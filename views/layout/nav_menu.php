@@ -14,6 +14,12 @@
                     <li><a href="<?php echo BASE_URL; ?>/views/list_participant.php">Listo Participantet</a></li>
                 </ul>
             </li>
+            <li><a href="javascript:void(0);">Menaxho Grupet Tematike</a>
+                <ul class="third_level">
+                    <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
+                </ul>
+            </li>
             <li><a href="javascript:void(0);">Menaxho Temat</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_topic.php">Krijo Teme te Re</a></li>
@@ -30,12 +36,6 @@
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/krijo_test.php">Krijo Test</a></li>
                     <li><a href="<?php echo BASE_URL; ?>/views/listo_testet.php">Listo Testet</a></li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0);">Menaxho Grupet Tematike</a>
-                <ul class="third_level">
-                    <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
                 </ul>
             </li>
             <li>
