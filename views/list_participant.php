@@ -1,7 +1,5 @@
 <?php
-
 $page_title = "Lista e participanteve";
-
 include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
@@ -21,7 +19,7 @@ $participants = mysql_query($get_participants);
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_participant.php' ></div>";?>
 <?php
 
-if ($_GET['message'] != NULL)
+if (isset($_GET['message']))
 {
     if ($_GET['message'] == 'success')
     {
