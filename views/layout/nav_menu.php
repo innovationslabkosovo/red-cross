@@ -4,7 +4,7 @@
         <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Class</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Locations</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/newlecturer.php">New lecturers</a></li>
-        <li><a href="<?php echo BASE_URL; ?>/views/category.php">Categories</a></li>
+        <li><a href="<?php echo BASE_URL; ?>/views/create_category.php">Categories</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/lecturer.php">Lecturers</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/krijo_pyetje.php">Test questions</a></li>
         <li><a href="<?php echo BASE_URL; ?>/views/listo_pytje.php">Questions listing</a></li>
@@ -69,6 +69,14 @@
         <ul class="sub-menu">
             <li><a href="<?php echo BASE_URL; ?>/views/reports.php">Raportet Publike</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/internal_reports.php">Raportet e Brendshme</a></li>
+        </ul>
+    </li>
+
+    <li class="top-menu">
+        <a href="javascript:void(0);">Menaxho Kategorite</a>
+        <ul class="sub-menu">
+            <li><a href="<?php echo BASE_URL; ?>/views/create_category.php">Krijo Kategori te Re</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/view_categories.php">Listo Kategorite</a></li>
         </ul>
     </li>
 </ul>
