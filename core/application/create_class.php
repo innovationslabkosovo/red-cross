@@ -16,7 +16,9 @@ if(empty($_POST) === false)
   //  print_r($topic_data);
 
    // exit;
-    $class_name = "Kursi".$location;
+    $loc_query = mysql_query("SELECT name from Location where location_id=".$location);
+    $location_name = mysql_result($loc_query, 0, 'name');
+    $class_name = "Kursi-".$location_name."-".$date_from;
 
     if (mysql_query("INSERT INTO Class(class_id, name, trainer_id, location_id, test_id, date_from, date_to) VALUES ('', '$class_name' ,  '$trainer', '$location', '$test', '$date_from', '$date_to')"))
     {
