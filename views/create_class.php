@@ -129,7 +129,6 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
                     echo "<td>" . $tg_value['name'] . "</td>";
                     echo "<td><ul>";
                     foreach ((array)$topic_rows as $t_value) {
-                        echo $data_topic['topic_group_id'];
                         if ($tg_value['topic_group_id'] == $t_value['topic_group_id'])
                             echo "<li>" . $t_value['description'] . "</li>";
                     }
