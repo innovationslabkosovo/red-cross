@@ -59,17 +59,22 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, L
 
         //get only IDs of classes
         $classes_id = $classes['class_id'];
-        $get_pre_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
-        $get_post_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $get_pre_success=mysql_query("SELECT COUNT(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+        $get_post_success=mysql_query("SELECT COUNT(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $get_pre_success1=mysql_query("SELECT COUNT(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para' and answer='1'");
+        $get_post_success1=mysql_query("SELECT COUNT(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas' and answer='1'");
+
         $q1 = mysql_fetch_assoc($get_pre_success);
         $q2 = mysql_fetch_assoc($get_post_success);
+        $q3 = mysql_fetch_assoc($get_pre_success1);
+        $q4 = mysql_fetch_assoc($get_post_success1);
         ?>
     <tr>
         <td><?php echo $classes['location'];?></td>
         <td><?php echo $classes['class'];?></td>
         <td><?php echo $classes['participants'];?></td>
-        <td><?php echo $q1['sum']*100/$classes['participants']; echo"%";?></td>
-        <td><?php echo $q2['sum']*100/$classes['participants']; echo"%"; ?></td>
+        <td><?php echo $q3['sum']*100/$q1['sum']; echo"%";?></td>
+        <td><?php echo $q4['sum']*100/$q2['sum']; echo"%";?></td>
     </tr>
     <?php
     }
