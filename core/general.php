@@ -41,7 +41,7 @@ $display_messages = array(
 );
 
 
-echo "<pre></pre>";
+
 
 function logged_in_redirect()
 {
