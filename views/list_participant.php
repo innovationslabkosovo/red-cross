@@ -13,8 +13,6 @@ $participants = mysql_query($get_participants);
 
 
 
-$get_class = "SELECT class_id, name FROM Class ";
-$classes = mysql_query($get_class);
 
 ?>
 
@@ -44,12 +42,12 @@ if ($_GET['message'] != NULL)
         <th >Mosha</th>
         <th >Gjinia</th>
         <th >Klasa</th>
+        <th >Modifiko</th>
     </tr>
 <?php
 
 while ($row_participant = mysql_fetch_assoc($participants))
 {
-    echo 2;
     $participant_id = $row_participant["participant_id"];
     $name = $row_participant["name"];
     $surname = $row_participant["surname"];
@@ -58,28 +56,43 @@ while ($row_participant = mysql_fetch_assoc($participants))
     $class_id = $row_participant["class_id"];
     $class_name = $row_participant["class_name"];
 
+    $get_class = "SELECT class_id, name FROM Class ";
+    $classes = mysql_query($get_class);
+
+
     ?>
     <tr>
-        <td >
-
-
+        <td>
+            <span id='results_<?=$participant_id?>' class='text'> <?=$name?> </span>
+            <input type='text' size='10' name='name' id='editbox_<?=$participant_id?>' value='<?=$name?>' class='editbox name'>
         </td>
-        <td >
 
-
+        <td><span id='results_<?=$participant_id?>' class='text'> <?=$surname?> </span>
+            <input type='text' size='10' name='surname' id='editbox_<?=$participant_id?>' value='<?=$surname?>' class='editbox surname'>
         </td>
-        <td >
 
-
+        <td><span id='results_<?=$participant_id?>' class='text'> <?=$age?> </span>
+            <input type='number' size='10' name='age' id='editbox_<?=$participant_id?>' value='<?=$age?>' class='editbox age'>
         </td>
-        <td >
 
-
+        <td><span id='results_<?=$participant_id?>' class='text'> <?=$gender?> </span>
+            <select size='1' id='editbox_<?=$participant_id?>' name='gender' class='editbox gender'>
+                <option value="M" <?php if ($gender =="M") echo "selected"; ?> >Mashkull</option>
+                <option value="F" <?php if ($gender =="F") echo "selected"; ?> >Femer</option>
+            </select>
         </td>
+
         <td ><span id='results_<?=$participant_id?>' class='text'> <?=$class_name?></span>
             <select size='1' id='editbox_<?=$participant_id?>' name='class' class='editbox class'>
                 <option value=''>Zgjedh Klasen</option> ";<?php echo  create_options($classes, 'class_id', 'name', $class_id); ?>
         </td>
+
+        <td>
+            <input type='hidden' name='id' class='editbox' id='editbox_<?=$participant_id?>' value='<?=$participant_id?>' />
+            <input type='button' value='Ruaj' class='save' id='<?=$participant_id?>'>
+            <input type='button' value='Perditeso' class='edit' id='<?=$participant_id?>'>
+            <input type="button" value='Anulo' class='cancel' id='<?=$participant_id?>' style='display:none;'>
+        </td >
     </tr>
 
     <?php
