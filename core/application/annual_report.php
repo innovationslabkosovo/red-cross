@@ -25,7 +25,14 @@ and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
     <title>Raporti Vjetor</title>
 </head>
 <body>
-<h1>Raporti Vjetor per <?php print_r($_POST['year']); ?> </h1>
+<h1>Raporti Vjetor për <?php print_r($_POST['year']); ?> </h1>
+<?php
+if (mysql_num_rows($get_classes) == 0) {
+    echo "Në këtë vit nuk janë mbajtur kurse!";
+    exit;
+}
+else {
+?>
 <table border="1">
     <tr>
         <th>Komuna</th>
@@ -62,10 +69,17 @@ and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
             ?>
             <tr>
                 <td><?php echo $municipality;?></td>
-                <td><?php echo $participants;?></td>
+                <td><?php echo $participants;
+                    if ($participants != 0){
+                    ?></td>
                 <td><?php echo $pre_success*100/$participants; echo"%";?></td>
                 <td><?php echo $post_success*100/$participants; echo"%";
-
+                    } else {
+                    ?></td>
+                <td></td>
+                <td></td>
+                <?php
+                }
                     $municipality = $classes['m_name'];
                     $participants = 1;
                     $pre_success = $classes['para_correct'];
@@ -74,14 +88,11 @@ and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
                     $previous_municipality = $classes['m_id'];
                     $counter++;
 
-              ?></td>
+              ?>
             </tr>
         <?php
 
             }
-
-            //$counter++;
-
         }
 
         else {
@@ -91,13 +102,22 @@ and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
         }
-    }?>
+    }}?>
 
         <tr>
     <td><?php echo $municipality;?></td>
-    <td><?php echo $participants;?></td>
+    <td><?php echo $participants;
+        if ($participants != 0){
+        ?></td>
     <td><?php echo $pre_success*100/$participants; echo"%";?></td>
-    <td><?php echo $post_success*100/$participants; echo"%";?></td>
+    <td><?php echo $post_success*100/$participants; echo"%";
+        } else {
+        ?></td>
+            <td></td>
+            <td></td>
+            <?php
+            }
+            ?>
     </tr>
 
 </table>
@@ -106,7 +126,3 @@ and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
 include $project_root . 'views/layout/footer.php';
 ?>
 </html>
-
-<?php
-//SELECT DISTINCT Municipality.name, Class.class_id, (SELECT COUNT(*) from ParticipantClass ) as participants FROM Class inner join Location on Class.location_id = Location.location_id inner join ParticipantClass on ParticipantClass.class_id = Class.class_id inner join Municipality on Municipality.municipality_id = Location.municipality_id and Class.date_from >= '2013-01-01' and Class.date_to <= '2014-31-01'
-?>
