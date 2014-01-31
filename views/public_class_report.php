@@ -1,24 +1,29 @@
 <?php
 $page_title = "Raporti Publik i Suksesit";
 include '../core/init.php';
-protect_page();
 $errors = array();
 include 'layout/header.php';
 
+$true_answers_before = 0;
+$true_answers_after = 0;
 
-	$test_id = $_GET['test_id'];
-	if ($test_id) {
-		$public_report = mysql_query("SELECT test.test_id, test.name, test.active, question.description, participantanswer.type, question.question_id, participantanswer.answer from test
-		INNER JOIN testquestion ON test.test_id = testquestion.test_id
-		INNER JOIN participantanswer ON participantanswer.question_id = testquestion.question_id
-		INNER JOIN question ON question.question_id = testquestion.question_id
-		WHERE testquestion.test_id = $test_id");
-	}
+$number_of_questions_before = 0;
+$number_of_questions_after = 0;
 
-	$get_tests = "SELECT * FROM `test` where active = 1";
-	$tests = mysql_query($get_tests);
+$test_id = $_GET['test_id'];
+if ($test_id) {
+	$public_report = mysql_query("SELECT Test.test_id, Test.name, Test.active, Question.description, ParticipantAnswer.type, Question.question_id, ParticipantAnswer.answer from Test
+	INNER JOIN TestQuestion ON Test.test_id = TestQuestion.test_id
+	INNER JOIN ParticipantAnswer ON ParticipantAnswer.question_id = TestQuestion.question_id
+	INNER JOIN Question ON Question.question_id = TestQuestion.question_id
+	WHERE TestQuestion.test_id = $test_id");
+}
+
+$get_tests = "SELECT * FROM `Test` where active = 1";
+$tests = mysql_query($get_tests);
+
+$selected_test = mysql_query("SELECT name FROM Test WHERE test_id = '{$test_id}'");
 ?>
-
 <select name="class" onchange="location = this.options[this.selectedIndex].value;">
 	<option value="">Zgjedh Testin</option>
 <?php while ($test = mysql_fetch_object($tests)) : ?>
@@ -26,14 +31,6 @@ include 'layout/header.php';
 <?php endwhile; ?>
 </select>
 
-
-<?php
-$true_answers_before = 0;
-$true_answers_after = 0;
-
-$number_of_questions_before = 0;
-$number_of_questions_after = 0;
-?>
 <table class="bordered" id="class_public_report">
 	<tr>
 		<th>Pyetjet</th>
@@ -44,7 +41,8 @@ $number_of_questions_after = 0;
 		<td><strong>Para Testit</strong></td>
 		<td><strong>Pas Testit</strong></td>
 	</tr>
-	<p><?php //echo mysql_result($public_report, 0, 'name'); ?></p>
+	<br><br>
+	<p style="margin: 0; padding: 0;">Raporti Publik per Testin: <strong><?php echo ($test_id) ? mysql_result($selected_test, 0, 'name') : "Zgjedh Testin"; ?></strong></p>
 	<?php while ($public_report_results = mysql_fetch_object($public_report)) : ?>
 		<?php
 			if ($public_report_results->type == "para" && $public_report_results->answer == 1) {
@@ -69,8 +67,10 @@ $number_of_questions_after = 0;
 	<?php endwhile; ?>
 	<tr>
 		<?php
-			$total_before = $true_answers_before / $number_of_questions_before;
-			$total_after  = $true_answers_after / $number_of_questions_after;
+			if ($test_id) {
+				$total_before = $true_answers_before / $number_of_questions_before * 100;
+				$total_after  = $true_answers_after / $number_of_questions_after * 100;
+			}
 		?>
 		<td><strong>Totali i pergjigjeve te sakta:</strong></td>
 		<td id="para-testit"><?php echo number_format($total_before, 2, '.', ''); ?>%</td>
