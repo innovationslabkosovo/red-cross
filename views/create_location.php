@@ -32,7 +32,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
     <h1>Shto nje lokacion te ri!!!</h1>
 
-    <div id="map" class="smallmap" style="width:625px; height:350px"></div>
+    <div id="map" class="smallmap" style="height:350px;"></div>
     <input type="hidden" id="lat" name="lat">
     <input type="hidden" id="lon" name="lon">
     <br>
