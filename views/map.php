@@ -12,7 +12,7 @@ $get_course_locations = "SELECT Class.name, Location.name as location, latitude,
 $locations = mysql_query($get_course_locations);
 
 while ($current_location = mysql_fetch_assoc($locations)){
-    $location_data[] = array($current_location['name']." ne ".$current_location['location'], $current_location['latitude'], $current_location['longitude']);
+    $location_data[] = array($current_location['name'], $current_location['latitude'], $current_location['longitude']);
 
 }
 $location_to_json = json_encode($location_data);
