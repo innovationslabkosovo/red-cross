@@ -56,6 +56,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
     ?>
     <table border="1" class="bordered">
     <tr>
+        <td> </td>
         <th>Lokacioni</th>
         <th>Kursi</th>
         <th>Trajneri</th>
@@ -67,6 +68,14 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
         <th>Ndryshimi</th>
     </tr>
     <?php
+        $counter = 1;
+        $total_participants = 0;
+        $total_males = 0;
+        $total_females = 0;
+        $total_pre = 0;
+        $total_post = 0;
+        $total_change = 0;
+
         while ($classes = mysql_fetch_assoc($get_classes)){
 
         //get only IDs of classes
@@ -82,8 +91,10 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
         $q4 = mysql_fetch_assoc($get_post_success1);
         $pre = round($q3['sum']*100/$q1['sum'], 2);
         $post = round($q4['sum']*100/$q2['sum'], 2);
+        $change = $post-$pre;
         ?>
         <tr>
+            <td><?php echo $counter;?></td>
             <td><?php echo $classes['location'];?></td>
             <td><?php echo $classes['class'];?></td>
             <td><?php echo $classes['trainer_name']." ".$classes['surname'];?></td>
@@ -94,7 +105,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
                 <td><?php echo $classes['female'];?></td>
             <td><?php echo $pre; echo"%";?></td>
             <td><?php echo $post; echo"%";?></td>
-            <td><?php echo $post-$pre; echo"%";?></td>
+            <td><?php echo $change; echo"%";?></td>
         </tr>
         <?php
             } else {
@@ -103,7 +114,22 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
                 <td></td>
                 <?php
             }
-        }
+            $counter++;
+            $total_participants += $classes['participants'];
+            $total_males += $classes['male'];
+            $total_females += $classes['female'];
+            $total_pre += $pre;
+            $total_post += $post;
+            $total_change += $change;
+        }?>
+        <td colspan="4">Totali</td>
+        <td><?php echo $total_participants;?></td>
+        <td><?php echo $total_males;?></td>
+        <td><?php echo $total_females;?></td>
+        <td><?php echo round($total_pre/($counter-1), 2); echo"%";?></td>
+        <td><?php echo round($total_post/($counter-1), 2); echo"%";?></td>
+        <td><?php echo round($total_change/($counter-1), 2); echo"%";?></td>
+    <?php
     }
     ?>
 </table>
