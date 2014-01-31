@@ -33,7 +33,7 @@ if (mysql_num_rows($get_classes) == 0) {
 }
 else {
 ?>
-<table border="1">
+<table border="1" class="bordered">
     <tr>
         <th>Komuna</th>
         <th>Numri i Participanteve</th>
