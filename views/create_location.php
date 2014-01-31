@@ -95,34 +95,6 @@ $longitude = $results['longitude'];
 <?php
 }
 ?>
-<?php
-require_once('../core/application/Paginator.php');
-
-$table = "Municipality";
-$count_rows = mysql_query("SELECT count(*) FROM $table");
-$num_rows = mysql_result($count_rows, 0);
-
-$pages = new Paginator;
-$pages->items_total = $num_rows;
-$pages->paginate();
-echo $pages->display_pages();
-echo $pages->display_jump_menu();
-echo $pages->display_items_per_page();
-echo $pages->next_page;
-echo $pages->prev_page;
-$result_set = mysql_query("SELECT * FROM $table $pages->limit");
-
-while ($results = mysql_fetch_array($result_set)) {
-    $id=$results['municipality_id'];
-    $location_name = $results['name'];
-
-    echo "<ul>";
-        echo "<li>";
-            echo $id .' '.$location_name;
-        echo "</li>";
-    echo "</ul>";
-}
-?>
 </table>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
