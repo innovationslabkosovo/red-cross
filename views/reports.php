@@ -2,7 +2,6 @@
 $page_title = "Raportet e Punes se Kryqit te Kuq";
 
 include '../core/init.php';
-protect_page();
 include $project_root . 'views/layout/header.php';
 
 $get_municipalities = "SELECT municipality_id, name FROM Municipality";
@@ -71,6 +70,23 @@ $municipality = $_GET["municipality"];
                 echo "<OPTION VALUE=\"$select\">".$name.'</option>';
             }
             ?>
+    </select>
+    <input type="submit" name="GO" value="Gjenero"/>
+</form>
+<hr>
+<?php
+$get_tests = "SELECT * FROM `Test` where active = 1";
+$tests = mysql_query($get_tests);
+?>
+<h1>Zgjidhni Testin</h1>
+<form action="public_class_report.php" method="GET">
+    <select name="test_id">
+        <option value="">Zgjedh Testin</option>
+    <?php while ($test = mysql_fetch_object($tests)) : ?>
+        <option value="<?=$test->test_id; ?>">
+            <?=$test->name; ?>
+        </option>
+    <?php endwhile; ?>
     </select>
     <input type="submit" name="GO" value="Gjenero"/>
 </form>
