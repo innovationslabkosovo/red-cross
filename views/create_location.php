@@ -8,7 +8,7 @@
 
 $page_title = "Shto Lokacion";
 include '../core/init.php';
-// protect_page();
+protect_page();
 $errors = array();
 include 'layout/header.php';
 
@@ -30,7 +30,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 </script>
 
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
-    <h1>Shto nje lokacion te ri!!!</h1>
+    <h1>Shto nje lokacion te ri</h1>
 
     <div id="map" class="smallmap" style="height:350px;"></div>
     <input type="hidden" id="lat" name="lat">
@@ -53,12 +53,13 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <label for="name"></label>
     <input type="text" name="name" id="name" class="txfform-wrapper input" value="" placeholder="Emri i Lokacionit" data-validation="required" data-validation-error-msg="Emri i lokacionit duhet plotesuar"><br/><br/>
     <input type="submit" value="Ruaj!" class="submitSmlBtn">
+    <br><br>
 </form>
 <div id="message"></div>
 
 
 <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_location.php"></div>
-<table border="1" id="editable">
+<table border="1" class="bordered">
 <tr>
     <th>Vendndodhja</th>
     <th>Komuna</th>
