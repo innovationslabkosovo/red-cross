@@ -1,6 +1,5 @@
 <?php
 include '../core/init.php';
-protect_page();
 include $project_root . 'views/layout/header.php';
 $year = $_GET["year"];
 if ($year == ""){
@@ -32,10 +31,10 @@ $location_to_json = json_encode($location_data);
 <h2>Kurset nga Viti: <?php print_r($year); ?> </h2>
 <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
     <option value="">Ndrysho Vitin</option>
-    <option value="map.php?year=2013">2013</option>
-    <option value="map.php?year=2014">2014</option>
-    <option value="map.php?year=2015">2015</option>
-    <option value="map.php?year=2016">2016</option>
+    <option value="public_map.php?year=2013">2013</option>
+    <option value="public_map.php?year=2014">2014</option>
+    <option value="public_map.php?year=2015">2015</option>
+    <option value="public_map.php?year=2016">2016</option>
 </select>
 
 

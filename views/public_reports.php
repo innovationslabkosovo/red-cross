@@ -2,7 +2,6 @@
 $page_title = "Raportet e Punës së Kryqit të Kuq";
 
 include '../core/init.php';
-protect_page();
 include $project_root . 'views/layout/header.php';
 
 $get_municipalities = "SELECT municipality_id, name FROM Municipality";
