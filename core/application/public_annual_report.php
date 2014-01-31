@@ -54,33 +54,39 @@ else {
 
     while ($classes = mysql_fetch_assoc($get_classes)){
 
+        //check if we are talking about the same municipality as before
+        //if not we need to get the data about the new municipality
         if ($classes['m_id'] != $previous_municipality){
 
+            //the first time we need to see if the second row, i.e. municipality will be the same as the first one
             if ($counter == 0){
-
 
             $municipality = $classes['m_name'];
             $participants += 1;
+
                 if ($classes['gender'] == "M"){
                     $gender_m += 1;
                 }
                 else {
                     $gender_f += 1;
                 }
+
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
 
-                $previous_municipality = $classes['m_id'];
-                $counter++;
-                continue;
+            $previous_municipality = $classes['m_id'];
+            $counter++;
+            continue;
+
             }
 
+            //if we are not talking about the first municipality then go ahead and display the current data
             if ($counter != 0){
-
             ?>
             <tr>
                 <td><?php echo $municipality;?></td>
                 <td><?php echo $participants;
+                    //if there are participants
                     if ($participants != 0){
                     $pre = $pre_success*100/$participants;
                     $post = $post_success*100/$participants;
@@ -91,7 +97,9 @@ else {
                 <td><?php echo $post; echo"%";?></td>
                 <td><?php echo $post-$pre; echo"%";?></td>
                 <?php
-                    } else {
+                    }
+                    //else, participants is 1
+                    else {
                     ?>
                 <td></td>
                 <td></td>
@@ -119,6 +127,7 @@ else {
             }
         }
 
+        //this part handles the data for the same municipality as previous one
         else {
 
             $previous_municipality = $classes['m_id'];
@@ -132,9 +141,10 @@ else {
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
         }
-    }}?>
+    }}
+    ?>
 
-        <tr>
+    <tr>
     <td><?php echo $municipality;?></td>
     <td><?php echo $participants;
         if ($participants != 0){
@@ -147,8 +157,9 @@ else {
             <td><?php echo $post; echo"%";?></td>
             <td><?php echo $post-$pre; echo"%";?></td>
             <?php
-            } else {
-                ?>
+            }
+            else {
+            ?>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -156,7 +167,6 @@ else {
             }
             ?>
     </tr>
-
 </table>
 </body>
 <?php
