@@ -83,9 +83,7 @@ footer {
 
 .widget {
     float: right;
-    position: absolute;
-    top: 105px;
-    left: 960px;
+    margin-top: -22px;
 }
 
 .widget h2 {
