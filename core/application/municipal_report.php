@@ -54,7 +54,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, L
     }
     else {
     ?>
-    <table border="1">
+    <table border="1" class="bordered">
     <tr>
         <th>Lokacioni</th>
         <th>Kursi</th>
