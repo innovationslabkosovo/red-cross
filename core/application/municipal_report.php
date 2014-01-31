@@ -45,38 +45,58 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, L
     <title>Raporti Mujor Komunal</title>
 </head>
 <body>
-<h1>Raporti Komunal per <?php print_r($months[$_POST['month']]); echo " dhe komunen "; echo $municipality['name']; ?> </h1>
-<table border="1">
+<h1>Raporti Komunal për <?php print_r($months[$_POST['month']]); echo " dhe komunën "; echo $municipality['name']; ?> </h1>
+
+    <?php
+    if (mysql_num_rows($get_classes) == 0) {
+        echo "Në këtë komunë nuk janë mbajtur kurse gjatë muajit që keni zgjedhur!";
+        exit;
+    }
+    else {
+    ?>
+    <table border="1">
     <tr>
         <th>Lokacioni</th>
-        <th>Klasa</th>
+        <th>Kursi</th>
         <th>Numri i Participanteve</th>
         <th>Suksesi i Para-testit</th>
         <th>Suksesi i Pas-testit</th>
     </tr>
     <?php
-    while ($classes = mysql_fetch_assoc($get_classes)){
+        while ($classes = mysql_fetch_assoc($get_classes)){
 
         //get only IDs of classes
         $classes_id = $classes['class_id'];
-        $get_pre_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
-        $get_post_success=mysql_query("SELECT SUM(answer) as sum FROM `ParticipantAnswer` WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $get_pre_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+        $get_post_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+        $get_pre_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para' and answer='1'");
+        $get_post_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas' and answer='1'");
+
         $q1 = mysql_fetch_assoc($get_pre_success);
         $q2 = mysql_fetch_assoc($get_post_success);
+        $q3 = mysql_fetch_assoc($get_pre_success1);
+        $q4 = mysql_fetch_assoc($get_post_success1);
         ?>
-    <tr>
-        <td><?php echo $classes['location'];?></td>
-        <td><?php echo $classes['class'];?></td>
-        <td><?php echo $classes['participants'];?></td>
-        <td><?php echo $q1['sum']*100/$classes['participants']; echo"%";?></td>
-        <td><?php echo $q2['sum']*100/$classes['participants']; echo"%"; ?></td>
-    </tr>
-    <?php
+        <tr>
+            <td><?php echo $classes['location'];?></td>
+            <td><?php echo $classes['class'];?></td>
+            <td><?php echo $classes['participants'];
+            if ($classes['participants'] != 0){
+            ?></td>
+            <td><?php echo round($q3['sum']*100/$q1['sum'], 2); echo"%";?></td>
+            <td><?php echo round($q4['sum']*100/$q2['sum'], 2); echo"%";?></td>
+        </tr>
+        <?php
+            } else {
+                ?>
+                <td></td>
+                <td></td>
+                <?php
+            }
+        }
     }
     ?>
 </table>
-
-
 </body>
 <?php
 include $project_root . 'views/layout/footer.php';
