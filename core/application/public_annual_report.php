@@ -1,6 +1,5 @@
 <?php
 include '../init.php';
-protect_page();
 include $project_root . 'views/layout/header.php';
 
 $year = $_POST["year"];
