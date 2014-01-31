@@ -8,7 +8,7 @@
 
 $page_title = "Shto Lokacion";
 include '../core/init.php';
-protect_page();
+// protect_page();
 $errors = array();
 include 'layout/header.php';
 
@@ -22,9 +22,12 @@ ON Location.municipality_id=Municipality.municipality_id";
 $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
-<script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
 <title>Red Cross - Lokacionet</title>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>/js/OpenLayers/OpenLayers.js"></script>
+<script type="text/javascript">
+    OpenLayers.ImgPath = "../img/";
+</script>
 
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
     <h1>Shto nje lokacion te ri!!!</h1>
