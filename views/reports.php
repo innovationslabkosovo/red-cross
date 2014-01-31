@@ -23,7 +23,7 @@ $municipality = $_GET["municipality"];
 </head>
 <body>
 <h1>Zgjidhni Vitin per Raportin Vjetor</h1>
-<form action="../core/application/annual_report.php" method="POST">
+<form action="../core/application/public_annual_report.php" method="POST">
     <select name="year">
         <option value="">Zgjidh Vitin</option>
         <option value="2014">2014</option>
