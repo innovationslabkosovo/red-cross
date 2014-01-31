@@ -682,7 +682,7 @@ table {
 }
 
 #nav li ul {
-    z-index: 1;
+    z-index: 3 !important;
     display: none;
     position: absolute;
     left: 0;
@@ -729,4 +729,6 @@ table {
     top: 0;
 }
 
-#nav li ul
+#map {
+    position: relative;
+}
