@@ -49,7 +49,7 @@
     </li>
     <li><a href="javascript:void(0);">Raportet</a>
         <ul>
-            <li><a href="<?php echo BASE_URL; ?>/views/reports.php">Raportet Publike</a></li>
+            <li><a href="<?php echo BASE_URL; ?>/views/public_reports.php">Raportet Publike</a></li>
             <li><a href="<?php echo BASE_URL; ?>/views/internal_reports.php">Raportet e Brendshme</a></li>
         </ul>
     </li>
