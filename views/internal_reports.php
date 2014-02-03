@@ -22,18 +22,21 @@ $municipality = $_GET["municipality"];
     <title>Raporti Mujor Komunal</title>
 </head>
 <body>
-<h2>Raporti Komunal per Muajin: <?php print_r($month); ?> </h2>
+<h2>Raporti Mujor Komunal</h2>
 
 <form action="../core/application/municipal_report.php" method="POST">
-    <select name="year">
-        <option value="">Zgjidh Vitin</option>
-        <option value="2014">2014</option>
-        <option value="2015">2015</option>
-        <option value="2016">2016</option>
-        <option value="2017">2017</option>
-    </select>
+    <div class="dropdown">
+        <select name="year" class="dropdown-select">
+            <option value="">Zgjidh Vitin</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+    </div>
 
-    <select name="month">
+    <div class="dropdown">
+    <select name="month" class="dropdown-select">
         <option value="">Zgjidh Muajin</option>
         <option value="01">Janar</option>
         <option value="02">Shkurt</option>
@@ -48,8 +51,10 @@ $municipality = $_GET["municipality"];
         <option value="11">Nentor</option>
         <option value="12">Dhjetor</option>
     </select>
+    </div>
 
-    <select name="municipality">
+    <div class="dropdown">
+    <select name="municipality" class="dropdown-select">
         <option value=0>Zgjidh Komunen
             <?php
             while($row = mysql_fetch_array($municipalities))
@@ -60,6 +65,7 @@ $municipality = $_GET["municipality"];
             }
             ?>
     </select>
+    </div>
     <input type="submit" name="GO" value="Gjenero"/>
 </form>
 </body>
