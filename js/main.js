@@ -59,7 +59,6 @@ $(document).ready(function () {
     $(".cancel").click(function () {
         var td = $("td");
         var ID = $(this).attr("id");
-        console.log(ID);
         td.find("#results_" + ID).show();
         td.find("#editbox_" + ID).hide();
         td.find("#" + ID).hide();
@@ -69,7 +68,7 @@ $(document).ready(function () {
     // End General Edit Function
 
     // Add active class to the menu
-    $('#menu li a').each(function (){
+    $('#nav li a').each(function (){
         var path = location.pathname.split("/").pop(-1);
         var current_page = $(this).attr("href").split("/").pop(-1);
         if(path == current_page) {
