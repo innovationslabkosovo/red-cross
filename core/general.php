@@ -9,6 +9,10 @@ $display_messages = array(
         "success" => "Participanti u shtua me sukses",
         "fail" => "Participanti nuk u shtua !"
     ),
+    "participant_answer" => array(
+        "success" => "Pergjegjet e participantit u shtuan me sukses",
+        "fail" => "Pergjegjet e participantit nuk u shtua !"
+    ),
     "user" => array(
         "success" => "Fjalkalimi u perditsu",
         "fail" => "Fjalkalimi nuk u perditesua"
@@ -41,13 +45,11 @@ $display_messages = array(
 );
 
 
-
-
 function logged_in_redirect()
 {
     if(logged_in() === true)
     {
-        header('Location: ../../index.php');
+        header('Location:'.BASE_URL.'/views/index.php');
         exit();
     }
 }
@@ -56,7 +58,7 @@ function protect_page()
 {
     if(logged_in() === false)
     {
-        header('Location: ../views/protected.php');
+        header('Location:'.BASE_URL.'/views/protected.php');
         exit();
     }
 }
