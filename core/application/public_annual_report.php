@@ -43,6 +43,7 @@ else {
         <th>Ndryshimi</th>
     </tr>
     <?php
+    //these keep track of records per municipality
     $previous_municipality = 0;
     $participants = 0;
     $pre_success = 0;
@@ -50,6 +51,14 @@ else {
     $gender_m = 0;
     $gender_f = 0;
     $counter = 0;
+
+    //these keep track of overall records
+    $count_participants = array();
+    $total_males = 0;
+    $total_females = 0;
+    $total_pre = 0;
+    $total_post = 0;
+    $total_change = 0;
 
     while ($classes = mysql_fetch_assoc($get_classes)){
 
@@ -62,16 +71,23 @@ else {
 
             $municipality = $classes['m_name'];
             $participants += 1;
+            $count_participants[0]+=1;
 
                 if ($classes['gender'] == "M"){
                     $gender_m += 1;
+                    $count_participants[1] += 1;
                 }
                 else {
                     $gender_f += 1;
+                    $count_participants[2] += 1;
                 }
 
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
+            $change = $post-$pre;
+            $total_pre += $pre;
+            $total_post += $post;
+            $total_change += $change;
 
             $previous_municipality = $classes['m_id'];
             $counter++;
@@ -89,12 +105,16 @@ else {
                     if ($participants != 0){
                     $pre = $pre_success*100/$participants;
                     $post = $post_success*100/$participants;
+                    $change = $post-$pre;
+                    $total_pre += $pre;
+                    $total_post += $post;
+                    $total_change += $change;
                     ?></td>
                 <td><?php echo $gender_m; ?></td>
                 <td><?php echo $gender_f; ?></td>
                 <td><?php echo $pre; echo"%";?></td>
                 <td><?php echo $post; echo"%";?></td>
-                <td><?php echo $post-$pre; echo"%";?></td>
+                <td><?php echo $change; echo"%";?></td>
                 <?php
                     }
                     //else, participants is 1
@@ -105,21 +125,30 @@ else {
                 <td></td>
                 <?php
                 }
-                    $municipality = $classes['m_name'];
-                    $participants = 1;
+                $municipality = $classes['m_name'];
+                $participants = 1;
+                $count_participants[0]+=1;
+
                 if ($classes['gender'] == "M"){
                     $gender_m = 1;
                     $gender_f = 0;
+                    $count_participants[1] += 1;
                 }
                 else {
                     $gender_f = 1;
                     $gender_m = 0;
+                    $count_participants[2] += 1;
                 }
-                    $pre_success = $classes['para_correct'];
-                    $post_success = $classes['pas_correct'];
 
-                    $previous_municipality = $classes['m_id'];
-                    $counter++;
+                $pre_success = $classes['para_correct'];
+                $post_success = $classes['pas_correct'];
+                $change = $post-$pre;
+                $total_pre += $pre;
+                $total_post += $post;
+                $total_change += $change;
+
+                $previous_municipality = $classes['m_id'];
+                $counter++;
 
               ?>
             </tr>
@@ -133,14 +162,22 @@ else {
 
             $previous_municipality = $classes['m_id'];
             $participants += 1;
+            $count_participants[0]+=1;
+
             if ($classes['gender'] == "M"){
                 $gender_m += 1;
+                $count_participants[1] += 1;
             }
             else {
                 $gender_f += 1;
+                $count_participants[2] += 1;
             }
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
+            $change = $post-$pre;
+            $total_pre += $pre;
+            $total_post += $post;
+            $total_change += $change;
         }
     }}
     ?>
@@ -151,12 +188,16 @@ else {
         if ($participants != 0){
         $pre = $pre_success*100/$participants;
         $post = $post_success*100/$participants;
+        $change = $post-$pre;
+        $total_pre += $pre;
+        $total_post += $post;
+        $total_change += $change;
         ?></td>
             <td><?php echo $gender_m; ?></td>
             <td><?php echo $gender_f; ?></td>
             <td><?php echo $pre; echo"%";?></td>
             <td><?php echo $post; echo"%";?></td>
-            <td><?php echo $post-$pre; echo"%";?></td>
+            <td><?php echo $change; echo"%";?></td>
             <?php
             }
             else {
@@ -164,10 +205,19 @@ else {
                 <td></td>
                 <td></td>
                 <td></td>
+
             <?php
             }
+
             ?>
     </tr>
+    <td>Totali</td>
+    <td><?php echo $count_participants[0];?></td>
+    <td><?php echo $count_participants[1];?></td>
+    <td><?php echo $count_participants[2];?></td>
+    <td><?php echo round($total_pre/($counter), 2); echo"%";?></td>
+    <td><?php echo round($total_post/($counter), 2); echo"%";?></td>
+    <td><?php echo round($total_change/($counter), 2); echo"%";?></td>
 </table>
 </body>
 <?php
