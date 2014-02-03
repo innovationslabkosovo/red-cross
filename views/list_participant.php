@@ -87,9 +87,9 @@ while ($row_participant = mysql_fetch_assoc($participants))
 
         <td>
             <input type='hidden' name='id' class='editbox' id='editbox_<?=$participant_id?>' value='<?=$participant_id?>' />
-            <input type='button' value='Ruaj' class='save' id='<?=$participant_id?>'>
-            <input type='button' value='Perditeso' class='edit' id='<?=$participant_id?>'>
-            <input type="button" value='Anulo' class='cancel' id='<?=$participant_id?>' style='display:none;'>
+            <input type='button' value='Ruaj' class='save submitSmlBtn' id='<?=$participant_id?>'>
+            <input type='button' value='Perditeso' class='edit submitSmlBtn' id='<?=$participant_id?>'>
+            <input type='button' value='Anulo' class='cancel submitSmlBtn' id='<?=$participant_id?>' style='display:none;'>
         </td >
     </tr>
 

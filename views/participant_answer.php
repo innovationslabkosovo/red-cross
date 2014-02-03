@@ -30,7 +30,7 @@ if (isset($_GET['p_id']))
 
 $participant_id= $_GET['p_id'];
 
-$get_details = "SELECT p.name as p_name, p.surname, p.gender,p.age, t.test_id as test_id, t.name as test_name FROM Participant p INNER JOIN ParticipantClass pc on  p.participant_id=pc.participant_id
+$get_details = "SELECT p.name as p_name, p.surname, p.gender,p.age , t.test_id as test_id, t.name as test_name, cs.name as class_name FROM Participant p INNER JOIN ParticipantClass pc on  p.participant_id=pc.participant_id
                                                              INNER JOIN Class cs on cs.class_id=pc.class_id
                                                              INNER JOIN Test t on cs.test_id=t.test_id
                                                              where p.participant_id=$participant_id";
@@ -43,6 +43,7 @@ $p_gender = mysql_result($get_details_query , 0, 'gender');
 $p_age = mysql_result($get_details_query , 0, 'age');
 $test_name = mysql_result($get_details_query , 0, 'test_name');
 $test_id = mysql_result($get_details_query , 0, 'test_id');
+$class_name= mysql_result($get_details_query , 0, 'class_name');
 
 
 $get_questions = "SELECT q.question_id, q.description from Question q INNER JOIN TestQuestion tq on q.question_id=tq.question_id
@@ -77,6 +78,8 @@ Gjinia:<strong> <?=$p_gender?></strong>
 Mosha:<strong> <?=$p_age?></strong>
 <br>
 Modeli i Testit:<strong> <?=$test_name?></strong>
+<br>
+Kursi:<strong> <?=$class_name?></strong>
 <br><br>
 <br><br>
 
@@ -158,8 +161,8 @@ foreach ($participant_question as $key=>$value)
 </table>
 <br>
     <input type="submit" value="Dergo" id="submit">
-    <input type="button" value="Anulo" id="cancel_answer" onclick="location.href='participant_answer.php?p_id=<?=$participant_id?>';">
-    <input type="button" value="Lista e Participanteve" id="list_part" onclick="location.href='find_participant.php';">
+    <input type="button" value="Anulo" id="cancel_answer" class="submitSmlBtn" onclick="location.href='participant_answer.php?p_id=<?=$participant_id?>';">
+    <input type="button" value="Lista e Participanteve"  class="submitSmlBtn" id="list_part" onclick="location.href='find_participant.php';">
 </form>
 <?php
 }else{
