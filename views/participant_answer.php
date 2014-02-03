@@ -127,8 +127,8 @@ foreach ($participant_question as $key=>$value)
 
             ?>
             <br>
-            <label>E Sakte</label><input type="radio" name="pa[<?=$value['question_id']?>][para][]" value="1" <? echo $para_true; ?>> <br>
-            <label>E Pasakte</label><input type="radio" name="pa[<?=$value['question_id']?>][para][]" value="0" <? echo $para_false; ?>>
+            <label>E Sakte</label><input type="radio" name="pa[<?=$value['question_id']?>][para][]" value="1" <?php echo $para_true; ?>> <br>
+            <label>E Pasakte</label><input type="radio" name="pa[<?=$value['question_id']?>][para][]" value="0" <?php echo $para_false; ?>>
         </td>
 
         <td>
@@ -146,8 +146,8 @@ foreach ($participant_question as $key=>$value)
 
             ?>
             <br>
-            <label>E Sakte</label><input type="radio" name="pa[<?=$value['question_id']?>][pas][]" value="1" <? echo $pas_true; ?>> <br>
-            <label>E Pasakte</label><input type="radio" name="pa[<?=$value['question_id']?>][pas][]" value="0" <? echo $pas_false; ?>>
+            <label>E Sakte</label><input type="radio" name="pa[<?=$value['question_id']?>][pas][]" value="1" <?php echo $pas_true; ?>> <br>
+            <label>E Pasakte</label><input type="radio" name="pa[<?=$value['question_id']?>][pas][]" value="0" <?php echo $pas_false; ?>>
         </td>
     </tr>
 

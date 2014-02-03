@@ -13,13 +13,15 @@ $topic_groups = mysql_query($get_topic_groups);
     <div class="row">
         <h3>Shto Teme te Re!</h3>
         <div class="row">
-            <label>Emri i Temes: </label>
-            <input type="text" placeholder="Name" name="topic" id="topic">
-            <label class="myCheckbox">
+            <label>Emri i Temes: </label><br><br>
+            <input type="text" placeholder="Emri i Temes" name="topic" id="topic" class="txfform-wrapper input">
+            <label class="myCheckbox"><br><br>
                 <input type="checkbox" name="active" value="active">Kjo teme eshte aktive
-                <span></span>
+                <br><br><span></span>
             </label>
-            <select name="topic_group">
+            <br>
+            <div class="dropdown">
+            <select name="topic_group" class="dropdown-select">
                 <option value=0>Zgjidh Grupin Tematik
                     <?php
                     while($row = mysql_fetch_array($topic_groups))
@@ -30,6 +32,7 @@ $topic_groups = mysql_query($get_topic_groups);
                     }
                     ?>
             </select>
+            </div>
         </div>
         <br>
         <input type="submit" value="Regjistro">

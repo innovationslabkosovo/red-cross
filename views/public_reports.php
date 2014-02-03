@@ -21,7 +21,7 @@ $municipality = $_GET["municipality"];
     <title>Raportet e Punës së Kryqit të Kuq</title>
 </head>
 <body>
-<h1>Zgjidhni Vitin per Raportin Vjetor</h1>
+<h2>Zgjidhni Vitin per Raportin Vjetor</h2>
 <form action="../core/application/public_annual_report.php" method="POST">
     <div class="dropdown">
     <select name="year" class="dropdown-select">
