@@ -53,6 +53,7 @@ else {
     $counter = 0;
 
     //these keep track of overall records
+    $total_counter = 1;
     $count_participants = array();
     $total_males = 0;
     $total_females = 0;
@@ -91,6 +92,7 @@ else {
 
             $previous_municipality = $classes['m_id'];
             $counter++;
+            $total_counter++;
             continue;
 
             }
@@ -149,7 +151,7 @@ else {
 
                 $previous_municipality = $classes['m_id'];
                 $counter++;
-
+                $total_counter++;
               ?>
             </tr>
         <?php
@@ -178,6 +180,7 @@ else {
             $total_pre += $pre;
             $total_post += $post;
             $total_change += $change;
+
         }
     }}
     ?>
@@ -215,9 +218,9 @@ else {
     <td><?php echo $count_participants[0];?></td>
     <td><?php echo $count_participants[1];?></td>
     <td><?php echo $count_participants[2];?></td>
-    <td><?php echo round($total_pre/($counter), 2); echo"%";?></td>
-    <td><?php echo round($total_post/($counter), 2); echo"%";?></td>
-    <td><?php echo round($total_change/($counter), 2); echo"%";?></td>
+    <td><?php echo round($total_pre/($total_counter-1), 2); echo"%";?></td>
+    <td><?php echo round($total_post/($total_counter-1), 2); echo"%";?></td>
+    <td><?php echo round($total_change/($total_counter-1), 2); echo"%";?></td>
 </table>
 </body>
 <?php
