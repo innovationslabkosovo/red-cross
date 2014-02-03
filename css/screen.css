@@ -732,3 +732,6 @@ table {
 #map {
     position: relative;
 }
+.align-top {
+    vertical-align: top;
+}
