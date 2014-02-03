@@ -18,7 +18,7 @@ include '../init.php';
 ////}
 
 if(empty($_POST['category']) == false && empty($errors) == true)
-    {
+{
     //insert to Db
     $name=$_POST["category"];
 
@@ -29,12 +29,12 @@ if(empty($_POST['category']) == false && empty($errors) == true)
         header("location: ../../views/create_category.php?message=success&object=Category");
 
     }
+    else {
+        header("location: ../../views/create_category.php?message=fail&object=Category");
+    }
+}
 else {
     header("location: ../../views/create_category.php?message=fail&object=Category");
 }
-}
-else {
-    header("location: ../../views/create_category.php?message=fail&object=Category");
-}
- //echo implode("", $errors);
+//echo implode("", $errors);
 ?>

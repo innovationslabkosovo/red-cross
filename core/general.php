@@ -45,13 +45,11 @@ $display_messages = array(
 );
 
 
-
-
 function logged_in_redirect()
 {
     if(logged_in() === true)
     {
-        header('Location: ../../index.php');
+        header('Location:'.BASE_URL.'/views/index.php');
         exit();
     }
 }
@@ -60,7 +58,7 @@ function protect_page()
 {
     if(logged_in() === false)
     {
-        header('Location: ../views/protected.php');
+        header('Location:'.BASE_URL.'/views/protected.php');
         exit();
     }
 }

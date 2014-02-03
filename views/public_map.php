@@ -1,6 +1,5 @@
 <?php
 include '../core/init.php';
-protect_page();
 include $project_root . 'views/layout/header.php';
 $year = $_GET["year"];
 if ($year == ""){
@@ -12,7 +11,7 @@ $get_course_locations = "SELECT Class.name, Location.name as location, latitude,
 $locations = mysql_query($get_course_locations);
 
 while ($current_location = mysql_fetch_assoc($locations)){
-    $location_data[] = array($current_location['name']." ne ".$current_location['location'], $current_location['latitude'], $current_location['longitude']);
+    $location_data[] = array($current_location['name'], $current_location['latitude'], $current_location['longitude']);
 
 }
 $location_to_json = json_encode($location_data);
@@ -32,10 +31,10 @@ $location_to_json = json_encode($location_data);
 <h2>Kurset nga Viti: <?php print_r($year); ?> </h2>
 <select name="forma" onchange="location = this.options[this.selectedIndex].value;">
     <option value="">Ndrysho Vitin</option>
-    <option value="map.php?year=2013">2013</option>
-    <option value="map.php?year=2014">2014</option>
-    <option value="map.php?year=2015">2015</option>
-    <option value="map.php?year=2016">2016</option>
+    <option value="public_map.php?year=2013">2013</option>
+    <option value="public_map.php?year=2014">2014</option>
+    <option value="public_map.php?year=2015">2015</option>
+    <option value="public_map.php?year=2016">2016</option>
 </select>
 
 

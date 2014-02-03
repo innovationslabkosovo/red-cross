@@ -22,14 +22,17 @@ ON Location.municipality_id=Municipality.municipality_id";
 $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
-<script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
 <title>Red Cross - Lokacionet</title>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
+<script type="application/javascript" src="<?php echo BASE_URL; ?>/js/OpenLayers/OpenLayers.js"></script>
+<script type="text/javascript">
+    OpenLayers.ImgPath = "../img/";
+</script>
 
 <form name="create_location" id="create_location" action="<?php echo BASE_URL; ?>/core/application/create_location.php" method="POST">
-    <h1>Shto nje lokacion te ri!!!</h1>
+    <h1>Shto nje lokacion te ri</h1>
 
-    <div id="map" class="smallmap" style="width:625px; height:350px"></div>
+    <div id="map" class="smallmap" style="height:350px;"></div>
     <input type="hidden" id="lat" name="lat">
     <input type="hidden" id="lon" name="lon">
     <br>
@@ -50,12 +53,13 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <label for="name"></label>
     <input type="text" name="name" id="name" class="txfform-wrapper input" value="" placeholder="Emri i Lokacionit" data-validation="required" data-validation-error-msg="Emri i lokacionit duhet plotesuar"><br/><br/>
     <input type="submit" value="Ruaj!" class="submitSmlBtn">
+    <br><br>
 </form>
 <div id="message"></div>
 
 
 <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_location.php"></div>
-<table border="1" id="editable">
+<table border="1" class="bordered">
 <tr>
     <th>Vendndodhja</th>
     <th>Komuna</th>
@@ -90,34 +94,6 @@ $longitude = $results['longitude'];
 </td>
 </tr>
 <?php
-}
-?>
-<?php
-require_once('../core/application/Paginator.php');
-
-$table = "Municipality";
-$count_rows = mysql_query("SELECT count(*) FROM $table");
-$num_rows = mysql_result($count_rows, 0);
-
-$pages = new Paginator;
-$pages->items_total = $num_rows;
-$pages->paginate();
-echo $pages->display_pages();
-echo $pages->display_jump_menu();
-echo $pages->display_items_per_page();
-echo $pages->next_page;
-echo $pages->prev_page;
-$result_set = mysql_query("SELECT * FROM $table $pages->limit");
-
-while ($results = mysql_fetch_array($result_set)) {
-    $id=$results['municipality_id'];
-    $location_name = $results['name'];
-
-    echo "<ul>";
-        echo "<li>";
-            echo $id .' '.$location_name;
-        echo "</li>";
-    echo "</ul>";
 }
 ?>
 </table>
