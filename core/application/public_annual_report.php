@@ -85,10 +85,10 @@ else {
 
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
-            $change = $post-$pre;
-            $total_pre += $pre;
-            $total_post += $post;
-            $total_change += $change;
+            //$change = $post-$pre;
+            $total_pre += $pre_success;
+            $total_post += $post_success;
+            $total_change += $post_success-$pre_success;
 
             $previous_municipality = $classes['m_id'];
             $counter++;
@@ -143,10 +143,9 @@ else {
 
                 $pre_success = $classes['para_correct'];
                 $post_success = $classes['pas_correct'];
-                $change = $post-$pre;
-                $total_pre += $pre;
-                $total_post += $post;
-                $total_change += $change;
+                $total_pre += $pre_success;
+                $total_post += $post_success;
+                $total_change += $post_success-$pre_success;
 
                 $previous_municipality = $classes['m_id'];
                 $counter++;
@@ -175,10 +174,9 @@ else {
             }
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
-            $change = $post-$pre;
-            $total_pre += $pre;
-            $total_post += $post;
-            $total_change += $change;
+            $total_pre += $pre_success;
+            $total_post += $post_success;
+            $total_change += $post_success-$pre_success;
 
         }
     }}
@@ -214,12 +212,12 @@ else {
             ?>
     </tr>
     <td>Totali</td>
-    <td><?php echo $total_counter; echo $count_participants[0];?></td>
+    <td><?php echo $count_participants[0];?></td>
     <td><?php echo $count_participants[1];?></td>
     <td><?php echo $count_participants[2];?></td>
-    <td><?php echo round($total_pre/($total_counter), 2); echo"%";?></td>
-    <td><?php echo round($total_post/($total_counter), 2); echo"%";?></td>
-    <td><?php echo round($total_change/($total_counter), 2); echo"%";?></td>
+    <td><?php echo round($total_pre/$total_counter, 2); echo"%";?></td>
+    <td><?php echo round($total_post/$total_counter, 2); echo"%";?></td>
+    <td><?php echo round($total_change/$total_counter, 2); echo"%";?></td>
 </table>
 </body>
 <?php
