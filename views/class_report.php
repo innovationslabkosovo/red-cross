@@ -25,7 +25,7 @@ if (mysql_num_rows($question) > 0) {
 
 if($class_id) {
 	$fields = " ,Participant.name, Participant.surname, ParticipantAnswer.type, ParticipantAnswer.answer, Question.question_id, Question.description";
-	$inner_join = " INNER JOIN participantclass ON ParticipantClass.class_id = Class.class_id
+	$inner_join = " INNER JOIN ParticipantClass ON ParticipantClass.class_id = Class.class_id
 	INNER JOIN ParticipantAnswer ON ParticipantAnswer.participant_id = ParticipantClass.participant_id
 	INNER JOIN Participant ON Participant.participant_id = ParticipantAnswer.participant_id
 	INNER JOIN Question ON Question.question_id = ParticipantAnswer.question_id";
@@ -36,7 +36,7 @@ if ($question_id) {
 	$where_question = " AND ParticipantAnswer.question_id = '{$question_id}'";
 }
 if ($municipality_id) {
-	$query = mysql_query("SELECT Class.location_id, Class.class_id, Class.name, Class.test_id, Location.municipality_id, Location.location_id $fields from Location INNER JOIN class ON Class.location_id = Location.location_id $inner_join WHERE Location.municipality_id = $municipality_id".$where.$where_question);
+	$query = mysql_query("SELECT Class.location_id, Class.class_id, Class.name, Class.test_id, Location.municipality_id, Location.location_id $fields from Location INNER JOIN Class ON Class.location_id = Location.location_id $inner_join WHERE Location.municipality_id = $municipality_id".$where.$where_question);
 }
 $true_answers_before = 0;
 $true_answers_after = 0;
