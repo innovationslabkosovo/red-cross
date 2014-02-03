@@ -10,72 +10,91 @@ include 'layout/header.php';
 * As well as change in performance per question
 */
 
-echo $municipality_id = $_GET['mun_id'];
-echo $class_id = $_GET['class_id'];
-echo $question_id = $_GET['question_id'];
+$municipality_id = $_GET['mun_id'];
+$class_id = $_GET['class_id'];
+$question_id = $_GET['question_id'];
 
-$get_questions = "SELECT * from question WHERE question_id = '{$question_id}'";
+$get_questions = "SELECT * from Question WHERE question_id = '{$question_id}'";
 $question = mysql_query($get_questions);
 
-// if($class_id) {
-// 	$fields = " ,class.location_id, class.class_id, class.name, class.test_id, participant.name, participantanswer.type, participantanswer.answer, question.description";
-// 	$inner_join = "	INNER JOIN class ON class.location_id = location.location_id
-// 	INNER JOIN participantattendance ON participantattendance.class_id = class.class_id
-// 	INNER JOIN participantanswer ON participantanswer.participant_id = participantattendance.participant_id
-// 	INNER JOIN participant ON participant.participant_id = participantanswer.participant_id
-// 	INNER JOIN question ON question.question_id = participantanswer.question_id";
-// 	$where = " AND class.class_id = '{$class_id}'";
-// }
-
+if (mysql_num_rows($question) > 0) {
+	$question_result = mysql_result($question, 0, 'description');
+} else {
+	$question_result = "Zgjedh pytjen";
+}
 
 if($class_id) {
-	$fields = " ,class.location_id, class.class_id, class.name, class.test_id, participant.name, participantanswer.type, participantanswer.answer, question.question_id, question.description";
-	$inner_join = "	INNER JOIN class ON class.location_id = location.location_id
-	INNER JOIN participantclass ON participantclass.class_id = class.class_id
-	INNER JOIN participantanswer ON participantanswer.participant_id = participantclass.participant_id
-	INNER JOIN participant ON participant.participant_id = participantanswer.participant_id
-	INNER JOIN question ON question.question_id = participantanswer.question_id";
-	$where = " AND class.class_id = '{$class_id}'";
+	$fields = " ,Participant.name, Participant.surname, ParticipantAnswer.type, ParticipantAnswer.answer, Question.question_id, Question.description";
+	$inner_join = " INNER JOIN participantclass ON ParticipantClass.class_id = Class.class_id
+	INNER JOIN ParticipantAnswer ON ParticipantAnswer.participant_id = ParticipantClass.participant_id
+	INNER JOIN Participant ON Participant.participant_id = ParticipantAnswer.participant_id
+	INNER JOIN Question ON Question.question_id = ParticipantAnswer.question_id";
+	$where = " AND Class.class_id = '{$class_id}'";
 }
 
 if ($question_id) {
-	$where_question = " AND participantanswer.question_id = '{$question_id}'";
+	$where_question = " AND ParticipantAnswer.question_id = '{$question_id}'";
 }
+if ($municipality_id) {
+	$query = mysql_query("SELECT Class.location_id, Class.class_id, Class.name, Class.test_id, Location.municipality_id, Location.location_id $fields from Location INNER JOIN class ON Class.location_id = Location.location_id $inner_join WHERE Location.municipality_id = $municipality_id".$where.$where_question);
+}
+$true_answers_before = 0;
+$true_answers_after = 0;
 
-$query = mysql_query("SELECT location.municipality_id, location.location_id $fields from Location $inner_join WHERE location.municipality_id = $municipality_id".$where.$where_question);
-
-// $class_performance = mysql_query("SELECT class.test_id as test_class_id, class.name as class_name, test.test_id, participantanswer.test_id, participantanswer.type,participantanswer.answer,participant.participant_id, participant.name, participant.surname, question.description FROM Class
-// 	INNER JOIN Test ON class.test_id = test.test_id
-// 	INNER JOIN participantanswer ON participantanswer.test_id = test.test_id
-// 	INNER JOIN participant ON participant.participant_id = participantanswer.participant_id
-// 	INNER JOIN question ON participantanswer.question_id = question.question_id");
-// 	$para = 'para';
-// 	$pas = 'pas';
-// 	$c_true_answers_para = 0;
-// 	$c_false_answers_para = 0;
-
-// 	$c_true_answers_pas = 0;
-// 	$c_false_answers_pas = 0;
+// $number_of_participants_before = 0;
+// $number_of_participants_after = 0;
+$number_of_participants = 0;
 
 $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
 $municipalities = mysql_query($get_municipalities);
 
 ?>
+<form action="" method="GET">
+<select name="mun_id" id="municipality_id" value="<?php echo $municipality_id; ?>">
+	<option value="">Zgjedh Komunen</option>
+    <?php
+		create_options($municipalities, "municipality_id", "name");
+	?>
+</select>
+<select name="class_id" id="class_id">
+	<option value="">Zgjedh Klasen</option>
+</select>
+<select name="question_id" id="questions">
+	<option value="">Zgjedh Pytjen</option>
+<?php
+$get_questions = "SELECT * FROM question";
+$questions = mysql_query($get_questions);
+	while ($question = mysql_fetch_object($questions)) {
+		echo "<option value='$question->question_id'>$question->description</option>";
+	}
+?>
+</select>
+<input type="submit" value="Gjenero">
+</form>
+<br><br>
 <table class="bordered">
 	<tr>
-		<th>Participants</th>
-		<th colspan="2"><?php echo mysql_result($question, 0, 'description'); ?></th>
+		<th>Pjesmarresit</th>
+		<th colspan="2"><?php echo $question_result; ?></th>
 	</tr>
 	<tr>
 		<td><strong>Emri Mibemri</strong></td>
 		<td><strong>Para Testit</strong></td>
 		<td><strong>Pas Testit</strong></td>
 	</tr>
+		<?php if ($municipality_id): ?>
 		<?php while ($r = mysql_fetch_object($query)) : ?>
 				<?php
+					if ($r->type == "para" && $r->answer == 1) {
+						$true_answers_before++;
+					}
+					if ($r->type == "pas" && $r->answer == 1) {
+						$true_answers_after++;
+					}
 					if ($r->type == "para") {
+						$number_of_participants++;
 						echo "<tr>";
-							echo "<td>$r->name</td>";
+							echo "<td>$r->name $r->surname</td>";
 							echo "<td class='para-testit'>$r->answer</td>";
 					} else if ($r->type == "pas") {
 						echo "<td class='pas-testit'>$r->answer</td>";
@@ -84,36 +103,21 @@ $municipalities = mysql_query($get_municipalities);
 					}
 				?>
 		<?php endwhile; ?>
+		<?php endif; ?>
+	<tr>
+		<?php
+			// if ($question_id) {
+				$total_before = $true_answers_before / $number_of_participants * 100;
+				$total_after  = $true_answers_after / $number_of_participants * 100;
+			// }
+		?>
+		<td><strong>Totali i pergjigjeve te sakta:</strong></td>
+		<td id="para-testit"><?php echo number_format($total_before, 2, '.', ''); ?>%</td>
+		<td id="pas-testit"><?php echo  number_format($total_after, 2, '.', ''); ?>%</td>
+	</tr>
 </table>
-<select name="municipalities" id="municipality_id">
-	<option value="">Zgjedh Komunen</option>
-    <?php
-		create_options($municipalities, "municipality_id", "name");
-	?>
-</select>
-<select name="class" id="class_id">
-	<option value="">Zgjedh Klasen</option>
-</select>
-<select name="questions" id="questions">
-	<option value="">Zgjedh Pytjen</option>
-</select>
-
-
-
-<?php
-$test_id = $_GET['test_id'];
-$public_report = mysql_query("SELECT test.test_id, test.name, test.active, question.description, participantanswer.type, question.question_id, participantanswer.answer from test
-INNER JOIN testquestion ON test.test_id = testquestion.test_id
-INNER JOIN participantanswer ON participantanswer.question_id = testquestion.question_id
-INNER JOIN question ON question.question_id = testquestion.question_id
-WHERE testquestion.test_id = $test_id");
-
-
-while ($public_report_results = mysql_fetch_object($public_report)) {
-	pre($public_report_results);
-}
-?>
-
 
 <script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
+
+<div id="message"></div>
