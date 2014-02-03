@@ -83,7 +83,7 @@ $questions = mysql_query($get_all_questions);
 		<td><strong>Pas Testit</strong></td>
 	</tr>
 		<?php if ($municipality_id): ?>
-		<?php while ($r = mysql_fetch_object($query)) : pre($r);?>
+		<?php while ($r = mysql_fetch_object($query)) : ;?>
 				<?php
 					if ($r->type == "para" && $r->answer == 1) {
 						$true_answers_before++;
