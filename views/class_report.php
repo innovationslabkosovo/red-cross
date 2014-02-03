@@ -62,8 +62,8 @@ $municipalities = mysql_query($get_municipalities);
 <select name="question_id" id="questions">
 	<option value="">Zgjedh Pytjen</option>
 <?php
-$get_questions = "SELECT * FROM question";
-$questions = mysql_query($get_questions);
+$get_all_questions = "SELECT * FROM Question";
+$questions = mysql_query($get_all_questions);
 	while ($question = mysql_fetch_object($questions)) {
 		echo "<option value='$question->question_id'>$question->description</option>";
 	}
