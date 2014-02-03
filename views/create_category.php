@@ -10,8 +10,8 @@ include $project_root . 'views/layout/header.php'; ?>
             <h3>Shto kategori te re</h3>
             <div class="row">
 
-                <label>Emri i kategorise se re:</label>
-                <input type="text" placeholder="Name" name="category" id="category" data-validation="required">
+                <label>Emri i kategorise se re:</label><br><br>
+                <input type="text" placeholder="Emri i kategorise se re" name="category" id="category" class="txfform-wrapper input" data-validation="required">
             </div>
             <br>
             <input type="submit" value="Ruaj!">
