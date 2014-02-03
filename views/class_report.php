@@ -25,7 +25,7 @@ if (mysql_num_rows($question) > 0) {
 
 if($class_id) {
 	$fields = " ,Participant.name, Participant.surname, ParticipantAnswer.type, ParticipantAnswer.answer, Question.question_id, Question.description";
-	$inner_join = " INNER JOIN participantclass ON ParticipantClass.class_id = Class.class_id
+	$inner_join = " INNER JOIN ParticipantClass ON ParticipantClass.class_id = Class.class_id
 	INNER JOIN ParticipantAnswer ON ParticipantAnswer.participant_id = ParticipantClass.participant_id
 	INNER JOIN Participant ON Participant.participant_id = ParticipantAnswer.participant_id
 	INNER JOIN Question ON Question.question_id = ParticipantAnswer.question_id";
@@ -36,7 +36,7 @@ if ($question_id) {
 	$where_question = " AND ParticipantAnswer.question_id = '{$question_id}'";
 }
 if ($municipality_id) {
-	$query = mysql_query("SELECT Class.location_id, Class.class_id, Class.name, Class.test_id, Location.municipality_id, Location.location_id $fields from Location INNER JOIN class ON Class.location_id = Location.location_id $inner_join WHERE Location.municipality_id = $municipality_id".$where.$where_question);
+	$query = mysql_query("SELECT Class.location_id, Class.class_id, Class.name, Class.test_id, Location.municipality_id, Location.location_id $fields from Location INNER JOIN Class ON Class.location_id = Location.location_id $inner_join WHERE Location.municipality_id = $municipality_id".$where.$where_question);
 }
 $true_answers_before = 0;
 $true_answers_after = 0;
@@ -50,26 +50,32 @@ $municipalities = mysql_query($get_municipalities);
 
 ?>
 <form action="" method="GET">
-<select name="mun_id" id="municipality_id" value="<?php echo $municipality_id; ?>">
-	<option value="">Zgjedh Komunen</option>
+<div class="dropdown">
+<select name="mun_id" id="municipality_id" class="dropdown-select" value="<?php echo $municipality_id; ?>">
+    <option value="">Zgjedh Komunen</option>
     <?php
-		create_options($municipalities, "municipality_id", "name");
-	?>
+        create_options($municipalities, "municipality_id", "name");
+    ?>
 </select>
-<select name="class_id" id="class_id">
-	<option value="">Zgjedh Klasen</option>
+</div>
+<div class="dropdown">
+<select name="class_id" id="class_id" class="dropdown-select">
+    <option value="">Zgjedh Klasen</option>
 </select>
-<select name="question_id" id="questions">
-	<option value="">Zgjedh Pytjen</option>
+</div>
+<div class="dropdown">
+<select name="question_id" id="questions" class="dropdown-select">
+    <option value="">Zgjedh Pytjen</option>
 <?php
 $get_all_questions = "SELECT * FROM Question";
 $questions = mysql_query($get_all_questions);
-	while ($question = mysql_fetch_object($questions)) {
-		echo "<option value='$question->question_id'>$question->description</option>";
-	}
+    while ($question = mysql_fetch_object($questions)) {
+        echo "<option value='$question->question_id'>$question->description</option>";
+    }
 ?>
 </select>
-<input type="submit" value="Gjenero">
+</div>
+<input type="submit" value="Gjenero" class="align-top">
 </form>
 <br><br>
 <table class="bordered">
@@ -83,7 +89,7 @@ $questions = mysql_query($get_all_questions);
 		<td><strong>Pas Testit</strong></td>
 	</tr>
 		<?php if ($municipality_id): ?>
-		<?php while ($r = mysql_fetch_object($query)) : ?>
+		<?php while ($r = mysql_fetch_object($query)) : ;?>
 				<?php
 					if ($r->type == "para" && $r->answer == 1) {
 						$true_answers_before++;

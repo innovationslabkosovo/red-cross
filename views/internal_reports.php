@@ -66,7 +66,41 @@ $municipality = $_GET["municipality"];
             ?>
     </select>
     </div>
-    <input type="submit" name="GO" value="Gjenero"/>
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+</form>
+<hr>
+
+<?php
+$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+$municipalities = mysql_query($get_municipalities); ?>
+<h2>Raporti i Suksesit</h2>
+<form action="class_report.php" method="GET">
+<div class="dropdown">
+<select name="mun_id" id="municipality_id" class="dropdown-select" value="<?php echo $municipality_id; ?>">
+    <option value="">Zgjedh Komunen</option>
+    <?php
+        create_options($municipalities, "municipality_id", "name");
+    ?>
+</select>
+</div>
+<div class="dropdown">
+<select name="class_id" id="class_id" class="dropdown-select">
+    <option value="">Zgjedh Klasen</option>
+</select>
+</div>
+<div class="dropdown">
+<select name="question_id" id="questions" class="dropdown-select">
+    <option value="">Zgjedh Pytjen</option>
+<?php
+$get_all_questions = "SELECT * FROM Question";
+$questions = mysql_query($get_all_questions);
+    while ($question = mysql_fetch_object($questions)) {
+        echo "<option value='$question->question_id'>$question->description</option>";
+    }
+?>
+</select>
+</div>
+<input type="submit" value="Gjenero" class="align-top">
 </form>
 </body>
 <?php
@@ -76,4 +110,5 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+<script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>
 </html>
