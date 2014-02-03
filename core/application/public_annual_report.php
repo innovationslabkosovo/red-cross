@@ -108,10 +108,10 @@ else {
                     $municipality = $classes['m_name'];
                     $participants = 1;
                 if ($classes['gender'] == "M"){
-                    $gender_m = "";
+                    $gender_m = 1;
                 }
                 else {
-                    $gender_f = "";
+                    $gender_f = 1;
                 }
                     $pre_success = $classes['para_correct'];
                     $post_success = $classes['pas_correct'];
