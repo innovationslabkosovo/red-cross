@@ -32,7 +32,7 @@ $municipality = $_GET["municipality"];
         <option value="2017">2017</option>
     </select>
     </div>
-    <input type="submit" name="GO" value="Gjenero"/>
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 </form>
 <hr>
 </body>
