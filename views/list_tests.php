@@ -17,12 +17,12 @@
 	while ($result = mysql_fetch_assoc($query)) {
 		echo "<tr id = '{$result["test_id"]}' class=\"edit_tr\"><td>"
 		."<span id='results_{$result["test_id"]}' class='text'>{$result["name"]}</span>"
-		."<input name='test_description' type='text' class='editbox' value='{$result["name"]}' id='editbox_{$result["test_id"]}' />"
+		."<input name='test_description' type='text' class='editbox txfform-wrapper input' value='{$result["name"]}' id='editbox_{$result["test_id"]}' />"
 		."</td>";
 
 		echo "<td>"."<input type='hidden' name='id' class='editbox' id='editbox_{$result["test_id"]}' value='{$result["test_id"]}' />"
-		."<input type='button' value='Ruaj' class='save' id='{$result["test_id"]}'>"
-        ."<input type='button' value='Perditeso' class='edit' id='{$result["test_id"]}'>"
+		."<input type='button' value='Ruaj' class='save submitSmlBtn' id='{$result["test_id"]}'>"
+        ."<input type='button' value='Perditeso' class='edit submitSmlBtn' id='{$result["test_id"]}'>"
 		."</td>";
 		
 	}
