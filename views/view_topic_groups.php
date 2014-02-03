@@ -73,7 +73,7 @@ $status[0]="Jo-aktiv";
 
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox txfform-wrapper input" id="editbox_<?php echo $id; ?>" />
                 </td>
                 <?php
                 $selected = 'Jo-aktiv';
