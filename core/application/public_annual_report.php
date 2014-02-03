@@ -92,7 +92,6 @@ else {
 
             $previous_municipality = $classes['m_id'];
             $counter++;
-            $total_counter++;
             continue;
 
             }
