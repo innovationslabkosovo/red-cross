@@ -109,9 +109,11 @@ else {
                     $participants = 1;
                 if ($classes['gender'] == "M"){
                     $gender_m = 1;
+                    $gender_f = 0;
                 }
                 else {
                     $gender_f = 1;
+                    $gender_m = 0;
                 }
                     $pre_success = $classes['para_correct'];
                     $post_success = $classes['pas_correct'];
