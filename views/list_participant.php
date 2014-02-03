@@ -1,35 +1,47 @@
 <?php
+error_reporting(0);
 $page_title = "Lista e participanteve";
 include '../core/init.php';
+require_once('../core/application/Paginator.php');
 protect_page();
 include $project_root . 'views/layout/header.php';
 
-$get_participants = "SELECT p.*, c.name as class_name, c.class_id as class_id
+
+$count_rows = mysql_query("SELECT count(*) FROM Participant");
+$num_rows = mysql_result($count_rows, 0);
+
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+$get_participants = "SELECT  p.*, c.name as class_name, c.class_id as class_id
                      FROM Participant as p INNER JOIN ParticipantClass as pc on p.participant_id=pc.participant_id INNER JOIN Class as c on pc.class_id=c.class_id
-                     ORDER BY p.name";
+                     ORDER BY p.name
+                     $pages->limit";
 $participants = mysql_query($get_participants);
-
-
-
-
 ?>
+<span class="message">
+    <?php
+    if (isset($_GET['message']))
+    {
+        if ($_GET['message'] == 'success')
+        {
+            echo $display_messages[$_GET['object']][$_GET['message']];
+
+        }else{
+            echo $display_messages[$_GET['object']][$_GET['message']];
+        }
+
+    }
+    ?>
+
+</span>
 
 <h1>Lista e Participanteve</h1>
 <?php $base_url = BASE_URL; ?>
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_participant.php' ></div>";?>
 <?php
 
-if (isset($_GET['message']))
-{
-    if ($_GET['message'] == 'success')
-    {
-        echo $display_messages[$_GET['object']][$_GET['message']];
 
-    }else{
-        echo $display_messages[$_GET['object']][$_GET['message']];
-    }
-
-}
 
 ?>
 <table class="bordered">
@@ -95,3 +107,14 @@ while ($row_participant = mysql_fetch_assoc($participants))
 
     <?php
 }
+
+
+
+echo $pages->display_pages();
+echo "&nbsp &nbsp";
+echo $pages->display_jump_menu();
+echo "&nbsp &nbsp";
+echo $pages->display_items_per_page();
+echo "<br><br>";
+echo $pages->next_page;
+echo $pages->prev_page;
