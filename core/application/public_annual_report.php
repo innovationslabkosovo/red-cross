@@ -215,12 +215,12 @@ else {
             ?>
     </tr>
     <td>Totali</td>
-    <td><?php echo $count_participants[0];?></td>
+    <td><?php echo $total_counter; echo $count_participants[0];?></td>
     <td><?php echo $count_participants[1];?></td>
     <td><?php echo $count_participants[2];?></td>
-    <td><?php echo round($total_pre/($total_counter-1), 2); echo"%";?></td>
-    <td><?php echo round($total_post/($total_counter-1), 2); echo"%";?></td>
-    <td><?php echo round($total_change/($total_counter-1), 2); echo"%";?></td>
+    <td><?php echo round($total_pre/($total_counter), 2); echo"%";?></td>
+    <td><?php echo round($total_post/($total_counter), 2); echo"%";?></td>
+    <td><?php echo round($total_change/($total_counter), 2); echo"%";?></td>
 </table>
 </body>
 <?php
