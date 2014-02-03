@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo participant te ri";
+$page_title = "Filtro participantet";
 
 include '../core/init.php';
 protect_page();
@@ -94,7 +94,7 @@ $municipalities = mysql_query($get_municipalities);
                 $('#participants').show();
                 jQuery.each(data, function(i, val) {
 
-                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer?p_id='+val['participant_id']+'">Shto Pergjegje</a></td></tr>');
+                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?p_id='+val['participant_id']+'">Shto Pergjegje</a></td></tr>');
 
 
                 });
