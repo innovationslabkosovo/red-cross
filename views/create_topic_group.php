@@ -12,11 +12,11 @@ include $project_root . 'views/layout/header.php';
     <div class="row">
         <h3>Shto Grup Tematik te Ri!</h3>
             <div class="row">
-                <label>Titulli i Grupit Tematik: </label>
-                <input type="text" placeholder="Name" name="topic_group" id="topic_group">
-                <label class="myCheckbox">
+                <label>Titulli i Grupit Tematik: </label><br><br>
+                <input type="text" placeholder="Titulli i Grupit Tmatik" name="topic_group" id="topic_group" class="txfform-wrapper input">
+                <label class="myCheckbox"><br><br>
                 <input type="checkbox" name="active" value="active">Ky grup tematik eshte aktiv
-                <span></span>
+                <br><br><span></span>
                 </label>
             </div>
         <br>

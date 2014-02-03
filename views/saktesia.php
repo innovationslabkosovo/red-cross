@@ -15,7 +15,6 @@ $id = $_REQUEST['part_id'];	// me marr permes url linkut
 $query = mysql_query("SELECT * FROM ParticipantAnswer pa inner join Question q inner join Test t WHERE t.test_id = pa.test_id and participant_id = '$id' and  q.question_id = pa.question_id
  		");
 
-
 ?>
 
 <h3>Tabela per pergjigjjet e participantit me id:  <?php echo $id; ?></h3>
@@ -65,7 +64,6 @@ if (isset($_POST['submit']))
 		
 		mysql_query("INSERT INTO `participant_result` (`participant_id`, `test_id`, `question_id`, `answer`, `type`) VALUES ('$id', '$test_id', '$q_id', '$para', '0')");
 	}
-	
 	
 	foreach ($_POST['pas'] as $key => $value)	// type = 1 eshte pastesti
 	{	
