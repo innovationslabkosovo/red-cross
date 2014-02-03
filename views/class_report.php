@@ -50,26 +50,32 @@ $municipalities = mysql_query($get_municipalities);
 
 ?>
 <form action="" method="GET">
-<select name="mun_id" id="municipality_id" value="<?php echo $municipality_id; ?>">
-	<option value="">Zgjedh Komunen</option>
+<div class="dropdown">
+<select name="mun_id" id="municipality_id" class="dropdown-select" value="<?php echo $municipality_id; ?>">
+    <option value="">Zgjedh Komunen</option>
     <?php
-		create_options($municipalities, "municipality_id", "name");
-	?>
+        create_options($municipalities, "municipality_id", "name");
+    ?>
 </select>
-<select name="class_id" id="class_id">
-	<option value="">Zgjedh Klasen</option>
+</div>
+<div class="dropdown">
+<select name="class_id" id="class_id" class="dropdown-select">
+    <option value="">Zgjedh Klasen</option>
 </select>
-<select name="question_id" id="questions">
-	<option value="">Zgjedh Pytjen</option>
+</div>
+<div class="dropdown">
+<select name="question_id" id="questions" class="dropdown-select">
+    <option value="">Zgjedh Pytjen</option>
 <?php
 $get_all_questions = "SELECT * FROM Question";
 $questions = mysql_query($get_all_questions);
-	while ($question = mysql_fetch_object($questions)) {
-		echo "<option value='$question->question_id'>$question->description</option>";
-	}
+    while ($question = mysql_fetch_object($questions)) {
+        echo "<option value='$question->question_id'>$question->description</option>";
+    }
 ?>
 </select>
-<input type="submit" value="Gjenero">
+</div>
+<input type="submit" value="Gjenero" class="align-top">
 </form>
 <br><br>
 <table class="bordered">
