@@ -12,6 +12,7 @@
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_participant.php">Krijo Participant te ri</a></li>
                     <li><a href="<?php echo BASE_URL; ?>/views/list_participant.php">Listo Participantet</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/find_participant.php">Filtro Listen e Participantet</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Grupet Tematike</a>
@@ -29,13 +30,13 @@
             <li><a href="javascript:void(0);">Menaxho Pyetjet</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/krijo_pyetje.php">Krijo Pyetje</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/listo_pytje.php">Listo Pyetjet</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_question.php">Listo Pyetjet</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Testet</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/krijo_test.php">Krijo Test</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/listo_testet.php">Listo Testet</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_tests.php">Listo Testet</a></li>
                 </ul>
             </li>
             <li>

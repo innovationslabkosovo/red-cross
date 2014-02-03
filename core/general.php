@@ -9,6 +9,10 @@ $display_messages = array(
         "success" => "Participanti u shtua me sukses",
         "fail" => "Participanti nuk u shtua !"
     ),
+    "participant_answer" => array(
+        "success" => "Pergjegjet e participantit u shtuan me sukses",
+        "fail" => "Pergjegjet e participantit nuk u shtua !"
+    ),
     "user" => array(
         "success" => "Fjalkalimi u perditsu",
         "fail" => "Fjalkalimi nuk u perditesua"
