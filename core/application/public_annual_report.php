@@ -16,7 +16,7 @@ $get_classes=mysql_query("SELECT Municipality.municipality_id as m_id, Municipal
 
 FROM Class inner join Location on Class.location_id = Location.location_id inner join Municipality on Municipality.municipality_id = Location.municipality_id  inner join ParticipantClass as pc on pc.class_id = Class.class_id inner join Participant as par on par.participant_id = pc.participant_id
 
-and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto' order by m_id ASC");
+and Class.date_to >= '$datefrom' and Class.date_to <= '$dateto' order by m_id ASC");
 
 ?>
 <html>
