@@ -37,7 +37,7 @@ $municipality = mysql_fetch_assoc($get_municipality);
 //get locations of all classes, number of participants, class names and IDs
 $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, Trainer.name as trainer_name, Trainer.surname as surname, Location.name as location, (SELECT COUNT(*) from ParticipantClass as ipc WHERE ipc.class_id = Class.class_id ) as participants, (Select COUNT(*) from ParticipantClass as ipc inner join Participant on Participant.participant_id = ipc.participant_id WHERE ipc.class_id = Class.class_id and Participant.gender = 'M') as male, (Select COUNT(*) from ParticipantClass as ipc inner join Participant on Participant.participant_id = ipc.participant_id WHERE ipc.class_id = Class.class_id and Participant.gender = 'F') as female
                           FROM Class inner join Location on Class.location_id = Location.location_id inner join ParticipantClass on ParticipantClass.class_id = Class.class_id inner join Trainer on Trainer.trainer_id = Class.trainer_id
-                          WHERE Location.location_id IN (Select location_id from Location where municipality_id = '$selected') and date_from >= '$datefrom' and date_to <= '$dateto'");
+                          WHERE Location.location_id IN (Select location_id from Location where municipality_id = '$selected') and date_to >= '$datefrom' and date_to <= '$dateto'");
 
 ?>
 <html>
