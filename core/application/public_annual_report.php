@@ -16,7 +16,7 @@ $get_classes=mysql_query("SELECT Municipality.municipality_id as m_id, Municipal
 
 FROM Class inner join Location on Class.location_id = Location.location_id inner join Municipality on Municipality.municipality_id = Location.municipality_id  inner join ParticipantClass as pc on pc.class_id = Class.class_id inner join Participant as par on par.participant_id = pc.participant_id
 
-and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto'");
+and Class.date_to >= '$datefrom' and Class.date_to <= '$dateto' order by m_id ASC");
 
 ?>
 <html>
@@ -43,6 +43,7 @@ else {
         <th>Ndryshimi</th>
     </tr>
     <?php
+    //these keep track of records per municipality
     $previous_municipality = 0;
     $participants = 0;
     $pre_success = 0;
@@ -50,6 +51,15 @@ else {
     $gender_m = 0;
     $gender_f = 0;
     $counter = 0;
+
+    //these keep track of overall records
+    $total_counter = 1;
+    $count_participants = array();
+    $total_males = 0;
+    $total_females = 0;
+    $total_pre = 0;
+    $total_post = 0;
+    $total_change = 0;
 
     while ($classes = mysql_fetch_assoc($get_classes)){
 
@@ -62,17 +72,19 @@ else {
 
             $municipality = $classes['m_name'];
             $participants += 1;
+            $count_participants[0]+=1;
 
                 if ($classes['gender'] == "M"){
                     $gender_m += 1;
+                    $count_participants[1] += 1;
                 }
                 else {
                     $gender_f += 1;
+                    $count_participants[2] += 1;
                 }
 
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
-
             $previous_municipality = $classes['m_id'];
             $counter++;
             continue;
@@ -87,14 +99,17 @@ else {
                 <td><?php echo $participants;
                     //if there are participants
                     if ($participants != 0){
-                    $pre = $pre_success*100/$participants;
-                    $post = $post_success*100/$participants;
+                    $pre = round($pre_success*100/$participants, 2);
+                    $post = round($post_success*100/$participants, 2);
+                    $change = $post-$pre;
+                    $total_pre += $pre*$participants;
+                    $total_post += $post*$participants;
                     ?></td>
                 <td><?php echo $gender_m; ?></td>
                 <td><?php echo $gender_f; ?></td>
                 <td><?php echo $pre; echo"%";?></td>
                 <td><?php echo $post; echo"%";?></td>
-                <td><?php echo $post-$pre; echo"%";?></td>
+                <td><?php echo $change; echo"%";?></td>
                 <?php
                     }
                     //else, participants is 1
@@ -105,20 +120,26 @@ else {
                 <td></td>
                 <?php
                 }
-                    $municipality = $classes['m_name'];
-                    $participants = 1;
+                $municipality = $classes['m_name'];
+                $participants = 1;
+                $count_participants[0]+=1;
+
                 if ($classes['gender'] == "M"){
-                    $gender_m = "";
+                    $gender_m = 1;
+                    $gender_f = 0;
+                    $count_participants[1] += 1;
                 }
                 else {
-                    $gender_f = "";
+                    $gender_f = 1;
+                    $gender_m = 0;
+                    $count_participants[2] += 1;
                 }
-                    $pre_success = $classes['para_correct'];
-                    $post_success = $classes['pas_correct'];
 
-                    $previous_municipality = $classes['m_id'];
-                    $counter++;
-
+                $pre_success = $classes['para_correct'];
+                $post_success = $classes['pas_correct'];
+                $previous_municipality = $classes['m_id'];
+                $counter++;
+                $total_counter++;
               ?>
             </tr>
         <?php
@@ -131,14 +152,19 @@ else {
 
             $previous_municipality = $classes['m_id'];
             $participants += 1;
+            $count_participants[0]+=1;
+
             if ($classes['gender'] == "M"){
                 $gender_m += 1;
+                $count_participants[1] += 1;
             }
             else {
                 $gender_f += 1;
+                $count_participants[2] += 1;
             }
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
+
         }
     }}
     ?>
@@ -147,14 +173,17 @@ else {
     <td><?php echo $municipality;?></td>
     <td><?php echo $participants;
         if ($participants != 0){
-        $pre = $pre_success*100/$participants;
-        $post = $post_success*100/$participants;
+        $pre = round($pre_success*100/$participants, 2);
+        $post = round($post_success*100/$participants, 2);
+        $change = $post-$pre;
+        $total_pre += $pre * $participants;
+        $total_post += $post * $participants;
         ?></td>
             <td><?php echo $gender_m; ?></td>
             <td><?php echo $gender_f; ?></td>
             <td><?php echo $pre; echo"%";?></td>
             <td><?php echo $post; echo"%";?></td>
-            <td><?php echo $post-$pre; echo"%";?></td>
+            <td><?php echo $change; echo"%";?></td>
             <?php
             }
             else {
@@ -162,10 +191,19 @@ else {
                 <td></td>
                 <td></td>
                 <td></td>
+
             <?php
             }
+
             ?>
     </tr>
+    <td>Totali</td>
+    <td><?php echo $count_participants[0];?></td>
+    <td><?php echo $count_participants[1];?></td>
+    <td><?php echo $count_participants[2];?></td>
+    <td><?php echo round($total_pre/$count_participants[0], 2); echo"%";?></td>
+    <td><?php echo round($total_post/$count_participants[0], 2); echo"%";?></td>
+    <td><?php echo round(($total_post-$total_pre)/$count_participants[0], 2); echo"%";?></td>
 </table>
 </body>
 <?php

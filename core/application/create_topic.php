@@ -18,7 +18,7 @@ if(empty($_POST) === false)
         }
 
         if (mysql_query("INSERT INTO Topic(topic_id, description, topic_group_id, active) VALUES ('', '$topic' , '$topic_group_id', '$active')"))
-            header("location: ../../views/view_topics.php?message=success&object=Topic");
+            header("location: ../../views/list_topics.php?message=success&object=Topic");
         else header("location: ../../views/create_topic.php?message=fail&object=Topic");
 
     }
