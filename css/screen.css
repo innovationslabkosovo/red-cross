@@ -742,9 +742,10 @@ table {
     vertical-align: top;
 }
 .plus, .minus {
-    display: inline-block;
+    display: block;
     width: 25px;
     height: 25px;
+    margin: 0 auto;
 }
 .plus {
     background-image: url(../img/plus.png);
