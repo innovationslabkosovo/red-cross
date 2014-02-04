@@ -74,15 +74,22 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
         $total_females = 0;
         $total_pre = 0;
         $total_post = 0;
-        $total_change = 0;
 
         while ($classes = mysql_fetch_assoc($get_classes)){
 
         //get only IDs of classes
         $classes_id = $classes['class_id'];
+
+        //get all answers of pre-test
         $get_pre_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+
+        //get all answers of post-test
         $get_post_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+
+        //get all correct answers of pre-test
         $get_pre_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para' and answer='1'");
+
+        //get all correct answers of post-test
         $get_post_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas' and answer='1'");
 
         $q1 = mysql_fetch_assoc($get_pre_success);
@@ -118,17 +125,16 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
             $total_participants += $classes['participants'];
             $total_males += $classes['male'];
             $total_females += $classes['female'];
-            $total_pre += $pre;
-            $total_post += $post;
-            $total_change += $change;
+            $total_pre += $pre*$classes['participants'];
+            $total_post += $post*$classes['participants'];
         }?>
         <td colspan="4">Totali</td>
         <td><?php echo $total_participants;?></td>
         <td><?php echo $total_males;?></td>
         <td><?php echo $total_females;?></td>
-        <td><?php echo round($total_pre/($counter-1), 2); echo"%";?></td>
-        <td><?php echo round($total_post/($counter-1), 2); echo"%";?></td>
-        <td><?php echo round($total_change/($counter-1), 2); echo"%";?></td>
+        <td><?php echo round($total_pre/$total_participants, 2); echo"%";?></td>
+        <td><?php echo round($total_post/$total_participants, 2); echo"%";?></td>
+        <td><?php echo round(($total_post-$total_pre)/$total_participants, 2); echo"%";?></td>
     <?php
     }
     ?>
