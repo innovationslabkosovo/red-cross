@@ -13,22 +13,27 @@ $municipalities = mysql_query($get_municipalities);
 
 <div class="row">
     <label>Komuna : </label>
-    <select id="municipality_id" name="municipality" >
-        <option value="">--Zgjedh Komunen--</option>
-        <?php
-        create_options($municipalities, "municipality_id", "name");
-        ?>
-    </select>
+    <div class="dropdown">
 
-
+        <select id="municipality_id" class="dropdown-select" name="municipality" >
+            <option value="">--Zgjedh Komunen--</option>
+            <?php
+            create_options($municipalities, "municipality_id", "name");
+            ?>
+        </select>
+    </div>
     <label>Klasa : </label>
-    <select id="class_id" name="class" >
-        <option value="">--Zgjedh Klasen--</option>
+    <div class="dropdown">
 
-    </select><br>
-</div>
+        <select id="class_id" class="dropdown-select" name="class" >
+            <option value="">--Zgjedh Klasen--</option>
+
+        </select><br>
+    </div>
+    </div>
 <br>
 <div class="row">
+
     <table id="participants" class="bordered" style="display: none">
         <tr>
             <th >Emri</th>
@@ -37,6 +42,7 @@ $municipalities = mysql_query($get_municipalities);
             <th >Shto Pergjegje</th>
         </tr>
     </table>
+
 </div>
 <br>
 <div class="row">

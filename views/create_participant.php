@@ -16,30 +16,30 @@ $classes = mysql_query($get_class);
 <form action="../core/application/create_participant.php" method="post">
 
     <div class="row">
-        <label>Emri: </label><input type="text" name="first_name" id="first_name" data-validation="required"><br>
+        <label>Emri: </label><input type="text" name="first_name" id="first_name" data-validation="required" class="txfform-wrapper input"><br>
     </div>
     <br>
 
     <div class="row">
-        <label>Mbiemri: </label><input type="text" name="last_name" id="last_name" data-validation="required"><br>
+        <label>Mbiemri: </label><input type="text" name="last_name" id="last_name" data-validation="required" class="txfform-wrapper input"><br>
     </div>
     <br>
 
     <div class="row">
-        <label>Mosha: </label><input type="number" name="age" id="age" min="0" data-validation="required"><br>
+        <label>Mosha: </label><input type="number" name="age" id="age" min="0" data-validation="required" class="txfform-wrapper input"><br>
     </div>
     <br>
 
     <div class="row">
         <label>Gjinia:</label>
-        <label>Mashkull</label><input type="radio" name="gender" value="M" data-validation="required">
-        <label>Femer</label><input type="radio" name="gender" value="F" data-validation="required">
+        <br>
+        <label class="myRadiobox">Mashkull<input type="radio" name="gender" value="M" data-validation="required" ><span></span></label>
+        <label class="myRadiobox">Femer<input type="radio" name="gender" value="F" data-validation="required" ><span></span></label>
     </div>
     <br>
-    <div class="row">
-        <label>Klasa: </label>
+    <div class="row dropdown">
 
-        <select id="class_id" name="class" data-validation="required">
+        <select id="class_id" class="dropdown-select" name="class" data-validation="required" >
             <option value="">--Zgjedh Klasen--</option>
             <?php
             create_options($classes, "class_id", "name");
