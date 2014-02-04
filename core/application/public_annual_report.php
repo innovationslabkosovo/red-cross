@@ -99,8 +99,8 @@ else {
                 <td><?php echo $participants;
                     //if there are participants
                     if ($participants != 0){
-                    $pre = $pre_success*100/$participants;
-                    $post = $post_success*100/$participants;
+                    $pre = round($pre_success*100/$participants, 2);
+                    $post = round($post_success*100/$participants, 2);
                     $change = $post-$pre;
                     $total_pre += $pre*$participants;
                     $total_post += $post*$participants;
@@ -173,8 +173,8 @@ else {
     <td><?php echo $municipality;?></td>
     <td><?php echo $participants;
         if ($participants != 0){
-        $pre = $pre_success*100/$participants;
-        $post = $post_success*100/$participants;
+        $pre = round($pre_success*100/$participants, 2);
+        $post = round($post_success*100/$participants, 2);
         $change = $post-$pre;
         $total_pre += $pre * $participants;
         $total_post += $post * $participants;
