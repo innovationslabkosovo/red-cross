@@ -73,10 +73,10 @@ $municipality = $_GET["municipality"];
 <?php
 $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
 $municipalities = mysql_query($get_municipalities); ?>
-<h2>Raporti i Suksesit</h2>
-<form action="class_report.php" method="GET">
+<h2>Raporti i Suksesit per pyetje</h2>
+<form action="question_class_report.php" method="GET">
 <div class="dropdown">
-<select name="mun_id" id="municipality_id" class="dropdown-select" value="<?php echo $municipality_id; ?>">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
         create_options($municipalities, "municipality_id", "name");
@@ -84,7 +84,7 @@ $municipalities = mysql_query($get_municipalities); ?>
 </select>
 </div>
 <div class="dropdown">
-<select name="class_id" id="class_id" class="dropdown-select">
+<select name="class_id" id="class_id" class="class_id dropdown-select">
     <option value="">Zgjedh Klasen</option>
 </select>
 </div>
@@ -98,6 +98,27 @@ $questions = mysql_query($get_all_questions);
         echo "<option value='$question->question_id'>$question->description</option>";
     }
 ?>
+</select>
+</div>
+<input type="submit" value="Gjenero" class="align-top">
+</form>
+
+<?php
+$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+$municipalities = mysql_query($get_municipalities); ?>
+<h2>Raporti i Suksesit per participant</h2>
+<form action="participant_class_report.php" method="GET">
+<div class="dropdown">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
+    <option value="">Zgjedh Komunen</option>
+    <?php
+        create_options($municipalities, "municipality_id", "name");
+    ?>
+</select>
+</div>
+<div class="dropdown">
+<select name="class_id" id="class_id" class="class_id dropdown-select">
+    <option value="">Zgjedh Klasen</option>
 </select>
 </div>
 <input type="submit" value="Gjenero" class="align-top">

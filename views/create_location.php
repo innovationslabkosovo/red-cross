@@ -12,13 +12,21 @@ protect_page();
 $errors = array();
 include 'layout/header.php';
 
+$count_rows = mysql_query("SELECT count(*) FROM Location");
+$num_rows = mysql_result($count_rows, 0);
+
+require_once('../core/application/Paginator.php');
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
 $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality ";
 $municipalities = mysql_query($get_municipalities);
 
 $get_locations_municipalities = "SELECT Location.location_id, Location.name as location_name,Location.latitude,Location.longitude,Municipality.coords as coords,Municipality.name as municipality_name
 FROM Location
 INNER JOIN Municipality
-ON Location.municipality_id=Municipality.municipality_id";
+ON Location.municipality_id=Municipality.municipality_id
+$pages->limit";
 $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
@@ -66,6 +74,13 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <th>Modifiko</th>
 </tr>
 <?php
+echo $pages->display_pages();
+echo "&nbsp;";
+echo $pages->display_jump_menu();
+echo "&nbsp;";
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
 while($results = mysql_fetch_array($locations_municipalities))
 {
 $id=$results['location_id'];
