@@ -741,6 +741,11 @@ table {
 .align-top {
     vertical-align: top;
 }
+.plus, .minus {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+}
 .plus {
     background-image: url(../img/plus.png);
 }
