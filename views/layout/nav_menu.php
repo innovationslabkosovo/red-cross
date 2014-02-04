@@ -24,7 +24,7 @@
             <li><a href="javascript:void(0);">Menaxho Temat</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_topic.php">Krijo Teme te Re</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/view_topics.php">Listo Temat</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_topics.php">Listo Temat</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Pyetjet</a>
