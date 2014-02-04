@@ -7,7 +7,7 @@ if ($year == ""){
 }
 $year1 = $year."-01-01";
 $year2 = $year."-12-31";
-$get_course_locations = "SELECT Class.name, Location.name as location, latitude, longitude FROM Class inner join Location on Class.location_id = Location.location_id where date_from > '$year1' AND date_to < '$year2'";
+$get_course_locations = "SELECT Class.name, Location.name as location, latitude, longitude FROM Class inner join Location on Class.location_id = Location.location_id where date_to > '$year1' AND date_to < '$year2'";
 $locations = mysql_query($get_course_locations);
 
 while ($current_location = mysql_fetch_assoc($locations)){
