@@ -200,9 +200,18 @@ if ($_GET['message'] != NULL)
         $(".show_details").click(function(){
             var class_id = $(this).attr('id');
             $(".details").hide(100);
+            
+            if ($(this).html() == "+") {
+                $(".show_details").html("+");
+                $(this).html("-");
+            } else {
+                $(this).html("+");
+                $(".show_details").html("+");
+            }
 
             if (!$("#details_row_"+class_id).is(":visible") || $("#edit_mode_"+class_id).attr('edit_mode') == "off")
                 $("#details_row_"+class_id).show();
+            
         });
 
         $(".edit").click(function(){
