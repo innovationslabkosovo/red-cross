@@ -2,7 +2,8 @@
 $page_title = "Krijo Teme te Re";
 
 include '../core/init.php';
-protect_page();
+$user_id = $_SESSION['id'];
+protect_page($user_id );
 include $project_root . 'views/layout/header.php';
 
 $get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active='1'";
