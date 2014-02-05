@@ -5,7 +5,7 @@ include '../core/init.php';
 protect_page();
 
 $user_id = $_SESSION['id'];
-protect_page($user_id);
+//protect_page($user_id);
 include $project_root . 'views/layout/header.php';
 
 $i = 0;
@@ -16,7 +16,12 @@ $trainers = mysql_query($get_trainers);
 $get_tests = "SELECT test_id, name FROM Test ";
 $tests = mysql_query($get_tests);
 
-$get_municipalities = "SELECT municipality_id, name FROM Municipality ";
+if (is_admin($user_id))
+    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m";
+else
+    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
+
+$get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
 
 //$get_locations = "SELECT location_id, name FROM Location ";
