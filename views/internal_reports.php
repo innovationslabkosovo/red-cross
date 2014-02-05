@@ -3,9 +3,20 @@ $page_title = "Raporti Mujor Komunal";
 
 include '../core/init.php';
 protect_page();
+$user_id = $_SESSION['id'];
 include $project_root . 'views/layout/header.php';
 
-$get_municipalities = "SELECT municipality_id, name FROM Municipality";
+$mun_access = "";
+$include_user = "";
+
+if (!is_admin($user_id))
+{
+    $include_user = ", User u ";
+    $mun_access = "where m.municipality_id = u.municipality_id and  u.user_id=$user_id";
+}
+
+
+$get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality as m". $include_user.$mun_access;
 $municipalities = mysql_query($get_municipalities);
 
 $month = $_GET["month"];
@@ -55,7 +66,7 @@ $municipality = $_GET["municipality"];
 
     <div class="dropdown">
     <select name="municipality" class="dropdown-select">
-        <option value=0>Zgjidh Komunen
+        <option value=0>Zgjedh Komunen
             <?php
             while($row = mysql_fetch_array($municipalities))
             {
@@ -70,16 +81,19 @@ $municipality = $_GET["municipality"];
 </form>
 <hr>
 
-<?php
-$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
-$municipalities = mysql_query($get_municipalities); ?>
+
 <h2>Raporti i Suksesit per pyetje</h2>
 <form action="question_class_report.php" method="GET">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
-        create_options($municipalities, "municipality_id", "name");
+    while($roww = mysql_fetch_array($municipalities))
+    {
+        $name=$roww["name"];
+        $select=$roww["municipality_id"];
+        echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+    }
     ?>
 </select>
 </div>
@@ -103,16 +117,19 @@ $questions = mysql_query($get_all_questions);
 <input type="submit" value="Gjenero" class="align-top">
 </form>
 
-<?php
-$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
-$municipalities = mysql_query($get_municipalities); ?>
+
 <h2>Raporti i Suksesit per participant</h2>
 <form action="participant_class_report.php" method="GET">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
-        create_options($municipalities, "municipality_id", "name");
+    while($rowe = mysql_fetch_array($municipalities))
+    {
+        $name=$rowe["name"];
+        $select=$rowe["municipality_id"];
+        echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+    }
     ?>
 </select>
 </div>
