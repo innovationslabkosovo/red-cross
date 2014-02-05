@@ -3,7 +3,7 @@ $page_title = "Lista e supervizoereve";
 include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php'; ?>
-    <h3>Lista e trajnereve</h3>
+    <h3>Lista e supervizoreve</h3>
 
 <?php
 $result = mysql_query("SELECT Supervisor.name, Supervisor.surname, Supervisor.email, Supervisor.phone
