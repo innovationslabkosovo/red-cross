@@ -21,6 +21,7 @@ $page_title = "Menaxho Temat";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
+$user_id = $_SESSION['id'];
 include $project_root . 'views/layout/header.php';
 
 $count_rows = mysql_query("SELECT count(*) FROM Topic");
@@ -46,12 +47,12 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
         <h3>Temat Ekzistuese</h3>
 
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic.php"></div>
-        <table border="1" id="editable">
+        <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Tema</th>
                 <th>Statusi</th>
                 <th>Grupi Tematik</th>
-                <th>Fshije/Perditeso</th>
+                <th>Modifiko</th>
             </tr>
             <?php
 
@@ -99,6 +100,10 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                             ?>
                         </select>
                     </td>
+                    <?php
+                    if (is_admin($user_id))
+                    {
+                    ?>
                     <td>
                         <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                         <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
@@ -106,7 +111,11 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
                         <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>
+                    <?php
+                    }
 
+                    else echo "<td></td>";
+                    ?>
                 </tr>
             <?php
             }
