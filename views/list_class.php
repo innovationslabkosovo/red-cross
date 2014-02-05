@@ -4,17 +4,22 @@ $page_title = "Lista e klasave";
 include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
+$user_id = $_SESSION['id'];
 
-
-
-
+$mun_access = "";
+$include_user = "";
+if (!is_admin($user_id))
+{
+    $include_user = ", User u ";
+    $mun_access = "and m.municipality_id = u.municipality_id and  u.user_id=$user_id";
+}
 
 $get_class_details = "SELECT c.class_id,tr.trainer_id as tr_id,  tr.name as tr_name, tr.surname as tr_surname,l.location_id as l_id, l.name as l_name,m.municipality_id as m_id,  m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
-                      FROM Class c, Trainer tr, Location l, Municipality m, Test test
+                      FROM Class c, Trainer tr, Location l, Municipality m, Test test". $include_user."
                       WHERE c.trainer_id = tr.trainer_id
                       and c.location_id = l.location_id
                       and l.municipality_id = m.municipality_id
-                      and c.test_id = test.test_id";
+                      and c.test_id = test.test_id ".$mun_access;
 $class_details = mysql_query($get_class_details);
 
 
@@ -62,7 +67,7 @@ while ($row = mysql_fetch_assoc($topics)) {
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_class.php' ></div>";?>
 <?php
 
-if ($_GET['message'] != NULL)
+if (isset($_GET['message']))
 {
     if ($_GET['message'] == 'success')
     {
@@ -135,6 +140,8 @@ if ($_GET['message'] != NULL)
                <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_to]' class='editbox dateto'>
         </td >";
         echo " <td> <span class='plus show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'></span> </td >";
+
+
         echo " <td><input type='hidden' name='id' class='editbox' id='editbox_{$row_class["class_id"]}' value='{$row_class["class_id"]}' />"
             ."<input type='button' value='Ruaj' class='save' id='{$row_class["class_id"]}'>"
             ."<input type='button' value='Perditeso' class='edit' id='{$row_class["class_id"]}'> </td >";
