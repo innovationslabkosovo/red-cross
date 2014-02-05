@@ -58,4 +58,32 @@ function login($username, $password)
 
     return(mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `User` WHERE `username` = '$username' AND `password` = '$password'"), 0) == 1) ? $user_id : false;
 }
+
+function is_admin ($user_id)
+{
+
+    if ($result = mysql_query("SELECT COUNT(*) as count FROM User WHERE user_id=$user_id and is_superuser=1"))
+    {
+
+        if (mysql_result($result, 0, 'count') == 1)
+            return true;
+        else
+            return false;
+
+    }else return false;
+}
+
+function get_user_id ($user_id)
+{
+    if ($user_id)
+    {
+        if ($result = mysql_query("SELECT user_id FROM User WHERE user_id = $user_id"))
+        {
+            return mysql_result($result, 0, 'user_id');
+        }else
+            return false;
+    }
+    else
+        return false;
+}
 ?>

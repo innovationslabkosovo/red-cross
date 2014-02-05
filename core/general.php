@@ -54,12 +54,24 @@ function logged_in_redirect()
     }
 }
 
-function protect_page()
+function protect_page($user_id = NULL)
 {
+
+
     if(logged_in() === false)
     {
         header('Location:'.BASE_URL.'/views/protected.php');
         exit();
+    }
+
+    if ($user_id)
+    {
+
+        if (is_admin($user_id) === false)
+        {
+            header('Location:'.BASE_URL.'/views/protected.php?403=1');
+            exit();
+        }
     }
 }
 
