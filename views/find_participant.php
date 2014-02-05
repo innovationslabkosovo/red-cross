@@ -5,8 +5,14 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
+$user_id = $_SESSION['id'];
 
-$get_municipalities = "SELECT municipality_id, name FROM Municipality ";
+if (is_admin($user_id))
+    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m";
+else
+    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
+
+$get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
 ?>
 <h1>Participantet sipas klasave</h1>

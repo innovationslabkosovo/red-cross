@@ -5,8 +5,17 @@ include '../core/init.php';
 protect_page();
 include $project_root . 'views/layout/header.php';
 
+$user_id = $_SESSION['id'];
+$mun_access = "";
+$include_user = "";
+if (!is_admin($user_id))
+{
+    $include_user = ",Location l, Municipality m, User u ";
+    $mun_access = "where c.location_id = l.location_id and l.municipality_id = m.municipality_id and m.municipality_id = u.municipality_id and u.user_id=$user_id";
+}
 
-$get_class = "SELECT class_id, name FROM Class ";
+
+$get_class = "SELECT c.class_id, c.name FROM Class c".$include_user.$mun_access;
 $classes = mysql_query($get_class);
 
 ?>

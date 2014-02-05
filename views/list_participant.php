@@ -7,14 +7,29 @@ protect_page();
 include $project_root . 'views/layout/header.php';
 
 
-$count_rows = mysql_query("SELECT count(*) FROM Participant");
+$user_id = $_SESSION['id'];
+$mun_access = "";
+$include_user = "";
+if (!is_admin($user_id))
+{
+    $include_user = ",Location l, Municipality m, User u ";
+    $mun_access = "and c.location_id = l.location_id and l.municipality_id = m.municipality_id and m.municipality_id = u.municipality_id and u.user_id=$user_id";
+}
+
+
+$count_rows = mysql_query("SELECT count(*) FROM Participant p, ParticipantClass pc, Class c ".$include_user."
+                     WHERE p.participant_id=pc.participant_id and
+                     pc.class_id=c.class_id ".$mun_access."
+                     ORDER BY p.name");
 $num_rows = mysql_result($count_rows, 0);
 
 $pages = new Paginator;
 $pages->items_total = $num_rows;
 $pages->paginate();
 $get_participants = "SELECT  p.*, c.name as class_name, c.class_id as class_id
-                     FROM Participant as p INNER JOIN ParticipantClass as pc on p.participant_id=pc.participant_id INNER JOIN Class as c on pc.class_id=c.class_id
+                     FROM Participant p, ParticipantClass pc, Class c ".$include_user."
+                     WHERE p.participant_id=pc.participant_id and
+                     pc.class_id=c.class_id ".$mun_access."
                      ORDER BY p.name
                      $pages->limit";
 $participants = mysql_query($get_participants);
