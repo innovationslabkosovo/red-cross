@@ -21,6 +21,7 @@ $page_title = "Menaxho Grupet Tematike";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
+$user_id = $_SESSION['id'];
 include $project_root . 'views/layout/header.php';
 
 $count_rows = mysql_query("SELECT count(*) FROM TopicGroup");
@@ -58,7 +59,10 @@ $status[0]="Jo-aktiv";
             }*/
             ?>
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic_group.php"></div>
-        <table border="1" id="editable">
+        <table border="1" id="editable" class="bordered">
+            <th>Grupi Tematik</th>
+            <th>Statusi</th>
+            <th>Modifiko</th>
             <?php
 
             while ($data_tg = mysql_fetch_assoc($topic_groups))
@@ -92,6 +96,10 @@ $status[0]="Jo-aktiv";
                         <option value="Jo-aktiv" <?php echo $selected; ?>>Jo-aktiv</option>
                     </select>
                 </td>
+                <?php
+                if (is_admin($user_id))
+                {
+                ?>
                 <td>
                     <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                     <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
@@ -99,7 +107,11 @@ $status[0]="Jo-aktiv";
                     <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
                     <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                 </td>
+                <?php
+                }
 
+                else echo "<td></td>";
+                ?>
             </tr>
             <?php
             }
