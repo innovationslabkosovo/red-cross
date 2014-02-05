@@ -19,7 +19,7 @@ if(empty($_POST) === false)
 
 
         if (mysql_query("INSERT INTO TopicGroup(topic_group_id, name, active) VALUES ('', '$topic_group' ,  '$active')"))
-            header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroup");
+            header("location: ../../views/list_topic_groups.php?message=success&object=TopicGroup");
         else header("location: ../../views/create_topic_group.php?message=fail&object=TopicGroup");
 
     }
@@ -50,7 +50,7 @@ if(empty($_POST) === false)
         {
 
             if (mysql_query("DELETE FROM TopicGroup where topic_group_id='$rowID'")){
-                 //header("location: ../../views/view_topic_groups.php?message=success&object=TopicGroupDelete");
+                 //header("location: ../../views/list_topic_groups.php?message=success&object=TopicGroupDelete");
                 $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'TopicGroupDelete');
                 ob_clean();
                 echo json_encode($data);

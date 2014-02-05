@@ -37,7 +37,7 @@ $municipality = mysql_fetch_assoc($get_municipality);
 //get locations of all classes, number of participants, class names and IDs
 $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, Trainer.name as trainer_name, Trainer.surname as surname, Location.name as location, (SELECT COUNT(*) from ParticipantClass as ipc WHERE ipc.class_id = Class.class_id ) as participants, (Select COUNT(*) from ParticipantClass as ipc inner join Participant on Participant.participant_id = ipc.participant_id WHERE ipc.class_id = Class.class_id and Participant.gender = 'M') as male, (Select COUNT(*) from ParticipantClass as ipc inner join Participant on Participant.participant_id = ipc.participant_id WHERE ipc.class_id = Class.class_id and Participant.gender = 'F') as female
                           FROM Class inner join Location on Class.location_id = Location.location_id inner join ParticipantClass on ParticipantClass.class_id = Class.class_id inner join Trainer on Trainer.trainer_id = Class.trainer_id
-                          WHERE Location.location_id IN (Select location_id from Location where municipality_id = '$selected') and date_from >= '$datefrom' and date_to <= '$dateto'");
+                          WHERE Location.location_id IN (Select location_id from Location where municipality_id = '$selected') and date_to >= '$datefrom' and date_to <= '$dateto'");
 
 ?>
 <html>
@@ -74,15 +74,22 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
         $total_females = 0;
         $total_pre = 0;
         $total_post = 0;
-        $total_change = 0;
 
         while ($classes = mysql_fetch_assoc($get_classes)){
 
         //get only IDs of classes
         $classes_id = $classes['class_id'];
+
+        //get all answers of pre-test
         $get_pre_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para'");
+
+        //get all answers of post-test
         $get_post_success=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas'");
+
+        //get all correct answers of pre-test
         $get_pre_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'para' and answer='1'");
+
+        //get all correct answers of post-test
         $get_post_success1=mysql_query("SELECT COUNT(answer) as sum FROM ParticipantAnswer WHERE participant_id IN (SELECT participant_id from ParticipantClass where class_id = '$classes_id') and type = 'pas' and answer='1'");
 
         $q1 = mysql_fetch_assoc($get_pre_success);
@@ -118,17 +125,16 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
             $total_participants += $classes['participants'];
             $total_males += $classes['male'];
             $total_females += $classes['female'];
-            $total_pre += $pre;
-            $total_post += $post;
-            $total_change += $change;
+            $total_pre += $pre*$classes['participants'];
+            $total_post += $post*$classes['participants'];
         }?>
         <td colspan="4">Totali</td>
         <td><?php echo $total_participants;?></td>
         <td><?php echo $total_males;?></td>
         <td><?php echo $total_females;?></td>
-        <td><?php echo round($total_pre/($counter-1), 2); echo"%";?></td>
-        <td><?php echo round($total_post/($counter-1), 2); echo"%";?></td>
-        <td><?php echo round($total_change/($counter-1), 2); echo"%";?></td>
+        <td><?php echo round($total_pre/$total_participants, 2); echo"%";?></td>
+        <td><?php echo round($total_post/$total_participants, 2); echo"%";?></td>
+        <td><?php echo round(($total_post-$total_pre)/$total_participants, 2); echo"%";?></td>
     <?php
     }
     ?>

@@ -169,6 +169,10 @@ table {
     width: 920px !important;
 }
 
+.ui-datepicker table {
+    width: 100% !important;
+}
+
 div.form-error {
     padding: 6px 12px;
     line-height: 180%;
@@ -354,7 +358,8 @@ table {
 
 /* From Web Elements */
 .submitSmlBtn, input[type='submit'] {
-    width: 85px;
+/*    width: 85px;*/
+    text-align: center;
     background: #ccc;
     border: 1px solid #e7e7e7;
     border-bottom: 4px solid #d65c5c;
@@ -392,8 +397,9 @@ table {
 }
 
 .button {
+    text-align: center;
     display: block;
-    width: 105px;
+/*    width: 105px;*/
     background: #dbdada;
     border: 1px solid #e7e7e7;
     border-bottom: 4px solid #d65c5c;
@@ -734,4 +740,16 @@ table {
 }
 .align-top {
     vertical-align: top;
+}
+.plus, .minus {
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+}
+.plus {
+    background-image: url(../img/plus.png);
+}
+.minus {
+    background-image: url(../img/minus.png);
 }

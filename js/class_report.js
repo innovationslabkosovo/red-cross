@@ -15,7 +15,7 @@ var obj = {
 			data: dataString,
 			cache: false,
 			success: function (html) {
-				$('#class_id')
+				$('.class_id')
 				.find('option:gt(0)')
 				.remove('')
 				.end()
@@ -26,7 +26,7 @@ var obj = {
 }
 
 /* AJAX - Call changeDrejtimi. */
-$('#municipality_id').change(obj.changeMunicipality);
+$('.municipality_id').change(obj.changeMunicipality);
 
 /* AJAX - Call changeViti. */
 //$('#class_id').change(obj.changeClass);

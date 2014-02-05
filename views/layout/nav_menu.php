@@ -18,13 +18,13 @@
             <li><a href="javascript:void(0);">Menaxho Grupet Tematike</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_topic_group.php">Krijo Grup Tematik</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/view_topic_groups.php">Listo Grupet Tematike</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_topic_groups.php">Listo Grupet Tematike</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Temat</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_topic.php">Krijo Teme te Re</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/view_topics.php">Listo Temat</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_topics.php">Listo Temat</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Pyetjet</a>
@@ -43,7 +43,14 @@
                 <a href="javascript:void(0);">Menaxho Kategorite</a>
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_category.php">Krijo Kategori te Re</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/view_categories.php">Listo Kategorite</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_category.php">Listo Kategorite</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0);">Menaxho Trajneret</a>
+                <ul class="third_level">
+                    <li><a href="<?php echo BASE_URL; ?>/views/create_trainer.php">Krijo Trajner te Ri</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/list_trainer.php">Listo Trajneret</a></li>
                 </ul>
             </li>
         </ul>

@@ -16,7 +16,7 @@ $get_classes=mysql_query("SELECT Municipality.municipality_id as m_id, Municipal
 
 FROM Class inner join Location on Class.location_id = Location.location_id inner join Municipality on Municipality.municipality_id = Location.municipality_id  inner join ParticipantClass as pc on pc.class_id = Class.class_id inner join Participant as par on par.participant_id = pc.participant_id
 
-and Class.date_from >= '$datefrom' and Class.date_to <= '$dateto' order by m_id ASC");
+and Class.date_to >= '$datefrom' and Class.date_to <= '$dateto' order by m_id ASC");
 
 ?>
 <html>
@@ -85,11 +85,6 @@ else {
 
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
-            //$change = $post-$pre;
-            $total_pre += $pre_success;
-            $total_post += $post_success;
-            $total_change += $post_success-$pre_success;
-
             $previous_municipality = $classes['m_id'];
             $counter++;
             continue;
@@ -104,12 +99,11 @@ else {
                 <td><?php echo $participants;
                     //if there are participants
                     if ($participants != 0){
-                    $pre = $pre_success*100/$participants;
-                    $post = $post_success*100/$participants;
+                    $pre = round($pre_success*100/$participants, 2);
+                    $post = round($post_success*100/$participants, 2);
                     $change = $post-$pre;
-                    $total_pre += $pre;
-                    $total_post += $post;
-                    $total_change += $change;
+                    $total_pre += $pre*$participants;
+                    $total_post += $post*$participants;
                     ?></td>
                 <td><?php echo $gender_m; ?></td>
                 <td><?php echo $gender_f; ?></td>
@@ -143,10 +137,6 @@ else {
 
                 $pre_success = $classes['para_correct'];
                 $post_success = $classes['pas_correct'];
-                $total_pre += $pre_success;
-                $total_post += $post_success;
-                $total_change += $post_success-$pre_success;
-
                 $previous_municipality = $classes['m_id'];
                 $counter++;
                 $total_counter++;
@@ -174,9 +164,6 @@ else {
             }
             $pre_success += $classes['para_correct'];
             $post_success += $classes['pas_correct'];
-            $total_pre += $pre_success;
-            $total_post += $post_success;
-            $total_change += $post_success-$pre_success;
 
         }
     }}
@@ -186,12 +173,11 @@ else {
     <td><?php echo $municipality;?></td>
     <td><?php echo $participants;
         if ($participants != 0){
-        $pre = $pre_success*100/$participants;
-        $post = $post_success*100/$participants;
+        $pre = round($pre_success*100/$participants, 2);
+        $post = round($post_success*100/$participants, 2);
         $change = $post-$pre;
-        $total_pre += $pre;
-        $total_post += $post;
-        $total_change += $change;
+        $total_pre += $pre * $participants;
+        $total_post += $post * $participants;
         ?></td>
             <td><?php echo $gender_m; ?></td>
             <td><?php echo $gender_f; ?></td>
@@ -215,9 +201,9 @@ else {
     <td><?php echo $count_participants[0];?></td>
     <td><?php echo $count_participants[1];?></td>
     <td><?php echo $count_participants[2];?></td>
-    <td><?php echo round($total_pre/$total_counter, 2); echo"%";?></td>
-    <td><?php echo round($total_post/$total_counter, 2); echo"%";?></td>
-    <td><?php echo round($total_change/$total_counter, 2); echo"%";?></td>
+    <td><?php echo round($total_pre/$count_participants[0], 2); echo"%";?></td>
+    <td><?php echo round($total_post/$count_participants[0], 2); echo"%";?></td>
+    <td><?php echo round(($total_post-$total_pre)/$count_participants[0], 2); echo"%";?></td>
 </table>
 </body>
 <?php

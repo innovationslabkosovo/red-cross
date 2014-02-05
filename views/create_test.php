@@ -40,7 +40,18 @@
 ?>
 
 <br>
-
+<input type="button" id="select_questions" value="Selekto te gjitha" /><br>
+<input type="button" id="clear_questions" value="Pastro te gjitha" /><br>
+    <script type="application/javascript">
+        $("#select_questions").click(function() {
+            $("input[type='checkbox']").prop("checked", true); 
+        });
+        
+        $("#clear_questions").click(function() {
+            $("input[type='checkbox']").prop("checked", false); 
+        });
+    </script>
+    <br>
 <input type="submit" id="krijo_test" value="Krijo test">
 
 </form>

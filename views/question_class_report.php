@@ -41,8 +41,6 @@ if ($municipality_id) {
 $true_answers_before = 0;
 $true_answers_after = 0;
 
-// $number_of_participants_before = 0;
-// $number_of_participants_after = 0;
 $number_of_participants = 0;
 
 $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
@@ -51,7 +49,7 @@ $municipalities = mysql_query($get_municipalities);
 ?>
 <form action="" method="GET">
 <div class="dropdown">
-<select name="mun_id" id="municipality_id" class="dropdown-select" value="<?php echo $municipality_id; ?>">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
         create_options($municipalities, "municipality_id", "name");
@@ -59,7 +57,7 @@ $municipalities = mysql_query($get_municipalities);
 </select>
 </div>
 <div class="dropdown">
-<select name="class_id" id="class_id" class="dropdown-select">
+<select name="class_id" id="class_id" class="class_id dropdown-select">
     <option value="">Zgjedh Klasen</option>
 </select>
 </div>
@@ -112,14 +110,12 @@ $questions = mysql_query($get_all_questions);
 		<?php endif; ?>
 	<tr>
 		<?php
-			// if ($question_id) {
 				$total_before = $true_answers_before / $number_of_participants * 100;
 				$total_after  = $true_answers_after / $number_of_participants * 100;
-			// }
 		?>
 		<td><strong>Totali i pergjigjeve te sakta:</strong></td>
-		<td id="para-testit"><?php echo number_format($total_before, 2, '.', ''); ?>%</td>
-		<td id="pas-testit"><?php echo  number_format($total_after, 2, '.', ''); ?>%</td>
+		<td id="para-testit"><?php echo round($total_before, 2); ?>%</td>
+		<td id="pas-testit"><?php echo  round($total_after, 2); ?>%</td>
 	</tr>
 </table>
 

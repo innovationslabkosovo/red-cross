@@ -134,7 +134,7 @@ if ($_GET['message'] != NULL)
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_to] </span>
                <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_to]' class='editbox dateto'>
         </td >";
-        echo " <td> <span class='show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'>+</span> </td >";
+        echo " <td> <span class='plus show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'></span> </td >";
         echo " <td><input type='hidden' name='id' class='editbox' id='editbox_{$row_class["class_id"]}' value='{$row_class["class_id"]}' />"
             ."<input type='button' value='Ruaj' class='save' id='{$row_class["class_id"]}'>"
             ."<input type='button' value='Perditeso' class='edit' id='{$row_class["class_id"]}'> </td >";
@@ -200,9 +200,22 @@ if ($_GET['message'] != NULL)
         $(".show_details").click(function(){
             var class_id = $(this).attr('id');
             $(".details").hide(100);
+            
+            if($(this).hasClass("plus")) {
+                $(".show_details").removeClass("minus");
+                $(".show_details").addClass("plus");
+                
+                $(this).addClass("minus");
+                $(this).removeClass("plus");
+            } else {
+                $(this).removeClass("minus");
+                $(this).addClass("plus");
+                $(".show_details").addClass("plus");
+            }
 
             if (!$("#details_row_"+class_id).is(":visible") || $("#edit_mode_"+class_id).attr('edit_mode') == "off")
                 $("#details_row_"+class_id).show();
+            
         });
 
         $(".edit").click(function(){
