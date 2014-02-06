@@ -44,7 +44,7 @@ $(document).ready(function () {
                 });
                 $(".editbox_"+ID+", .save_"+ID+",.cancel_"+ID+"").hide();
                 td.find("#results_"+ID+"").show();
-                $(".edit_"+ID+"").removeClass("hide"););
+                $(".edit_"+ID+"").removeClass("hide");
             }
         });
     });
