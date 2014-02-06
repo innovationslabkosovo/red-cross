@@ -3,8 +3,8 @@
  */
 
 $(function () {
-    $(".datefrom, .dateto, .date_topic").datepicker({dateFormat: 'yy-mm-dd' });
-    $(".time_topic").timepicker();
+    $(".datefrom, .dateto, .date_topic, .date").datepicker({dateFormat: 'yy-mm-dd' });
+    $(".time_topic, .time_from, .time_to").timepicker();
 });
 
 $(document).ready(function () {
