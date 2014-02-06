@@ -91,7 +91,8 @@ function create_options($query_result , $value , $text, $selected=NULL)
 
     while ($data = mysql_fetch_assoc($query_result))
     {
-        //print_r($data);
+        print_r($data);
+        echo $text;
 
         if ($data[$value] == $selected)
             echo "<option value=\"{$data[$value]}\" selected>$data[$text]</option>";

@@ -10,7 +10,7 @@ include $project_root . 'views/layout/header.php';
 
 $i = 0;
 
-$get_trainers = "SELECT trainer_id, name, surname FROM Trainer ";
+$get_trainers = "SELECT trainer_id, CONCAT(name,' ',surname) as name FROM Trainer ";
 $trainers = mysql_query($get_trainers);
 
 $get_tests = "SELECT test_id, name FROM Test ";
