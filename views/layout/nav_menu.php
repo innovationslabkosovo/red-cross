@@ -51,6 +51,7 @@
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_trainer.php">Krijo Trajner te Ri</a></li>
                     <li><a href="<?php echo BASE_URL; ?>/views/list_trainer.php">Listo Trajneret</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/create_evaluation.php">Performanca e Trajnerit</a></li>
                 </ul>
             </li>
         </ul>
