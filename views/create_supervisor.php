@@ -10,22 +10,22 @@ include $project_root . 'views/layout/header.php'; ?>
         <div class="row">
             <h3>Shto supervizor te ri</h3>
             <div class="row">
-                <label>Emri i supervizorit te ri:</label><input type="text" placeholder="Emri" name="first_name" id="trainer">
+                <label>Emri i supervizorit te ri:</label><input type="text" placeholder="Emri" name="first_name" id="trainer" data-validation="required" >
             </div>
             <br>
 
             <div class="row">
-                <label>Mbiemri i supervizorit te ri:</label><input type="text" placeholder="Mbiemri" name="last_name" id="trainer">
+                <label>Mbiemri i supervizorit te ri:</label><input type="text" placeholder="Mbiemri" name="last_name" id="trainer" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Emaili i supervizorit te ri:</label><input type="text" placeholder="Email" name="email" id="trainer">
+                <label>Emaili i supervizorit te ri:</label><input type="text" placeholder="Email" name="email" id="trainer" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" id="trainer">
+                <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" id="trainer" data-validation="required">
             </div>
             <br>
 

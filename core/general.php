@@ -42,6 +42,10 @@ $display_messages = array(
         "success" => "Kategoria u shtua me sukses",
         "fail" => "Kategoria nuk u shtua",
     ),
+    "Supervisor" => array(
+        "success" => "Supervizori u shtua me sukses",
+        "fail" => "Supervizori nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
+    ),
 );
 
 

@@ -47,7 +47,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Kategoria</th>
-                <th>Fshije/Perditeso</th>
+                <th>Perditeso/Fshije</th>
             </tr>
             <?php
 

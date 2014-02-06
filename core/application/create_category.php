@@ -1,5 +1,5 @@
 <?php
-include '../../config/config.php';
+include '../init.php';
 
 if(empty($_POST) === false)
 {
@@ -8,8 +8,8 @@ if(empty($_POST) === false)
         $category=$_POST["category"];
 
         if (mysql_query("INSERT INTO Category(category_id, name) VALUES ('', '$category')"))
-            header("location: ../../views/list_category.php?message=success&object=CategoryDelete");
-        else header("location: ../../views/create_category.php?message=fail&object=CategoryDelete");
+            header("location: ../../views/list_category.php?message=success&object=Category");
+        else header("location: ../../views/create_category.php?message=fail&object=Category");
 
     }
 
@@ -37,21 +37,21 @@ if(empty($_POST) === false)
         {
 
             if (mysql_query("DELETE FROM Category where category_id='$rowID'")){
-                //header("location: ../../views/list_category.php?message=success&object=CategoryDelete");
-                $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'CategoryDelete');
+                //header("location: ../../views/list_category.php?message=success&object=Category");
+                $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'Category');
                 ob_clean();
                 echo json_encode($data);
             }
             else {
 
                 throw new Exception('Kategoria nuk mund te shtohet!');
-                $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'CategoryDelete');
+                $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'Category');
                 ob_clean();
                 echo json_encode($data1);
             }
         }
         catch (Exception $e) {
-            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'CategoryDelete');
+            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'Category');
             ob_clean();
             echo json_encode($data1);
         }
