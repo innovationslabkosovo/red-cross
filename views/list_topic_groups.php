@@ -77,7 +77,7 @@ $status[0]="Jo-aktiv";
 
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox txfform-wrapper input" id="editbox_<?php echo $id; ?>" />
+                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
                 </td>
                 <?php
                 $selected = 'Jo-aktiv';
@@ -91,7 +91,7 @@ $status[0]="Jo-aktiv";
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
                     <!--<input name="status" type="text" value="<?php /*echo $active; */?>" class="editbox" id="editbox_<?php /*echo $id; */?>" />-->
-                    <select name="status" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $active; ?>">
+                    <select name="status" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $active; ?>">
                         <option value="Aktiv" <?php echo $selected; ?>>Aktiv</option>
                         <option value="Jo-aktiv" <?php echo $selected; ?>>Jo-aktiv</option>
                     </select>
@@ -101,11 +101,11 @@ $status[0]="Jo-aktiv";
                 {
                 ?>
                 <td>
-                    <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
-                    <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
-                    <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+                    <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
+                    <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+                    <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
                     <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
-                    <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+                    <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                 </td>
                 <?php
                 }

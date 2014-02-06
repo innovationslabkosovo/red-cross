@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $page_title = "Lista e klasave";
 
 include '../core/init.php';
@@ -114,13 +115,13 @@ if (isset($_GET['message']))
         echo "<input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>";
         // municipality span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span>
-              <select size='1' id='editbox_{$row_class["class_id"]}' name='municipality' class='editbox municipality'>
+              <select size='1' name='municipality' class='editbox_{$row_class["class_id"]} editbox municipality'>
               <option value=''>Zgjedh Komunen</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
         echo " </select></td>";
 
         // village span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[l_name]</span>
-              <select id='editbox_{$row_class["class_id"]}' name='location' class='editbox location_{$row_class["class_id"]}'>
+              <select name='location' class='editbox_{$row_class["class_id"]} editbox location_{$row_class["class_id"]}'>
               <option value=''>Zgjedh Fshatin</option> "; create_options($locations, 'location_id', 'name',$current_location);
         echo " </select>
               <input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>
@@ -128,23 +129,24 @@ if (isset($_GET['message']))
 
         // trainer span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[tr_name]</span>
-              <select id='editbox_{$row_class["class_id"]}' name='trainer' class='editbox trainer_{$row_class["class_id"]}'>
+              <select name='trainer' class='editbox_{$row_class["class_id"]} editbox trainer_{$row_class["class_id"]}'>
               <option value=''>Zgjedh Ligjeruesin</option> "; create_options($trainers, "trainer_id", "name", $current_trainer);;
         echo " </select></td>";
 
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_from] </span>
-               <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_from]' class='editbox datefrom'>
+               <input type='text' size='10' name='date_from' value='$row_class[date_from]' class='editbox_{$row_class["class_id"]} editbox datefrom'>
         </td >";
 
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_to] </span>
-               <input type='text' size='10' name='date_from' id='editbox_{$row_class["class_id"]}' value='$row_class[date_to]' class='editbox dateto'>
+               <input type='text' size='10' name='date_to' value='$row_class[date_to]' class='editbox_{$row_class["class_id"]} editbox dateto'>
         </td >";
         echo " <td> <span class='plus show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'></span> </td >";
 
 
-        echo " <td><input type='hidden' name='id' class='editbox' id='editbox_{$row_class["class_id"]}' value='{$row_class["class_id"]}' />"
-            ."<input type='button' value='Ruaj' class='save' id='{$row_class["class_id"]}'>"
-            ."<input type='button' value='Perditeso' class='edit' id='{$row_class["class_id"]}'> </td >";
+        echo " <td><input type='hidden' name='id' class='editbox_{$row_class["class_id"]} editbox' value='{$row_class["class_id"]}' />"
+            ."<input type='button' value='Ruaj' class='save_{$row_class["class_id"]} save' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Perditeso' class='edit_{$row_class["class_id"]} edit' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Anulo' class='cancel_{$row_class["class_id"]} cancel' id='{$row_class["class_id"]}' style='display:none;'> </td >";
 
         echo "</tr>";
         echo "<tr  style='display: none' id='details_row_$row_class[class_id]' class='details'>";
@@ -165,7 +167,7 @@ if (isset($_GET['message']))
         {
             echo "<tr>";
             echo "<td> $display_topic[tg_name]";
-            echo "<input type='hidden' value='$display_topic[topic_group_id]' name='topic[topic_group_id][]' id='editbox_{$row_class["class_id"]}'></td >";
+            echo "<input type='hidden' value='$display_topic[topic_group_id]' name='topic[topic_group_id][]' class='editbox_{$row_class["class_id"]}'></td >";
 
             echo "<td>";
             foreach ((array)$topic_rows as $t_value) {
@@ -176,17 +178,17 @@ if (isset($_GET['message']))
 
             echo " <td>
                      <span id='results_{$row_class["class_id"]}' class='text'> $display_topic[date] </span>
-                     <input type='text' size='10' name='topic[date_topic][]' id='editbox_{$row_class["class_id"]}' value='$display_topic[date]' class='editbox date_topic'>
+                     <input type='text' size='10' name='topic[date_topic][]' value='$display_topic[date]' class='editbox_{$row_class["class_id"]} editbox date_topic'>
                    </td >";
 
             echo " <td>
                      <span id='results_{$row_class["class_id"]}' class='text'>  $display_topic[time_from]  </span>
-                     <input type='text' size='10' name='topic[time_from_topic][]' id='editbox_{$row_class["class_id"]}' value=' $display_topic[time_from] ' class='editbox time_topic'>
+                     <input type='text' size='10' name='topic[time_from_topic][]' value=' $display_topic[time_from] ' class='editbox_{$row_class["class_id"]} editbox time_topic'>
                    </td >";
 
             echo " <td>
                      <span id='results_{$row_class["class_id"]}' class='text'>  $display_topic[time_to]  </span>
-                     <input type='text' size='10' name='topic[time_to_topic][]' id='editbox_{$row_class["class_id"]}' value=' $display_topic[time_to] ' class='editbox time_topic'>
+                     <input type='text' size='10' name='topic[time_to_topic][]' value=' $display_topic[time_to] ' class='editbox_{$row_class["class_id"]} editbox time_topic'>
                    </td >";
 
 
@@ -207,11 +209,11 @@ if (isset($_GET['message']))
         $(".show_details").click(function(){
             var class_id = $(this).attr('id');
             $(".details").hide(100);
-            
+
             if($(this).hasClass("plus")) {
                 $(".show_details").removeClass("minus");
                 $(".show_details").addClass("plus");
-                
+
                 $(this).addClass("minus");
                 $(this).removeClass("plus");
             } else {
@@ -222,7 +224,7 @@ if (isset($_GET['message']))
 
             if (!$("#details_row_"+class_id).is(":visible") || $("#edit_mode_"+class_id).attr('edit_mode') == "off")
                 $("#details_row_"+class_id).show();
-            
+
         });
 
         $(".edit").click(function(){

@@ -99,18 +99,17 @@ $longitude = $results['longitude'];
 <tr id="<?php echo $id; ?>" class="edit_tr">
 <td>
     <a id="results_<?php echo $id; ?>" class="text" href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
-    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox txfform-wrapper input" id="editbox_<?php echo $id; ?>" />
+    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
 </td>
 
 <td>
     <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
-    <!-- ID ne rreshtin e fundit -->
-    <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
 </td>
 <td>
-    <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
-    <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
-    <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+    <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
+    <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+    <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
+    <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
 </td>
 </tr>
 <?php
