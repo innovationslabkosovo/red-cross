@@ -68,7 +68,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="topic" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="topic" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="" />
                     </td>
                     <?php
                     $selected = 'Jo-aktiv';
@@ -80,7 +80,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                     ?>
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $active; ?></span>
-                        <select name="status" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $active; ?>">
+                        <select name="status" class="editbox_<?php echo $id; ?> editbox" id="" value="<?php echo $active; ?>">
                             <option value="Aktiv" <?php echo $selected; ?>>Aktiv</option>
                             <option value="Jo-aktiv" <?php echo $selected; ?>>Jo-aktiv</option>
                         </select>
@@ -88,7 +88,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $topic_group; ?></span>
-                        <select name="topic_group" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $topic_group; ?>">
+                        <select name="topic_group" class="editbox_<?php echo $id; ?> editbox" id="" value="<?php echo $topic_group; ?>">
                             <option value="">Ndyrsho Grupin Tematik</option>
                             <?php
                             $sql = mysql_query("SELECT topic_group_id, name FROM TopicGroup where active='1'");
@@ -105,11 +105,11 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                     {
                     ?>
                     <td>
-                        <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
-                        <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" id="" value="<?php echo $id;?>">
+                        <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
-                        <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+                        <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>
                     <?php
                     }

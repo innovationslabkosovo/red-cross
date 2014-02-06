@@ -37,9 +37,9 @@ class Paginator{
         $prev_page = $this->current_page-1;
         $next_page = $this->current_page+1;
 
-        if($this->num_pages > 10)
+        if($this->num_pages > 15)
         {
-            $this->return = ($this->current_page != 1 And $this->items_total >= 10) ? "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=$prev_page&ipp=$this->items_per_page\">« Previous</a> ":"<span class=\"inactive\" href=\"#\">« Previous</span> ";
+            $this->return = ($this->current_page != 1 And $this->items_total >= 10) ? "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=$prev_page&ipp=$this->items_per_page\">« Faqja Paraprake</a> ":"<span class=\"inactive\" href=\"#\">« Faqja Paraprake</span> ";
 
             $this->start_range = $this->current_page - floor($this->mid_range/2);
             $this->end_range = $this->current_page + floor($this->mid_range/2);
@@ -66,8 +66,8 @@ class Paginator{
                 }
                 if($this->range[$this->mid_range-1] < $this->num_pages-1 And $i == $this->range[$this->mid_range-1]) $this->return .= " ... ";
             }
-            $this->return .= (($this->current_page != $this->num_pages And $this->items_total >= 10) And ($_GET['page'] != 'All')) ? "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=$next_page&ipp=$this->items_per_page\">Next »</a>\n":"<span class=\"inactive\" href=\"#\">» Next</span>\n";
-            $this->return .= ($_GET['page'] == 'All') ? "<a class=\"current\" style=\"margin-left:10px\" href=\"#\">All</a> \n":"<a class=\"paginate_class\" style=\"margin-left:10px\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All\">All</a> \n";
+            $this->return .= (($this->current_page != $this->num_pages And $this->items_total >= 10) And ($_GET['page'] != 'All')) ? "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=$next_page&ipp=$this->items_per_page\">Faqja e Ardhshme »</a>\n":"<span class=\"inactive\" href=\"#\">» Faqja e Ardhshme</span>\n";
+            $this->return .= ($_GET['page'] == 'All') ? "<a class=\"current\" style=\"margin-left:10px\" href=\"#\">Te Gjitha</a> \n":"<a class=\"paginate_class\" style=\"margin-left:10px\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All\">Te Gjitha</a> \n";
         }
         else
         {
@@ -75,7 +75,7 @@ class Paginator{
             {
                 $this->return .= ($i == $this->current_page) ? "<a class=\"current\" href=\"#\">$i</a> ":"<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=$i&ipp=$this->items_per_page\">$i</a> ";
             }
-            $this->return .= "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All\">All</a> \n";
+            $this->return .= "<a class=\"paginate_class\" href=\"$_SERVER[PHP_SELF]?page=1&ipp=All\">Te Gjitha</a> \n";
         }
         $this->low = ($this->current_page-1) * $this->items_per_page;
         $this->high = ($_GET['ipp'] == 'All') ? $this->items_total:($this->current_page * $this->items_per_page)-1;
@@ -87,7 +87,7 @@ class Paginator{
         $items = '';
         $ipp_array = array(5,10,25,50,100,'All');
         foreach($ipp_array as $ipp_opt)    $items .= ($ipp_opt == $this->items_per_page) ? "<option selected value=\"$ipp_opt\">$ipp_opt</option>\n":"<option value=\"$ipp_opt\">$ipp_opt</option>\n";
-        return "<span class=\"paginate\">Items per page:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value;return false\">$items</select>\n";
+        return "<span class=\"paginate\">Artikujt per faqe:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page=1&ipp='+this[this.selectedIndex].value;return false\">$items</select>\n";
     }
 
     function display_jump_menu()
@@ -96,7 +96,7 @@ class Paginator{
         {
             $option .= ($i==$this->current_page) ? "<option value=\"$i\" selected>$i</option>\n":"<option value=\"$i\">$i</option>\n";
         }
-        return "<span class=\"paginate\">Page:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page='+this[this.selectedIndex].value+'&ipp=$this->items_per_page';return false\">$option</select>\n";
+        return "<span class=\"paginate\">Faqja:</span><select class=\"paginate\" onchange=\"window.location='$_SERVER[PHP_SELF]?page='+this[this.selectedIndex].value+'&ipp=$this->items_per_page';return false\">$option</select>\n";
     }
 
     function display_pages()

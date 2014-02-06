@@ -63,7 +63,6 @@ $municipality = $_GET["municipality"];
         <option value="12">Dhjetor</option>
     </select>
     </div>
-
     <div class="dropdown">
     <select name="municipality" class="dropdown-select">
         <option value=0>Zgjedh Komunen
@@ -77,21 +76,20 @@ $municipality = $_GET["municipality"];
             ?>
     </select>
     </div>
-    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+    <input type="submit" name="GO" vgalue="Gjenero" class="align-top"/>
 </form>
 <hr>
-
-
 <h2>Raporti i Suksesit per pyetje</h2>
 <form action="question_class_report.php" method="GET">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
-    while($roww = mysql_fetch_array($municipalities))
+    mysql_data_seek($municipalities, 0);
+    while($row = mysql_fetch_array($municipalities))
     {
-        $name=$roww["name"];
-        $select=$roww["municipality_id"];
+        $name=$row["name"];
+        $select=$row["municipality_id"];
         echo "<OPTION VALUE=\"$select\">".$name.'</option>';
     }
     ?>
@@ -124,10 +122,11 @@ $questions = mysql_query($get_all_questions);
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
     <?php
-    while($rowe = mysql_fetch_array($municipalities))
+    mysql_data_seek($municipalities, 0);
+    while($row = mysql_fetch_array($municipalities))
     {
-        $name=$rowe["name"];
-        $select=$rowe["municipality_id"];
+        $name=$row["name"];
+        $select=$row["municipality_id"];
         echo "<OPTION VALUE=\"$select\">".$name.'</option>';
     }
     ?>

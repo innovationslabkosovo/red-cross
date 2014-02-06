@@ -18,7 +18,7 @@
 
 		echo "<tr id = '{$result["question_id"]}' class=\"edit_tr\"><td>"
 		."<span id='results_{$result["question_id"]}' class='text'>{$result["description"]}</span>"
-		."<input name='question_description' type='text' class='editbox txfform-wrapper input' value='{$result["description"]}' id='editbox_{$result["question_id"]}' />"
+		."<input name='question_description' type='text' class='editbox_{$result["question_id"]} editbox txfform-wrapper input' value='{$result["description"]}' />"
 		."</td><td>".
  		"<div id = 'show_questions'>";
 		$c = 0;
@@ -34,17 +34,18 @@
 				$alphabet = range("A", "Z");
 				// echo $alphabet[$c]." : ".$answer_description[$c]."<br>";
 				echo "<span class='alphabet'>$alphabet[$c]:</span><span id='results_{$result["question_id"]}' class='text'>{$answer_description[$c]}</span>"
-				."<input name='answers_description[]' history='{$c}' type='text' class='editbox txfform-wrapper input' value='{$answer_description[$c]}' id='editbox_{$result["question_id"]}' />"
-				."<input name='answers_id[]' type='hidden' class='editbox txfform-wrapper input' value='{$answer_id[$c]}' id='editbox_{$result["question_id"]}' />";
+				."<input name='answers_description[]' history='{$c}' type='text' class='editbox_{$result["question_id"]} editbox txfform-wrapper input' value='{$answer_description[$c]}' />"
+				."<input name='answers_id[]' type='hidden' class='editbox_{$result["question_id"]} editbox txfform-wrapper input' value='{$answer_id[$c]}' />";
 				$c++;
 			}
 
 		}
 		echo "</div>";
 
-		echo "</td><td>"."<input type='hidden' name='id' class='editbox' id='editbox_{$result["question_id"]}' value='{$result["question_id"]}' />"
-		."<input type='button' value='Ruaj' class='save submitSmlBtn' id='{$result["question_id"]}' />"
-        ."<input type='button'  value='Perditeso' class='edit submitSmlBtn' id='{$result["question_id"]}'  />"
+		echo "</td><td>"."<input type='hidden' name='id' class='editbox_{$result["question_id"]} editbox' value='{$result["question_id"]}' />"
+		."<input type='button' value='Ruaj' class='save_{$result["question_id"]} save submitSmlBtn' id='{$result["question_id"]}' />"
+        ."<input type='button'  value='Perditeso' class='edit_{$result["question_id"]} edit submitSmlBtn' id='{$result["question_id"]}'  />"
+        ."<input type='button'  value='Anulo' class='cancel_{$result["question_id"]} cancel submitSmlBtn' id='{$result["question_id"]}' style='display:none;' />"
 		."</td>";
 
 

@@ -89,35 +89,35 @@ while ($row_participant = mysql_fetch_assoc($participants))
     <tr>
         <td>
             <span id='results_<?=$participant_id?>' class='text'> <?=$name?> </span>
-            <input type='text' size='10' name='name' id='editbox_<?=$participant_id?>' value='<?=$name?>' class='editbox name'>
+            <input type='text' size='10' name='name' value='<?=$name?>' class='editbox_<?=$participant_id?> editbox name'>
         </td>
 
         <td><span id='results_<?=$participant_id?>' class='text'> <?=$surname?> </span>
-            <input type='text' size='10' name='surname' id='editbox_<?=$participant_id?>' value='<?=$surname?>' class='editbox surname'>
+            <input type='text' size='10' name='surname' id='' value='<?=$surname?>' class='editbox_<?=$participant_id?> editbox surname'>
         </td>
 
         <td><span id='results_<?=$participant_id?>' class='text'> <?=$age?> </span>
-            <input type='number' size='10' name='age' id='editbox_<?=$participant_id?>' value='<?=$age?>' class='editbox age'>
+            <input type='number' size='10' name='age' value='<?=$age?>' class='editbox_<?=$participant_id?> editbox age'>
         </td>
 
         <td><span id='results_<?=$participant_id?>' class='text'> <?=$gender?> </span>
-            <select size='1' id='editbox_<?=$participant_id?>' name='gender' class='editbox gender'>
+            <select size='1' name='gender' class='editbox_<?=$participant_id?> editbox gender'>
                 <option value="M" <?php if ($gender =="M") echo "selected"; ?> >Mashkull</option>
                 <option value="F" <?php if ($gender =="F") echo "selected"; ?> >Femer</option>
             </select>
         </td>
 
         <td ><span id='results_<?=$participant_id?>' class='text'> <?=$class_name?></span>
-            <select size='1' id='editbox_<?=$participant_id?>' name='class' class='editbox class'>
+            <select size='1' name='class' class='editbox_<?=$participant_id?> editbox class'>
                 <option value=''>Zgjedh Klasen</option> ";<?php echo  create_options($classes, 'class_id', 'name', $class_id); ?>
         </td>
 
         <td>
-            <input type='hidden' name='id' class='editbox' id='editbox_<?=$participant_id?>' value='<?=$participant_id?>' />
-            <input type='button' value='Ruaj' class='save submitSmlBtn' id='<?=$participant_id?>'>
-            <input type='button' value='Perditeso' class='edit submitSmlBtn' id='<?=$participant_id?>'>
-            <input type='button' value='Anulo' class='cancel submitSmlBtn' id='<?=$participant_id?>' style='display:none;'>
-        </td >
+            <input type='hidden' name='id' class='editbox_<?=$participant_id?> editbox' id='' value='<?=$participant_id?>' />
+            <input type='button' value='Ruaj' class='save_<?=$participant_id?> save submitSmlBtn' id='<?=$participant_id?>'>
+            <input type='button' value='Perditeso' class='edit_<?=$participant_id?> edit submitSmlBtn' id='<?=$participant_id?>'>
+            <input type="button" value="Anulo" class="cancel_<?=$participant_id?> cancel submitSmlBtn" id="<?=$participant_id?>" style="display: none;">
+        </td>
     </tr>
 
     <?php
