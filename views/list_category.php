@@ -61,24 +61,24 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
                 <tr id="<?php echo $id; ?>" class="edit_tr">
 
                     <td>
-                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $id; ?></span>
-                        <input name="category" type="text" value="<?php echo $id; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                        <span><?php echo $id; ?></span>
+                        <!-- <input name="category" type="text" value="<?php //echo $id; ?>" class="editbox_<?php //echo $id; ?> editbox" /> -->
                     </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="category" type="text" value="<?php echo $name; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="category" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" />
                     </td>
 
 
 
                     </td>
                     <td>
-                        <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
-                        <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
+                        <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
-                        <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+                        <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>
 
                 </tr>

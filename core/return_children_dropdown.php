@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include('init.php');
 
 if (isset($_POST['parent_value']) && isset($_POST['parent_id_field']) && isset($_POST['child_table']) && isset($_POST['child_id_field']) && isset($_POST['child_text_field'])){

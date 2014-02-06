@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include '../init.php';
 if(empty($_POST) === false) {
 
@@ -34,7 +35,7 @@ if(empty($_POST) === false) {
 
         foreach ($output as $key=>$value)
         {
-            //print_r($output);
+            //print_r($value);
             $edit_class_topics_qs = "UPDATE ClassTopic set  date='".$value['date_topic']."', time_from='".$value['time_from_topic']."', time_to='".$value['time_to_topic']."' WHERE topic_group_id=".$value['topic_group_id']."";
            // echo $edit_class_topics_qs;
             mysql_query($edit_class_topics_qs);
