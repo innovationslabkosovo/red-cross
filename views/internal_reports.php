@@ -83,7 +83,7 @@ $municipality = $_GET["municipality"];
 
 
 <h2>Raporti i Suksesit per pyetje</h2>
-<form action="question_class_report.php" method="GET">
+<form action="question_class_report.php" method="POST">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
@@ -119,7 +119,7 @@ $questions = mysql_query($get_all_questions);
 
 
 <h2>Raporti i Suksesit per participant</h2>
-<form action="participant_class_report.php" method="GET">
+<form action="participant_class_report.php" method="POST">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
     <option value="">Zgjedh Komunen</option>
