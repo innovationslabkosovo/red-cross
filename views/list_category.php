@@ -8,7 +8,7 @@
             dataType: "json",
             success:function( data ) {
                 console.log(data);
-                $('#'+data.rowId).remove();
+                $('#'+data.rowID).remove();
                 window.location.href = location.pathname+'?'+'message='+data.message+'&object='+data.object;
             }
         });
@@ -46,24 +46,18 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_category.php"></div>
         <table border="1" id="editable" class="bordered">
             <tr>
-                <th>ID</th>
                 <th>Kategoria</th>
                 <th>Fshije/Perditeso</th>
             </tr>
             <?php
 
-            while ($data_tg = mysql_fetch_assoc($categories))
+            while ($data_cat = mysql_fetch_assoc($categories))
             {
-                $id=$data_tg['category_id'];
-                $name=$data_tg['name'];
+                $id=$data_cat['category_id'];
+                $name=$data_cat['name'];
                 ?>
 
                 <tr id="<?php echo $id; ?>" class="edit_tr">
-
-                    <td>
-                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $id; ?></span>
-                        <input name="category" type="text" value="<?php echo $id; ?>" class="editbox" id="editbox_<?php echo $id; ?>" />
-                    </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
