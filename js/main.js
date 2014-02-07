@@ -35,19 +35,16 @@ $(document).ready(function () {
                     if($.isArray(val)) {
                         $.each(val, function(k, v) {
                             // k = key, v = value
-                            $("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
-                            $("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").attr("value", v);
+                            //$("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
+                            // $("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").attr("value", v);
                             //$("[id=results_"+ID+"][history="+k+"]");
                         });
                     }
                     $("[name="+key+"]").prev("#results_"+ID).html(val);
                 });
-
-                $(".save_"+ID+", .cancel_"+ID+"").hide();
-                $(".editbox, .save").hide();
-                $(".hide").removeClass("hide");
-                $(".text").show();
-                $(".text").attr("style", "display:block");
+                $(".editbox_"+ID+", .save_"+ID+",.cancel_"+ID+"").hide();
+                td.find("#results_"+ID+"").show();
+                $(".edit_"+ID+"").removeClass("hide");
             }
         });
     });
