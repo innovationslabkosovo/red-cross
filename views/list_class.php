@@ -81,7 +81,7 @@ if (isset($_GET['message']))
 }
 
 ?>
-    <table class="bordered">
+    <table class="bordered style-for-inputs">
 
     <tr>
         <th >ID</th>
@@ -140,7 +140,7 @@ if (isset($_GET['message']))
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_to] </span>
                <input type='text' size='10' name='date_to' value='$row_class[date_to]' class='editbox_{$row_class["class_id"]} editbox dateto'>
         </td >";
-        echo " <td> <span class='plus show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'></span> </td >";
+        echo " <td class='show_details_parent'> <span class='plus show_details show_details_{$row_class["class_id"]}' id='$row_class[class_id]'></span> </td >";
 
 
         echo " <td><input type='hidden' name='id' class='editbox_{$row_class["class_id"]} editbox' value='{$row_class["class_id"]}' />"

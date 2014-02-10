@@ -756,3 +756,9 @@ table {
 .show_details {
     display: block !important;
 }
+.style-for-inputs select  {
+    width: 90px;
+}
+.show_details_parent {
+    width: 30px;
+}
