@@ -11,6 +11,7 @@
 
 	$query = mysql_query("SELECT * FROM Question");
 	echo "<div id='url' url='{$base_url}/core/application/edit_questions.php'></div>";
+	echo "<form id='url' action='../core/application/edit_questions.php'>";
 	echo "<table border = '1' class='bordered'>";
 	echo "<tr><th>Pyejta</th><th>Pergjigjet</th><th>Edito</th></tr>";
 
@@ -18,7 +19,7 @@
 
 		echo "<tr id = '{$result["question_id"]}' class=\"edit_tr\"><td>"
 		."<span id='results_{$result["question_id"]}' class='text'>{$result["description"]}</span>"
-		."<input name='question_description' type='text' class='editbox_{$result["question_id"]} editbox txfform-wrapper input' value='{$result["description"]}' />"
+		."<input name='question_description' data-validation='required' type='text' class='editbox_{$result["question_id"]} editbox txfform-wrapper input' value='{$result["description"]}' />"
 		."</td><td>".
  		"<div id = 'show_questions'>";
 		$c = 0;
@@ -52,7 +53,16 @@
 	}
 
 	echo "</table>";
+	echo "</form>";
 
  ?>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
+
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>

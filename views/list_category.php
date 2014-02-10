@@ -44,6 +44,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
         <h3>Kategorite Ekzistuese</h3>
 
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_category.php"></div>
+        <form id="url" url="<?php echo BASE_URL; ?>/core/application/create_category.php">
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Kategoria</th>
@@ -60,7 +61,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
                 <tr id="<?php echo $id; ?>" class="edit_tr">
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="category" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" />
+                        <input name="category" data-validation="required" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" />
                     </td>
 
 
@@ -79,6 +80,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
             }
             ?>
         </table>
+        </form>
     </div>
 </form>
 <p  name="message" id="message"/></p>
@@ -91,3 +93,10 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>

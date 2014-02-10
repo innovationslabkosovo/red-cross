@@ -71,7 +71,8 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 <div id="message"></div>
 
 
-<div id="url" url="<?php echo BASE_URL; ?>/core/application/create_location.php"></div>
+<!-- <div id="url" url="<?php //echo BASE_URL; ?>/core/application/create_location.php"></div> -->
+<form id="url" action="../core/application/create_location.php">
 <table border="1" class="bordered">
 <tr>
     <th>Vendndodhja</th>
@@ -99,7 +100,7 @@ $longitude = $results['longitude'];
 <tr id="<?php echo $id; ?>" class="edit_tr">
 <td>
     <a id="results_<?php echo $id; ?>" class="text" href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
-    <input name="location_name" type="text" value="<?php echo $location_name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
+    <input name="location_name" type="text" data-validation="required" value="<?php echo $location_name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
 </td>
 
 <td>
@@ -116,5 +117,13 @@ $longitude = $results['longitude'];
 }
 ?>
 </table>
+</form>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>/js/map.js"></script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
+<script>
+   $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>

@@ -81,6 +81,7 @@ if (isset($_GET['message']))
 }
 
 ?>
+<form id="url" action="../core/application/edit_class.php">
     <table class="bordered style-for-inputs">
 
     <tr>
@@ -178,7 +179,7 @@ if (isset($_GET['message']))
 
             echo " <td>
                      <span id='results_{$row_class["class_id"]}' class='text'> $display_topic[date] </span>
-                     <input type='text' size='10' name='topic[date_topic][]' value='$display_topic[date]' class='editbox_{$row_class["class_id"]} editbox date_topic'>
+                     <input type='text' size='10' name='topic[date_topic][]' value='$display_topic[date]' history='{$i}' class='editbox_{$row_class["class_id"]} editbox date_topic'>
                    </td >";
 
             echo " <td>
@@ -204,6 +205,7 @@ if (isset($_GET['message']))
     ?>
 
 </table>
+</form>
 
     <script>
         $(".show_details").click(function(){
@@ -264,6 +266,12 @@ if (isset($_GET['message']))
                 }
             });
 
+        });
+
+        $.validate({
+            validateOnBlur: true, // disable validation when input looses focus
+            //errorMessagePosition: 'top', // Instead of 'element' which is default
+            addValidClassOnAll : true,
         });
 
     </script>

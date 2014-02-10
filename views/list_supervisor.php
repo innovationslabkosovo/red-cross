@@ -44,6 +44,7 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
         <h3>Supervizoret Ekzistues</h3>
 
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_supervisor.php"></div>
+        <form id="url" url="<?php echo BASE_URL; ?>/core/application/create_supervisor.php">
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Emri</th>
@@ -67,7 +68,7 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $first_name; ?></span>
-                        <input name="supervisor" type="text" value="<?php echo $first_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="supervisor" data-validation="required" type="text" value="<?php echo $first_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <td>
@@ -98,6 +99,7 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
             }
             ?>
         </table>
+        </form>
     </div>
 </form>
 <p  name="message" id="message"/></p>
@@ -110,3 +112,10 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>

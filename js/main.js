@@ -22,8 +22,12 @@ $(document).ready(function () {
     $(".save").click(function () {
         var ID = $(this).attr("id");
         var td = $("td");
-        var fileUrl = $("#url").attr("url");
+        // var fileUrl = $("#url").attr("url");
+        var fileUrl = $('form#url').attr('action');
         var dataString = td.find(".editbox_" + ID).serializeArray();
+        if($('td').hasClass('has-error')) {
+            return false;
+        }
         $.ajax({
             type: "POST",
             url: fileUrl,
@@ -34,17 +38,18 @@ $(document).ready(function () {
                 $.each(data,function(key, val) {
                     if($.isArray(val)) {
                         $.each(val, function(k, v) {
-                            // k = key, v = value
-                            //$("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
-                            // $("[name="+key+"\\[\\]][class=editbox_"+ID+"][history="+k+"]").attr("value", v);
-                            //$("[id=results_"+ID+"][history="+k+"]");
+                            console.log(k);
+                            console.log(v);
+                            $("[name="+key+"\\[\\]][class~=editbox_"+ID+"][history="+k+"]").prev("#results_"+ID).html(v);
+                            $("[name="+key+"\\[\\]][class~=editbox_"+ID+"][history="+k+"]").attr("value", v);
                         });
                     }
+                    // console.log(val);
                     $("[name="+key+"]").prev("#results_"+ID).html(val);
-                });
-                $(".editbox_"+ID+", .save_"+ID+",.cancel_"+ID+"").hide();
-                td.find("#results_"+ID+"").show();
-                $(".edit_"+ID+"").removeClass("hide");
+                    });
+                    $(".editbox_"+ID+", .save_"+ID+",.cancel_"+ID+"").hide();
+                    td.find("#results_"+ID+"").show();
+                    $(".edit_"+ID+"").removeClass("hide");
             }
         });
     });
