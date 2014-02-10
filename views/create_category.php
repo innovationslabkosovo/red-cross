@@ -1,7 +1,8 @@
 <?php
 $page_title = "Krijo Kategori te Re";
 include '../core/init.php';
-protect_page();
+$user_id = $_SESSION['id'];
+protect_page($user_id);
 $errors = array();
 include $project_root . 'views/layout/header.php'; ?>
 
@@ -25,3 +26,8 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+<script>
+
+    $.validate();
+
+</script>
