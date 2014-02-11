@@ -27,7 +27,7 @@ $locations = mysql_query($get_locations);
 
     <div class="dropdown">
 
-        <select id="municipality_id" name="municipality" class="dropdown-select">
+        <select id="municipality_id" data-validation="required" name="municipality" class="dropdown-select">
             <option value="">Zgjedh Komunen</option>
             <?php
             create_options($municipalities, "municipality_id", "name");
@@ -36,18 +36,15 @@ $locations = mysql_query($get_locations);
     </div>
 
     <div class="dropdown">
-        <select id="location_id" name="location" class="dropdown-select">
+        <select id="location_id" name="location" data-validation="required" class="dropdown-select">
             <option value="">Zgjedh Fshatin</option>
-            <?php
-             //create_options($locations, "location_id", "name");
-            ?>
         </select>
     </div>
     <br>
 
     <div class="row">
         <label>Vendi: </label>
-        <input type="text" name="place" class="txfform-wrapper input" placeholder="Shtepi Private, Shkolle ...">
+        <input type="text" name="place" data-validation="required" class="txfform-wrapper input" placeholder="Shtepi Private, Shkolle ...">
     </div>
     <br>
     <div class="row">
@@ -61,12 +58,12 @@ $locations = mysql_query($get_locations);
     <br>
     <div class="row">
         <label>Numri i Pjesëmarrësve</label>
-        <input type="text" name="participants" class="txfform-wrapper input" placeholder="Shtepi Private, Shkollë ...">
+        <input type="text" name="participants" class="txfform-wrapper input">
     </div>
     <br>
     <div class="row">
         <label>Grupmosha</label>
-        <input type="text" name="age_group" class="txfform-wrapper input" placeholder="Shtepi Private, Shkollë ...">
+        <input type="text" name="age_group" class="txfform-wrapper input" placeholder="p.sh. 15-45">
     </div>
     <br>
     <div class="row">
@@ -112,7 +109,7 @@ $locations = mysql_query($get_locations);
     <label>Vëzhgimet</label>
     <br>
     <textarea id="commentBox" name="notes" placeholder="Vëzhgimet"></textarea>
-
+    <input type="submit" value="Regjistro">
     <script>
         $("#municipality_id").change(function () {
 
