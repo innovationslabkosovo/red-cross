@@ -5,7 +5,7 @@
  * Date: 11/23/13
  * Time: 10:25 PM
  */
-
+error_reporting(0);
 $page_title = "Shto Lokacion";
 include '../core/init.php';
 protect_page();
