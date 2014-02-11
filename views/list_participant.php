@@ -59,6 +59,7 @@ $participants = mysql_query($get_participants);
 
 
 ?>
+<form id="url" action="../core/application/edit_participant.php">
 <table class="bordered">
 
     <tr>
@@ -89,7 +90,7 @@ while ($row_participant = mysql_fetch_assoc($participants))
     <tr>
         <td>
             <span id='results_<?=$participant_id?>' class='text'> <?=$name?> </span>
-            <input type='text' size='10' name='name' value='<?=$name?>' class='editbox_<?=$participant_id?> editbox name'>
+            <input type='text' size='10' name='name' data-validation='required' value='<?=$name?>' class='editbox_<?=$participant_id?> editbox name'>
         </td>
 
         <td><span id='results_<?=$participant_id?>' class='text'> <?=$surname?> </span>
@@ -119,7 +120,14 @@ while ($row_participant = mysql_fetch_assoc($participants))
             <input type="button" value="Anulo" class="cancel_<?=$participant_id?> cancel submitSmlBtn" id="<?=$participant_id?>" style="display: none;">
         </td>
     </tr>
-
+    </form>
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>
     <?php
 }
 

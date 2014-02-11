@@ -59,6 +59,7 @@ $status[0]="Jo-aktiv";
             }*/
             ?>
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic_group.php"></div>
+        <form id="url" action="../core/application/create_topic_group.php">
         <table border="1" id="editable" class="bordered">
             <th>Grupi Tematik</th>
             <th>Statusi</th>
@@ -77,7 +78,7 @@ $status[0]="Jo-aktiv";
 
                 <td>
                     <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                    <input name="topic_group" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
+                    <input name="topic_group" data-validation="required" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
                 </td>
                 <?php
                 $selected = 'Jo-aktiv';
@@ -117,6 +118,7 @@ $status[0]="Jo-aktiv";
             }
             ?>
         </table>
+        </form>
     </div>
 </form>
 <p  name="message" id="message"/></p>
@@ -128,3 +130,11 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>
