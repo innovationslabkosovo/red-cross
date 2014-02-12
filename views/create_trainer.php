@@ -11,22 +11,22 @@ include $project_root . 'views/layout/header.php'; ?>
         <div class="row">
             <h3>Shto trajner te ri</h3>
             <div class="row">
-                <label>Emri i trajnerit te ri:</label><input type="text" placeholder="Emri" name="first_name" id="trainer" data-validation="required">
+                <label>Emri i trajnerit te ri:</label><input type="text" placeholder="Emri" name="first_name" class="txfform-wrapper input" id="trainer" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Mbiemri i trajnerit te ri:</label><input type="text" placeholder="Mbiemri" name="last_name" id="trainer" data-validation="required">
+                <label>Mbiemri i trajnerit te ri:</label><input type="text" placeholder="Mbiemri" name="last_name" class="txfform-wrapper input" id="trainer" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Emaili i trajnerit te ri:</label><input type="email" placeholder="Email" name="email" id="trainer" data-validation="required">
+                <label>Emaili i trajnerit te ri:</label><input type="email" placeholder="Email" name="email" id="trainer" class="txfform-wrapper input" id="trainer" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" id="trainer" data-validation="required">
+                <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer" data-validation="required">
             </div>
             <br>
 
