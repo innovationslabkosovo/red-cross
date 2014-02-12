@@ -12,12 +12,13 @@
 	$query = mysql_query("SELECT * FROM Test");
 
 	echo "<div id='url' url='{$base_url}/core/application/edit_test.php' ></div>";
+	echo "<form id='url' url='{$base_url}/core/application/edit_test.php' >";
 	echo "<table  class = 'bordered'>";
 	echo "<tr><th>Emri</th><th>Edito</th></tr>";
 	while ($result = mysql_fetch_assoc($query)) {
 		echo "<tr id = '{$result["test_id"]}' class=\"edit_tr\"><td>"
 		."<span id='results_{$result["test_id"]}' class='text'>{$result["name"]}</span>"
-		."<input name='test_description' type='text' class='editbox_{$result["test_id"]} editbox txfform-wrapper input' value='{$result["name"]}' />"
+		."<input name='test_description' data-validation='required' type='text' class='editbox_{$result["test_id"]} editbox txfform-wrapper input' value='{$result["name"]}' />"
 		."</td>";
 
 		echo "<td>"."<input type='hidden' name='id' class='editbox_{$result["test_id"]} editbox' value='{$result["test_id"]}' />"
@@ -29,8 +30,16 @@
 	}
 
 	echo "</table>";
+	echo "</form>";
 	echo "</div>";
 
  ?>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>

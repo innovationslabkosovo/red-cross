@@ -47,6 +47,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
         <h3>Temat Ekzistuese</h3>
 
         <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic.php"></div>
+        <form id="url" action="../core/application/create_topic.php">
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Tema</th>
@@ -68,7 +69,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="topic" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="" />
+                        <input name="topic" data-validation="required" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="" />
                     </td>
                     <?php
                     $selected = 'Jo-aktiv';
@@ -121,6 +122,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
             }
             ?>
         </table>
+        </form>
     </div>
 </form>
 <p  name="message" id="message"/></p>
@@ -132,3 +134,11 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true,
+    });
+</script>
