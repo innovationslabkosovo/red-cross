@@ -21,12 +21,12 @@ include $project_root . 'views/layout/header.php'; ?>
         <br>
 
         <div class="row">
-            <label>Emaili i trajnerit te ri:</label><input type="email" placeholder="Email" name="email" id="trainer" class="txfform-wrapper input" >
+            <label>Emaili i trajnerit te ri:</label><input type="email" placeholder="Email" name="email" id="trainer" class="txfform-wrapper input" id="trainer" data-validation="required">
         </div>
         <br>
 
         <div class="row">
-            <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer" >
+            <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer" data-validation="required">
         </div>
         <br>
 
