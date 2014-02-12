@@ -21,6 +21,7 @@ $page_title = "Menaxho Supervizoret";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
+$user_id = $_SESSION['id'];
 include $project_root . 'views/layout/header.php';
 
 $count_rows = mysql_query("SELECT count(*) FROM Supervisor");
@@ -72,27 +73,35 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $last_name; ?></span>
-                        <input name="supervisor" type="text" value="<?php echo $last_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="supervisor" type="text" value="<?php echo $last_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                        <input name="supervisor" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="supervisor" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $phone; ?></span>
-                        <input name="supervisor" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="supervisor" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
-                    <td>
-                        <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
-                        <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
-                        <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
-                    </td>
+                    <?php
+                    if (is_admin($user_id))
+                    {
+                        ?>
+                        <td>
+                            <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
+                            <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+                            <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
+                            <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
+                            <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+                        </td>
+                    <?php
+                    }
 
+                    else echo "<td></td>";
+                    ?>
                 </tr>
             <?php
             }
@@ -102,7 +111,6 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
 </form>
 <p  name="message" id="message"/></p>
 <p  name="object" id="object" value="" />
-
 <?php
 if (isset($_GET['message']) && isset($_GET['object']))
 {

@@ -46,6 +46,10 @@ $display_messages = array(
         "success" => "Supervizori u shtua me sukses",
         "fail" => "Supervizori nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
     ),
+    "Trainer" => array(
+        "success" => "Trajneri u shtua me sukses",
+        "fail" => "Trajneriri nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
+    ),
 );
 
 
