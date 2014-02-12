@@ -29,18 +29,29 @@ if(empty($_POST) === false)
         $place = $_POST['place'];
         $notes = $_POST['notes'];
         $categories = $_POST['category'];
-
+        $categories_db = mysql_query("SELECT category_id FROM Category");
 
         if (mysql_query("INSERT INTO Evaluation(evaluation_id, date, time_from, time_to, participants, age_group, gender, trainer_id, supervisor_id, location_id, location, notes)
                             values ('', '$date', '$time_from', '$time_to', '$participant', '$age_group', '$gender', $trainer, $supervisor, $location, '$place', '$notes')")){
 
             $evaluation_id = mysql_insert_id();
 
-            foreach($categories as $category) {
+            while($data_cat = mysql_fetch_assoc($categories_db)) {
 
-                if (mysql_query("INSERT INTO EvaluationCategory(evaluation_id, category_id) values ($evaluation_id, $category)")){
+                if (in_array($data_cat[category_id], $categories)){
 
-                    header("location: ../../views/list_trainer.php?message=success&object=Evaluation");
+                    if (mysql_query("INSERT INTO EvaluationCategory(evaluation_id, category_id, evaluation) values ($evaluation_id, $data_cat[category_id], '1')")){
+
+                        header("location: ../../views/list_trainer.php?message=success&object=Evaluation");
+                    }
+
+                } else {
+
+                    if (mysql_query("INSERT INTO EvaluationCategory(evaluation_id, category_id, evaluation) values ($evaluation_id, $data_cat[category_id], '0')")){
+
+                        header("location: ../../views/list_trainer.php?message=success&object=Evaluation");
+                    }
+
                 }
 
             }
