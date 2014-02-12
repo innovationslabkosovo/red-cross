@@ -27,7 +27,7 @@ $locations = mysql_query($get_locations);
 
     <div class="dropdown">
 
-        <select id="municipality_id" data-validation="required" name="municipality" class="dropdown-select">
+        <select id="municipality_id" name="municipality" class="dropdown-select">
             <option value="">Zgjedh Komunen</option>
             <?php
             create_options($municipalities, "municipality_id", "name");
@@ -36,7 +36,7 @@ $locations = mysql_query($get_locations);
     </div>
 
     <div class="dropdown">
-        <select id="location_id" name="location" data-validation="required" class="dropdown-select">
+        <select id="location_id" data-validation="required" name="location" data-validation="required" class="dropdown-select">
             <option value="">Zgjedh Fshatin</option>
         </select>
     </div>
@@ -58,18 +58,24 @@ $locations = mysql_query($get_locations);
     <br>
     <div class="row">
         <label>Numri i Pjesëmarrësve</label>
-        <input type="text" name="participants" class="txfform-wrapper input">
+        <input type="text" data-validation="required" data-validation="number" name="participants" class="txfform-wrapper input">
     </div>
     <br>
     <div class="row">
         <label>Grupmosha</label>
-        <input type="text" name="age_group" class="txfform-wrapper input" placeholder="p.sh. 15-45">
+            <input data-validation="custom" data-validation-regexp="^\d{2}-\d{2}$" type="text"  name="age_group" class="txfform-wrapper input" placeholder="p.sh. 15-45">
     </div>
     <br>
     <div class="row">
         <label>Gjinia</label>
-        <input type="text" name="gender" class="txfform-wrapper input" placeholder="M / F / Gr. i përzier">
-    </div>
+    <div class="dropdown">
+        <select data-validation="required" name="gender" class="dropdown-select">
+            <option value="">Zgjedh Gjininë</option>
+            <option value="M">M</option>
+            <option value="F">F</option>
+            <option value="G">Gr. i përzier</option>
+        </select>
+    </div></div>
     <br>
     <label>Trajneri</label>
     <div class="dropdown">
@@ -99,7 +105,7 @@ $locations = mysql_query($get_locations);
                 <?php
                 while($row = mysql_fetch_array($categories))
                 {
-                    echo "<input type='checkbox' name='category'";
+                    echo "<input type='checkbox' name='category[]' data-validation='checkbox_group' data-validation-qty='min1'";
                     $name=$row["name"];
                     $select=$row["category_id"];
                     echo " VALUE=\"$select\">".$name.'<br>';
@@ -108,9 +114,12 @@ $locations = mysql_query($get_locations);
     <br>
     <label>Vëzhgimet</label>
     <br>
-    <textarea id="commentBox" name="notes" placeholder="Vëzhgimet"></textarea>
+    <span id="max-length-element">500</span> karaktere kan mbetur
+    <textarea id="commentBox" data-validation="length" data-validation-length="max500" name="notes" placeholder="Vëzhgimet"></textarea>
     <input type="submit" value="Regjistro">
     <script>
+
+
         $("#municipality_id").change(function () {
 
             var parent_value = $(this).val();
@@ -139,6 +148,8 @@ $locations = mysql_query($get_locations);
 
         });
 
+        $.validate();
+        $('#commentBox').restrictLength( $('#max-length-element') );
 
     </script>
 
