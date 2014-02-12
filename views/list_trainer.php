@@ -1,34 +1,120 @@
+<script type="text/javascript">
+    function ajaxCall(id){
+        $.ajax({
+
+            type: "POST",
+            url: '../core/application/create_trainer.php',
+            data:{hidDelete: id},
+            dataType: "json",
+            success:function( data ) {
+                console.log(data);
+                $('#'+data.rowID).remove();
+                window.location.href = location.pathname+'?'+'message='+data.message+'&object='+data.object;
+            }
+        });
+    };
+</script>
+
 <?php
-$page_title = "Lista e trajnereve";
+$page_title = "Menaxho Trajneret";
+
 include '../core/init.php';
+require_once('../core/application/Paginator.php');
 protect_page();
-include $project_root . 'views/layout/header.php'; ?>
-    <h3>Lista e trajnereve</h3>
+$user_id = $_SESSION['id'];
+include $project_root . 'views/layout/header.php';
 
-<?php
-$result = mysql_query("SELECT Trainer.name, Trainer.surname, Trainer.email, Trainer.phone
- FROM Trainer");
+$count_rows = mysql_query("SELECT count(*) FROM Trainer");
+$num_rows = mysql_result($count_rows, 0);
 
-echo "<table border='1' class = 'bordered'>
-<tr>
-<th>Emri</th>
-<th>Mbiemri</th>
-<th>E-maili</th>
-<th>Telefoni</th>
-</tr>";
-
-while($row = mysql_fetch_array($result))
-{
-    echo "<tr>";
-    echo "<td>" . $row[0] . "</td>";
-    echo "<td>" . $row[1] . "</td>";
-    echo "<td>" . $row[2] ."</td>";
-    echo "<td>" . $row[3] ."</td>";
-    echo "</tr>";
-}
-echo "</table>";
-
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+echo $pages->display_pages();
+echo $pages->display_jump_menu();
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
+$trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer $pages->limit");
 ?>
 
+<form class="txfform-wrapper cf" name="supervisor_form" action="../core/application/create_trainer.php" method="post">
+    <input type="hidden" name="hidDelete" id="hidDelete" value="" />
+    <div class="row">
 
-<?php include $project_root . 'views/layout/footer.php'; ?>
+        <h3>Trajneret Ekzistues</h3>
+
+        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_trainer.php"></div>
+        <table border="1" id="editable" class="bordered">
+            <tr>
+                <th>Emri</th>
+                <th>Mbiemri</th>
+                <th>Emaili</th>
+                <th>Telefoni</th>
+                <th>Perditeso/Fshije</th>
+            </tr>
+            <?php
+
+            while ($data_tra = mysql_fetch_assoc($trainers))
+            {
+                $id=$data_tra['trainer_id'];
+                $first_name=$data_tra['name'];
+                $last_name=$data_tra['surname'];
+                $email=$data_tra['email'];
+                $phone=$data_tra['phone'];
+                ?>
+
+                <tr id="<?php echo $id; ?>" class="edit_tr">
+
+                    <td>
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $first_name; ?></span>
+                        <input name="name" type="text" value="<?php echo $first_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                    </td>
+
+                    <td>
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $last_name; ?></span>
+                        <input name="surname" type="text" value="<?php echo $last_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                    </td>
+
+                    <td>
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
+                        <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                    </td>
+
+                    <td>
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $phone; ?></span>
+                        <input name="phone" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                    </td>
+
+                    <?php
+                    if (is_admin($user_id))
+                    {
+                        ?>
+                        <td>
+                            <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
+                            <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
+                            <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
+                            <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
+                            <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
+                        </td>
+                    <?php
+                    }
+
+                    else echo "<td></td>";
+                    ?>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    </div>
+</form>
+<p  name="message" id="message"/></p>
+<p  name="object" id="object" value="" />
+<?php
+if (isset($_GET['message']) && isset($_GET['object']))
+{
+    echo $display_messages[$_GET['object']][$_GET['message']];
+}
+include $project_root . 'views/layout/footer.php';
+?>
