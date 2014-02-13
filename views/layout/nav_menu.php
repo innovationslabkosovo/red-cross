@@ -12,7 +12,7 @@
                 <ul class="third_level">
                     <li><a href="<?php echo BASE_URL; ?>/views/create_participant.php">Krijo Participant te ri</a></li>
                     <li><a href="<?php echo BASE_URL; ?>/views/list_participant.php">Listo Participantet</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>/views/find_participant.php">Filtro Listen e Participantet</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/find_participant.php">Shto pergjegje per participantet</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);">Menaxho Grupet Tematike</a>
