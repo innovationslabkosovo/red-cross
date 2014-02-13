@@ -63,12 +63,14 @@
             </li>
         </ul>
     </li>
-    <li><a href="javascript:void(0);">Raportet</a>
-        <ul>
-            <li><a href="<?php echo BASE_URL; ?>/views/public_reports.php">Raportet Publike</a></li>
-            <li><a href="<?php echo BASE_URL; ?>/views/internal_reports.php">Raportet e Brendshme</a></li>
-        </ul>
-    </li>
+    <li><a href="<?php echo BASE_URL; ?>/views/reports.php">Raportet</a></li>
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Lokacionet</a></li>
-    <li><a href="<?php echo BASE_URL; ?>/views/public_map.php">Harta</a></li>
 </ul>
+    <?php
+    	if (logged_in() == false)
+    	{
+    		$base_url = BASE_URL;
+    		echo "<a href='$base_url/views/user/login_user.php' style='float:right;'>Kycuni</a>";
+	
+    	}
+    ?>

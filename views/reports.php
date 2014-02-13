@@ -1,5 +1,5 @@
 <?php
-$page_title = "Raporti Mujor Komunal";
+$page_title = "Raportet e Punës së Kryqit të Kuq";
 
 include '../core/init.php';
 protect_page();
@@ -33,15 +33,53 @@ $municipality = $_GET["municipality"];
 ?>
 <html>
 <head>
-    <title>Raporti Mujor Komunal</title>
+    <title>Raportet e Punës së Kryqit të Kuq</title>
 </head>
 <body>
+<br>
+<h2>Zgjedhni Vitin për Raportin Vjetor në Kosovë</h2>
+<form action="../core/application/annual_report.php" method="POST">
+    <div class="dropdown">
+        <select name="year" class="dropdown-select">
+            <option value="">Zgjedh Vitin</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+    </div>
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+</form>
+<hr>
+<br>
+<h2>Zgjedhni Vitin dhe Muajin për Raportin Mujor në Kosovë</h2>
+<form action="../core/application/annual_monthly_report.php" method="POST">
+    <div class="dropdown">
+        <select name="year" class="dropdown-select">
+            <option value="">Zgjedh Vitin</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+    </div>
+    <div class="row">
+        <label>Nga data:</label><input type="text" name="date_from" id="date_from" class="date" data-validation='required date'
+                                  data-validation-format='yyyy-mm-dd'>
+        <label>Deri:</label><input type="text" name="date_to" id="date_to" class="date" data-validation='required date'
+                                  data-validation-format='yyyy-mm-dd'><br>
+    </div>
+
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+</form>
+<hr>
+<br>
 <h2>Raporti Mujor Komunal</h2>
 
 <form action="../core/application/municipal_report.php" method="POST">
     <div class="dropdown">
         <select name="year" class="dropdown-select">
-            <option value="">Zgjidh Vitin</option>
+            <option value="">Zgjedh Vitin</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
             <option value="2016">2016</option>
@@ -51,7 +89,7 @@ $municipality = $_GET["municipality"];
 
     <div class="dropdown">
     <select name="month" class="dropdown-select">
-        <option value="">Zgjidh Muajin</option>
+        <option value="">Zgjedh Muajin</option>
         <option value="01">Janar</option>
         <option value="02">Shkurt</option>
         <option value="03">Mars</option>
@@ -79,10 +117,11 @@ $municipality = $_GET["municipality"];
             ?>
     </select>
     </div>
-    <input type="submit" name="GO" vgalue="Gjenero" class="align-top"/>
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 </form>
 <hr>
-<h2>Raporti i Suksesit per pyetje</h2>
+<br>
+<h2>Raporti i Suksesit për Pyetje</h2>
 <form action="question_class_report.php" method="GET">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
@@ -119,9 +158,9 @@ $questions = mysql_query($get_all_questions);
 </div>
 <input type="submit" value="Gjenero" class="align-top">
 </form>
-
-
-<h2>Raporti i Suksesit per participant</h2>
+<hr>
+<br>
+<h2>Raporti i Suksesit për Pjesëmarrës</h2>
 <form action="participant_class_report.php" method="GET">
 <div class="dropdown">
 <select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
@@ -195,5 +234,7 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
-<script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>
+<script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js">
+    $.validate();
+</script>
 </html>

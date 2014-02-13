@@ -7,6 +7,13 @@ function change_password($user_id, $password)
     mysql_query("UPDATE `User` SET `password` = '$password' WHERE `user_id` = $user_id");
 }
 
+function change_password_email($email, $password) {
+    $email = $email;
+    $password = md5($password);
+
+    mysql_query("UPDATE `User` SET `password` = '$password', `verified` = 1 WHERE `email` = '$email'");
+}
+
 function user_count()
 {
     return mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `User`"), 0);
@@ -39,14 +46,14 @@ function logged_in()
 function user_exists($username)
 {
     $username = sanitize($username);
-    $query = mysql_query("SELECT COUNT(`user_id`) FROM `User` WHERE `username` = '$username'");
+    $query = mysql_query("SELECT COUNT(`user_id`) FROM `User` WHERE `email` = '$username'");
     return(mysql_result($query, 0) == 1) ? true : false;
 }
 
 function user_id_from_username($username)
 {
     $username = sanitize($username);
-    return mysql_result(mysql_query("SELECT `user_id` FROM `User` WHERE `username` = '$username'"), 0, 'user_id');
+    return mysql_result(mysql_query("SELECT `user_id` FROM `User` WHERE `email` = '$username'"), 0, 'user_id');
 }
 
 function login($username, $password)
@@ -56,7 +63,7 @@ function login($username, $password)
     $username = sanitize($username);
     $password = md5($password);
 
-    return(mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `User` WHERE `username` = '$username' AND `password` = '$password'"), 0) == 1) ? $user_id : false;
+    return(mysql_result(mysql_query("SELECT COUNT(`user_id`) FROM `User` WHERE `email` = '$username' AND `password` = '$password'"), 0) == 1) ? $user_id : false;
 }
 
 function is_admin ($user_id)
@@ -85,5 +92,10 @@ function get_user_id ($user_id)
     }
     else
         return false;
+}
+
+function generateRandomString($length = 50)
+{
+    return substr(sha1(rand()), 0, $length);
 }
 ?>
