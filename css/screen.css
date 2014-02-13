@@ -224,8 +224,8 @@ table {
 .bordered td, .bordered th {
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
+    padding: 5px 0!important;
+    text-align: center;
 }
 
 .bordered th {
@@ -437,8 +437,8 @@ table {
 }
 
 .txfform-wrapper.input {
-    width: 255px;
-    height: 35px;
+    width: 200px;
+    height: 20px;
     padding: 10px 15px;
     font: normal 15px 'lucida sans', 'trebuchet MS', 'Tahoma', Ariel, Geneva, sans-serif;
     border: 0;
@@ -757,8 +757,9 @@ table {
     display: block !important;
 }
 .style-for-inputs select  {
-    width: 90px;
+    /*width: 90px;*/
 }
 .show_details_parent {
     width: 30px;
 }
+#details_row_1 td { padding: 0px; }
