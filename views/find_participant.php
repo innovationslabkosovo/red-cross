@@ -1,5 +1,5 @@
 <?php
-$page_title = "Filtro participantet";
+$page_title = "Shto pergjegje per participantet";
 
 include '../core/init.php';
 protect_page();
