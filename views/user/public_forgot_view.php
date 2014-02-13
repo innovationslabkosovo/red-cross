@@ -30,9 +30,6 @@ if(mysql_num_rows($result))
 	</html>
 	";
 
-	// Use wordwrap() if lines are longer than 70 characters
-	$message = wordwrap($message,70);
-
 	// Send email
 	mail($email,"Nderrimi i fjalkalimit", $message, $headers);
 	// echo "Shikoni adresen elektronike keni pranuar nje email per te nderruar fjalkalimin!";
