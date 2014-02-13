@@ -18,8 +18,20 @@ if(mysql_num_rows($result))
 	$code = generateRandomString();
 	mysql_query("Update User SET activiation_code = '$code', verified = 0 WHERE email = '$email'");
 	$change_password = "$base_url/views/user/public_resetpass_view.php?email=$email&code=$code";
-	echo $message="Mund ta nderroni Fjalkalimin ketu: <a href='$change_password'>$change_password</a>";
-	// mail($email, "Red Cross - Nderroni Fjalkalimin!", $message);
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$message .= "
+	<html>
+	<body>
+		<p>Keni harruar fjalkalimin!</p>
+		<p>Krijoni nje te ri ketu:</p>
+		<a href='$change_password'>$change_password</a>
+	</body>
+	</html>
+	";
+
+	// Send email
+	mail($email,"Nderrimi i fjalkalimit", $message, $headers);
 	// echo "Shikoni adresen elektronike keni pranuar nje email per te nderruar fjalkalimin!";
 }
 else
