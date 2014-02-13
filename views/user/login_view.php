@@ -11,6 +11,7 @@
                 <li>
                     <label for="password"></label>
                     <input type="password" name="password" id="password" class="txfform-wrapper input" placeholder="Password">
+                    <br><a href="<?php echo BASE_URL; ?>/views/user/public_forgot_view.php">Keni harruar fjalkalimin?</a>
                 </li>
                 <br>
                 <li>
