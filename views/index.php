@@ -75,8 +75,3 @@ $location_to_json = json_encode($location_data);
 include $project_root . 'views/layout/footer.php';
 ?>
 </html>
-
-
-
-
-<?php include 'layout/footer.php'; ?>
