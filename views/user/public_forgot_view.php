@@ -1,5 +1,5 @@
 <?php 
-error_reporting(0);
+// error_reporting(0);
 include '../../core/init.php';
 $page_title = 'Nderro Fjalkalimin';
 include $project_root . '/views/layout/header.php';
@@ -17,7 +17,8 @@ if(mysql_num_rows($result))
 {
 	$code = generateRandomString();
 	mysql_query("Update User SET activiation_code = '$code', verified = 0 WHERE email = '$email'");
-	echo $message="Mund ta nderroni Fjalkalimin ketu: <a href=''>$base_url/views/user/public_resetpass_view.php?email=$email&code=$code</a>";
+	$change_password = "$base_url/views/user/public_resetpass_view.php?email=$email&code=$code";
+	echo $message="Mund ta nderroni Fjalkalimin ketu: <a href='$change_password'>$change_password</a>";
 	// mail($email, "Red Cross - Nderroni Fjalkalimin!", $message);
 	// echo "Shikoni adresen elektronike keni pranuar nje email per te nderruar fjalkalimin!";
 }
