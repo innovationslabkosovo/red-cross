@@ -70,7 +70,6 @@
         </ul>
     </li>
     <li><a href="<?php echo BASE_URL; ?>/views/create_location.php">Lokacionet</a></li>
-    <li><a href="<?php echo BASE_URL; ?>/views/public_map.php">Harta</a></li>
 </ul>
     <?php
     	if (logged_in() == false)
