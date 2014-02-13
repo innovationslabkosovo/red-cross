@@ -54,58 +54,54 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
     <br>
     <form action="../core/application/create_class.php" method="post">
 
-        <div class="row">
-            <label>Komuna : </label>
-            <select id="municipality_id" name="municipality" data-validation="required">
+        <div class="row dropdown">
+            <select id="municipality_id" name="municipality" data-validation="required" class="dropdown-select">
                 <option value="">--Zgjedh Komunen--</option>
                 <?php
                 create_options($municipalities, "municipality_id", "name");
                 ?>
-            </select><br>
-        </div>
+            </select>
+        </div><br><br>
 
-        <div class="row">
-            <label>Fshati : </label>
-            <select id="location_id" name="location" data-validation="required">
+        <div class="row dropdown">
+            <select id="location_id" name="location" data-validation="required" class="dropdown-select">
                 <option value="">--Zgjedh Fshatin--</option>
                 <?php
                 //                create_options($locations, "location_id", "name");
                 ?>
             </select>
         </div>
-        <br>
+        <br><br>
 
         <div class="row">
             <label>Vendi: </label><input type="text" name="vendi" id="vendi"
-                                         placeholder="Shtepi Private, Shkolle ..."><br>
+                                         placeholder="Shtepi Private, Shkolle ..." class="txfform-wrapper input"><br>
         </div>
 
         <br>
 
         <div class="row">
-            <label>Data prej: </label><input type="text" name="date_from" id="datefrom1" class="datefrom" data-validation='required date'
-                                             data-validation-format='yyyy-mm-dd'><br>
+            <label>Data prej: </label><input type="text" name="date_from" id="datefrom1" class="datefrom txfform-wrapper input" data-validation='required date'
+                                             data-validation-format='yyyy-mm-dd' ><br><br>
         </div>
 
         <div class="row">
-            <label>Data deri: </label><input type="text" name="date_to" id="dateto1" class="dateto" data-validation='required date'
-                                             data-validation-format='yyyy-mm-dd'><br>
+            <label>Data deri: </label><input type="text" name="date_to" id="dateto1" class="dateto txfform-wrapper input" data-validation='required date'
+                                             data-validation-format='yyyy-mm-dd'><br><br>
         </div>
 
-        <div class="row">
-            Modeli i testit:
-            <select id="test_id" name="test" data-validation="required">
+        <div class="row dropdown">
+            <select id="test_id" name="test" data-validation="required" class="dropdown-select">
                 <option value="">--Zgjedh Testin--</option>
                 <?php
                 create_options($tests, "test_id", "name");
                 ?>
             </select>
         </div>
-        <br>
+        <br><br>
 
-        <div class="row">
-            <label>Ligjeruesi : </label>
-            <select id="trainer_id" name="trainer" data-validation="required">
+        <div class="row dropdown">
+            <select id="trainer_id" name="trainer" data-validation="required" class="dropdown-select">
                 <option value="">--Zgjedh Ligjeruesin--</option>
                 <?php
                 create_options($trainers, "trainer_id", "name");
@@ -118,7 +114,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
             <h4>Temat</h4>
 
-            <table border="1" style="width: 100%">
+            <table border="1" style="width: 100%" class="create_class">
 
                 <tr>
                     <th>Numri</th>
@@ -140,9 +136,9 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
                             echo "<li>" . $t_value['description'] . "</li>";
                     }
                     echo "</ul></td>";
-                    echo "<td><input type='text' size='12' name='topic[date_topic][]' id='date_topic_" . $tg_value['topic_group_id'] . "' class='date_topic' data-validation='required date' data-validation-format='yyyy-mm-dd'></td>";
-                    echo "<td><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic' data-validation='required time'></td>";
-                    echo "<td><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic' data-validation='required time'></td>";
+                    echo "<td><input type='text' size='12' name='topic[date_topic][]' id='date_topic_" . $tg_value['topic_group_id'] . "' class='date_topic txfform-wrapper input' data-validation='required date' data-validation-format='yyyy-mm-dd'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_from_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic txfform-wrapper input' data-validation='required time'></td>";
+                    echo "<td><input type='text' size='12' name='topic[time_to_topic][]' id='time_from_topic_" . $tg_value['topic_group_id'] . "' class='time_topic txfform-wrapper input' data-validation='required time'></td>";
 
                     echo "</tr>";
 
