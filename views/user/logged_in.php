@@ -1,5 +1,5 @@
 <div class="widget">
-    <h2>Perdoruesi: <?php echo ucfirst($user_data['name']); ?>!</h2>
+    <h2>Komuna: <?php echo ucfirst($user_data['name']); ?>!</h2>
     <div class="inner">
         <ul>
             <li>
