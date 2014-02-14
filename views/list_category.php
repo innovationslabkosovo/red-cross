@@ -12,7 +12,7 @@
                 window.location.href = location.pathname+'?'+'message='+data.message+'&object='+data.object;
             }
         });
-    };
+    }
 </script>
 
 <?php
@@ -21,6 +21,7 @@ $page_title = "Menaxho Kategorite";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
+$user_id = $_SESSION['id'];
 include $project_root . 'views/layout/header.php';
 
 $count_rows = mysql_query("SELECT count(*) FROM Category");
@@ -37,18 +38,15 @@ echo $pages->prev_page;
 $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit");
 ?>
 
-<form class="txfform-wrapper cf" name="category_form" action="../core/application/create_category.php" method="post">
+<form class="txfform-wrapper cf" name="category_form" id="url" action="../core/application/create_category.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 
         <h3>Kategorite Ekzistuese</h3>
-
-        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_category.php"></div>
-        <form id="url" url="<?php echo BASE_URL; ?>/core/application/create_category.php">
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Kategoria</th>
-                <th>Perditeso/Fshije</th>
+                <th>Modifiko</th>
             </tr>
             <?php
 
@@ -63,8 +61,10 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
                         <input name="category" data-validation="required" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" />
                     </td>
-
-
+                    <?php
+                    if (is_admin($user_id))
+                    {
+                    ?>
 
                     </td>
                     <td>
@@ -74,14 +74,17 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
                         <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>
+                    <?php
+                    }
 
+                    else echo "<td></td>";
+                    ?>
                 </tr>
             <?php
             }
             ?>
         </table>
-        </form>
-    </div>
+        </div>
 </form>
 <p  name="message" id="message"/></p>
 <p  name="object" id="object" value="" />
@@ -97,6 +100,6 @@ include $project_root . 'views/layout/footer.php';
     $.validate({
         validateOnBlur: true, // disable validation when input looses focus
         //errorMessagePosition: 'top', // Instead of 'element' which is default
-        addValidClassOnAll : true,
+        addValidClassOnAll : true
     });
 </script>

@@ -38,7 +38,7 @@ if(empty($_POST) === false)
 
             if (mysql_query("DELETE FROM Category where category_id='$rowID'")){
                 //header("location: ../../views/list_category.php?message=success&object=Category");
-                $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'Category');
+                $data = array( 'rowID' => $rowID, 'message' => 'success', 'object'=>'CategoryDelete');
                 ob_clean();
                 echo json_encode($data);
             }

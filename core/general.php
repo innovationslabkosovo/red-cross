@@ -42,18 +42,29 @@ $display_messages = array(
         "success" => "Kategoria u shtua me sukses",
         "fail" => "Kategoria nuk u shtua",
     ),
-    "Supervisor" => array(
+        "Supervisor" => array(
         "success" => "Supervizori u shtua me sukses",
         "fail" => "Supervizori nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
     ),
 
     "Trainer" => array(
         "success" => "Trajneri u shtua me sukses",
-        "fail" => "Trajneriri nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
+        "fail" => "Trajner i ri nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
     ),
-    "Evaluation" => array(
+        "Evaluation" => array(
         "success" => "Evaluimi i Trajnerit u shtua me sukses",
         "fail" => "Evaluimi i Trajnerit nuk u shtua",
+    ),
+    "CategoryDelete" => array(
+        "success" => "Kategoria u fshi me sukses",
+    ),
+    "TrainerDelete" => array(
+        "success" => "Trajneri u fshi me sukses",
+        "fail" => "Trajneri nuk u fshi",
+    ),
+    "SupervisorDelete" => array(
+        "success" => "Supervizori u fshi me sukses",
+        "fail" => "Supervizori nuk u fshi",
     ),
 );
 
