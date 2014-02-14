@@ -36,7 +36,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
 <title>Red Cross - Lokacionet</title>
-<script type="application/javascript" src="<?php echo BASE_URL; ?>/js/form_validate.js"></script>
+<script type="application/javascript" src="<?php //echo BASE_URL; ?>/js/form_validate.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript">
     OpenLayers.ImgPath = "../img/";
@@ -65,7 +65,12 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <br/><br/>
     <label for="name"></label>
     <input type="text" name="name" id="name" class="txfform-wrapper input" value="" placeholder="Emri i Lokacionit" data-validation="required" data-validation-error-msg="Emri i lokacionit duhet plotesuar"><br/><br/>
-    <input type="submit" value="Ruaj!" class="submitSmlBtn">
+    <input type="submit" value="Ruaj!" class="submitSmlBtn"><br> <br>
+    <?php 
+        if (isset($_GET['message']) && isset($_GET['object'])) {
+            echo $display_messages[$_GET['object']][$_GET['message']];
+        }
+    ?>
     <br><br>
 </form>
 <div id="message"></div>
