@@ -43,9 +43,14 @@ include $project_root . 'views/layout/header.php';
         <input type="hidden" name="check[c0][a4]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a4]" value="1"><br> -->
         <label>Pergjigjja E : </label><input type='text' id='a5' name="answer[q0][]" >
-        <input type="hidden" name="check[c0][a5]" value="0">
+        <input type="hidden" name="check[c0][a5]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
-        
+        <label>Pergjigjja F : </label><input type='text' id='a5' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a5]" value="0"><br>
+        <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
+        <label>Pergjigjja G : </label><input type='text' id='a6' name="answer[q0][]" >
+        <input type="hidden" name="check[c0][a6]" value="0"><br>
+        <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
 	</div>
 </div>
 <input type='button' value='Shto fushe' id='addButton'>
@@ -78,12 +83,12 @@ include $project_root . 'views/layout/header.php';
 			
 			foreach ($value as $v)	// tash shkojm per secilen pergjigjje vec e vec
 			{
-				if(empty($v))
-				{					
-					$errors[] = 'Ju lutemi shkruani te gjitha pergjigjjet...';
-					break;	// break mos me qit 5 errora per secilen pergjigjje, por per secilen pytje del error
-					//errorat i shfaqim ne fund ne qoftse egzistojn ( te else )
-				}
+				// if(empty($v))
+				// {					
+				// 	$errors[] = 'Ju lutemi shkruani te gjitha pergjigjjet...';
+				// 	break;	// break mos me qit 5 errora per secilen pergjigjje, por per secilen pytje del error
+				// 	//errorat i shfaqim ne fund ne qoftse egzistojn ( te else )
+				// }
 			}
 			
 			if (empty($errors) == false)	// mos mi paraqit errorat krejt
@@ -97,7 +102,7 @@ include $project_root . 'views/layout/header.php';
 	{
 
 			$questions = $_POST['question'];	// ruaj pyetjet ne nje array
-		
+
 			$codes = array("A","B","C","D","E");
 			for($i = 0; $i <  sizeof($questions); $i++)
 			{
@@ -112,8 +117,9 @@ include $project_root . 'views/layout/header.php';
 					$n = $j+1;	// percdo pyetje fusim pergjigjje	rrisim j sepse answers fillojn prej 1 jo prej 0
 					// $correct_ans = $_POST['check']['c'.$i]['a'.$n];
 					//marrim correct answer nese osht check e marrim checked nese jo e marrim hidden field
-					
-				    $shto_pergjigjje = mysql_query("INSERT INTO `Answer` (`question_id`, `description`) VALUES ('$question_id', '$answers[$j]')");
+					if (!empty($answers[$j])) {
+						$shto_pergjigjje = mysql_query("INSERT INTO `Answer` (`question_id`, `description`) VALUES ('$question_id', '$answers[$j]')");
+					}
 					// shto nje pergjigjje
 					// $answer_id = mysql_insert_id(); // id e fundit e insertuar (id e pergjigjjes)
 					
@@ -123,7 +129,8 @@ include $project_root . 'views/layout/header.php';
 					
 			}			
 	
-			header('Location: krijo_pyetje.php?success');
+			//header('Location: krijo_pyetje.php?success');
+			header("location: create_question.php?message=success&object=question");
 			exit();
 	}
 	else echo implode(', ---', $errors); // shfaqja e errorave ne qofte se egzistojne
