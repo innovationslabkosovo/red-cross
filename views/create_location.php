@@ -36,8 +36,8 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
 <title>Red Cross - Lokacionet</title>
-<script type="application/javascript" src="<?php //echo BASE_URL; ?>/js/form_validate.js"></script>
 <script type="application/javascript" src="<?php echo BASE_URL; ?>/js/OpenLayers/OpenLayers.js"></script>
+<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 <script type="text/javascript">
     OpenLayers.ImgPath = "../img/";
 </script>
@@ -46,6 +46,7 @@ $locations_municipalities = mysql_query($get_locations_municipalities);
     <h1>Shto nje lokacion te ri</h1>
 
     <div id="map" class="smallmap" style="height:350px;"></div>
+    <input id="animate" type="checkbox" checked="checked" style="display:none;">
     <input type="hidden" id="lat" name="lat">
     <input type="hidden" id="lon" name="lon">
     <br>
