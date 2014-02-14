@@ -8,13 +8,6 @@ include $project_root . 'views/layout/header.php';
 <html>
 <head>
   <script type="text/javascript" src="<?php echo BASE_URL  ?>/js/shto-fshi-fusha-script.js"></script>
-
- 
-<style type="text/css">
-	div{
-		padding:8px;
-	}
-</style>
 <title>Krijo Pyetje</title>
  
 </head>
