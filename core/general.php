@@ -66,6 +66,10 @@ $display_messages = array(
         "success" => "Supervizori u fshi me sukses",
         "fail" => "Supervizori nuk u fshi",
     ),
+    "Question" => array(
+        "success" => "Pyetja u shtua me sukses",
+        "fail" => "Supervizori nuk u fshi",
+    ),
 );
 
 
