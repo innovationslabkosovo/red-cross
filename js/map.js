@@ -8,7 +8,36 @@ var fromProjection = new OpenLayers.Projection("EPSG:900913"); // Transform from
 var toProjection = new OpenLayers.Projection("EPSG:4326"); // To from WGS 1984
 var position = new OpenLayers.LonLat(lon, lat).transform(toProjection, fromProjection);
 
-map = new OpenLayers.Map("map");
+map = new OpenLayers.Map('map', {
+    projection: 'EPSG:3857',
+    layers: [
+        new OpenLayers.Layer.Google(
+            "Google Hybrid",
+            {type: google.maps.MapTypeId.HYBRID, numZoomLevels: 20}
+        ),        
+        new OpenLayers.Layer.Google(
+            "Google Physical",
+            {type: google.maps.MapTypeId.TERRAIN}
+        ),
+        new OpenLayers.Layer.Google(
+            "Google Streets", // the default
+            {numZoomLevels: 20}
+        ),
+        new OpenLayers.Layer.Google(
+            "Google Satellite",
+            {type: google.maps.MapTypeId.SATELLITE, numZoomLevels: 22}
+        )
+    ]
+});
+
+// add behavior to html
+var animate = document.getElementById("animate");
+animate.onclick = function() {
+    for (var i=map.layers.length-1; i>=0; --i) {
+        map.layers[i].animationEnabled = this.checked;
+    }
+};
+
 map.addControl(new OpenLayers.Control.LayerSwitcher());
 var mapnik = new OpenLayers.Layer.OSM();
 map.addLayer(mapnik);

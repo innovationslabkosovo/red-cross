@@ -17,10 +17,9 @@ $topic_groups = mysql_query($get_topic_groups);
             <label>Emri i Temes: </label><br><br>
             <input type="text" placeholder="Emri i Temes" name="topic" id="topic" class="txfform-wrapper input">
             <label class="myCheckbox"><br><br>
-                <input type="checkbox" name="active" value="active">Kjo teme eshte aktive
-                <br><br><span></span>
+                <input type="checkbox" name="active" value="active">Kjo teme eshte aktive <span style="vertical-align: middle;"></span>
             </label>
-            <br>
+            <br><br>
             <div class="dropdown">
             <select name="topic_group" class="dropdown-select">
                 <option value=0>Zgjidh Grupin Tematik

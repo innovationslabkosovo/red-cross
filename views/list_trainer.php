@@ -38,28 +38,27 @@ echo $pages->prev_page;
 $trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer $pages->limit");
 ?>
 
-<form class="txfform-wrapper cf" name="supervisor_form" action="../core/application/create_trainer.php" method="post">
+<form class="txfform-wrapper cf" name="trainer_form" id="url" action="../core/application/create_trainer.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 
         <h3>Trajneret Ekzistues</h3>
 
-        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_trainer.php"></div>
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Emri</th>
                 <th>Mbiemri</th>
                 <th>Emaili</th>
                 <th>Telefoni</th>
-                <th>Perditeso/Fshije</th>
+                <th>Modifiko</th>
             </tr>
             <?php
 
             while ($data_tra = mysql_fetch_assoc($trainers))
             {
                 $id=$data_tra['trainer_id'];
-                $first_name=$data_tra['name'];
-                $last_name=$data_tra['surname'];
+                $name=$data_tra['name'];
+                $surname=$data_tra['surname'];
                 $email=$data_tra['email'];
                 $phone=$data_tra['phone'];
                 ?>
@@ -67,23 +66,23 @@ $trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Tra
                 <tr id="<?php echo $id; ?>" class="edit_tr">
 
                     <td>
-                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $first_name; ?></span>
-                        <input name="name" type="text" value="<?php echo $first_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
+                        <input name="name" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <td>
-                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $last_name; ?></span>
-                        <input name="surname" type="text" value="<?php echo $last_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $surname; ?></span>
+                        <input name="surname" type="text" value="<?php echo $surname; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
-                        <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                        <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $phone; ?></span>
-                        <input name="phone" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                        <input name="phone" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <?php
@@ -118,3 +117,10 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
+<script>
+    $.validate({
+        validateOnBlur: true, // disable validation when input looses focus
+        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        addValidClassOnAll : true
+    });
+</script>

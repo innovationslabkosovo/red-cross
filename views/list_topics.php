@@ -38,16 +38,15 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id $pages->limit");
+$topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name, TopicGroup.topic_group_id FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id $pages->limit");
 ?>
-<form class="txfform-wrapper cf" name="topic_form" action="../core/application/create_topic.php" method="post">
+<form class="txfform-wrapper cf" id="url" name="topic_form" action="../core/application/create_topic.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 
         <h3>Temat Ekzistuese</h3>
 
-        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic.php"></div>
-        <form id="url" action="../core/application/create_topic.php">
+
         <table border="1" id="editable" class="bordered">
             <tr>
                 <th>Tema</th>
@@ -63,6 +62,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                 $name=$data_tg['description'];
                 $active = $status[$data_tg['active']];
                 $topic_group = $data_tg['name'];
+                $topic_group_id = $data_tg['topic_group_id'];
                 ?>
 
                 <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -93,12 +93,9 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
                             <option value="">Ndyrsho Grupin Tematik</option>
                             <?php
                             $sql = mysql_query("SELECT topic_group_id, name FROM TopicGroup where active='1'");
-                            while ($row = mysql_fetch_array($sql)){
-                                ?>
-                                <option value=<?php echo $row['topic_group_id']; ?>><?php echo $row['name']; ?></option>
-                            <?php
-                            }
+                            create_options($sql, 'topic_group_id', 'name', $topic_group_id);
                             ?>
+
                         </select>
                     </td>
                     <?php
@@ -124,7 +121,7 @@ $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.na
         </table>
         </form>
     </div>
-</form>
+
 <p  name="message" id="message"/></p>
 <p  name="object" id="object" value="" />
 <?php

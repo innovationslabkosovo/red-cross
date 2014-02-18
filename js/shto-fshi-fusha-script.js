@@ -17,12 +17,7 @@ $(document).ready(function(){
  	
  
 	var newTextBoxDiv = $(document.createElement('div'))
-	     .attr("id", 'TextBoxDiv' + text);		<!-- text sepse u fshijke divi gabim div2 para div1 -->
- 	
-	
-	
-	
-	
+	     .attr("id", 'TextBoxDiv' + text);		//text sepse u fshijke divi gabim div2 para div1 
 	
 	newTextBoxDiv.after().html('<label>Pyetja #'+ text + ' : </label>' +
 	      '<input type="text" name="question[]" id="q'+ counter + '" value="" > <br> <label>Pergjigjja A : </label>' +
@@ -53,7 +48,16 @@ $(document).ready(function(){
 		  
 		  + '<label> Pergjigjja E : </label>' +
 	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
-		  '<input type="hidden" name="check[c'+ counter +'][a5]" value="0"><br>');
+		  '<input type="hidden" name="check[c'+ counter +'][a5]" value="0"><br>'		  
+
+
+		  + '<label> Pergjigjja F : </label>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  '<input type="hidden" name="check[c'+ counter +'][a6]" value="0"><br>'
+
+		  + '<label> Pergjigjja G : </label>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  '<input type="hidden" name="check[c'+ counter +'][a7]" value="0"><br>');
 		  // '<input type="checkbox" name="check[c'+ counter +'][a5]" value="1"><br>');
 		  
  

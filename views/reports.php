@@ -54,7 +54,8 @@ $municipality = $_GET["municipality"];
 <br>
 <h2>Zgjedhni Vitin dhe Muajin për Raportin Mujor në Kosovë</h2>
 <form action="../core/application/annual_monthly_report.php" method="POST">
-    <div class="dropdown">
+    <div class="row">
+    <div class="dropdown" style="vertical-align: bottom">
         <select name="year" class="dropdown-select">
             <option value="">Zgjedh Vitin</option>
             <option value="2014">2014</option>
@@ -63,14 +64,12 @@ $municipality = $_GET["municipality"];
             <option value="2017">2017</option>
         </select>
     </div>
-    <div class="row">
-        <label>Nga data:</label><input type="text" name="date_from" id="date_from" class="date" data-validation='required date'
-                                  data-validation-format='yyyy-mm-dd'>
-        <label>Deri:</label><input type="text" name="date_to" id="date_to" class="date" data-validation='required date'
-                                  data-validation-format='yyyy-mm-dd'><br>
+        <input type="text" name="date_from" id="date_from" class="date txfform-wrapper input" data-validation='required date'
+                                  data-validation-format='yyyy-mm-dd' placeholder="Nga Data">
+        <input type="text" name="date_to" id="date_to" class="date txfform-wrapper input" data-validation='required date'
+                                  data-validation-format='yyyy-mm-dd' placeholder="Deri">
+        <input type="submit" name="GO" value="Gjenero" class="align-top"/><br>
     </div>
-
-    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 </form>
 <hr>
 <br>

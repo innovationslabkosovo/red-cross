@@ -1,6 +1,6 @@
 <?php
 include '../../config/config.php';
-
+error_reporting(0);
 if(empty($_POST) === false)
 {
     if(isset($_POST['topic']) && $_POST["topic"] != "" && $_POST['id'] == "") {

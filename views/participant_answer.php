@@ -1,5 +1,5 @@
 <?php
-$page_title = "Filtro participantet";
+$page_title = "Pergjegjet e participanteve";
 
 include '../core/init.php';
 protect_page();
@@ -97,7 +97,7 @@ Kursi:<strong> <?=$class_name?></strong>
     </th>
 
     <th>
-        Pergjegjja <strong>para</strong> testit
+        Pergjegjja <strong>pas</strong> testit
     </th>
 
 </tr>

@@ -438,7 +438,7 @@ table {
 
 .txfform-wrapper.input {
     width: 200px;
-    height: 20px;
+    height: 13px;
     padding: 10px 15px;
     font: normal 15px 'lucida sans', 'trebuchet MS', 'Tahoma', Ariel, Geneva, sans-serif;
     border: 0;
@@ -574,7 +574,7 @@ table {
 .myCheckbox span {
     width: 22px;
     height: 22px;
-    display: block;
+    display: inline-block;
     cursor: pointer;
     background: url("../img/bg-checkbox.png");
 }
@@ -595,7 +595,7 @@ table {
     background: url("../img/RadioBtn.png");
 }
 
-.myRadiobox input:checked + span {
+.myRadiobox input[type=checkbox]:checked + span {
     background: url("../img/RadioBtnChecked.png");
 }
 

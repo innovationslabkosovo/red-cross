@@ -42,7 +42,7 @@ $topic_groups = mysql_query($get_topic_groups);
 $status[1]="Aktiv";
 $status[0]="Jo-aktiv";
 ?>
-<form class="txfform-wrapper cf" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
+<form class="txfform-wrapper cf" id="url" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 
@@ -58,8 +58,6 @@ $status[0]="Jo-aktiv";
                 echo "</tr></table>";
             }*/
             ?>
-        <div id="url" url="<?php echo BASE_URL; ?>/core/application/create_topic_group.php"></div>
-        <form id="url" action="../core/application/create_topic_group.php">
         <table border="1" id="editable" class="bordered">
             <th>Grupi Tematik</th>
             <th>Statusi</th>
@@ -120,7 +118,7 @@ $status[0]="Jo-aktiv";
         </table>
         </form>
     </div>
-</form>
+
 <p  name="message" id="message"/></p>
 <p  name="object" id="object" value="" />
 <?php

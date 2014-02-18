@@ -11,12 +11,12 @@ include $project_root . 'views/layout/header.php'; ?>
     <div class="row">
         <h3>Shto supervizor te ri</h3>
         <div class="row">
-            <label>Emri i supervizorit te ri:</label><input type="text" placeholder="Emri" name="first_name" class="txfform-wrapper input" id="trainer" data-validation="required" >
+            <label>Emri i supervizorit te ri:</label><input type="text" placeholder="Emri" name="name" class="txfform-wrapper input" id="trainer" data-validation="required" >
         </div>
         <br>
 
         <div class="row">
-            <label>Mbiemri i supervizorit te ri:</label><input type="text" placeholder="Mbiemri" name="last_name" class="txfform-wrapper input" id="trainer" data-validation="required">
+            <label>Mbiemri i supervizorit te ri:</label><input type="text" placeholder="Mbiemri" name="surname" class="txfform-wrapper input" id="trainer" data-validation="required">
         </div>
         <br>
 
@@ -44,7 +44,6 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
-
 <script>
 
     $.validate();
