@@ -12,7 +12,7 @@ $trainer_id = $_GET['trainer_id'];
 
 if($trainer_id){
 
-	$get_trainers = "SELECT * FROM Evaluation e inner join Location l ON e.location_id = l.location_id WHERE e.trainer_id = '{$trainer_id}' and l.municipality_id = '{$municipality_id}' ";
+	$get_trainers = "SELECT * FROM Evaluation e inner join Location l ON e.location_id = l.location_id WHERE e.trainer_id = '{$trainer_id}'";
 	$trainers = mysql_query($get_trainers);
 	?>
 
@@ -24,8 +24,7 @@ if($trainer_id){
 	
 	while($result = mysql_fetch_assoc($trainers)){
 
-
-		echo $evaluatin_id[$c] = $result['evaluation_id'];
+		$evaluatin_id[$c] = $result['evaluation_id'];
 
 		$query = mysql_query("SELECT * FROM EvaluationCategory ec inner join Category c ON ec.category_id = c.category_id  and ec.evaluation_id = '{$evaluatin_id[$c]}' ");
 
