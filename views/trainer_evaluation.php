@@ -18,10 +18,10 @@ if($trainer_id){
 
 		}
 	?>
-	<h1>Veleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$traner_surname; ?></h1>
+	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$traner_surname; ?></h1>
 	<table class="bordered">
 		
-		<tr><th>Kategorit</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve prozitive</th></tr>
+		<tr><th>Kategorit</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
 	<?php
 
 	$get_cat = "SELECT * FROM Category c ";
@@ -56,7 +56,7 @@ if($trainer_id){
 					
 				 	$total = $pozitive+$negative;
 
-					$percentage = $pozitive / $total * 100;
+					$percentage = round($pozitive / $total * 100,2);
 
 					echo "<td>".$percentage."%"."</td>";
 
