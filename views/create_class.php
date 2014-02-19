@@ -187,7 +187,6 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
                     ;
                 }
             });
-
         });
 
 

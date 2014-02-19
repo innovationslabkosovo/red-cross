@@ -15,3 +15,20 @@ if (isset($_POST['parent_value']) && isset($_POST['parent_id_field']) && isset($
         echo "";
 }
 
+
+if(isset($_POST['mun_id'])){
+
+	$municipality_id = $_POST['mun_id'];
+
+	$get_trainers = "SELECT e.* , t.* , l.municipality_id,l.location_id FROM Evaluation e  inner join Trainer t ON e.trainer_id = t.trainer_id inner join Location l ON e.location_id = l.location_id  WHERE l.municipality_id = '{$municipality_id}' GROUP BY t.trainer_id";
+	
+	$trainers = mysql_query($get_trainers);
+
+	while($result = mysql_fetch_assoc($trainers)){
+	
+		echo "<option value = '{$result['trainer_id']}'>".$result['name']." ".$result['surname']."</option>";
+
+	}
+
+}
+

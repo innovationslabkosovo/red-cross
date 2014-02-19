@@ -19,6 +19,9 @@ if (!is_admin($user_id))
 $get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality as m". $include_user.$mun_access;
 $municipalities = mysql_query($get_municipalities);
 
+$get_trainers = "SELECT * FROM Trainer";
+$trainers = mysql_query($get_trainers);
+
 $month = $_GET["month"];
 if ($month == ""){
     $currentMonth = date('F');
@@ -126,9 +129,11 @@ $municipality = $_GET["municipality"];
     mysql_data_seek($municipalities, 0);
     while($row = mysql_fetch_array($municipalities))
     {
+
         $name=$row["name"];
         $select=$row["municipality_id"];
         echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+
     }
     ?>
 </select>
@@ -177,6 +182,76 @@ $questions = mysql_query($get_all_questions);
 </div>
 <input type="submit" value="Gjenero" class="align-top">
 </form>
+
+<!-- TRAJNER EVALUATIN FOR MUNIUCIPALITY IN THE LAST 3 MONTHS -->
+
+<h2>Evaluimi i trajnerit per tre muajt e fundit</h2>
+<form action="trainer_evaluation.php" method="GET">
+<div class="dropdown">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
+    <option value="">Zgjedh Komunen</option>
+    <?php
+    mysql_data_seek($municipalities, 0);
+    while($row = mysql_fetch_array($municipalities))
+    {
+        $name=$row["name"];
+        $select=$row["municipality_id"];
+        echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+    }
+
+
+    ?>
+</select>
+</div>
+<div class="dropdown">
+<select name="trainer_id" id="trainer_id" class="trainer_id dropdown-select">
+    <option value="">Zgjedh Trajnerin</option>
+    <?php 
+        //  while ($results = mysql_fetch_assoc($trainers)) {
+        //    echo $trainer_id = $results['trainer_id'];
+        //    echo $trainer_name = $results['name'];
+        //    echo $trainer_surname = $results['surname'];
+        //    echo "<option value = \"$trainer_id\" >".$trainer_name ." ".$trainer_surname."</option>";
+        // }
+
+     ?>
+    
+</select>
+</div>
+<input type="submit" value="Gjenero" class="align-top">
+</form>
+
+ <script type="text/javascript">
+
+    $(".municipality_id").change(function () {
+            
+            var parent_value = $(this).val();
+            var parent_id_field = "municipality_id";
+            var child_table = "Trainer";
+            var child_id_field = "trainer_id";
+            var child_text_field = "name";
+            var dataString = 'mun_id=' + parent_value;
+            console.log(dataString);
+            $.ajax
+            ({
+                type: "POST",
+                url: "../core/return_children_dropdown.php",
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    $('#trainer_id')
+                        .find('option:gt(0)')
+                        .remove('')
+                        .end()
+                        .append(html)
+                    ;
+                }
+            });
+        });
+
+</script>
+
+
 </body>
 <?php
 if (isset($_GET['message']) && isset($_GET['object']))
