@@ -21,7 +21,7 @@ if($trainer_id){
 	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$traner_surname; ?></h1>
 	<table class="bordered">
 		
-		<tr><th>Kategorit</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
+		<tr><th>Kategorite</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
 	<?php
 
 	$get_cat = "SELECT * FROM Category c ";
@@ -49,7 +49,7 @@ if($trainer_id){
 					echo "<td>".mysql_result($cat_query, 0)."</td>";
 
 					$cat_query2 = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
-						and evaluation = 0 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
+					and evaluation = 0 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
 
 					$negative = mysql_result($cat_query2, 0);
 					echo  "<td>".mysql_result($cat_query2, 0)."</td>";
