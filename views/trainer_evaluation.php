@@ -49,11 +49,13 @@ if($trainer_id){
 
 					// $cat_id[$cc]." ; ";
 
-					$cat_query = mysql_query("SELECT COUNT(evaluation) FROM `EvaluationCategory` WHERE evaluation_id IN (SELECT evaluation_id from Evaluation where trainer_id = '{$trainer_id}') and evaluation = 1 AND category_id = '{$cat_idd[$c]}' ");
-
+					$cat_query = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
+						and evaluation = 1 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
+					
 					echo "<td>".mysql_result($cat_query, 0)."</td>";
 
-					$cat_query2 = mysql_query("SELECT COUNT(evaluation) FROM `EvaluationCategory` WHERE evaluation_id IN (SELECT evaluation_id from Evaluation where trainer_id = '{$trainer_id}') and evaluation = 0 AND category_id = '{$cat_idd[$c]}' ");
+					$cat_query2 = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
+						and evaluation = 0 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
 
 					echo "<td>".mysql_result($cat_query2, 0)."</td>";
 

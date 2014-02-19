@@ -27,7 +27,6 @@ if (isset($_GET['message']))
 if (isset($_GET['p_id']))
 {
 
-
 $participant_id= $_GET['p_id'];
 
 $get_details = "SELECT p.name as p_name, p.surname, p.gender,p.age , t.test_id as test_id, t.name as test_name, cs.name as class_name FROM Participant p INNER JOIN ParticipantClass pc on  p.participant_id=pc.participant_id
@@ -61,11 +60,10 @@ while($row_q=mysql_fetch_assoc($participant_question_query))
     $i++;
 }
 
-
 $get_answers = "SELECT pa.question_id, pa.answer, pa.type from ParticipantAnswer pa WHERE pa.participant_id=$participant_id";
 $participant_answers_query = mysql_query($get_answers);
 
-while($row_a=mysql_fetch_assoc($participant_answers_query))
+while($row_a = mysql_fetch_assoc($participant_answers_query))
 {
     $participant_answer[$row_a['question_id']][$row_a['type']] = $row_a['answer'];
 }

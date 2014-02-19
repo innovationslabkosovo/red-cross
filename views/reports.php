@@ -20,7 +20,7 @@ $get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality as m".
 $municipalities = mysql_query($get_municipalities);
 
 $get_trainers = "SELECT * FROM Trainer";
-    $trainers = mysql_query($get_trainers);
+$trainers = mysql_query($get_trainers);
 
 $month = $_GET["month"];
 if ($month == ""){
@@ -183,7 +183,6 @@ $questions = mysql_query($get_all_questions);
 <input type="submit" value="Gjenero" class="align-top">
 </form>
 
-
 <!-- TRAJNER EVALUATIN FOR MUNIUCIPALITY IN THE LAST 3 MONTHS -->
 
 <h2>Evaluimi i trajnerit per tre muajt e fundit</h2>
@@ -205,17 +204,15 @@ $questions = mysql_query($get_all_questions);
 </select>
 </div>
 <div class="dropdown">
-<select name="trainer_id" id="trainer_id" class="treiner_id dropdown-select">
+<select name="trainer_id" id="trainer_id" class="trainer_id dropdown-select">
     <option value="">Zgjedh Trajnerin</option>
     <?php 
-
-    
-        while ($results = mysql_fetch_assoc($trainers)) {
-           echo $trainer_id = $results['trainer_id'];
-           echo $trainer_name = $results['name'];
-           echo $trainer_surname = $results['surname'];
-        echo "<option value = \"$trainer_id\" >".$trainer_name ." ".$trainer_surname."</option>";
-        }
+        //  while ($results = mysql_fetch_assoc($trainers)) {
+        //    echo $trainer_id = $results['trainer_id'];
+        //    echo $trainer_name = $results['name'];
+        //    echo $trainer_surname = $results['surname'];
+        //    echo "<option value = \"$trainer_id\" >".$trainer_name ." ".$trainer_surname."</option>";
+        // }
 
      ?>
     
@@ -223,6 +220,36 @@ $questions = mysql_query($get_all_questions);
 </div>
 <input type="submit" value="Gjenero" class="align-top">
 </form>
+
+ <script type="text/javascript">
+
+    $(".municipality_id").change(function () {
+            
+            var parent_value = $(this).val();
+            var parent_id_field = "municipality_id";
+            var child_table = "Trainer";
+            var child_id_field = "trainer_id";
+            var child_text_field = "name";
+            var dataString = 'mun_id=' + parent_value;
+            console.log(dataString);
+            $.ajax
+            ({
+                type: "POST",
+                url: "../core/return_children_dropdown.php",
+                data: dataString,
+                cache: false,
+                success: function (html) {
+                    $('#trainer_id')
+                        .find('option:gt(0)')
+                        .remove('')
+                        .end()
+                        .append(html)
+                    ;
+                }
+            });
+        });
+
+</script>
 
 
 </body>
