@@ -11,11 +11,17 @@ $trainer_id = $_GET['trainer_id'];
 
 if($trainer_id){
 
+		$query = mysql_query("SELECT `name`,`surname` FROM Trainer where trainer_id = '{$trainer_id}'");
+		while($fetch = mysql_fetch_assoc($query)){
+			$trainer = $fetch['name'];
+			$traner_surname = $fetch['surname'];
 
+		}
 	?>
-
+	<h1>Veleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$traner_surname; ?></h1>
 	<table class="bordered">
-		<tr><th>Categories</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Totali</th></tr>
+		
+		<tr><th>Kategorit</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve prozitive</th></tr>
 	<?php
 
 	$get_cat = "SELECT * FROM Category c ";
@@ -34,37 +40,26 @@ if($trainer_id){
 
 		$evaluatin_id[$c] = $result['evaluation_id'];
 
-			// while($result = mysql_fetch_assoc($trainers)){
-
-				// echo $evaluatin_id[$cc] = $result['evaluation_id'];
-		
-			 // echo $evaluatin_id[$c]." ; ";
-
-				// $query = mysql_query("SELECT *  FROM EvaluationCategory ec inner join Category c ON ec.category_id = c.category_id and ec.evaluation_id = '{$evaluatin_id[$c]}' ");
-
-
-				// while($results = mysql_fetch_assoc($query)){
-					
-				// 	$evaluati = $results['evaluation'];
-
-					// $cat_id[$cc]." ; ";
 
 					$cat_query = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
 						and evaluation = 1 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
-					
+
+
+					$pozitive = mysql_result($cat_query, 0);
 					echo "<td>".mysql_result($cat_query, 0)."</td>";
 
 					$cat_query2 = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
 						and evaluation = 0 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
 
-					echo "<td>".mysql_result($cat_query2, 0)."</td>";
-
-					echo "<td>".""."</td>";
+					$negative = mysql_result($cat_query2, 0);
+					echo  "<td>".mysql_result($cat_query2, 0)."</td>";
 					
-				// }
-				
-				// $cc++;
-		// }
+				 	$total = $pozitive+$negative;
+
+					$percentage = $pozitive / $total * 100;
+
+					echo "<td>".$percentage."%"."</td>";
+
 		$c++;
 		echo "</tr>";
 	    		
