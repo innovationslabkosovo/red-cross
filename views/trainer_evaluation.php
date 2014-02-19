@@ -64,8 +64,7 @@ if($trainer_id){
 		echo "</tr>";
 	    		
 	}	
-	
-	
+
 
 	?>
 	</table>
