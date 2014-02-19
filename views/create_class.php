@@ -61,7 +61,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
                 create_options($municipalities, "municipality_id", "name");
                 ?>
             </select>
-        </div><br><br>
+        </div>
 
         <div class="row dropdown">
             <select id="location_id" name="location" data-validation="required" class="dropdown-select">
@@ -74,19 +74,19 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
         <br><br>
 
         <div class="row">
-            <label>Vendi: </label><input type="text" name="vendi" id="vendi"
+            <label>Vendi: </label><br><input type="text" name="vendi" id="vendi"
                                          placeholder="Shtepi Private, Shkolle ..." class="txfform-wrapper input"><br>
         </div>
 
         <br>
 
         <div class="row">
-            <label>Data prej: </label><input type="text" name="date_from" id="datefrom1" class="datefrom txfform-wrapper input" data-validation='required date'
+            <label>Data prej: </label><br><input type="text" name="date_from" id="datefrom1" class="datefrom txfform-wrapper input" data-validation='required date'
                                              data-validation-format='yyyy-mm-dd' ><br><br>
         </div>
 
         <div class="row">
-            <label>Data deri: </label><input type="text" name="date_to" id="dateto1" class="dateto txfform-wrapper input" data-validation='required date'
+            <label>Data deri: </label><br><input type="text" name="date_to" id="dateto1" class="dateto txfform-wrapper input" data-validation='required date'
                                              data-validation-format='yyyy-mm-dd'><br><br>
         </div>
 
@@ -97,8 +97,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
                 create_options($tests, "test_id", "name");
                 ?>
             </select>
-        </div>
-        <br><br>
+        </div><br><br>
 
         <div class="row dropdown">
             <select id="trainer_id" name="trainer" data-validation="required" class="dropdown-select">
@@ -114,7 +113,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
             <h4>Temat</h4>
 
-            <table border="1" style="width: 100%" class="create_class">
+            <table border="1" style="width: 100%" class="create_class bordered">
 
                 <tr>
                     <th>Numri</th>
