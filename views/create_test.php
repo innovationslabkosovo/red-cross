@@ -36,7 +36,7 @@
 
 	if(empty($_POST['emri_testit']) == false)	// nese e kemi plotsu emrin e testit 
 	{
-		$emri_testit = $_POST['emri_testit']; // ruaj emrin e testit
+		$emri_testit = trim($_POST['emri_testit']); // ruaj emrin e testit
 		mysql_query("INSERT INTO `Test` (`name`) VALUES ('$emri_testit')"); //inserto emrin e testit ne tabelen test
 		$test_id = mysql_insert_id(); //merr id e fundit te insertuar
 	}

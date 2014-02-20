@@ -5,10 +5,10 @@ if(empty($_POST) === false)
 {
     if(isset($_POST['name']) && $_POST["name"] != "" && isset($_POST['surname']) && $_POST["surname"] != "" && isset($_POST['email']) && isset($_POST['phone']) && !(isset($_POST['id']))) {
 
-        $name=$_POST["name"];
-        $surname=$_POST["surname"];
-        $email=$_POST["email"];
-        $phone=$_POST["phone"];
+        $name=trim($_POST["name"]);
+        $surname=trim($_POST["surname"]);
+        $email=trim($_POST["email"]);
+        $phone=trim($_POST["phone"]);
 
         if (mysql_query("INSERT INTO Trainer(trainer_id, name, surname, email, phone) VALUES ('', '$name','$surname','$email','$phone' )"))
             header("location: ../../views/list_trainer.php?message=success&object=Trainer");
@@ -20,10 +20,10 @@ if(empty($_POST) === false)
     if($_POST['id']) {
         ob_clean();
         $id=mysql_real_escape_string($_POST['id']);
-        $name_edit=mysql_real_escape_string($_POST['name']);
-        $surname_edit=mysql_real_escape_string($_POST['surname']);
-        $email_edit=mysql_real_escape_string($_POST['email']);
-        $phone_edit=mysql_real_escape_string($_POST['phone']);
+        $name_edit=mysql_real_escape_string(trim($_POST['name']));
+        $surname_edit=mysql_real_escape_string(trim($_POST['surname']));
+        $email_edit=mysql_real_escape_string(trim($_POST['email']));
+        $phone_edit=mysql_real_escape_string(trim($_POST['phone']));
         mysql_query("UPDATE Trainer SET name='$name_edit', surname='$surname_edit', email='$email_edit', phone='$phone_edit' WHERE trainer_id='$id'");
         $post = $_POST;
         echo json_encode($post);

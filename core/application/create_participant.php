@@ -4,10 +4,10 @@ error_reporting(0);
 if(empty($_POST) === false)
 {
 
-    $first_name=$_POST["first_name"];
-    $last_name=$_POST["last_name"];
+    $first_name=trim($_POST["first_name"]);
+    $last_name=trim($_POST["last_name"]);
     $gender=$_POST["gender"];
-    $age=$_POST["age"];
+    $age=trim($_POST["age"]);
     $class_id=$_POST["class"];
 
 

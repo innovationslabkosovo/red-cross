@@ -94,7 +94,7 @@ include $project_root . 'views/layout/header.php';
 	if((empty($_POST) === false) && empty($errors) === true)	// nese ska errora inserto edhe redirect
 	{
 
-			$questions = $_POST['question'];	// ruaj pyetjet ne nje array
+			$questions = trim($_POST['question']);	// ruaj pyetjet ne nje array
 
 			$codes = array("A","B","C","D","E");
 			for($i = 0; $i <  sizeof($questions); $i++)
@@ -103,7 +103,7 @@ include $project_root . 'views/layout/header.php';
 				
 				$question_id = mysql_insert_id();	// kthen id e fundit te insertuar (id e pyetjes)
 			
-				$answers = $_POST['answer']['q'.$i];	// marrim pergjigjjet nje nga nje
+				$answers = trim($_POST['answer']['q'.$i]);	// marrim pergjigjjet nje nga nje
 				
 				for ($j=0; $j < sizeof($answers); $j++){	
 					
