@@ -26,7 +26,7 @@ $locations = mysql_query($get_locations);
     <form action="../core/application/create_evaluation.php" method="post">
 
     <div class="dropdown">
-        <select id="municipality_id" name="municipality" class="dropdown-select">
+        <select id="municipality_id" name="municipality" class="dropdown-select" data-validation="required">
             <option value="">Zgjedh Komunen</option>
             <?php
             create_options($municipalities, "municipality_id", "name");
@@ -145,15 +145,6 @@ $locations = mysql_query($get_locations);
                 }
             });
 
-        });
-
-
-        $.validate({
-            modules: 'date',
-            validateOnBlur: false, // disable validation when input looses focus
-            errorMessagePosition: 'top',// Instead of 'element' which is default
-            // borderColorOnError : 'red',
-            addValidClassOnAll : true
         });
         $('#commentBox').restrictLength( $('#max-length-element') );
 

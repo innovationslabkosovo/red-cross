@@ -22,7 +22,7 @@ $topic_groups = mysql_query($get_topic_groups);
             <br><br>
             <div class="dropdown">
             <select name="topic_group" class="dropdown-select" data-validation="required">
-                <option value=0>Zgjidh Grupin Tematik
+                <option value=>Zgjidh Grupin Tematik
                     <?php
                     while($row = mysql_fetch_array($topic_groups))
                     {
@@ -46,12 +46,3 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
-
-<script>
-$.validate({
-    validateOnBlur: false, // disable validation when input looses focus
-    errorMessagePosition: 'top',// Instead of 'element' which is default
-    // borderColorOnError : 'red',
-    addValidClassOnAll : true
-});
-</script>

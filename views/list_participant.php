@@ -122,13 +122,6 @@ while ($row_participant = mysql_fetch_assoc($participants))
         </td>
     </tr>
     </form>
-<script>
-    $.validate({
-        validateOnBlur: true, // disable validation when input looses focus
-        errorMessagePosition: 'top', // Instead of 'element' which is default
-        addValidClassOnAll : true,
-    });
-</script>
     <?php
 }
 

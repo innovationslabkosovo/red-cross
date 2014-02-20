@@ -154,13 +154,13 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
     </form>
 
     <script>
-        $.validate({
-            modules: 'date',
-            validateOnBlur: false, // disable validation when input looses focus
-            errorMessagePosition: 'top',// Instead of 'element' which is default
-//            borderColorOnError : 'red',
-            addValidClassOnAll : true
-        });
+//         $.validate({
+//             modules: 'date',
+//             validateOnBlur: false, // disable validation when input looses focus
+//             errorMessagePosition: 'top',// Instead of 'element' which is default
+// //            borderColorOnError : 'red',
+//             addValidClassOnAll : true
+//         });
 
         $("#municipality_id").change(function () {
 

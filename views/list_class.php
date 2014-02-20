@@ -269,12 +269,6 @@ if (isset($_GET['message']))
 
         });
 
-        $.validate({
-            validateOnBlur: true, // disable validation when input looses focus
-            //errorMessagePosition: 'top', // Instead of 'element' which is default
-            addValidClassOnAll : true,
-        });
-
     </script>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>

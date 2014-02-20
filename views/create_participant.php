@@ -61,13 +61,4 @@ $classes = mysql_query($get_class);
     <input type="submit" id="Shto Participant" value="Shto Participant">
 
 </form>
-<script>
-    $.validate({
-        modules: 'date',
-        validateOnBlur: false, // disable validation when input looses focus
-        errorMessagePosition: 'top',// Instead of 'element' which is default
-//            borderColorOnError : 'red',
-        addValidClassOnAll : true
-    });
-</script>
 <?php include $project_root . 'views/layout/footer.php'; ?>

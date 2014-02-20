@@ -25,12 +25,3 @@ if (isset($_GET['message']) && isset($_GET['object']))
 }
 include $project_root . 'views/layout/footer.php';
 ?>
-<script>
-$.validate({
-    modules: 'date',
-    validateOnBlur: false, // disable validation when input looses focus
-    errorMessagePosition: 'top',// Instead of 'element' which is default
-    // borderColorOnError : 'red',
-    addValidClassOnAll : true
-});
-</script>

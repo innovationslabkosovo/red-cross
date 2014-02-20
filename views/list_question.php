@@ -59,11 +59,3 @@
  ?>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
-
-<script>
-    $.validate({
-        validateOnBlur: true, // disable validation when input looses focus
-        //errorMessagePosition: 'top', // Instead of 'element' which is default
-        addValidClassOnAll : true,
-    });
-</script>
