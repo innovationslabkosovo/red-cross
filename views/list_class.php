@@ -146,9 +146,9 @@ if (isset($_GET['message']))
 
 
         echo " <td><input type='hidden' name='id' class='editbox_{$row_class["class_id"]} editbox' value='{$row_class["class_id"]}' />"
-            ."<input type='button' value='Ruaj' class='save_{$row_class["class_id"]} save' id='{$row_class["class_id"]}'>"
-            ."<input type='button' value='Perditeso' class='edit_{$row_class["class_id"]} edit' id='{$row_class["class_id"]}'>"
-            ."<input type='button' value='Anulo' class='cancel_{$row_class["class_id"]} cancel' id='{$row_class["class_id"]}' style='display:none;'> </td >";
+            ."<input type='button' value='Ruaj' class='save_{$row_class["class_id"]} save submitSmlBtn' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Perditeso' class='edit_{$row_class["class_id"]} edit submitSmlBtn' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Anulo' class='cancel_{$row_class["class_id"]} cancel submitSmlBtn' id='{$row_class["class_id"]}' style='display:none;'> </td >";
 
         echo "</tr>";
         echo "<tr  style='display: none' id='details_row_$row_class[class_id]' class='details'>";
