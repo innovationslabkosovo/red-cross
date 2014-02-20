@@ -1,3 +1,8 @@
+<style>
+    .txfform-wrapper.input {
+        height: 34px !important;
+    }
+</style>
 <?php
 $page_title = "Raportet e Punës së Kryqit të Kuq";
 
@@ -184,7 +189,7 @@ $questions = mysql_query($get_all_questions);
 </form>
 
 <!-- TRAJNER EVALUATIN FOR MUNIUCIPALITY IN THE LAST 3 MONTHS -->
-
+<hr>
 <h2>Evaluimi i trajnerit per tre muajt e fundit</h2>
 <form action="trainer_evaluation.php" method="GET">
 
