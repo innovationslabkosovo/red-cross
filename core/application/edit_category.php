@@ -3,7 +3,7 @@ include '../init.php';
 if ($_POST['id']) {
 
     $id=mysql_real_escape_string($_POST['id']);
-    $name=mysql_real_escape_string($_POST['name']);
+    $name=mysql_real_escape_string(trim($_POST['name']));
 
     ob_clean();
 

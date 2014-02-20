@@ -3,7 +3,7 @@ include '../init.php';
 if(empty($_POST) === false)
 {
 
-    $location=$_POST["location"];
+    $location=trim($_POST["location"]);
     $date_from=$_POST["date_from"];
     $date_to=$_POST["date_to"];
     $test=$_POST["test"];

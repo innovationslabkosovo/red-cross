@@ -20,15 +20,15 @@ if(empty($_POST) === false)
         $date = $_POST['date'];
         $time_from = $_POST['time_from'];
         $time_to = $_POST['time_to'];
-        $participant = $_POST['participants'];
-        $age_group = $_POST['age_group'];
+        $participant = trim($_POST['participants']);
+        $age_group = trim($_POST['age_group']);
         $gender = $_POST['gender'];
-        $trainer = $_POST['trainer'];
-        $supervisor = $_POST['supervisor'];
-        $location = $_POST['location'];
-        $place = $_POST['place'];
-        $notes = $_POST['notes'];
-        $categories = $_POST['category'];
+        $trainer = trim($_POST['trainer']);
+        $supervisor = trim($_POST['supervisor']);
+        $location = trim($_POST['location']);
+        $place = trim($_POST['place']);
+        $notes = trim($_POST['notes']);
+        $categories = trim($_POST['category']);
         $categories_db = mysql_query("SELECT category_id FROM Category");
 
         if (mysql_query("INSERT INTO Evaluation(evaluation_id, date, time_from, time_to, participants, age_group, gender, trainer_id, supervisor_id, location_id, location, notes)

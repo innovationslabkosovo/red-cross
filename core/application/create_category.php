@@ -5,7 +5,7 @@ if(empty($_POST) === false)
 {
     if(isset($_POST['category']) && $_POST["category"] != "" && $_POST['id'] == "") {
 
-        $category=$_POST["category"];
+        $category=trim($_POST["category"]);
 
         if (mysql_query("INSERT INTO Category(category_id, name) VALUES ('', '$category')"))
             header("location: ../../views/list_category.php?message=success&object=Category");
@@ -22,7 +22,7 @@ if(empty($_POST) === false)
 
     if($_POST['id']) {
         $id=mysql_real_escape_string($_POST['id']);
-        $category_edit=mysql_real_escape_string($_POST['category']);
+        $category_edit=mysql_real_escape_string(trim($_POST['category']));
         mysql_query("update Category set name='$category_edit' where category_id='$id'");
         ob_clean();
         $post = $_POST;

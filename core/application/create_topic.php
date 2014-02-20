@@ -5,7 +5,7 @@ if(empty($_POST) === false)
 {
     if(isset($_POST['topic']) && $_POST["topic"] != "" && $_POST['id'] == "") {
 
-        $topic=$_POST["topic"];
+        $topic=trim($_POST["topic"]);
         $topic_group_id=$_POST["topic_group"];
 
         if(isset($_POST['active']) && $_POST['active'] == 'active')
@@ -32,7 +32,7 @@ if(empty($_POST) === false)
     if($_POST['id']) {
         ob_clean();
         $id=mysql_real_escape_string($_POST['id']);
-        $topic_edit=mysql_real_escape_string($_POST['topic']);
+        $topic_edit=mysql_real_escape_string(trim($_POST['topic']));
         $topic_status_edit=mysql_real_escape_string($_POST['status']);
         $topic_group_edit=mysql_real_escape_string($_POST['topic_group']);
         ($topic_status_edit == "Aktiv") ? $topic_status_edit = 1 : $topic_status_edit = 0;

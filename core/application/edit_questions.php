@@ -2,8 +2,8 @@
 include '../init.php';
 if ($_POST['id']) {
 	$id=mysql_real_escape_string($_POST['id']);
-	$question_desc=mysql_real_escape_string($_POST['question_description']);
-	$answers_description = $_POST['answers_description'];
+	$question_desc=mysql_real_escape_string(trim($_POST['question_description']));
+	$answers_description = trim($_POST['answers_description']);
 	$answers_id = $_POST['answers_id'];
 	mysql_query("update Question set description='$question_desc' where question_id='$id'");
 	ob_clean();
