@@ -79,8 +79,8 @@ $(document).ready(function () {
     });
 
   var myLanguage = {
-      errorTitle : 'Dergimi i te dhenave deshtoj!',
-      requiredFields : 'Nuk jeni pergjigjur te gjitha pyetjeve te kerkueshme',
+      errorTitle : '',
+      requiredFields : 'Nuk jeni zgjedhur/pergjigjur te gjitha pyetjeve te detyrueshme',
       badTime : 'Ju nuk keni plotesuar kohen ne formatin e duhur',
       badEmail : 'Ju nuk keni plotesuar adresen elektronike ne formatin e duhur',
       badTelephone : 'Ju nuk keni plotesuar telefonin ne formatin e duhur',

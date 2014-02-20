@@ -40,7 +40,7 @@ $municipality = $_GET["municipality"];
 <h2>Zgjedhni Vitin për Raportin Vjetor në Kosovë</h2>
 <form action="../core/application/annual_report.php" method="POST">
     <div class="dropdown">
-        <select name="year" class="dropdown-select">
+        <select name="year" class="dropdown-select" data-validation="required">
             <option value="">Zgjedh Vitin</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
@@ -56,7 +56,7 @@ $municipality = $_GET["municipality"];
 <form action="../core/application/annual_monthly_report.php" method="POST">
     <div class="row">
     <div class="dropdown" style="vertical-align: bottom">
-        <select name="year" class="dropdown-select">
+        <select name="year" class="dropdown-select" data-validation="required">
             <option value="">Zgjedh Vitin</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
@@ -77,7 +77,7 @@ $municipality = $_GET["municipality"];
 
 <form action="../core/application/municipal_report.php" method="POST">
     <div class="dropdown">
-        <select name="year" class="dropdown-select">
+        <select name="year" class="dropdown-select" data-validation="required">
             <option value="">Zgjedh Vitin</option>
             <option value="2014">2014</option>
             <option value="2015">2015</option>
@@ -87,7 +87,7 @@ $municipality = $_GET["municipality"];
     </div>
 
     <div class="dropdown">
-    <select name="month" class="dropdown-select">
+    <select name="month" class="dropdown-select" data-validation="required">
         <option value="">Zgjedh Muajin</option>
         <option value="01">Janar</option>
         <option value="02">Shkurt</option>
@@ -104,7 +104,7 @@ $municipality = $_GET["municipality"];
     </select>
     </div>
     <div class="dropdown">
-    <select name="municipality" class="dropdown-select">
+    <select name="municipality" class="dropdown-select" data-validation="required">
         <option value=0>Zgjedh Komunen
             <?php
             while($row = mysql_fetch_array($municipalities))
@@ -123,7 +123,7 @@ $municipality = $_GET["municipality"];
 <h2>Raporti i Suksesit për Pyetje</h2>
 <form action="question_class_report.php" method="GET">
 <div class="dropdown">
-<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>" data-validation="required">
     <option value="">Zgjedh Komunen</option>
     <?php
     mysql_data_seek($municipalities, 0);
@@ -139,12 +139,12 @@ $municipality = $_GET["municipality"];
 </select>
 </div>
 <div class="dropdown">
-<select name="class_id" id="class_id" class="class_id dropdown-select">
+<select name="class_id" id="class_id" class="class_id dropdown-select" data-validation="required">
     <option value="">Zgjedh Klasen</option>
 </select>
 </div>
 <div class="dropdown">
-<select name="question_id" id="questions" class="dropdown-select">
+<select name="question_id" id="questions" class="dropdown-select" data-validation="required">
     <option value="">Zgjedh Pytjen</option>
 <?php
 $get_all_questions = "SELECT * FROM Question";
@@ -162,7 +162,7 @@ $questions = mysql_query($get_all_questions);
 <h2>Raporti i Suksesit për Pjesëmarrës</h2>
 <form action="participant_class_report.php" method="GET">
 <div class="dropdown">
-<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>">
+<select name="mun_id" id="municipality_id" class="municipality_id dropdown-select" value="<?php echo $municipality_id; ?>" data-validation="required">
     <option value="">Zgjedh Komunen</option>
     <?php
     mysql_data_seek($municipalities, 0);
@@ -176,7 +176,7 @@ $questions = mysql_query($get_all_questions);
 </select>
 </div>
 <div class="dropdown">
-<select name="class_id" id="class_id" class="class_id dropdown-select">
+<select name="class_id" id="class_id" class="class_id dropdown-select" data-validation="required">
     <option value="">Zgjedh Klasen</option>
 </select>
 </div>
@@ -189,7 +189,7 @@ $questions = mysql_query($get_all_questions);
 <form action="trainer_evaluation.php" method="GET">
 
 <div class="dropdown">
-<select name="trainer_id" id="trainer_id" class="trainer_id dropdown-select">
+<select name="trainer_id" id="trainer_id" class="trainer_id dropdown-select" data-validation="required">
     <option value="">Zgjedh Trajnerin</option>
     <?php 
          while ($results = mysql_fetch_assoc($trainers)) {
