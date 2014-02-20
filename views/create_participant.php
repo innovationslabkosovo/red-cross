@@ -25,37 +25,38 @@ $classes = mysql_query($get_class);
 <form action="../core/application/create_participant.php" method="post">
 
     <div class="row">
-        <label>Emri: </label><input type="text" name="first_name" id="first_name" data-validation="required"> <br>
+        <label>Emri: </label><br><input type="text" name="first_name" id="first_name" class="txfform-wrapper input" data-validation="required"> <br>
     </div>
     <br>
 
     <div class="row">
-        <label>Mbiemri: </label><input type="text" name="last_name" id="last_name" data-validation="required"> <br>
+        <label>Mbiemri: </label><br><input type="text" name="last_name" id="last_name" class="txfform-wrapper input" data-validation="required"> <br>
     </div>
     <br>
 
     <div class="row">
-        <label>Mosha: </label><input type="number" name="age" id="age" min="0" data-validation="required" ><br>
+        <label>Mosha: </label><br><input type="number" name="age" id="age" min="0" class="txfform-wrapper input" data-validation="required" ><br>
     </div>
     <br>
 
-    <div class="row">
-        <label>Gjinia:</label>
-        <br>
-        <label>Mashkull<input type="radio" name="gender" value="M" data-validation="required" ><span></span></label>
-        <label>Femer<input type="radio" name="gender" value="F" data-validation="required" ><span></span></label>
+    <div class="row dropdown">
+        <select name="gender" id="gender" class="dropdown-select" data-validation="required">
+            <option value="">Gjinia</option>
+            <option value="M">Mashkull</option>
+            <option value="F">Femer</option>
+        </select>
     </div>
-    <br>
-    <div class="row">
+    <br><br>
+    <div class="row dropdown">
 
-        <select id="class_id"  name="class" data-validation="required" >
+        <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
             <option value="">--Zgjedh Klasen--</option>
             <?php
             create_options($classes, "class_id", "name");
             ?>
         </select>
     </div>
-    <br>
+    <br><br>
 
     <input type="submit" id="Shto Participant" value="Shto Participant">
 

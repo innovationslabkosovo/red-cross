@@ -11,22 +11,22 @@ include $project_root . 'views/layout/header.php'; ?>
     <div class="row">
         <h3>Shto supervizor te ri</h3>
         <div class="row">
-            <label>Emri i supervizorit te ri:</label><input type="text" placeholder="Emri" name="name" class="txfform-wrapper input" id="trainer" data-validation="required" >
+            <label>Emri i supervizorit te ri:</label><br><input type="text" placeholder="Emri" name="name" class="txfform-wrapper input" id="trainer" data-validation="required" >
         </div>
         <br>
 
         <div class="row">
-            <label>Mbiemri i supervizorit te ri:</label><input type="text" placeholder="Mbiemri" name="surname" class="txfform-wrapper input" id="trainer" data-validation="required">
+            <label>Mbiemri i supervizorit te ri:</label><br><input type="text" placeholder="Mbiemri" name="surname" class="txfform-wrapper input" id="trainer" data-validation="required">
         </div>
         <br>
 
         <div class="row">
-            <label>Emaili i supervizorit te ri:</label><input type="text" placeholder="Email" name="email" class="txfform-wrapper input" id="trainer" >
+            <label>Emaili i supervizorit te ri:</label><br><input type="text" placeholder="Email" name="email" class="txfform-wrapper input" id="trainer" >
         </div>
         <br>
 
         <div class="row">
-            <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer">
+            <label>Numri i telefonit:</label><br><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer">
         </div>
         <br>
 
@@ -45,7 +45,11 @@ if (isset($_GET['message']) && isset($_GET['object']))
 include $project_root . 'views/layout/footer.php';
 ?>
 <script>
-
-    $.validate();
-
+$.validate({
+    modules: 'date',
+    validateOnBlur: false, // disable validation when input looses focus
+    errorMessagePosition: 'top',// Instead of 'element' which is default
+    // borderColorOnError : 'red',
+    addValidClassOnAll : true
+});
 </script>

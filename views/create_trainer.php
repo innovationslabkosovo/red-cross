@@ -11,22 +11,22 @@ include $project_root . 'views/layout/header.php'; ?>
     <div class="row">
             <h3>Shto trajner te ri</h3>
             <div class="row">
-                <label>Emri i trajnerit te ri:</label><input type="text" placeholder="Emri" name="name" class="txfform-wrapper input" id="trainername" data-validation="required">
+                <label>Emri i trajnerit te ri:</label><br><input type="text" placeholder="Emri" name="name" class="txfform-wrapper input" id="trainername" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Mbiemri i trajnerit te ri:</label><input type="text" placeholder="Mbiemri" name="surname" class="txfform-wrapper input" id="trainersurname" data-validation="required">
+                <label>Mbiemri i trajnerit te ri:</label><br><input type="text" placeholder="Mbiemri" name="surname" class="txfform-wrapper input" id="trainersurname" data-validation="required">
             </div>
             <br>
 
             <div class="row">
-                <label>Emaili i trajnerit te ri:</label><input type="text" placeholder="Emaili" name="email" id="trainer" class="txfform-wrapper input" id="traineremail">
+                <label>Emaili i trajnerit te ri:</label><br><input type="text" placeholder="Emaili" name="email" id="trainer" class="txfform-wrapper input" id="traineremail">
             </div>
             <br>
 
             <div class="row">
-                <label>Numri i telefonit:</label><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainerphone">
+                <label>Numri i telefonit:</label><br><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainerphone">
             </div>
             <br>
         <div class="row">
@@ -44,7 +44,11 @@ if (isset($_GET['message']) && isset($_GET['object']))
 include $project_root . 'views/layout/footer.php';
 ?>
 <script>
-
-    $.validate();
-
+$.validate({
+    modules: 'date',
+    validateOnBlur: false, // disable validation when input looses focus
+    errorMessagePosition: 'top',// Instead of 'element' which is default
+    // borderColorOnError : 'red',
+    addValidClassOnAll : true
+});
 </script>

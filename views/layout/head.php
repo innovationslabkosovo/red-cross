@@ -1,5 +1,5 @@
 <head>
-    <title><?php echo $page_title; ?></title>
+    <title><?php echo isset($page_title) ? $page_title : 'Red Cross'; ?></title>
     <meta charset="UTF-8">
    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/screen.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/jquery-ui.css">

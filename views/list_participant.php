@@ -60,6 +60,7 @@ $participants = mysql_query($get_participants);
 
 ?>
 <form id="url" action="../core/application/edit_participant.php">
+<div class="form-error-message hide"></div>
 <table class="bordered">
 
     <tr>
@@ -124,7 +125,7 @@ while ($row_participant = mysql_fetch_assoc($participants))
 <script>
     $.validate({
         validateOnBlur: true, // disable validation when input looses focus
-        //errorMessagePosition: 'top', // Instead of 'element' which is default
+        errorMessagePosition: 'top', // Instead of 'element' which is default
         addValidClassOnAll : true,
     });
 </script>

@@ -37,7 +37,7 @@ echo $pages->next_page;
 echo $pages->prev_page;
 $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit");
 ?>
-
+<div class="form-error-message hide"></div>
 <form class="txfform-wrapper cf" name="category_form" id="url" action="../core/application/create_category.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">

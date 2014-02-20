@@ -19,44 +19,44 @@ $(document).ready(function(){
 	var newTextBoxDiv = $(document.createElement('div'))
 	     .attr("id", 'TextBoxDiv' + text);		//text sepse u fshijke divi gabim div2 para div1 
 	
-	newTextBoxDiv.after().html('<label>Pyetja #'+ text + ' : </label>' +
-	      '<input type="text" name="question[]" id="q'+ counter + '" value="" > <br> <label>Pergjigjja A : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" > ' +
+	newTextBoxDiv.after().html('<label><strong>Pyetja #'+ text + ' :</strong> </label><br>' +
+	      '<input type="text" name="question[]" id="q'+ counter + '" value="" class="txfform-wrapper input" data-validation="required"> <br> <label>Pergjigjja A : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input" data-validation="required"> ' +
 		  '<input type="hidden" name="check[c'+ counter +'][a1]" value="0"><br>' 
 		  // '<input type="checkbox" name="check[c'+ counter +'][a1]" value="1"><br>'
 		  
 		  
-		  + '<label> Pergjigjja B : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja B : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a2]" value="0"><br>' 
 		  // '<input type="checkbox" name="check[c'+ counter +'][a2]" value="1"><br>'
 		  
 		  
-		  + '<label> Pergjigjja C : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja C : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a3]" value="0"><br>' 
 		  // '<input type="checkbox" name="check[c'+ counter +'][a3]" value="1"><br>'
 		  
 
 		  
-		  + '<label> Pergjigjja D : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja D : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a4]" value="0"><br>' 
 		  // '<input type="checkbox" name="check[c'+ counter +'][a4]" value="1"><br>'
 		  	
 		  
 		  
-		  + '<label> Pergjigjja E : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja E : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a5]" value="0"><br>'		  
 
 
-		  + '<label> Pergjigjja F : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja F : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a6]" value="0"><br>'
 
-		  + '<label> Pergjigjja G : </label>' +
-	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" >' +
+		  + '<label> Pergjigjja G : </label><br>' +
+	      '<input type="text" name="answer[q'+ counter + '][]" id="a'+ counter + '" value="" class="txfform-wrapper input">' +
 		  '<input type="hidden" name="check[c'+ counter +'][a7]" value="0"><br>');
 		  // '<input type="checkbox" name="check[c'+ counter +'][a5]" value="1"><br>');
 		  

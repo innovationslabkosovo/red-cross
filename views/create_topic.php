@@ -14,14 +14,14 @@ $topic_groups = mysql_query($get_topic_groups);
     <div class="row">
         <h3>Shto Teme te Re!</h3>
         <div class="row">
-            <label>Emri i Temes: </label><br><br>
-            <input type="text" placeholder="Emri i Temes" name="topic" id="topic" class="txfform-wrapper input">
+            <label>Emri i Temes: </label><br>
+            <input type="text" placeholder="Emri i Temes" name="topic" id="topic" class="txfform-wrapper input" data-validation="required">
             <label class="myCheckbox"><br><br>
                 <input type="checkbox" name="active" value="active">Kjo teme eshte aktive <span style="vertical-align: middle;"></span>
             </label>
             <br><br>
             <div class="dropdown">
-            <select name="topic_group" class="dropdown-select">
+            <select name="topic_group" class="dropdown-select" data-validation="required">
                 <option value=0>Zgjidh Grupin Tematik
                     <?php
                     while($row = mysql_fetch_array($topic_groups))
@@ -48,7 +48,10 @@ include $project_root . 'views/layout/footer.php';
 ?>
 
 <script>
-
-    //$.validate();
-
+$.validate({
+    validateOnBlur: false, // disable validation when input looses focus
+    errorMessagePosition: 'top',// Instead of 'element' which is default
+    // borderColorOnError : 'red',
+    addValidClassOnAll : true
+});
 </script>

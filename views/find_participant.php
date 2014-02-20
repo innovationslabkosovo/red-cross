@@ -18,7 +18,6 @@ $municipalities = mysql_query($get_municipalities);
 <h1>Participantet sipas klasave</h1>
 
 <div class="row">
-    <label>Komuna : </label>
     <div class="dropdown">
 
         <select id="municipality_id" class="dropdown-select" name="municipality" >
@@ -28,7 +27,6 @@ $municipalities = mysql_query($get_municipalities);
             ?>
         </select>
     </div>
-    <label>Klasa : </label>
     <div class="dropdown">
 
         <select id="class_id" class="dropdown-select" name="class" >

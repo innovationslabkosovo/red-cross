@@ -26,7 +26,6 @@ $locations = mysql_query($get_locations);
     <form action="../core/application/create_evaluation.php" method="post">
 
     <div class="dropdown">
-
         <select id="municipality_id" name="municipality" class="dropdown-select">
             <option value="">Zgjedh Komunen</option>
             <?php
@@ -40,34 +39,34 @@ $locations = mysql_query($get_locations);
             <option value="">Zgjedh Fshatin</option>
         </select>
     </div>
-    <br>
+    <br><br>
 
     <div class="row">
-        <label>Vendi: </label>
+        <label>Vendi: </label><br>
         <input type="text" name="place" data-validation="required" class="txfform-wrapper input" placeholder="Shtepi Private, Shkolle ...">
     </div>
     <br>
     <div class="row">
-        <label>Data</label><input type="text" name="date" id="date" class="date" data-validation='required date'
+        <label>Data</label><br><input type="text" name="date" id="date" class="date txfform-wrapper input" data-validation='required date'
                                          data-validation-format='yyyy-mm-dd'><br>
     </div>
     <br>
-    <td><label>Ora Prej</label><input type='text' size='12' name='time_from' id="time_from" class="time_topic" data-validation='required time'></td>
-    <td><label>Ora Deri</label><input type='text' size='12' name='time_to' id="time_to" class="time_topic" data-validation='required time'></td>
+    <td><label>Ora Prej</label><br><input type='text' size='12' name='time_from' id="time_from" class="time_topic txfform-wrapper input" data-validation='required time'></td><br>
+    <td><label>Ora Deri</label><br><input type='text' size='12' name='time_to' id="time_to" class="time_topic txfform-wrapper input" data-validation='required time'></td>
     <br>
     <br>
     <div class="row">
-        <label>Numri i Pjesëmarrësve</label>
+        <label>Numri i Pjesëmarrësve</label><br>
         <input type="text" data-validation="required" data-validation="number" name="participants" class="txfform-wrapper input">
     </div>
     <br>
     <div class="row">
-        <label>Grupmosha</label>
+        <label>Grupmosha</label><br>
             <input data-validation="custom" data-validation-regexp="^\d{2}-\d{2}$" type="text"  name="age_group" class="txfform-wrapper input" placeholder="p.sh. 15-45">
     </div>
     <br>
     <div class="row">
-        <label>Gjinia</label>
+        <label>Gjinia</label><br>
     <div class="dropdown">
         <select data-validation="required" name="gender" class="dropdown-select">
             <option value="">Zgjedh Gjininë</option>
@@ -77,7 +76,7 @@ $locations = mysql_query($get_locations);
         </select>
     </div></div>
     <br>
-    <label>Trajneri</label>
+    <label>Trajneri</label><br>
     <div class="dropdown">
 
         <select id="trainer_id" name="trainer" data-validation="required" class="dropdown-select">
@@ -87,8 +86,8 @@ $locations = mysql_query($get_locations);
             ?>
         </select>
     </div>
-    <br>
-    <label>Mbikqyrësi</label>
+    <br><br>
+    <label>Mbikqyrësi</label><br>
     <div class="dropdown">
 
         <select id="supervisor_id" name="supervisor" data-validation="required" class="dropdown-select">
@@ -98,24 +97,24 @@ $locations = mysql_query($get_locations);
             ?>
         </select>
     </div>
-    <br>
+    <br><br>
     <label>Kategoritë e Vlerësimit</label>
     <br>
 
                 <?php
                 while($row = mysql_fetch_array($categories))
                 {
-                    echo "<input type='checkbox' name='category[]' data-validation='checkbox_group' data-validation-qty='min1'";
+                    echo "<label class='myCheckbox'><input type='checkbox' name='category[]' data-validation='checkbox_group' data-validation-qty='min1'";
                     $name=$row["name"];
                     $select=$row["category_id"];
-                    echo " VALUE=\"$select\">".$name.'<br>';
+                    echo " VALUE=\"$select\">".'<span style=\'vertical-align:middle;margin-bottom:5px;margin-right:5px;\'></span>'.$name.'</label><br>';
                 }
                 ?>
     <br>
     <label>Vëzhgimet</label>
     <br>
     <span id="max-length-element">500</span> karaktere kan mbetur
-    <textarea id="commentBox" data-validation="length" data-validation-length="max500" name="notes" placeholder="Vëzhgimet"></textarea>
+    <textarea id="commentBox" data-validation="length" data-validation-length="max500" name="notes" placeholder="Vëzhgimet"></textarea><br>
     <input type="submit" value="Regjistro">
     <script>
 
@@ -148,7 +147,14 @@ $locations = mysql_query($get_locations);
 
         });
 
-        $.validate();
+
+        $.validate({
+            modules: 'date',
+            validateOnBlur: false, // disable validation when input looses focus
+            errorMessagePosition: 'top',// Instead of 'element' which is default
+            // borderColorOnError : 'red',
+            addValidClassOnAll : true
+        });
         $('#commentBox').restrictLength( $('#max-length-element') );
 
     </script>

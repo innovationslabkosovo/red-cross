@@ -14,7 +14,7 @@ include $project_root . 'views/layout/header.php';
         <h3>Shto Grup Tematik te Ri!</h3>
             <div class="row">
                 <label>Titulli i Grupit Tematik: </label><br><br>
-                <input type="text" placeholder="Titulli i Grupit Tmatik" name="topic_group" id="topic_group" class="txfform-wrapper input">
+                <input type="text" placeholder="Titulli i Grupit Tmatik" name="topic_group" id="topic_group" class="txfform-wrapper input" data-validation="required">
                 <label class="myCheckbox"><br><br>
                 <input type="checkbox" name="active" value="active">Ky grup tematik eshte aktiv  <span style="vertical-align: middle;"></span>
                 </label>
@@ -33,7 +33,11 @@ include $project_root . 'views/layout/footer.php';
 ?>
 
 <script>
-
-    $.validate();
-
+$.validate({
+    modules: 'date',
+    validateOnBlur: false, // disable validation when input looses focus
+    errorMessagePosition: 'top',// Instead of 'element' which is default
+    // borderColorOnError : 'red',
+    addValidClassOnAll : true
+});
 </script>

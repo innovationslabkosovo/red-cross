@@ -44,7 +44,7 @@ map.addLayer(mapnik);
 
 var markers = new OpenLayers.Layer.Markers("Markers");
 map.addLayer(markers);
-markers.addMarker(new OpenLayers.Marker(position));
+//markers.addMarker(new OpenLayers.Marker(position));
 map.setCenter(position, zoom);
 
 map.events.register("click", map, function (e) {
@@ -67,7 +67,7 @@ map.events.register("click", map, function (e) {
             markers.clearMarkers(); // Clear markers first
             marker = new OpenLayers.LonLat(LonLatFromID[0], LonLatFromID[1]).transform(toProjection, fromProjection); // Transform marker
             map.setCenter(marker, 13); // Set center
-            markers.addMarker(new OpenLayers.Marker(marker)); // Add marker with latitude, longitude
+            //markers.addMarker(new OpenLayers.Marker(marker)); // Add marker with latitude, longitude
             OpenLayers.Util.getElement("lat").value = LonLatFromID[1]; // Update hidden fields with latitude
             OpenLayers.Util.getElement("lon").value = LonLatFromID[0]; // Update hidden fields with longitude
         }

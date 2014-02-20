@@ -10,7 +10,7 @@
 <?php
 
 	$query = mysql_query("SELECT * FROM Test");
-
+	echo '<div class="form-error-message hide"></div>';
 	echo "<form id='url' action='{$base_url}/core/application/edit_test.php' >";
 	echo "<table  class = 'bordered'>";
 	echo "<tr><th>Emri</th><th>Edito</th></tr>";

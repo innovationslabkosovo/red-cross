@@ -10,7 +10,9 @@
   <script type="text/javascript" src="<?php echo BASE_URL  ?>/js/shto-fshi-fusha-script.js"></script>
 <form action="" method="post" id = "form1">
 
-<label>Emri i testit: </label><input type="text" name="emri_testit">
+<label>Emri i testit: </label><br><input type="text" name="emri_testit" class="txfform-wrapper input" data-validation="required"><br><br>
+<input type="button" id="select_questions" class="button" value="Selekto te gjitha" /><br>
+<input type="button" id="clear_questions" class="button" value="Pastro te gjitha" />
 
 <!-- <input type="checkbox" name="vehicle" value="Bike">I have a bike<br> -->
 
@@ -22,7 +24,10 @@
 	while ($row = mysql_fetch_array($query))
 
 	{
-		echo '<input type="checkbox" name="chbox[]" value="' . $row['question_id'] . '">' . $row['question_id'] . " - " . $row['description'] . "<br>";
+		echo '<label class="myCheckbox" style="padding-bottom: 10px;">
+			<input type="checkbox" name="chbox[]" value="' . $row['question_id'] . '">' 
+			. '<span style="vertical-align:middle;margin-bottom:5px;"></span>' 
+			. '&nbsp;'.$row['question_id'] . " - " . $row['description'] . "</label><br>";
 	}	
 ?>
 
@@ -39,9 +44,6 @@
 	
 ?>
 
-<br>
-<input type="button" id="select_questions" value="Selekto te gjitha" /><br>
-<input type="button" id="clear_questions" value="Pastro te gjitha" /><br>
     <script type="application/javascript">
         $("#select_questions").click(function() {
             $("input[type='checkbox']").prop("checked", true); 
@@ -76,3 +78,12 @@
 ?>
 
 <?php include $project_root . 'views/layout/footer.php'; ?>
+<script>
+$.validate({
+	modules: 'date',
+	validateOnBlur: false, // disable validation when input looses focus
+	errorMessagePosition: 'top',// Instead of 'element' which is default
+	// borderColorOnError : 'red',
+	addValidClassOnAll : true
+});
+</script>

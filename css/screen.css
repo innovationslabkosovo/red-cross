@@ -438,19 +438,20 @@ table {
 
 .txfform-wrapper.input {
     width: 200px;
-    height: 13px;
+    height: auto;
     padding: 10px 15px;
     font: normal 15px 'lucida sans', 'trebuchet MS', 'Tahoma', Ariel, Geneva, sans-serif;
     border: 0;
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
     border-radius: 5px;
     border-right: 4px solid #d65c5c;
     color: #999;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
 }
 
 .txfform-wrapper.input:focus {
     outline: 0;
-    background: #fff;
+    /*background: #fff;*/
     box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
 }
 
@@ -765,4 +766,13 @@ table {
 #details_row_1 td { padding: 0px; }
 .create_class .input {
     width: 180px;
+}
+div.form-error-message {
+    padding: 6px 12px;
+    line-height: 180%;
+    background: #ffe5ed;
+    border-radius: 4px;
+    margin-bottom: 22px;
+    color: darkred;
+    width: 60%;
 }

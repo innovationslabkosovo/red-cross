@@ -21,28 +21,28 @@ include $project_root . 'views/layout/header.php';
     <div id='TextBox'>
 	<div id="TextBoxDiv1">
 
-		<label>Pyetja #1 : </label><input type='text' id='q1' name="question[]" > <br>
+		<label><strong>Pyetja #1 :</strong> </label><br><input type='text' id='q1' name="question[]" class="txfform-wrapper input" data-validation="required"> <br>
       
-        <label>Pergjigjja A : </label><input type='text' id='a1' name="answer[q0][]" >
+        <label>Pergjigjja A : </label><br><input type='text' id='a1' name="answer[q0][]" class="txfform-wrapper input" data-validation="required">
         <input type="hidden" name="check[c0][a1]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a1]" value="1"><br> -->
-        <label>Pergjigjja B : </label><input type='text' id='a2' name="answer[q0][]" >
+        <label>Pergjigjja B : </label><br><input type='text' id='a2' name="answer[q0][]" class="txfform-wrapper input">
         <input type="hidden" name="check[c0][a2]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a2]" value="1"><br> -->
-        <label>Pergjigjja C : </label><input type='text' id='a3' name="answer[q0][]" >
+        <label>Pergjigjja C : </label><br><input type='text' id='a3' name="answer[q0][]" class="txfform-wrapper input">
         <input type="hidden" name="check[c0][a3]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a3]" value="1"><br> -->
-        <label>Pergjigjja D : </label><input type='text' id='a4' name="answer[q0][]" >
+        <label>Pergjigjja D : </label><br><input type='text' id='a4' name="answer[q0][]" class="txfform-wrapper input">
         <input type="hidden" name="check[c0][a4]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a4]" value="1"><br> -->
-        <label>Pergjigjja E : </label><input type='text' id='a5' name="answer[q0][]" >
+        <label>Pergjigjja E : </label><br><input type='text' id='a5' name="answer[q0][]" class="txfform-wrapper input">
         <input type="hidden" name="check[c0][a5]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
-        <label>Pergjigjja F : </label><input type='text' id='a5' name="answer[q0][]" >
+        <label>Pergjigjja F : </label><br><input type='text' id='a5' name="answer[q0][]" class="txfform-wrapper input">
         <input type="hidden" name="check[c0][a5]" value="0"><br>
         <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
-        <label>Pergjigjja G : </label><input type='text' id='a6' name="answer[q0][]" >
-        <input type="hidden" name="check[c0][a6]" value="0"><br>
+        <label>Pergjigjja G : </label><br><input type='text' id='a6' name="answer[q0][]" class="txfform-wrapper input">
+        <input type="hidden" name="check[c0][a6]" value="0"><br><br>
         <!-- <input type="checkbox" name="check[c0][a5]" value="1"><br> -->
 	</div>
 </div>
@@ -140,4 +140,13 @@ if (isset($_GET['message']) && isset($_GET['object']))
 include $project_root . 'views/layout/footer.php';
 		
 ?>
+<script>
+$.validate({
+	modules: 'date',
+	validateOnBlur: false, // disable validation when input looses focus
+	errorMessagePosition: 'top',// Instead of 'element' which is default
+	// borderColorOnError : 'red',
+	addValidClassOnAll : true
+});
+</script>
 

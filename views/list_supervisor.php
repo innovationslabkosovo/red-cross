@@ -37,8 +37,8 @@ echo $pages->next_page;
 echo $pages->prev_page;
 $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FROM Supervisor $pages->limit");
 ?>
-
 <form class="txfform-wrapper cf" name="supervisor_form" id="url" action="../core/application/create_supervisor.php" method="post">
+<div class="form-error-message hide"></div>
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 

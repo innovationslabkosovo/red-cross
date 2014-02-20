@@ -10,8 +10,8 @@ include $project_root . 'views/layout/header.php'; ?>
         <div class="row">
             <h3>Shto kategori te re</h3>
             <div class="row">
-                <label>Emri i kategorise se re:</label><br><br>
-                <input type="text" placeholder="Emri i kategorise se re" name="category" id="category" class="txfform-wrapper input">
+                <label>Emri i kategorise se re:</label><br>
+                <input type="text" placeholder="Emri i kategorise se re" name="category" id="category" class="txfform-wrapper input" data-validation="required">
             </div>
             <br>
             <input type="submit" value="Ruaj!">
@@ -26,7 +26,11 @@ if (isset($_GET['message']) && isset($_GET['object']))
 include $project_root . 'views/layout/footer.php';
 ?>
 <script>
-
-    $.validate();
-
+$.validate({
+    modules: 'date',
+    validateOnBlur: false, // disable validation when input looses focus
+    errorMessagePosition: 'top',// Instead of 'element' which is default
+    // borderColorOnError : 'red',
+    addValidClassOnAll : true
+});
 </script>

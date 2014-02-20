@@ -110,7 +110,8 @@ $longitude = $results['longitude'];
 </td>
 
 <td>
-    <a href="http://www.openstreetmap.org/?mlat=<?php echo $coords[1]; ?>&mlon=<?php echo $coords[0]; ?>" target="_blank"><?php echo $municipality_name; ?></a>
+    https://www.google.com/maps/@42.6712821,21.1591959,17z
+    <a href="https://www.google.com/maps/@<?php echo $coords[1],$coords[0].',17z'; ?>" target="_blank"><?php echo $municipality_name; ?></a>
 </td>
 <td>
     <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
