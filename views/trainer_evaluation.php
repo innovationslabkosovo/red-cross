@@ -14,14 +14,14 @@ if($trainer_id){
 		$query = mysql_query("SELECT `name`,`surname` FROM Trainer where trainer_id = '{$trainer_id}'");
 		while($fetch = mysql_fetch_assoc($query)){
 			$trainer = $fetch['name'];
-			$traner_surname = $fetch['surname'];
+			$trainer_surname = $fetch['surname'];
 
 		}
 	?>
-	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$traner_surname; ?></h1>
+	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$trainer_surname; ?></h1>
 	<table class="bordered">
 		
-		<tr><th>Kategorite</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
+		<tr><th>Kategoritez</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
 	<?php
 
 	$get_cat = "SELECT * FROM Category c ";
