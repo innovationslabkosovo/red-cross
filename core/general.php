@@ -61,7 +61,7 @@ $display_messages = array(
     ),
     "TrainerDelete" => array(
         "success" => "Trajneri u fshi me sukses",
-        "fail" => "Trajneri nuk u fshi",
+        "fail" => "Trajneri nuk mund te fshihet sepse ka klasa te cilat i ka mbajtur!",
     ),
     "SupervisorDelete" => array(
         "success" => "Supervizori u fshi me sukses",
