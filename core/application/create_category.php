@@ -51,7 +51,7 @@ if(empty($_POST) === false)
             }
         }
         catch (Exception $e) {
-            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'Category');
+            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'CategoryDelete');
             ob_clean();
             echo json_encode($data1);
         }

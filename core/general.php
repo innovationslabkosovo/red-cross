@@ -58,6 +58,7 @@ $display_messages = array(
     ),
     "CategoryDelete" => array(
         "success" => "Kategoria u fshi me sukses",
+        "fail" => "Kategoria nuk mund te fshihet sepse ka trajner te cilet jane vleresuar me kete kategori!",
     ),
     "TrainerDelete" => array(
         "success" => "Trajneri u fshi me sukses",
