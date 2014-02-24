@@ -42,7 +42,8 @@ $display_messages = array(
         "success" => "Kategoria u shtua me sukses",
         "fail" => "Kategoria nuk u shtua",
     ),
-        "Supervisor" => array(
+
+    "Supervisor" => array(
         "success" => "Supervizori u shtua me sukses",
         "fail" => "Supervizori nuk u shtua, ju lutem futni te dhenat per emer dhe mbiemer",
     ),
@@ -64,7 +65,7 @@ $display_messages = array(
     ),
     "SupervisorDelete" => array(
         "success" => "Supervizori u fshi me sukses",
-        "fail" => "Supervizori nuk u fshi",
+        "fail" => "Supervizori nuk mund te fshihet sepse ka vleresime te cilat i ka bere!",
     ),
     "Question" => array(
         "success" => "Pyetja u shtua me sukses",

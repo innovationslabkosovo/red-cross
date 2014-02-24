@@ -46,14 +46,14 @@ if(empty($_POST) === false)
                  }
                  else {
 
-                 throw new Exception('Supervizori nuk mund te shtohet!');
-                 $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'Supervisor');
+                 throw new Exception('Supervizori nuk mund te fshihet sepse ka vleresime te cilat i ka bere!');
+                 $data1 = array( 'rowID'=>'0', 'message'=>'fail', 'object'=>'SupervisorDelete');
                  ob_clean();
                  echo json_encode($data1);
                       }
              }
         catch (Exception $e) {
-            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'Supervisor');
+            $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'SupervisorDelete');
             ob_clean();
             echo json_encode($data1);
         }
