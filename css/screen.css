@@ -445,7 +445,7 @@ table {
     /*background: #f2f2f2;*/
     border-radius: 5px;
     border-right: 4px solid #d65c5c;
-    color: #999;
+    /*color: #999;*/
     box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
 }
 
@@ -456,19 +456,19 @@ table {
 }
 
 .txfform-wrapper.input::-webkit-input-placeholder {
-    color: #999;
+    /*color: #999;*/
     font-weight: normal;
     font-style: italic;
 }
 
 .txfform-wrapper.input:-moz-placeholder {
-    color: #999;
+    /*color: #999;*/
     font-weight: normal;
     font-style: italic;
 }
 
 .txfform-wrapper.input:-ms-input-placeholder {
-    color: #999;
+    /*color: #999;*/
     font-weight: normal;
     font-style: italic;
 }
@@ -610,7 +610,7 @@ table {
     font-size: 12px;
     font-family: 'lucida sans', 'trebuchet MS', 'Tahoma', Ariel, Geneva, sans-serif;
     font-weight: normal;
-    color: #999;
+    /*color: #999;*/
 }
 
 .active {

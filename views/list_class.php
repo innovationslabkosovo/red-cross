@@ -82,7 +82,7 @@ if (isset($_GET['message']))
 
 ?>
 <div class="form-error-message hide"></div>
-<form id="url" action="../core/application/edit_class.php">
+<form id="url" action="../core/application/edit_class.php" class="edit_class_view">
     <table class="bordered style-for-inputs">
 
     <tr>

@@ -12,7 +12,7 @@
 	$query = mysql_query("SELECT * FROM Question");
 	echo "<div id='url' url='{$base_url}/core/application/edit_questions.php'></div>";
 	echo '<div class="form-error-message hide"></div>';
-	echo "<form id='url' action='../core/application/edit_questions.php'>";
+	echo "<form id='url' class='edit_question_view' action='../core/application/edit_questions.php'>";
 	echo "<table border = '1' class='bordered'>";
 	echo "<tr><th>Pyejta</th><th>Pergjigjet</th><th>Edito</th></tr>";
 

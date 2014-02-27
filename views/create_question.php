@@ -14,7 +14,7 @@ include $project_root . 'views/layout/header.php';
 
 <h1>Krijo pyetjet per teste: </h1>
 
-<form action="" method="post">
+<form action="" method="post" class="create_question_view">
 
     <!-- <label>Emri i testit :</label><input type="text" id="krijo_test" name="name"></li> -->
         

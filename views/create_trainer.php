@@ -6,7 +6,7 @@ protect_page($user_id);
 $errors = array();
 include $project_root . 'views/layout/header.php'; ?>
 
-<form class="txfform-wrapper cf" name="trainer_form" action="../core/application/create_trainer.php" method="post">
+<form class="txfform-wrapper cf create_trainer_view" name="trainer_form" action="../core/application/create_trainer.php" method="post">
 
     <div class="row">
             <h3>Shto trajner te ri</h3>

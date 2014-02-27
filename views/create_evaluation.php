@@ -23,7 +23,7 @@ $locations = mysql_query($get_locations);
 ?>
     <h1>Performanca e Trajnerit për Kurset në Terren</h1>
 
-    <form action="../core/application/create_evaluation.php" method="post">
+    <form action="../core/application/create_evaluation.php" method="post" class="create_evaluation_view">
 
     <div class="dropdown">
         <select id="municipality_id" name="municipality" class="dropdown-select" data-validation="required">

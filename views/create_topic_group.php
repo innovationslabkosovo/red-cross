@@ -9,7 +9,7 @@ include $project_root . 'views/layout/header.php';
 
 
 ?>
-<form class="txfform-wrapper cf" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
+<form class="txfform-wrapper cf create_topicgroup_view" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
     <div class="row">
         <h3>Shto Grup Tematik te Ri!</h3>
             <div class="row">

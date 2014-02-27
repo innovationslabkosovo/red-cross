@@ -59,7 +59,7 @@ $participants = mysql_query($get_participants);
 
 
 ?>
-<form id="url" action="../core/application/edit_participant.php">
+<form id="url" action="../core/application/edit_participant.php" class="edit_participant_view">
 <div class="form-error-message hide"></div>
 <table class="bordered">
 

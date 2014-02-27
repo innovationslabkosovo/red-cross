@@ -42,7 +42,7 @@ $topic_groups = mysql_query($get_topic_groups);
 $status[1]="Aktiv";
 $status[0]="Jo-aktiv";
 ?>
-<form class="txfform-wrapper cf" id="url" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
+<form class="txfform-wrapper cf edit_topicgroup_view" id="url" name="topic_group_form" action="../core/application/create_topic_group.php" method="post">
     <div class="form-error-message hide"></div>
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">

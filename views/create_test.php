@@ -8,7 +8,7 @@
 <html>
 <head>
   <script type="text/javascript" src="<?php echo BASE_URL  ?>/js/shto-fshi-fusha-script.js"></script>
-<form action="" method="post" id = "form1">
+<form action="" method="post" id = "form1" class="create_test_view">
 
 <label>Emri i testit: </label><br><input type="text" name="emri_testit" class="txfform-wrapper input" data-validation="required"><br><br>
 <input type="button" id="select_questions" class="button" value="Selekto te gjitha" /><br>

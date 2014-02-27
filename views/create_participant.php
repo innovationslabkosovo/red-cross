@@ -22,7 +22,7 @@ $classes = mysql_query($get_class);
 <h1>Krijo participant te ri</h1>
 
 <br>
-<form action="../core/application/create_participant.php" method="post">
+<form action="../core/application/create_participant.php" method="post" id="create_participant_view">
 
     <div class="row">
         <label>Emri: </label><br><input type="text" name="first_name" id="first_name" class="txfform-wrapper input" data-validation="required"> <br>

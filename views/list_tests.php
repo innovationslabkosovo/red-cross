@@ -11,7 +11,7 @@
 
 	$query = mysql_query("SELECT * FROM Test");
 	echo '<div class="form-error-message hide"></div>';
-	echo "<form id='url' action='{$base_url}/core/application/edit_test.php' >";
+	echo "<form id='url' class='edit_tests_view' action='{$base_url}/core/application/edit_test.php' >";
 	echo "<table  class = 'bordered'>";
 	echo "<tr><th>Emri</th><th>Edito</th></tr>";
 	while ($result = mysql_fetch_assoc($query)) {

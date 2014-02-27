@@ -10,7 +10,7 @@ $get_topic_groups = "SELECT topic_group_id, name FROM TopicGroup where active='1
 $topic_groups = mysql_query($get_topic_groups);
 
 ?>
-<form class="txfform-wrapper cf" name="topic_form" action="../core/application/create_topic.php" method="post">
+<form class="txfform-wrapper cf create_topic_view" name="topic_form" action="../core/application/create_topic.php" method="post">
     <div class="row">
         <h3>Shto Teme te Re!</h3>
         <div class="row">

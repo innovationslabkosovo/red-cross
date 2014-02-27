@@ -52,7 +52,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
     <h1>Krijo klase te re</h1>
 
     <br>
-    <form action="../core/application/create_class.php" method="post">
+    <form action="../core/application/create_class.php" method="post" class="create_class_view">
 
         <div class="row dropdown">
             <select id="municipality_id" name="municipality" data-validation="required" class="dropdown-select">
