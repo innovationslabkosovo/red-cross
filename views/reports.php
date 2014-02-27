@@ -190,7 +190,7 @@ if (is_admin($user_id)){
 ?>
 <!-- TRAJNER EVALUATIN FOR MUNIUCIPALITY IN THE LAST 3 MONTHS -->
 <hr>
-<h2>Evaluimi i trajnerit per tre muajt e fundit</h2>
+<h2>Evaluimi i trajnerit për tre muajt e fundit</h2>
 <form action="trainer_evaluation.php" method="GET">
 
 <div class="dropdown">
