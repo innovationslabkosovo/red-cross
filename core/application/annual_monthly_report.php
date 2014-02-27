@@ -2,29 +2,6 @@
 include '../init.php';
 include $project_root . 'views/layout/header.php';
 
-$year = $_POST["year"];
-if ($year == ""){
-    $year = date("Y");;
-}
-
-$months = array(
-    "01" => "Janar",
-    "02" => "Shkurt",
-    "03" => "Mars",
-    "04" => "Prill",
-    "05" => "Maj",
-    "06" => "Qershor",
-    "07" => "Korrik",
-    "08" => "Gusht",
-    "09" => "Shtator",
-    "10" => "Tetor",
-    "11" => "Nentor",
-    "12" => "Dhjetor",
-);
-
-//$datefrom = $year."-".$_POST['month']."-01";
-//$dateto = $year."-".$_POST['month']."-31";
-
 $datefrom = $_POST['date_from'];
 $dateto = $_POST['date_to'];
 
