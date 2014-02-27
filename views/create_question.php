@@ -94,16 +94,17 @@ include $project_root . 'views/layout/header.php';
 	if((empty($_POST) === false) && empty($errors) === true)	// nese ska errora inserto edhe redirect
 	{
 
-			$questions = trim($_POST['question']);	// ruaj pyetjet ne nje array
+			$questions = $_POST['question'];	// ruaj pyetjet ne nje array
 
 			$codes = array("A","B","C","D","E");
 			for($i = 0; $i <  sizeof($questions); $i++)
 			{
+                $questions[$i] = trim($questions[$i]);
 				$shto_pyetje = mysql_query("INSERT INTO `Question` (`description`) VALUES ('$questions[$i]')"); // insert te question
 				
 				$question_id = mysql_insert_id();	// kthen id e fundit te insertuar (id e pyetjes)
 			
-				$answers = trim($_POST['answer']['q'.$i]);	// marrim pergjigjjet nje nga nje
+				$answers = $_POST['answer']['q'.$i];	// marrim pergjigjjet nje nga nje
 				
 				for ($j=0; $j < sizeof($answers); $j++){	
 					
@@ -111,6 +112,7 @@ include $project_root . 'views/layout/header.php';
 					// $correct_ans = $_POST['check']['c'.$i]['a'.$n];
 					//marrim correct answer nese osht check e marrim checked nese jo e marrim hidden field
 					if (!empty($answers[$j])) {
+                        $answers[$j] = trim($answers[$j]);
 						$shto_pergjigjje = mysql_query("INSERT INTO `Answer` (`question_id`, `description`) VALUES ('$question_id', '$answers[$j]')");
 					}
 					// shto nje pergjigjje
