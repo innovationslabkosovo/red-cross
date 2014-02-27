@@ -42,6 +42,9 @@ $municipality = $_GET["municipality"];
 </head>
 <body>
 <br>
+<?php
+if (is_admin($user_id)){
+?>
 <h2>Zgjedhni Vitin për Raportin Vjetor në Kosovë</h2>
 <form action="../core/application/annual_report.php" method="POST">
     <div class="dropdown">
@@ -57,7 +60,7 @@ $municipality = $_GET["municipality"];
 </form>
 <hr>
 <br>
-<h2>Zgjedhni Vitin dhe Muajin për Raportin Mujor në Kosovë</h2>
+<h2>Zgjedhni Periudhën për Raportin Gjeneral në Kosovë</h2>
 <form action="../core/application/annual_monthly_report.php" method="POST">
     <div class="row">
 
@@ -69,6 +72,9 @@ $municipality = $_GET["municipality"];
     </div>
 </form>
 <hr>
+<?php
+}
+?>
 <br>
 <h2>Raporti Mujor Komunal</h2>
 
@@ -179,7 +185,9 @@ $questions = mysql_query($get_all_questions);
 </div>
 <input type="submit" value="Gjenero" class="align-top">
 </form>
-
+<?php
+if (is_admin($user_id)){
+?>
 <!-- TRAJNER EVALUATIN FOR MUNIUCIPALITY IN THE LAST 3 MONTHS -->
 <hr>
 <h2>Evaluimi i trajnerit per tre muajt e fundit</h2>
@@ -201,6 +209,9 @@ $questions = mysql_query($get_all_questions);
 </select>
 </div>
 <input type="submit" value="Gjenero" class="align-top">
+    <?php
+    }
+    ?>
 </form>
 
 

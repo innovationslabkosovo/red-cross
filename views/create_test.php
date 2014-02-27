@@ -1,7 +1,8 @@
 <?php
 	$page_title = "Krijo_test";
 	include '../core/init.php';
-	protect_page();
+    $user_id = $_SESSION['id'];
+    protect_page($user_id );
 	include $project_root . 'views/layout/header.php';
 	$errors = array();
 ?>
