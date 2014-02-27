@@ -60,15 +60,7 @@ $municipality = $_GET["municipality"];
 <h2>Zgjedhni Vitin dhe Muajin për Raportin Mujor në Kosovë</h2>
 <form action="../core/application/annual_monthly_report.php" method="POST">
     <div class="row">
-    <div class="dropdown" style="vertical-align: bottom">
-        <select name="year" class="dropdown-select" data-validation="required">
-            <option value="">Zgjedh Vitin</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-        </select>
-    </div>
+
         <input type="text" name="date_from" id="date_from" class="date txfform-wrapper input" data-validation='required date'
                                   data-validation-format='yyyy-mm-dd' placeholder="Nga Data">
         <input type="text" name="date_to" id="date_to" class="date txfform-wrapper input" data-validation='required date'
@@ -222,6 +214,15 @@ if (isset($_GET['message']) && isset($_GET['object']))
 include $project_root . 'views/layout/footer.php';
 ?>
 <script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js">
-    $.validate();
+    $.validate({
+//        language : myLanguage,
+        modules: 'date',
+        validateOnBlur: false, // disable validation when input looses focus
+        errorMessagePosition: 'top',// Instead of 'element' which is default
+        // borderColorOnError : 'red',
+        addValidClassOnAll : true,
+        scrollToTopOnError : false
+
+    });
 </script>
 </html>

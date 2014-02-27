@@ -1,9 +1,32 @@
 /**
  * Created by visar on 11/21/13.
  */
+jQuery(function($){
+    $.datepicker.regional['sq'] = {
+        closeText: 'Fermer',
+        prevText: 'Précédent',
+        nextText: 'Suivant',
+        currentText: 'Aujourd\'hui',
+        monthNames: ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor',
+            'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nentor', 'Dhjetor'],
+        monthNamesShort: ['Jan', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qer',
+            'Korr', 'Gusht', 'Shta', 'Tet', 'Nen', 'Dhje'],
+        dayNames: ['Diell', 'Hene', 'Marte', 'Merkure', 'Enjte', 'Premte', 'Shtune'],
+        dayNamesShort: ['dim.', 'lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.'],
+        dayNamesMin: ['D','H','Ma','Me','E','P','S'],
+        weekHeader: 'Sem.',
+        dateFormat: 'dd/mm/yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''};
+    $.datepicker.setDefaults($.datepicker.regional['sq']);
+});
+
+
 
 $(function () {
-    $(".datefrom, .dateto, .date_topic, .date").datepicker({dateFormat: 'yy-mm-dd' });
+    $(".datefrom, .dateto, .date_topic, .date").datepicker({dateFormat: 'yy-mm-dd' }, $.datepicker.regional[ "sq" ]);
     $(".time_topic, .time_from, .time_to").timepicker();
 });
 
@@ -109,6 +132,7 @@ $(document).ready(function () {
       groupCheckedTooManyStart : 'Ju lutemi zgjedhni me se shumti ',
       groupCheckedEnd : ' kategori'
     };
+
 
     $.validate({
         language : myLanguage,
