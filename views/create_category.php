@@ -6,7 +6,7 @@ protect_page($user_id);
 $errors = array();
 include $project_root . 'views/layout/header.php'; ?>
 
-    <form class="txfform-wrapper cf" name="category_form" action="../core/application/create_category.php" method="post">
+    <form class="txfform-wrapper cf create_category_view" name="category_form" action="../core/application/create_category.php" method="post">
         <div class="row">
             <h3>Shto kategori te re</h3>
             <div class="row">

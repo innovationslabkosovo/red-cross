@@ -41,7 +41,7 @@ echo $pages->prev_page;
 $topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name, TopicGroup.topic_group_id FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id $pages->limit");
 ?>
 <div class="form-error-message hide"></div>
-<form class="txfform-wrapper cf" id="url" name="topic_form" action="../core/application/create_topic.php" method="post">
+<form class="txfform-wrapper cf edit_topic_view" id="url" name="topic_form" action="../core/application/create_topic.php" method="post">
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
 

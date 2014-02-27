@@ -103,7 +103,7 @@ $(document).ready(function () {
 
   var myLanguage = {
       errorTitle : '',
-      requiredFields : 'Nuk jeni zgjedhur/pergjigjur te gjitha pyetjeve te detyrueshme',
+      requiredFields : 'Nuk keni zgjedhur/pergjigjur te gjitha pyetjeve te detyrueshme',
       badTime : 'Ju nuk keni plotesuar kohen ne formatin e duhur',
       badEmail : 'Ju nuk keni plotesuar adresen elektronike ne formatin e duhur',
       badTelephone : 'Ju nuk keni plotesuar telefonin ne formatin e duhur',
@@ -135,9 +135,21 @@ $(document).ready(function () {
 
 
     $.validate({
+        form : '.edit_class_view, .edit_participant_view, .edit_topicgroup_view, .edit_topic_view, .edit_question_view, .edit_tests_view, .edit_category_view, .edit_trainer_view, .edit_supervisor_view',
         language : myLanguage,
         modules: 'date',
         validateOnBlur: true, // disable validation when input looses focus
+        errorMessagePosition: 'top',// Instead of 'element' which is default
+        // borderColorOnError : 'red',
+        addValidClassOnAll : true,
+        scrollToTopOnError : false
+    });
+
+    $.validate({
+        form : '.create_class_view, .create_participant_view, .create_topicgroup_view, .create_topic_view, .create_question_view, .create_test_view, .create_category_view, .create_trainer_view, .create_evaluation_view, .create_supervisor_view',
+        language : myLanguage,
+        modules: 'date',
+        validateOnBlur: false, // disable validation when input looses focus
         errorMessagePosition: 'top',// Instead of 'element' which is default
         // borderColorOnError : 'red',
         addValidClassOnAll : true,

@@ -37,7 +37,7 @@ echo $pages->next_page;
 echo $pages->prev_page;
 $trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer $pages->limit");
 ?>
-<form class="txfform-wrapper cf" name="trainer_form" id="url" action="../core/application/create_trainer.php" method="post">
+<form class="txfform-wrapper cf edit_trainer_view" name="trainer_form" id="url" action="../core/application/create_trainer.php" method="post">
     <div class="form-error-message hide"></div>
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
@@ -67,7 +67,7 @@ $trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Tra
 
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $name; ?></span>
-                        <input name="name" type="text" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
+                        <input name="name" type="text" data-validation="required" value="<?php echo $name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
                     <td>
