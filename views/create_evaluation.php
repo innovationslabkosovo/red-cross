@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo klase te re";
+$page_title = "Krijo kurs te re";
 
 include '../core/init.php';
 $user_id = $_SESSION['id'];
@@ -36,7 +36,7 @@ $locations = mysql_query($get_locations);
 
     <div class="dropdown">
         <select id="location_id" data-validation="required" name="location" data-validation="required" class="dropdown-select">
-            <option value="">Zgjedh Fshatin</option>
+            <option value="">Zgjedh Lokacionin</option>
         </select>
     </div>
     <br><br>

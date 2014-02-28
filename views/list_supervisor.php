@@ -35,7 +35,7 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FROM Supervisor $pages->limit");
+$supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FROM Supervisor ORDER BY supervisor_id desc $pages->limit");
 ?>
 <form class="txfform-wrapper cf edit_supervisor_view" name="supervisor_form" id="url" action="../core/application/create_supervisor.php" method="post">
 <div class="form-error-message hide"></div>

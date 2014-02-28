@@ -143,7 +143,7 @@ if (is_admin($user_id)){
 </div>
 <div class="dropdown">
 <select name="class_id" id="class_id" class="class_id dropdown-select" data-validation="required">
-    <option value="">Zgjedh Klasen</option>
+    <option value="">Zgjedh Kursin</option>
 </select>
 </div>
 <div class="dropdown">
@@ -180,7 +180,7 @@ $questions = mysql_query($get_all_questions);
 </div>
 <div class="dropdown">
 <select name="class_id" id="class_id" class="class_id dropdown-select" data-validation="required">
-    <option value="">Zgjedh Klasen</option>
+    <option value="">Zgjedh Kursin</option>
 </select>
 </div>
 <input type="submit" value="Gjenero" class="align-top">

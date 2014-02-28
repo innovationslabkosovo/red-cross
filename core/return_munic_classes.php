@@ -15,7 +15,7 @@ if (isset($_POST['class_id'])){
     $class_id = $_POST['class_id'];
 
     $get_participants ="SELECT p.participant_id, p.name, p.surname, p.gender FROM Participant p INNER JOIN ParticipantClass pc on p.participant_id=pc.participant_id
-                                                                      INNER JOIN Class c on pc.class_id=c.class_id where c.class_id=$class_id";
+                                                                      INNER JOIN Class c on pc.class_id=c.class_id where c.class_id=$class_id order by p.participant_id desc";
     if ($query_result=mysql_query($get_participants))
     {
         $i=0;

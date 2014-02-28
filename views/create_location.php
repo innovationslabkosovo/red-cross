@@ -105,13 +105,12 @@ $longitude = $results['longitude'];
 
 <tr id="<?php echo $id; ?>" class="edit_tr">
 <td>
-    <a id="results_<?php echo $id; ?>" class="text" href="http://www.openstreetmap.org/?mlat=<?php echo $latitude; ?>&mlon=<?php echo $longitude; ?>" target="_blank"><?php echo $location_name; ?></a>
+    <a id="results_<?php echo $id; ?>" class="text" href="https://www.google.com/maps/@<?php echo $latitude.','.$longitude.',18z'; ?>" target="_blank"><?php echo $location_name; ?></a>
     <input name="location_name" type="text" data-validation="required" value="<?php echo $location_name; ?>" class="editbox_<?php echo $id; ?> editbox txfform-wrapper input" />
 </td>
 
 <td>
-    https://www.google.com/maps/@42.6712821,21.1591959,17z
-    <a href="https://www.google.com/maps/@<?php echo $coords[1],$coords[0].',17z'; ?>" target="_blank"><?php echo $municipality_name; ?></a>
+    <a href="https://www.google.com/maps/@<?php echo $coords[1].','.$coords[0].',13z,2391m/data=!3m1!1e3';?>" target="_blank"><?php echo $municipality_name; ?></a>
 </td>
 <td>
     <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">

@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo klase te re";
+$page_title = "Krijo kurs te re";
 
 include '../core/init.php';
 protect_page();
@@ -49,7 +49,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
 ?>
 
-    <h1>Krijo klase te re</h1>
+    <h1>Krijo kurs te re</h1>
 
     <br>
     <form action="../core/application/create_class.php" method="post" class="create_class_view">
@@ -65,7 +65,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row dropdown">
             <select id="location_id" name="location" data-validation="required" class="dropdown-select">
-                <option value="">--Zgjedh Fshatin--</option>
+                <option value="">--Zgjedh Lokacionin--</option>
                 <?php
                 //                create_options($locations, "location_id", "name");
                 ?>

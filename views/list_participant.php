@@ -30,7 +30,7 @@ $get_participants = "SELECT  p.*, c.name as class_name, c.class_id as class_id
                      FROM Participant p, ParticipantClass pc, Class c ".$include_user."
                      WHERE p.participant_id=pc.participant_id and
                      pc.class_id=c.class_id ".$mun_access."
-                     ORDER BY p.name
+                     ORDER BY p.participant_id desc
                      $pages->limit";
 $participants = mysql_query($get_participants);
 ?>
@@ -68,7 +68,7 @@ $participants = mysql_query($get_participants);
         <th >Mbiemri</th>
         <th >Mosha</th>
         <th >Gjinia</th>
-        <th >Klasa</th>
+        <th >Kursi</th>
         <th >Modifiko</th>
     </tr>
 <?php
@@ -111,7 +111,7 @@ while ($row_participant = mysql_fetch_assoc($participants))
 
         <td ><span id='results_<?=$participant_id?>' class='text'> <?=$class_name?></span>
             <select size='1' name='class' class='editbox_<?=$participant_id?> editbox class'>
-                <option value=''>Zgjedh Klasen</option> ";<?php echo  create_options($classes, 'class_id', 'name', $class_id); ?>
+                <option value=''>Zgjedh Kursin</option> ";<?php echo  create_options($classes, 'class_id', 'name', $class_id); ?>
         </td>
 
         <td>

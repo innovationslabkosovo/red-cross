@@ -9,7 +9,7 @@
 
 <?php
 
-	$query = mysql_query("SELECT * FROM Test");
+	$query = mysql_query("SELECT * FROM Test ORDER BY test_id desc");
 	echo '<div class="form-error-message hide"></div>';
 	echo "<form id='url' class='edit_tests_view' action='{$base_url}/core/application/edit_test.php' >";
 	echo "<table  class = 'bordered'>";

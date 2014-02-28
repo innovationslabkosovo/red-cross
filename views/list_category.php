@@ -35,7 +35,7 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$categories = mysql_query("SELECT category_id, name FROM Category $pages->limit");
+$categories = mysql_query("SELECT category_id, name FROM Category ORDER BY category_id desc $pages->limit");
 ?>
 <div class="form-error-message hide"></div>
 <form class="txfform-wrapper cf edit_category_view" name="category_form" id="url" action="../core/application/create_category.php" method="post">

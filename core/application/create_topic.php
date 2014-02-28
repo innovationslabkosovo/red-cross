@@ -56,7 +56,7 @@ if(empty($_POST) === false)
             }
             else {
 
-                throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive apo klasa qe i takojne!');
+                throw new Exception('Grupi tematik nuk mund te fshihet per shkak se ka tema aktive apo kursi qe i takojne!');
                 $data1 = array( 'rowID' => '0', 'message' => 'fail', 'object'=>'TopicGroupDelete');
                 ob_clean();
                 echo json_encode($data1);

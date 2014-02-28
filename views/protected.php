@@ -5,14 +5,12 @@ include $project_root.'views/layout/header.php';
 if (isset($_GET['403']))
 {
     ?>
-    <h1>Error 403 Forbidden</h1>
-    <p> You don't have permission to view this page</p>
+    <h1> Ju nuk keni qasje ne kete faqe!</h1>
     <?php
 }else
 {
 ?>
-  <h1>Sorry, you need to be logged in</h1>
-  <p>Please, log in.</p>
+  <h1>Na vjen keq, ju duhet te kyqeni brenda platformes</h1>
 <?php } ?>
 
 <?php include $project_root.'views/layout/footer.php'; ?>

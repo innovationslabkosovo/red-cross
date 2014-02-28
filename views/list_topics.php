@@ -38,7 +38,7 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name, TopicGroup.topic_group_id FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id $pages->limit");
+$topics = mysql_query("SELECT topic_id, description, Topic.active, TopicGroup.name, TopicGroup.topic_group_id FROM Topic inner join TopicGroup on Topic.topic_group_id = TopicGroup.topic_group_id order by Topic.topic_id desc $pages->limit");
 ?>
 <div class="form-error-message hide"></div>
 <form class="txfform-wrapper cf edit_topic_view" id="url" name="topic_form" action="../core/application/create_topic.php" method="post">

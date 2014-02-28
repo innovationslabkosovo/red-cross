@@ -25,7 +25,7 @@
  		"<div id = 'show_questions'>";
 		$c = 0;
 
-		$answers = mysql_query("SELECT * FROM Answer where `question_id` = {$result["question_id"]}");
+		$answers = mysql_query("SELECT * FROM Answer where `question_id` = {$result["question_id"]} ORDER BY question_id desc");
 
 		while($answer_res = mysql_fetch_assoc($answers)){
 			$question_id[$c] = $answer_res['question_id'];

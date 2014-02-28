@@ -15,7 +15,7 @@ else
 $get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
 ?>
-<h1>Participantet sipas klasave</h1>
+<h1>Participantet sipas kurseve</h1>
 
 <div class="row">
     <div class="dropdown">
@@ -30,7 +30,7 @@ $municipalities = mysql_query($get_municipalities);
     <div class="dropdown">
 
         <select id="class_id" class="dropdown-select" name="class" >
-            <option value="">--Zgjedh Klasen--</option>
+            <option value="">--Zgjedh Kursin--</option>
 
         </select><br>
     </div>
