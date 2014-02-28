@@ -89,7 +89,7 @@ if (isset($_GET['message']))
         <th >ID</th>
         <th >Komuna</th>
         <th style="width: 15%">Fshati</th>
-        <th style="width: 20%">Ligjeruesi</th>
+        <th style="width: 20%">Trajneri</th>
         <th style="width: 10%">Data prej</th>
         <th style="width: 10%">Data deri</th>
         <th style="width: 10%">Detajet e Temave</th>
