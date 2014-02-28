@@ -101,7 +101,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
         <div class="row dropdown">
             <select id="trainer_id" name="trainer" data-validation="required" class="dropdown-select">
-                <option value="">--Zgjedh Ligjeruesin--</option>
+                <option value="">--Zgjedh Trajnerin--</option>
                 <?php
                 create_options($trainers, "trainer_id", "name");
                 ?>
