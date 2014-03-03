@@ -17,7 +17,7 @@ if(mysql_num_rows($result))
 {
 	$code = generateRandomString();
 	mysql_query("Update User SET activiation_code = '$code', verified = 0 WHERE email = '$email'");
-	$change_password = "$base_url/views/user/public_resetpass_view.php?email=$email&code=$code";
+	echo $change_password = "$base_url/views/user/public_resetpass_view.php?email=$email&code=$code";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$message .= "

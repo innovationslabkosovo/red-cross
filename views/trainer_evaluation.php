@@ -37,22 +37,21 @@ if($trainer_id){
 		echo "<tr>";
 		echo "<td>".$catt[$c]."</td>";
 
-
 		$evaluatin_id[$c] = $result['evaluation_id'];
 
 
 					$cat_query = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
-						and evaluation = 1 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
+					and evaluation = 1 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
 
 
 					$pozitive = mysql_result($cat_query, 0);
-					echo "<td>".mysql_result($cat_query, 0)."</td>";
+					echo "<td>".$pozitive."</td>";
 
 					$cat_query2 = mysql_query("SELECT COUNT(evaluation) from Evaluation e inner join EvaluationCategory ec ON e.trainer_id = '{$trainer_id}' and ec.category_id = '{$cat_idd[$c]}' and e.evaluation_id = ec.evaluation_id 
 					and evaluation = 0 and date BETWEEN DATE_SUB( now( ) ,INTERVAL 3 MONTH ) and now()");
 
 					$negative = mysql_result($cat_query2, 0);
-					echo  "<td>".mysql_result($cat_query2, 0)."</td>";
+					echo  "<td>".$negative."</td>";
 					
 				 	$total = $pozitive+$negative;
 
@@ -64,7 +63,6 @@ if($trainer_id){
 		echo "</tr>";
 	    		
 	}	
-
 
 	?>
 	</table>
