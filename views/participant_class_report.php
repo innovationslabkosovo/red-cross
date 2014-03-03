@@ -48,7 +48,7 @@ $municipalities = mysql_query($get_municipalities);
 </div>
 <div class="dropdown">
 <select name="class_id" id="class_id" class="dropdown-select">
-    <option value="">Zgjedh Klasen</option>
+    <option value="">Zgjedh Kursin</option>
 </select>
 </div>
 <input type="submit" value="Gjenero" class="align-top">

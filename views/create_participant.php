@@ -50,7 +50,7 @@ $classes = mysql_query($get_class);
     <div class="row dropdown">
 
         <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
-            <option value="">--Zgjedh Klasen--</option>
+            <option value="">--Zgjedh Kursin--</option>
             <?php
             create_options($classes, "class_id", "name");
             ?>

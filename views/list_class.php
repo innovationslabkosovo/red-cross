@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$page_title = "Lista e klasave";
+$page_title = "Lista e kurseve";
 
 include '../core/init.php';
 protect_page();
@@ -15,12 +15,25 @@ if (!is_admin($user_id))
     $mun_access = "and m.municipality_id = u.municipality_id and  u.user_id=$user_id";
 }
 
+$count_rows = mysql_query("SELECT count(*) FROM Class");
+$num_rows = mysql_result($count_rows, 0);
+
+require_once('../core/application/Paginator.php');
+$pages = new Paginator;
+$pages->items_total = $num_rows;
+$pages->paginate();
+
+if ($_GET['municipality_id_filter']) {
+    $municipality_id_filter = $_GET['municipality_id_filter'];
+    $municipality_filter = " and m.municipality_id =".$municipality_id_filter;
+}
+
 $get_class_details = "SELECT c.class_id,tr.trainer_id as tr_id,  tr.name as tr_name, tr.surname as tr_surname,l.location_id as l_id, l.name as l_name,m.municipality_id as m_id,  m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
                       FROM Class c, Trainer tr, Location l, Municipality m, Test test". $include_user."
                       WHERE c.trainer_id = tr.trainer_id
                       and c.location_id = l.location_id
                       and l.municipality_id = m.municipality_id
-                      and c.test_id = test.test_id ".$mun_access;
+                      and c.test_id = test.test_id ".$mun_access.$municipality_filter." ORDER BY c.class_id desc ".$pages->limit;
 $class_details = mysql_query($get_class_details);
 
 
@@ -63,7 +76,29 @@ while ($row = mysql_fetch_assoc($topics)) {
 
 ?>
 
-<h1>Lista e klasave</h1>
+<h1>Lista e kurseve</h1>
+
+<?php 
+if (is_admin($user_id)) { 
+    $get_municipalities_filter = "SELECT m.municipality_id, m.name, m.coords FROM Municipality m";
+    $municipalities = mysql_query($get_municipalities_filter);
+?>
+<div class="dropdown">
+    <label for="select_city"></label>
+    <select name="municipality_id_filter" id="select_city" data-validation="required" class="dropdown-select" onchange="location = this.options[this.selectedIndex].value;">
+        <option value="">-Zgjidhni Qytetin-</option>
+        <?php
+            while($muni = mysql_fetch_object($municipalities)) {
+        ?>
+        <option value="list_class.php?municipality_id_filter=<?=$muni->municipality_id?>"><?=$muni->name?></option>
+        <?php } ?>
+    </select>
+</div>
+<br>
+<i>Filtro kurset ne baze te qytetit</i>
+<br><br>
+<?php } ?>
+
 <?php $base_url = BASE_URL; ?>
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_class.php' ></div>";?>
 <?php
@@ -82,14 +117,23 @@ if (isset($_GET['message']))
 
 ?>
 <div class="form-error-message hide"></div>
+<?php 
+echo $pages->display_pages();
+echo "&nbsp;";
+echo $pages->display_jump_menu();
+echo "&nbsp;";
+echo $pages->display_items_per_page();
+echo $pages->next_page;
+echo $pages->prev_page;
+?>
 <form id="url" action="../core/application/edit_class.php" class="edit_class_view">
     <table class="bordered style-for-inputs">
 
     <tr>
         <th >ID</th>
         <th >Komuna</th>
-        <th style="width: 15%">Fshati</th>
-        <th style="width: 20%">Ligjeruesi</th>
+        <th style="width: 15%">Lokacioni</th>
+        <th style="width: 20%">Trajneri</th>
         <th style="width: 10%">Data prej</th>
         <th style="width: 10%">Data deri</th>
         <th style="width: 10%">Detajet e Temave</th>
@@ -124,7 +168,7 @@ if (isset($_GET['message']))
         // village span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[l_name]</span>
               <select name='location' class='editbox_{$row_class["class_id"]} editbox location_{$row_class["class_id"]}'>
-              <option value=''>Zgjedh Fshatin</option> "; create_options($locations, 'location_id', 'name',$current_location);
+              <option value=''>Zgjedh Lokacionin</option> "; create_options($locations, 'location_id', 'name',$current_location);
         echo " </select>
               <input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>
               </td>";

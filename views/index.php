@@ -24,20 +24,21 @@ $location_to_json = json_encode($location_data);
 	<title>Harta e Kurseve nga Kryqi i Kuq</title>
 
 	<link rel="stylesheet" href="../css/leaflet.css" />
+    <link rel="stylesheet" href="../css/map.css" /> 
 	<script src="../js/leaflet.min.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/map.css" />
 	<script src="../js/markercluster-src.js"></script>
+    <script src="http://maps.google.com/maps/api/js?v=3.2&sensor=false"></script>
+    <script src="../js/Google.js"></script>
 </head>
 <body>
 <h2>Kurset nga Viti: <?php print_r($year); ?> </h2>
 <div class="dropdown" style="margin-bottom: 20px;">
 <select name="forma" class="dropdown-select" onchange="location = this.options[this.selectedIndex].value;">
     <option value="">Ndrysho Vitin</option>
-    <option value="public_map.php?year=2013">2013</option>
-    <option value="public_map.php?year=2014">2014</option>
-    <option value="public_map.php?year=2015">2015</option>
-    <option value="public_map.php?year=2016">2016</option>
+    <option value="index.php?year=2013">2013</option>
+    <option value="index.php?year=2014">2014</option>
+    <option value="index.php?year=2015">2015</option>
+    <option value="index.php?year=2016">2016</option>
 </select>
 </div>
 
@@ -49,12 +50,13 @@ $location_to_json = json_encode($location_data);
         function SetMap()
         {
 
-            var cloudmadeUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-                cloudmadeAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-                cloudmade = L.tileLayer(cloudmadeUrl, {maxZoom: 17, attribution: cloudmadeAttribution}),
+            var //cloudmadeUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+                // cloudmadeAttribution = '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                // cloudmade = L.tileLayer(cloudmadeUrl, {maxZoom: 17, attribution: cloudmadeAttribution}),
                 latlng = L.latLng(42.59432909213417, 20.88294982397517);
 
-            var map = L.map('map', {center: latlng, zoom: 9, layers: [cloudmade]});
+            var googleLayer = new L.Google('HYBRID');
+            var map = new L.Map('map', {center: latlng, zoom: 9, layers: [googleLayer]});
 
             var markers = L.markerClusterGroup();
             var addressPoints = <?php print_r($location_to_json); ?>;

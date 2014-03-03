@@ -21,7 +21,7 @@ if($trainer_id){
 	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$trainer_surname; ?></h1>
 	<table class="bordered">
 		
-		<tr><th>Kategoritez</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
+		<tr><th>Kategorite</th><th>Vleresime Pozitive</th><th>Vleresime Negative</th><th>Perqindja e vleresimeve pozitive</th></tr>
 	<?php
 
 	$get_cat = "SELECT * FROM Category c ";

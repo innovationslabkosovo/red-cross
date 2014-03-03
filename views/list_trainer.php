@@ -35,7 +35,7 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer $pages->limit");
+$trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer ORDER BY trainer_id desc $pages->limit");
 ?>
 <form class="txfform-wrapper cf edit_trainer_view" name="trainer_form" id="url" action="../core/application/create_trainer.php" method="post">
     <div class="form-error-message hide"></div>

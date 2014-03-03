@@ -36,7 +36,7 @@ echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
 
-$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup $pages->limit";
+$get_topic_groups = "SELECT topic_group_id, name, active FROM TopicGroup ORDER BY topic_group_id desc $pages->limit";
 $topic_groups = mysql_query($get_topic_groups);
 
 $status[1]="Aktiv";

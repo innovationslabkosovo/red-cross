@@ -2,8 +2,8 @@
 
 $display_messages = array(
     "class" => array(
-        "success" => "Klasa u shtua me sukses",
-        "fail" => "Klasa nuk u shtua!"
+        "success" => "Kursi u shtua me sukses",
+        "fail" => "Kursi nuk u shtua!"
     ),
     "participant" => array(
         "success" => "Participanti u shtua me sukses",
@@ -28,7 +28,7 @@ $display_messages = array(
     ),
     "TopicGroupDelete" => array(
         "success" => "Grupi Tematik u fshi me sukses",
-        "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema  aktive apo klasa qe i takojne!",
+        "fail" => "Grupi tematik nuk mund te fshihet per shkak se ka tema  aktive apo kursi qe i takojne!",
     ),
     "Topic" => array(
         "success" => "Tema u shtua me sukses",
@@ -62,7 +62,7 @@ $display_messages = array(
     ),
     "TrainerDelete" => array(
         "success" => "Trajneri u fshi me sukses",
-        "fail" => "Trajneri nuk mund te fshihet sepse ka klasa te cilat i ka mbajtur!",
+        "fail" => "Trajneri nuk mund te fshihet sepse ka kursi te cilat i ka mbajtur!",
     ),
     "SupervisorDelete" => array(
         "success" => "Supervizori u fshi me sukses",
