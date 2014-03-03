@@ -28,7 +28,7 @@ if(empty($_POST) === false)
         $location = trim($_POST['location']);
         $place = trim($_POST['place']);
         $notes = trim($_POST['notes']);
-        $categories = trim($_POST['category']);
+        $categories = $_POST['category'];
         $categories_db = mysql_query("SELECT category_id FROM Category");
 
         if (mysql_query("INSERT INTO Evaluation(evaluation_id, date, time_from, time_to, participants, age_group, gender, trainer_id, supervisor_id, location_id, location, notes)
