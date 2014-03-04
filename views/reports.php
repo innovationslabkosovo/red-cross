@@ -117,6 +117,7 @@ if (is_admin($user_id)){
         <select name="municipality" class="dropdown-select" data-validation="required">
             <option value=0>Zgjedh Komunen
                 <?php
+                mysql_data_seek($municipalities, 0);
                 while($row = mysql_fetch_array($municipalities))
                 {
                     $name=$row["name"];
