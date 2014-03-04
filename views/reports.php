@@ -76,6 +76,34 @@ if (is_admin($user_id)){
 }
 ?>
 <br>
+<h2>Raporti Vjetor Komunal</h2>
+
+<form action="../core/application/municipal_annual_report.php" method="POST">
+    <div class="dropdown">
+        <select name="year" class="dropdown-select" data-validation="required">
+            <option value="">Zgjedh Vitin</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+    </div>
+    <div class="dropdown">
+        <select name="municipality" class="dropdown-select" data-validation="required">
+            <option value=0>Zgjedh Komunen
+                <?php
+                while($row = mysql_fetch_array($municipalities))
+                {
+                    $name=$row["name"];
+                    $select=$row["municipality_id"];
+                    echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+                }
+                ?>
+        </select>
+    </div>
+    <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+</form>
+<br>
 <h2>Raporti Mujor Komunal</h2>
 
 <form action="../core/application/municipal_report.php" method="POST">
