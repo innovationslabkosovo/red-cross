@@ -76,6 +76,31 @@ if (is_admin($user_id)){
 }
 ?>
 <br>
+<h2>Zgjedhni Periudhën për Raportin Komunal</h2>
+<form action="../core/application/periodic_municipal_report.php" method="POST">
+    <div class="row">
+        <div class="dropdown">
+            <select name="municipality" class="dropdown-select" data-validation="required">
+                <option value=0>Zgjedh Komunen
+                    <?php
+                    mysql_data_seek($municipalities, 0);
+                    while($row = mysql_fetch_array($municipalities))
+                    {
+                        $name=$row["name"];
+                        $select=$row["municipality_id"];
+                        echo "<OPTION VALUE=\"$select\">".$name.'</option>';
+                    }
+                    ?>
+            </select>
+        </div>
+        <input type="text" name="date_from" id="date_fromm" class="date txfform-wrapper input" data-validation='required date'
+               data-validation-format='yyyy-mm-dd' placeholder="Nga Data">
+        <input type="text" name="date_to" id="date_tom" class="date txfform-wrapper input" data-validation='required date'
+               data-validation-format='yyyy-mm-dd' placeholder="Deri">
+        <input type="submit" name="GO" value="Gjenero" class="align-top"/><br>
+    </div>
+</form>
+<hr>
 <h2>Raporti Vjetor Komunal</h2>
 
 <form action="../core/application/municipal_annual_report.php" method="POST">
@@ -104,9 +129,11 @@ if (is_admin($user_id)){
     <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 </form>
 <br>
+<hr>
 <h2>Raporti Mujor Komunal</h2>
 
 <form action="../core/application/municipal_report.php" method="POST">
+
     <div class="dropdown">
         <select name="year" class="dropdown-select" data-validation="required">
             <option value="">Zgjedh Vitin</option>
@@ -138,6 +165,7 @@ if (is_admin($user_id)){
     <select name="municipality" class="dropdown-select" data-validation="required">
         <option value=0>Zgjedh Komunen
             <?php
+            mysql_data_seek($municipalities, 0);
             while($row = mysql_fetch_array($municipalities))
             {
                 $name=$row["name"];
