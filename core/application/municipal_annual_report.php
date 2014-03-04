@@ -1,5 +1,5 @@
 <?php
-$page_title = "Raporti Mujor Komunal";
+$page_title = "Raporti Vjetor Komunal";
 
 include '../init.php';
 protect_page();
@@ -28,10 +28,10 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
 ?>
 <html>
 <head>
-    <title>Raporti Mujor Komunal</title>
+    <title>Raporti Vjetor Komunal</title>
 </head>
 <body>
-<h1>Raporti Komunal për <?php print_r($months[$_POST['month']]); echo " dhe komunën "; echo $municipality['name']; ?> </h1>
+<h1>Raporti vjetor Komunal për vitin <?php print_r($_POST['year']); ?> në komunën <?php echo $municipality['name']; ?> </h1>
 
 <?php
 if (mysql_num_rows($get_classes) == 0) {
