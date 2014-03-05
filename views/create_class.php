@@ -10,7 +10,10 @@ include $project_root . 'views/layout/header.php';
 
 $i = 0;
 
-$get_trainers = "SELECT trainer_id, CONCAT(name,' ',surname) as name FROM Trainer ";
+// $get_trainers = "SELECT trainer_id, CONCAT(name,' ',surname) as name FROM Trainer ";
+$get_trainers = "SELECT tr.trainer_id, CONCAT(tr.name,' ',tr.surname) as name FROM Trainer tr
+        INNER JOIN User u on tr.municipality_id=u.municipality_id
+        WHERE u.user_id=$user_id";
 $trainers = mysql_query($get_trainers);
 
 $get_tests = "SELECT test_id, name FROM Test ";

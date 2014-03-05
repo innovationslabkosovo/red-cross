@@ -9,8 +9,9 @@ if(empty($_POST) === false)
         $surname=trim($_POST["surname"]);
         $email=trim($_POST["email"]);
         $phone=trim($_POST["phone"]);
+        $trainer_municipality=$_POST['trainer_municipality'];
 
-        if (mysql_query("INSERT INTO Trainer(trainer_id, name, surname, email, phone) VALUES ('', '$name','$surname','$email','$phone' )"))
+        if (mysql_query("INSERT INTO Trainer(trainer_id, name, surname, email, phone, municipality_id) VALUES ('', '$name','$surname','$email','$phone', '$trainer_municipality' )"))
             header("location: ../../views/list_trainer.php?message=success&object=Trainer");
         else header("location: ../../views/create_trainer.php?message=fail&object=Trainer");
     }
