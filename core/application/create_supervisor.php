@@ -9,8 +9,9 @@ if(empty($_POST) === false)
         $surname=trim($_POST["surname"]);
         $email=trim($_POST["email"]);
         $phone=trim($_POST["phone"]);
+        $supervisor_municipality=trim($_POST["supervisor_municipality"]);
 
-        if (mysql_query("INSERT INTO Supervisor(supervisor_id, name, surname, email, phone) VALUES ('', '$name','$surname','$email','$phone' )"))
+        if (mysql_query("INSERT INTO Supervisor(supervisor_id, name, surname, email, phone,municipality_id) VALUES ('', '$name','$surname','$email','$phone','$supervisor_municipality' )"))
             header("location: ../../views/list_supervisor.php?message=success&object=Supervisor");
         else header("location: ../../views/create_supervisor.php?message=fail&object=Supervisor");
     }

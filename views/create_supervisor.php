@@ -4,7 +4,11 @@ include '../core/init.php';
 $user_id = $_SESSION['id'];
 protect_page($user_id);
 $errors = array();
-include $project_root . 'views/layout/header.php'; ?>
+include $project_root . 'views/layout/header.php'; 
+$get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality m";
+$municipalities = mysql_query($get_municipalities);
+?>
+
 
 <form class="txfform-wrapper cf create_supervisor_view" name="trainer_form" action="../core/application/create_supervisor.php" method="post">
 
@@ -29,6 +33,12 @@ include $project_root . 'views/layout/header.php'; ?>
             <label>Numri i telefonit:</label><br><input type="text" placeholder="Tel.No" name="phone" class="txfform-wrapper input" id="trainer">
         </div>
         <br>
+            <div class="dropdown">
+                <select name="supervisor_municipality" id="trainer_municipality" class="dropdown-select">
+                    <option value="">Zgjedh Komunen</option>
+                    <?php create_options($municipalities, 'municipality_id', 'name'); ?>
+                </select>
+            </div>
 
         <div class="row">
             <input type="submit" value="Ruaj!">

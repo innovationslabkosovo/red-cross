@@ -7,6 +7,7 @@ $errors = array();
 include $project_root . 'views/layout/header.php'; 
 $get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality m";
 $municipalities = mysql_query($get_municipalities);
+
 ?>
 
 <form class="txfform-wrapper cf create_trainer_view" name="trainer_form" action="../core/application/create_trainer.php" method="post">
@@ -34,7 +35,7 @@ $municipalities = mysql_query($get_municipalities);
             <br>
             <div class="dropdown">
                 <select name="trainer_municipality" id="trainer_municipality" class="dropdown-select">
-                    <option value="">Zgjedh Trajnerin</option>
+                    <option value="">Zgjedh Trajnerit</option>
                     <?php create_options($municipalities, 'municipality_id', 'name'); ?>
                 </select>
             </div>
