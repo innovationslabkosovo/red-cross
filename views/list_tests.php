@@ -14,7 +14,9 @@
 	echo "<form id='url' class='edit_tests_view' action='{$base_url}/core/application/edit_test.php' >";
 	echo "<table  class = 'bordered'>";
 	echo "<tr><th>Emri</th><th>Edito</th></tr>";
+	
 	while ($result = mysql_fetch_assoc($query)) {
+
 		echo "<tr id = '{$result["test_id"]}' class=\"edit_tr\"><td>"
 		."<span id='results_{$result["test_id"]}' class='text'>{$result["name"]}</span>"
 		."<input name='test_description' data-validation='required' type='text' class='editbox_{$result["test_id"]} editbox txfform-wrapper input' value='{$result["name"]}' />"

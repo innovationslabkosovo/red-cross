@@ -48,7 +48,7 @@ $locations = mysql_query($get_locations);
     <br>
     <div class="row">
         <label>Data</label><br><input type="text" name="date" id="date" class="date txfform-wrapper input" data-validation='required date'
-                                         data-validation-format='yyyy-mm-dd'><br>
+        data-validation-format='yyyy-mm-dd'><br>
     </div>
     <br>
     <td><label>Ora Prej</label><br><input type='text' size='12' name='time_from' id="time_from" class="time_topic txfform-wrapper input" data-validation='required time'></td><br>

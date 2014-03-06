@@ -24,40 +24,45 @@ $classes = mysql_query($get_class);
 <br>
 <form action="../core/application/create_participant.php" method="post" id="create_participant_view">
 
-    <div class="row">
-        <label>Emri: </label><br><input type="text" name="first_name" id="first_name" class="txfform-wrapper input" data-validation="required"> <br>
-    </div>
-    <br>
+<table class = 'bordered'>
 
-    <div class="row">
-        <label>Mbiemri: </label><br><input type="text" name="last_name" id="last_name" class="txfform-wrapper input" data-validation="required"> <br>
-    </div>
-    <br>
+    <tr><th>Emri</th><th>Mbiemri</th><th>Mosha</th><th>Gjinia</th></tr>
 
-    <div class="row">
-        <label>Mosha: </label><br><input type="number" name="age" id="age" min="0" class="txfform-wrapper input" data-validation="required" ><br>
-    </div>
-    <br>
-
-    <div class="row dropdown">
-        <select name="gender" id="gender" class="dropdown-select" data-validation="required">
-            <option value="">Gjinia</option>
-            <option value="M">Mashkull</option>
-            <option value="F">Femer</option>
-        </select>
-    </div>
-    <br><br>
-    <div class="row dropdown">
-
-        <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
-            <option value="">--Zgjedh Kursin--</option>
-            <?php
-            create_options($classes, "class_id", "name");
+    <?php 
+        $count = 0;
+        while($count <=20){
             ?>
-        </select>
-    </div>
-    <br><br>
+              <tr><td><input type="text" name="first_name[]" id="first_name" class="txfform-wrapper input" placeholder = 'Emri' data-validation="required"></td>
+                    <td><input type="text" name="last_name[]" id="last_name" class="txfform-wrapper input" placeholder = 'Mbiemri' data-validation="required"> </td>
+                    <td><input type="number" name="age[]" id="age" min="0" class="txfform-wrapper input" placeholder = 'Mosha' data-validation="required" ></td>
+                    <td class="row dropdown">
+                        <select name="gender[]" id="gender" class="dropdown-select" data-validation="required">
+                        <option value="">Gjinia</option>
+                        <option value="M">Mashkull</option>
+                        <option value="F">Femer</option>
+                    </select></td>
+                </tr>
 
+
+
+            <?php
+            $count++;
+        }
+
+     ?>
+  
+</table>
+<div class="row dropdown">
+    <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
+        <option value="">--Zgjedh Kursin--</option>
+        <?php
+            create_options($classes, "class_id", "name");
+        ?>
+    </select>
+
+</div>
+    
+    <br>
     <input type="submit" id="Shto Participant" value="Shto Participant">
 
 </form>
