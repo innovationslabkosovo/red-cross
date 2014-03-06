@@ -35,13 +35,51 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$trainers = mysql_query("SELECT trainer_id, name, surname, email, phone FROM Trainer ORDER BY trainer_id desc $pages->limit");
+
+if ($_GET['trainer_id_filter']) {
+    $trainer_id_filter = $_GET['trainer_id_filter'];
+    $municipality_filter = " WHERE tr.municipality_id=$trainer_id_filter";
+}
+
+if (is_admin($user_id))
+{
+    $trainers = mysql_query("SELECT tr.trainer_id, tr.name, tr.surname, tr.email, tr.phone FROM Trainer tr ".$municipality_filter." ORDER BY trainer_id desc $pages->limit");
+}
+else 
+{
+    $trainers = mysql_query("SELECT tr.trainer_id, tr.name, tr.surname, tr.email, tr.phone FROM Trainer tr
+        INNER JOIN User u on tr.municipality_id=u.municipality_id
+        WHERE u.user_id=$user_id
+        ORDER BY trainer_id desc $pages->limit");
+}
+$get_municipalities = "SELECT m.municipality_id, m.name FROM Municipality m";
+$municipalities = mysql_query($get_municipalities);
 ?>
 <form class="txfform-wrapper cf edit_trainer_view" name="trainer_form" id="url" action="../core/application/create_trainer.php" method="post">
     <div class="form-error-message hide"></div>
     <input type="hidden" name="hidDelete" id="hidDelete" value="" />
     <div class="row">
-
+        <br><br>
+        <?php 
+        if (is_admin($user_id)) { 
+            $get_municipalities_filter = "SELECT m.municipality_id, m.name, m.coords FROM Municipality m";
+            $municipalities = mysql_query($get_municipalities_filter);
+        ?>
+        <div class="dropdown">
+            <label for="select_city"></label>
+            <select name="trainer_id_filter" id="select_city" data-validation="required" class="dropdown-select" onchange="location = this.options[this.selectedIndex].value;">
+                <option value="">-Zgjidhni Qytetin-</option>
+                <?php
+                    while($muni = mysql_fetch_object($municipalities)) {
+                ?>
+                <option value="list_trainer.php?trainer_id_filter=<?=$muni->municipality_id?>"><?=$muni->name?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <br>
+        <i>Filtro trajneret ne baze te komunes</i>
+        <br><br>
+        <?php } ?>
         <h3>Trajneret Ekzistues</h3>
 
         <table border="1" id="editable" class="bordered">

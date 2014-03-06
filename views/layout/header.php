@@ -19,4 +19,5 @@ include $project_root.'views/layout/head.php';
 
     <?php
     include 'aside.php';
+    error_reporting(0);
     ?>

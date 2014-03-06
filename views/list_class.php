@@ -95,7 +95,7 @@ if (is_admin($user_id)) {
     </select>
 </div>
 <br>
-<i>Filtro kurset ne baze te qytetit</i>
+<i>Filtro kurset ne baze te komunes</i>
 <br><br>
 <?php } ?>
 

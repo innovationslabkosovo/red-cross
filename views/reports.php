@@ -79,7 +79,7 @@ if (is_admin($user_id)){
 <h2>Zgjedhni Periudhën për Raportin Komunal</h2>
 <form action="../core/application/periodic_municipal_report.php" method="POST">
     <div class="row">
-        <div class="dropdown">
+        <div class="dropdown" style="vertical-align: middle;">
             <select name="municipality" class="dropdown-select" data-validation="required">
                 <option value=0>Zgjedh Komunen
                     <?php
@@ -117,6 +117,7 @@ if (is_admin($user_id)){
         <select name="municipality" class="dropdown-select" data-validation="required">
             <option value=0>Zgjedh Komunen
                 <?php
+                mysql_data_seek($municipalities, 0);
                 while($row = mysql_fetch_array($municipalities))
                 {
                     $name=$row["name"];
