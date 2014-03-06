@@ -4,7 +4,7 @@
 
             type: "POST",
             url: '../core/application/create_supervisor.php',
-            data:{hidDelete: id},
+            data:{hidDelete: id},0
             dataType: "json",
             success:function( data ) {
                 console.log(data);
@@ -35,7 +35,8 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
-$supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FROM Supervisor ORDER BY supervisor_id desc $pages->limit");
+$supervisors = mysql_query("SELECT s.supervisor_id, s.name, s.surname, s.email, s.phone, s.municipality_id, m.municipality_id, m.name as m_name FROM Supervisor s inner join Municipality m 
+ON m.municipality_id = s.municipality_id ORDER BY supervisor_id desc $pages->limit");
 ?>
 <form class="txfform-wrapper cf edit_supervisor_view" name="supervisor_form" id="url" action="../core/application/create_supervisor.php" method="post">
 <div class="form-error-message hide"></div>
@@ -50,6 +51,7 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
                 <th>Mbiemri</th>
                 <th>Emaili</th>
                 <th>Telefoni</th>
+                <th>Komuna</th>
                 <th>Modifiko</th>
             </tr>
             <?php
@@ -61,6 +63,7 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
                 $last_name=$data_sup['surname'];
                 $email=$data_sup['email'];
                 $phone=$data_sup['phone'];
+                $municipality=$data_sup['m_name'];
                 ?>
 
                 <tr id="<?php echo $id; ?>" class="edit_tr">
@@ -83,6 +86,11 @@ $supervisors = mysql_query("SELECT supervisor_id, name, surname, email, phone FR
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $phone; ?></span>
                         <input name="phone" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                    </td>
+
+                    <td>
+                        <span id="results_<?php echo $id; ?>" class="text"><?php echo $municipality; ?></span>
+                        <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
                     <?php
