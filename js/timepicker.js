@@ -33,12 +33,12 @@
         this.regional = []; // Available regional settings, indexed by language code
         this.regional[''] = { // Default regional settings
             currentText: 'Koha e tanishme',
-            closeText: 'Perfundo',
-            amNames: ['AM', 'A'],
-            pmNames: ['PM', 'P'],
+            closeText: 'OK',
+            amNames: ['Paradite', 'A'],
+            pmNames: ['Pasdite', 'P'],
             timeFormat: 'HH:mm',
             timeSuffix: '',
-            timeOnlyTitle: 'Zgjidhni kohen',
+            timeOnlyTitle: 'Zgjedhni kohen',
             timeText: 'Koha',
             hourText: 'Ora',
             minuteText: 'Minuta',
