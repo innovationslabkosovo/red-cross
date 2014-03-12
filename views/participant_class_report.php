@@ -8,6 +8,7 @@ include 'layout/header.php';
 
 $municipality_id = $_GET['mun_id'];
 $class_id = $_GET['class_id'];
+$user_id = $_SESSION['id'];
 
 if($class_id) {
 	$fields = " ,Participant.name, Participant.surname, ParticipantAnswer.type, ParticipantAnswer.answer";
@@ -33,7 +34,13 @@ $number_of_participants = 0;
 $success_para_total 	= 0;
 $success_pas_total  	= 0;
 
-$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+// $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+if (is_admin($user_id)) {
+    $get_municipalities = "SELECT m.municipality_id as municipality_id, m.name as name FROM Municipality m";
+}
+else {
+    $get_municipalities = "SELECT m.municipality_id as municipality_id, m.name as name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
+}
 $municipalities = mysql_query($get_municipalities);
 
 ?>

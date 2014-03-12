@@ -13,6 +13,7 @@ include 'layout/header.php';
 $municipality_id = $_GET['mun_id'];
 $class_id = $_GET['class_id'];
 $question_id = $_GET['question_id'];
+$user_id = $_SESSION['id'];
 
 $get_questions = "SELECT * from Question WHERE question_id = '{$question_id}'";
 $question = mysql_query($get_questions);
@@ -43,7 +44,14 @@ $true_answers_after = 0;
 
 $number_of_participants = 0;
 
-$get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+// $get_municipalities = "SELECT municipality_id, name, coords FROM Municipality";
+if (is_admin($user_id)) {
+    $get_municipalities = "SELECT m.municipality_id as municipality_id, m.name as name FROM Municipality m";
+}
+else {
+    $get_municipalities = "SELECT m.municipality_id as municipality_id, m.name as name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
+}
+
 $municipalities = mysql_query($get_municipalities);
 
 ?>
