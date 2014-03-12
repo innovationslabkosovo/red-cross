@@ -125,7 +125,9 @@ while ($row_participant = mysql_fetch_assoc($participants))
     <?php
 }
 
-
+if (isset($_GET['message']) && isset($_GET['object'])) {
+    echo $display_messages[$_GET['object']][$_GET['message']];
+}
 
 echo $pages->display_pages();
 echo "&nbsp &nbsp";

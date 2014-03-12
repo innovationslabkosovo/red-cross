@@ -13,20 +13,25 @@ if(empty($_POST) === false)
     $c = 0;
     foreach ($first_name as $key => $value) {
         if($value != null){
-            $query = mysql_query("INSERT INTO Participant(participant_id, name, surname, gender, age) VALUES ('', '$value' ,  '{$last_name[$c]}', '{$gender[$c]}', '{$age[$c]}' ) ");
-              if ($query)
-            {
-                $participant_id = mysql_insert_id();
 
-                mysql_query("INSERT INTO ParticipantClass(participant_id, class_id) VALUES ($participant_id, $class_id)");
+            if($last_name[$c] != null && $gender[$c] != null && $age[$c] != null){
+                $query = mysql_query("INSERT INTO Participant(participant_id, name, surname, gender, age) VALUES ('', '$value' ,  '{$last_name[$c]}', '{$gender[$c]}', '{$age[$c]}' ) ");
+            
+                if ($query)
+                {
+                    $participant_id = mysql_insert_id();
 
-                $c++;      
-            }      
+                    mysql_query("INSERT INTO ParticipantClass(participant_id, class_id) VALUES ($participant_id, $class_id)");
+
+                    $c++;      
+                } 
+            }
+                 
      
         }
-         
-         
+
     }
+
 
     if($query){
         header("location: ../../views/list_participant.php?message=success&object=participant");
