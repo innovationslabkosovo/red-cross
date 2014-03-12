@@ -1,10 +1,10 @@
 <ul id="nav">
-    <li><a href="<?php echo BASE_URL; ?>/views/index.php">Home</a></li>
+    <li><a href="<?php echo BASE_URL; ?>/views/index.php">Ballina</a></li>
     <li><a href="javascript:void(0);">Menaxho te Dhenat</a>
         <ul>
             <li><a href="javascript:void(0);">Menaxho Kurset</a>
                 <ul class="third_level">
-                    <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Krijo Kurs te re</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/views/create_class.php">Krijo Kurs te ri</a></li>
                     <li><a href="<?php echo BASE_URL; ?>/views/list_class.php">Listo Kurset</a></li>
                 </ul>
             </li>

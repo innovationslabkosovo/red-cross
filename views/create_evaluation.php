@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo kurs te re";
+$page_title = "Krijo kurs te ri";
 
 include '../core/init.php';
 $user_id = $_SESSION['id'];

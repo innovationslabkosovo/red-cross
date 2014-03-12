@@ -35,7 +35,7 @@ $location_to_json = json_encode($location_data);
 <div class="dropdown" style="margin-bottom: 20px;">
 <select name="forma" class="dropdown-select" onchange="location = this.options[this.selectedIndex].value;">
     <option value="">Ndrysho Vitin</option>
-    <option value="index.php?year=2013">2013</option>
+    <!-- <option value="index.php?year=2013">2013</option> -->
     <option value="index.php?year=2014">2014</option>
     <option value="index.php?year=2015">2015</option>
     <option value="index.php?year=2016">2016</option>

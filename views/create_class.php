@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo kurs te re";
+$page_title = "Krijo kurs te ri";
 
 include '../core/init.php';
 protect_page();
@@ -52,7 +52,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
 
 ?>
 
-    <h1>Krijo kurs te re</h1>
+    <h1>Krijo kurs te ri</h1>
 
     <br>
     <form action="../core/application/create_class.php" method="post" class="create_class_view">
