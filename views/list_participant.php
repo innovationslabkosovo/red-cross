@@ -32,7 +32,15 @@ $get_participants = "SELECT  p.*, c.name as class_name, c.class_id as class_id
                      pc.class_id=c.class_id ".$mun_access."
                      ORDER BY p.participant_id desc
                      $pages->limit";
+
 $participants = mysql_query($get_participants);
+
+    $get_participants_class = "SELECT l.*,u.*,c.*,l.name as name, c.name as c_name FROM Location l 
+        INNER JOIN User u on l.municipality_id = u.municipality_id and u.user_id = '{$user_id}' INNER JOIN Class c on c.location_id = l.location_id  
+     ";
+
+$part_class = mysql_query($get_participants_class);
+
 ?>
 <span class="message">
     <?php
@@ -111,9 +119,15 @@ while ($row_participant = mysql_fetch_assoc($participants))
 
         <td ><span id='results_<?=$participant_id?>' class='text'> <?=$class_name?></span>
             <select size='1' name='class' class='editbox_<?=$participant_id?> editbox class'>
-                <option value=''>Zgjedh Kursin</option> ";<?php echo  create_options($classes, 'class_id', 'name', $class_id); ?>
-        </td>
+                <option value=''>Zgjedh Kursin</option> ";
+               
+                <?php
+mysql_data_seek($part_class, 0);
+                    create_options($part_class, "municipality_id", "c_name");
 
+                ?>
+             
+        </td>
         <td>
             <input type='hidden' name='id' class='editbox_<?=$participant_id?> editbox' id='' value='<?=$participant_id?>' />
             <input type='button' value='Ruaj' class='save_<?=$participant_id?> save submitSmlBtn' id='<?=$participant_id?>'>

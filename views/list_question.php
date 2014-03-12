@@ -5,6 +5,7 @@
 	include $project_root . 'views/layout/header.php';
 	$errors = array();
 	$base_url = BASE_URL;
+	$user_id = $_SESSION['id'];
 ?>
 
 <?php
@@ -14,8 +15,12 @@
 	echo '<div class="form-error-message hide"></div>';
 	echo "<form id='url' class='edit_question_view' action='../core/application/edit_questions.php'>";
 	echo "<table border = '1' class='bordered'>";
-	echo "<tr><th>Pyejta</th><th>Pergjigjet</th><th>Edito</th></tr>";
+	echo "<tr><th>Pyejta</th><th>Pergjigjet</th>";
 
+	if(is_admin($user_id)){
+		echo "<th>Edito</th></tr>";
+	}
+	
 	while ($result = mysql_fetch_assoc($query)) {
 
 		echo "<tr id = '{$result["question_id"]}' class=\"edit_tr\"><td>"
@@ -44,13 +49,16 @@
 		}
 		echo "</div>";
 
-		echo "</td><td>"."<input type='hidden' name='id' class='editbox_{$result["question_id"]} editbox' value='{$result["question_id"]}' />"
-		."<input type='button' value='Ruaj' class='save_{$result["question_id"]} save submitSmlBtn' id='{$result["question_id"]}' />"
-        ."<input type='button'  value='Perditeso' class='edit_{$result["question_id"]} edit submitSmlBtn' id='{$result["question_id"]}'  />"
-        ."<input type='button'  value='Anulo' class='cancel_{$result["question_id"]} cancel submitSmlBtn' id='{$result["question_id"]}' style='display:none;' />"
-		."</td>";
+		if(is_admin($user_id)){
 
+			echo "</td><td>"."<input type='hidden' name='id' class='editbox_{$result["question_id"]} editbox' value='{$result["question_id"]}' />"
+			."<input type='button' value='Ruaj' class='save_{$result["question_id"]} save submitSmlBtn' id='{$result["question_id"]}' />"
+	        ."<input type='button'  value='Perditeso' class='edit_{$result["question_id"]} edit submitSmlBtn' id='{$result["question_id"]}'  />"
+	        ."<input type='button'  value='Anulo' class='cancel_{$result["question_id"]} cancel submitSmlBtn' id='{$result["question_id"]}' style='display:none;' />";
+			
+		}
 
+	echo "</td>";
 	}
 
 	echo "</table>";

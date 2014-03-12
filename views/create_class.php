@@ -22,7 +22,7 @@ $tests = mysql_query($get_tests);
 if (is_admin($user_id))
     $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m";
 else
-    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
+    $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id";
 
 $get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
@@ -61,7 +61,9 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
             <select id="municipality_id" name="municipality" data-validation="required" class="dropdown-select">
                 <option value="">--Zgjedh Komunen--</option>
                 <?php
-                create_options($municipalities, "municipality_id", "name");
+
+                 create_options($municipalities, "municipality_id", "name");
+
                 ?>
             </select>
         </div>
