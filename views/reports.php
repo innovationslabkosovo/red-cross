@@ -253,7 +253,9 @@ if (is_admin($user_id)){
 <div class="dropdown">
 <select name="trainer_id" id="trainer_id" class="trainer_id dropdown-select" data-validation="required">
     <option value="">Zgjedh Trajnerin</option>
+
     <?php 
+    
          while ($results = mysql_fetch_assoc($trainers)) {
            echo $trainer_id = $results['trainer_id'];
            echo $trainer_name = $results['name'];

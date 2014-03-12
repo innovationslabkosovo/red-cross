@@ -1,5 +1,5 @@
 <?php
-$page_title = "Krijo participant te ri";
+$page_title = "Shto Participantet";
 
 include '../core/init.php';
 protect_page();
@@ -19,20 +19,30 @@ $get_class = "SELECT c.class_id, c.name FROM Class c".$include_user.$mun_access;
 $classes = mysql_query($get_class);
 
 ?>
-<h1>Krijo participant te ri</h1>
+<h1>Shto Participantet</h1>
 
 <br>
 <form action="../core/application/create_participant.php" method="post" id="create_participant_view">
+<div class="row dropdown">
 
+    <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
+        <option value="">--Zgjedh Kursin--</option>
+        <?php
+            create_options($classes, "class_id", "name");
+        ?>
+    </select>
+
+</div>
+<br /> <br />
 <table class = 'bordered'>
 
-    <tr><th>Emri</th><th>Mbiemri</th><th>Mosha</th><th>Gjinia</th></tr>
+    <tr><th>Nr</th><th>Emri</th><th>Mbiemri</th><th>Mosha</th><th>Gjinia</th></tr>
 
     <?php 
-        $count = 0;
+        $count = 1;
         while($count <=20){
             ?>
-              <tr><td><input type="text" name="first_name[]" id="first_name" class="txfform-wrapper input" placeholder = 'Emri' data-validation="required"></td>
+              <tr><td><?php echo $count;  ?></td><td><input type="text" name="first_name[]" id="first_name" class="txfform-wrapper input" placeholder = 'Emri' data-validation="required"></td>
                     <td><input type="text" name="last_name[]" id="last_name" class="txfform-wrapper input" placeholder = 'Mbiemri' data-validation="required"> </td>
                     <td><input type="number" name="age[]" id="age" min="0" class="txfform-wrapper input" placeholder = 'Mosha' data-validation="required" ></td>
                     <td class="row dropdown">
@@ -42,9 +52,6 @@ $classes = mysql_query($get_class);
                         <option value="F">Femer</option>
                     </select></td>
                 </tr>
-
-
-
             <?php
             $count++;
         }
@@ -52,15 +59,7 @@ $classes = mysql_query($get_class);
      ?>
   
 </table>
-<div class="row dropdown">
-    <select id="class_id"  name="class" class="dropdown-select" data-validation="required" >
-        <option value="">--Zgjedh Kursin--</option>
-        <?php
-            create_options($classes, "class_id", "name");
-        ?>
-    </select>
 
-</div>
     
     <br>
     <input type="submit" id="Shto Participant" value="Shto Participant">

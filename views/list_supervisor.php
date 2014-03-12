@@ -35,6 +35,7 @@ echo $pages->display_jump_menu();
 echo $pages->display_items_per_page();
 echo $pages->next_page;
 echo $pages->prev_page;
+// Get all the supervisors that belong to a municipality
 $supervisors = mysql_query("SELECT s.supervisor_id, s.name, s.surname, s.email, s.phone, s.municipality_id, m.municipality_id, m.name as m_name FROM Supervisor s inner join Municipality m 
 ON m.municipality_id = s.municipality_id ORDER BY supervisor_id desc $pages->limit");
 ?>
@@ -56,6 +57,7 @@ ON m.municipality_id = s.municipality_id ORDER BY supervisor_id desc $pages->lim
             </tr>
             <?php
 
+            // List all the supervisors on a table with the Name,Lastname,email,phone number,municipality
             while ($data_sup = mysql_fetch_assoc($supervisors))
             {
                 $id=$data_sup['supervisor_id'];
@@ -68,30 +70,39 @@ ON m.municipality_id = s.municipality_id ORDER BY supervisor_id desc $pages->lim
 
                 <tr id="<?php echo $id; ?>" class="edit_tr">
 
+                    <!-- First name -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $first_name; ?></span>
                         <input name="name" data-validation="required" type="text" value="<?php echo $first_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php echo $id; ?>" />
                     </td>
 
+                    <!-- Last Name -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $last_name; ?></span>
                         <input name="surname" data-validation="required" type="text" value="<?php echo $last_name; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
+                    <!-- Email -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $email; ?></span>
                         <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
+                    <!-- Email -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $phone; ?></span>
                         <input name="phone" type="text" value="<?php echo $phone; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
+                    <!-- Municipality -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $municipality; ?></span>
                         <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
+
+                    <!-- IF the logged in user is an admin 
+                        Let him change the supervisors infromations
+                     -->
 
                     <?php
                     if (is_admin($user_id))

@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$page_title = "Lista e participanteve";
+$page_title = "Lista e Participanteve";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
