@@ -21,17 +21,27 @@ require_once('../core/application/Paginator.php');
 $pages = new Paginator;
 $pages->items_total = $num_rows;
 $pages->paginate();
-if (is_admin($user_id))
+if (is_admin($user_id)) {
     $get_municipalities = "SELECT m.municipality_id, m.name, m.coords FROM Municipality m";
-else
+    $get_locations_municipalities = "SELECT Location.location_id, Location.name as location_name,Location.latitude,Location.longitude,Municipality.coords as coords,Municipality.name as municipality_name
+        FROM Location
+        INNER JOIN Municipality
+        ON Location.municipality_id=Municipality.municipality_id
+        ORDER BY Location.location_id DESC
+        $pages->limit";
+}
+else {
     $get_municipalities = "SELECT m.municipality_id, m.name, m.coords FROM Municipality m INNER JOIN User u on m.municipality_id=u.municipality_id where user_id=$user_id ";
-$municipalities = mysql_query($get_municipalities);
+    $get_locations_municipalities = "SELECT Location.location_id, Location.name as location_name,Location.latitude,Location.longitude,  Municipality.coords as coords,Municipality.name as municipality_name
+        FROM Location
+        INNER JOIN Municipality
+        ON Location.municipality_id=Municipality.municipality_id
+        INNER JOIN User u on Municipality.municipality_id=u.municipality_id WHERE u.user_id = $user_id
+        ORDER BY Location.location_id DESC
+        $pages->limit";
+}
 
-$get_locations_municipalities = "SELECT Location.location_id, Location.name as location_name,Location.latitude,Location.longitude,Municipality.coords as coords,Municipality.name as municipality_name
-FROM Location
-INNER JOIN Municipality
-ON Location.municipality_id=Municipality.municipality_id
-$pages->limit";
+$municipalities = mysql_query($get_municipalities);
 $locations_municipalities = mysql_query($get_locations_municipalities);
 ?>
 
