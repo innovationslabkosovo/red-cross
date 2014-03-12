@@ -10,11 +10,6 @@ if(empty($_POST) === false)
     $age=$_POST["age"];
     $class_id=$_POST["class"];
 
-
-
- 
-
-
     $c = 0;
     foreach ($first_name as $key => $value) {
         if($value != null){
@@ -30,11 +25,13 @@ if(empty($_POST) === false)
      
         }
          
-         if($query){
-            header("location: ../../views/list_participant.php?message=success&object=participant");
-         }else{
-            header("location: ../../views/create_participant.php?message=fail&object=participant");
-         }
-            
+         
     }
+
+    if($query){
+        header("location: ../../views/list_participant.php?message=success&object=participant");
+    }else{
+        header("location: ../../views/create_participant.php?message=fail&object=participant");
+    }
+            
 }
