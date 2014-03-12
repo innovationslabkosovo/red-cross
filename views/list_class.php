@@ -28,7 +28,7 @@ if ($_GET['municipality_id_filter']) {
     $municipality_filter = " and m.municipality_id =".$municipality_id_filter;
 }
 
-$get_class_details = "SELECT c.class_id,tr.trainer_id as tr_id,  tr.name as tr_name, tr.surname as tr_surname,l.location_id as l_id, l.name as l_name,m.municipality_id as m_id,  m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
+$get_class_details = "SELECT c.class_id,tr.trainer_id as tr_id, concat(tr.name, ' ', tr.surname ) as tr_trainer_name, tr.name as tr_name, tr.surname as tr_surname,l.location_id as l_id, l.name as l_name,m.municipality_id as m_id,  m.name as m_name, test.name as t_name, c.date_from, c.date_to, c.gateway
                       FROM Class c, Trainer tr, Location l, Municipality m, Test test". $include_user."
                       WHERE c.trainer_id = tr.trainer_id
                       and c.location_id = l.location_id
@@ -152,18 +152,27 @@ echo $pages->prev_page;
         $locations = mysql_query($get_locations);
         $get_municipalities = "SELECT municipality_id, name FROM Municipality ";
         $municipalities = mysql_query($get_municipalities);
-        $get_trainers = "SELECT trainer_id, name, surname FROM Trainer ";
+        // $get_trainers = "SELECT trainer_id, concat(name, ' ', surname) as trainer_name FROM Trainer";
+        if (is_admin($user_id)) {
+            $get_trainers = "SELECT tr.trainer_id as trainer_id, concat(tr.name, ' ', tr.surname) as trainer_name FROM Trainer tr";
+        } else {
+            $get_trainers = "SELECT tr.trainer_id as trainer_id, concat(tr.name, ' ', tr.surname) as trainer_name FROM Trainer tr INNER JOIN User u WHERE tr.municipality_id = u.municipality_id AND u.user_id = $user_id";
+        }
         $trainers = mysql_query($get_trainers);
 
 
         echo "<tr>";
         echo "<td> $row_class[class_id]</td >";
         echo "<input type='hidden' edit_mode='off' id='edit_mode_{$row_class["class_id"]}'>";
-        // municipality span
-        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span>
-              <select size='1' name='municipality' class='editbox_{$row_class["class_id"]} editbox municipality'>
-              <option value=''>Zgjedh Komunen</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
-        echo " </select></td>";
+        if (is_admin($user_id)) {
+            // municipality span
+            echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span>
+                  <select size='1' name='municipality' class='editbox_{$row_class["class_id"]} editbox municipality'>
+                  <option value=''>Zgjedh Komunen</option> "; create_options($municipalities, 'municipality_id', 'name', $current_municipality);
+            echo " </select></td>";
+        } else {
+            echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[m_name]</span></td>";
+        }
 
         // village span
         echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[l_name]</span>
@@ -174,9 +183,9 @@ echo $pages->prev_page;
               </td>";
 
         // trainer span
-        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[tr_name]</span>
+        echo "<td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[tr_trainer_name]</span>
               <select name='trainer' class='editbox_{$row_class["class_id"]} editbox trainer_{$row_class["class_id"]}'>
-              <option value=''>Zgjedh Ligjeruesin</option> "; create_options($trainers, "trainer_id", "name", $current_trainer);;
+              <option value=''>Zgjedh Ligjeruesin</option> "; create_options($trainers, "trainer_id", "trainer_name", $current_trainer);;
         echo " </select></td>";
 
         echo " <td><span id='results_{$row_class["class_id"]}' class='text'> $row_class[date_from] </span>
