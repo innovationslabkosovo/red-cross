@@ -61,6 +61,7 @@ $municipalities = mysql_query($get_municipalities);
 <input type="submit" value="Gjenero" class="align-top">
 </form>
 <br>
+<div id = 'content' >
 <table class="bordered">
 	<tr>
 		<th>Pjesmarresit</th>
@@ -102,8 +103,20 @@ $municipalities = mysql_query($get_municipalities);
 		<td id="pas-testit"><?php echo  round($total_after, 2); ?>%</td>
 	</tr>
 </table>
+</div>
 
+<form>
+<input id="printBtn" type="button" value="print" />
+</form>
+</body>
 <script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+
+</script>
+
 <?php include $project_root . 'views/layout/footer.php'; ?>
 
 <div id="message"></div>

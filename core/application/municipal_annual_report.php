@@ -31,6 +31,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
     <title>Raporti Vjetor Komunal</title>
 </head>
 <body>
+    <div id ='content' >
 <h1>Raporti vjetor Komunal për vitin <?php print_r($_POST['year']); ?> në komunën <?php echo $municipality['name']; ?> </h1>
 
 <?php
@@ -125,7 +126,18 @@ else {
     }
     ?>
 </table>
+</div>
+
+<form>
+<input id="printBtn" type="button" value="print" />
+</form>
 </body>
+
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+</script>
 <?php
 include $project_root . 'views/layout/footer.php';
 ?>

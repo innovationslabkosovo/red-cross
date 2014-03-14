@@ -45,6 +45,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
     <title>Raporti Mujor Komunal</title>
 </head>
 <body>
+    <div id = 'content'>
 <h1>Raporti Komunal për <?php print_r($months[$_POST['month']]); echo " dhe komunën "; echo $municipality['name']; ?> </h1>
 
     <?php
@@ -139,7 +140,18 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
     }
     ?>
 </table>
+</div>
+
+<form>
+<input id="printBtn" type="button" value="print" />
+</form>
 </body>
+
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+</script>
 <?php
 include $project_root . 'views/layout/footer.php';
 ?>
