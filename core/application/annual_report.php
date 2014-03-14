@@ -24,6 +24,7 @@ and Class.date_to >= '$datefrom' and Class.date_to <= '$dateto' order by m_id AS
     <title>Raporti Vjetor</title>
 </head>
 <body>
+<div id = 'content'>
 <h1>Raporti Vjetor për <?php print_r($_POST['year']); ?> </h1>
 <?php
 if (mysql_num_rows($get_classes) == 0) {
@@ -205,7 +206,18 @@ else {
     <td><?php echo round($total_post/$count_participants[0], 2); echo"%";?></td>
     <td><?php echo round(($total_post-$total_pre)/$count_participants[0], 2); echo"%";?></td>
 </table>
+</div>
+<form>
+<input id="printBtn" type="button" value="print" />
+</form>
+
 </body>
+
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+</script>
 <?php
 include $project_root . 'views/layout/footer.php';
 ?>
