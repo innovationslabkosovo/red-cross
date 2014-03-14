@@ -59,7 +59,7 @@ if (is_admin($user_id)){
 
     <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 
-    <input type="button" value="Print this page" onClick="window.print()">
+
 </form>
 <hr>
 <br>
