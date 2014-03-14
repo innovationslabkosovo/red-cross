@@ -27,7 +27,7 @@ and Class.date_to >= '$datefrom' and Class.date_to <= '$dateto' order by m_id AS
 <h1>Raporti për periudhën <?php print_r($_POST['date_from']); echo " deri më "; print_r($_POST['date_to']); echo " në komunën "; echo $municipality['name']; ?> </h1>
 <?php
 if (mysql_num_rows($get_classes) == 0) {
-    echo "Në këtë periudhë nuk është mbajtur apo përfunduar asnjë kurs!";
+    echo "Në këtë periudhë nuk është mbajtur apo përfunduar asnjë kurs apo nuk keni shtuar te dhenat per suksesin e pjesëmarrësve!";
     exit;
 }
 else {
