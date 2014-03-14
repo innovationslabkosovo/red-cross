@@ -35,9 +35,13 @@ $get_participants = "SELECT  p.*, c.name as class_name, c.class_id as class_id
 
 $participants = mysql_query($get_participants);
 
-    $get_participants_class = "SELECT l.*,u.*,c.*,l.name as name, c.name as c_name FROM Location l 
-        INNER JOIN User u on l.municipality_id = u.municipality_id and u.user_id = '{$user_id}' INNER JOIN Class c on c.location_id = l.location_id  
-     ";
+    if (is_admin($user_id)) {
+        $get_participants_class = "SELECT l.*,u.*,c.*,l.name as name, c.class_id as class_id, c.name as c_name FROM Location l 
+        INNER JOIN User u on l.municipality_id = u.municipality_id INNER JOIN Class c on c.location_id = l.location_id";
+    } else {
+        $get_participants_class = "SELECT l.*,u.*,c.*,l.name as name, c.class_id as class_id, c.name as c_name FROM Location l 
+        INNER JOIN User u on l.municipality_id = u.municipality_id and u.user_id = '{$user_id}' INNER JOIN Class c on c.location_id = l.location_id";
+    }
 
 $part_class = mysql_query($get_participants_class);
 
