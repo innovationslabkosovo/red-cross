@@ -7,6 +7,8 @@ include $project_root . 'views/layout/header.php';
 
 $user_id = $_SESSION['id'];
 
+
+
 if (is_admin($user_id))
     $mun_qs = "SELECT m.municipality_id, m.name FROM Municipality m";
 else
@@ -16,6 +18,7 @@ $get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
 ?>
 <h1>Pjesmarresit sipas kurseve</h1>
+
 
 <div class="row">
     <div class="dropdown">
@@ -49,11 +52,89 @@ $municipalities = mysql_query($get_municipalities);
 
 </div>
 <br>
+
+<?php 
+
+    if(isset($_GET['p_id']) && isset($_GET['mun_id'])){
+
+        $participant_id= $_GET['p_id'];
+        $mun_id = $_GET['mun_id'];
+        $c_id = $_GET['c_id'];
+
+        ?>
+        <script type="text/javascript">
+             var dataString = 'municipality_id=<?php echo $mun_id; ?>';
+
+             $.each($('#municipality_id').children(),function(index,value){
+                var id = $(value).val();
+                if(id == <?php echo $mun_id; ?>){
+                    $(value).attr("selected",'selected');
+                }
+            });
+
+            $.ajax
+                ({
+                    type: "POST",
+                    url: "../core/return_munic_classes.php",
+                    data: dataString,
+                    cache: false,
+                    success: function (html) {
+
+                        $('#class_id')
+                            .find('option:gt(0)')
+                            .remove('')
+                            .end()
+                            .append(html)
+                        ;
+
+                        $.each($('#class_id').children(),function(index,value){
+                            var id = $(value).val();
+                            if(id == <?php echo $c_id; ?>){
+                                $(value).attr("selected",'selected');
+                            }
+                        });
+
+                      
+                    }
+            });
+
+
+            var class_id = <?php echo $c_id; ?>;
+
+
+            $('#participants').find("tr:gt(0)").remove();
+
+            $.ajax
+                    ({
+                        type: "POST",
+                        url: "../core/return_munic_classes.php",
+                        data: {'class_id':class_id},
+                        cache: false,
+                        dataType:'json',
+                        success: function (data) {
+
+                            $('#participants').show();
+
+                            jQuery.each(data, function(i, val) {
+
+                                $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+<?php echo $mun_id; ?>+'">Shto Pergjegje</a></td></tr>');
+                            });
+                        },
+                        error:function(){
+                            $('#participants').hide();
+                            $('#empty_result').show();
+
+                        }
+            });
+
+            </script>
+<?php
+    }
+
+ ?>
 <div class="row">
    <p id="empty_result" style="display: none"></p>
 </div>
-
-
 
 <script>
     $.validate({
@@ -66,7 +147,7 @@ $municipalities = mysql_query($get_municipalities);
 
     $("#municipality_id").change(function () {
 
-        var mun_val = $(this).val();
+        mun_val = $(this).val();
         var dataString = 'municipality_id='+mun_val;
 
         $.ajax
@@ -89,8 +170,10 @@ $municipalities = mysql_query($get_municipalities);
 
     $("#class_id").change(function () {
 
-        var class_val = $(this).val();
+        // var mun_id = $('#municipality_id').va();
+        class_val = $(this).val();
         var dataString = 'class_id='+class_val;
+        var class_id = $(this).val();
         $('#participants').find("tr:gt(0)").remove();
 
         $.ajax
@@ -104,9 +187,7 @@ $municipalities = mysql_query($get_municipalities);
                 $('#participants').show();
                 jQuery.each(data, function(i, val) {
 
-                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?p_id='+val['participant_id']+'">Shto Pergjegje</a></td></tr>');
-
-
+                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+mun_val+'">Shto Pergjegje</a></td></tr>');
                 });
             },
             error:function(){
