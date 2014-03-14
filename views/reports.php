@@ -56,7 +56,10 @@ if (is_admin($user_id)){
             <option value="2017">2017</option>
         </select>
     </div>
+
     <input type="submit" name="GO" value="Gjenero" class="align-top"/>
+
+
 </form>
 <hr>
 <br>

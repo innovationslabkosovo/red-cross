@@ -35,7 +35,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
 
 <?php
 if (mysql_num_rows($get_classes) == 0) {
-    echo "Në këtë komunë nuk janë mbajtur kurse gjatë muajit që keni zgjedhur!";
+    echo "Në këtë komunë nuk janë mbajtur kurse gjatë vitit që keni zgjedhur!";
     exit;
 }
 else {
