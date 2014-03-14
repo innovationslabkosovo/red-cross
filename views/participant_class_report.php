@@ -106,7 +106,8 @@ $municipalities = mysql_query($get_municipalities);
 </div>
 
 <form>
-<input id="printBtn" type="button" value="print" />
+    <br>
+<input id="printBtn" type="button" value="Printo" class = 'button'/>
 </form>
 </body>
 <script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>

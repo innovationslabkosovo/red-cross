@@ -70,7 +70,8 @@ if($trainer_id){
 	</div>
 
 <form>
-<input id="printBtn" type="button" value="print" />
+    <br>
+<input id="printBtn" type="button" value="Printo" class = 'button'/>
 </form>
 
 	<?php

@@ -207,7 +207,8 @@ else {
 </div>
 
 <form>
-    <input id="printBtn" type="button" value="print" />
+    <br>
+<input id="printBtn" type="button" value="Printo" class = 'button'/>
 </form>
 
 </body>

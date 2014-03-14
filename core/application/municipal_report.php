@@ -143,7 +143,8 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
 </div>
 
 <form>
-<input id="printBtn" type="button" value="print" />
+    <br>
+<input id="printBtn" type="button" value="Printo" class = 'button'/>
 </form>
 </body>
 

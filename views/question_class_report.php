@@ -84,6 +84,7 @@ $questions = mysql_query($get_all_questions);
 <input type="submit" value="Gjenero" class="align-top">
 </form>
 <br><br>
+<div id = 'content'>
 <table class="bordered">
 	<tr>
 		<th>Pjesmarresit</th>
@@ -126,7 +127,19 @@ $questions = mysql_query($get_all_questions);
 		<td id="pas-testit"><?php echo  round($total_after, 2); ?>%</td>
 	</tr>
 </table>
+</div>
 
+<form>
+    <br>
+<input id="printBtn" type="button" value="Printo" class = 'button'/>
+</form>
+</body>
+
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+</script>
 <script type="text/javascript" src="<?php echo BASE_URL;?>/js/class_report.js"></script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
 
