@@ -1,7 +1,7 @@
 <?php 
 // error_reporting(0);
 include '../../core/init.php';
-$page_title = 'Nderro Fjalkalimin';
+$page_title = 'Ndrysho Fjalkalimin';
 include $project_root . '/views/layout/header.php';
 $base_url = BASE_URL;
 

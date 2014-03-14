@@ -6,7 +6,7 @@
                 <a href="<?php echo BASE_URL; ?>/core/user/logout.php">Dilni</a>
             </li>
             <li>
-                <a href="<?php echo BASE_URL; ?>/views/user/change_password_view.php">Nderro Fjalkalimin</a>
+                <a href="<?php echo BASE_URL; ?>/views/user/change_password_view.php">Ndrysho Fjalkalimin</a>
             </li>
         </ul>
     </div>
