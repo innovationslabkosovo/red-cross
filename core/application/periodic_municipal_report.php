@@ -35,7 +35,7 @@ else {
 <table border="1" class="bordered">
     <tr>
         <th>Komuna</th>
-        <th>Numri i Participanteve</th>
+        <th>Numri i Pjesmarresve</th>
         <th>M</th>
         <th>F</th>
         <th>Suksesi i Para-testit</th>

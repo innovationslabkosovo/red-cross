@@ -60,7 +60,7 @@ $get_classes=mysql_query("SELECT DISTINCT Class.class_id, Class.name as class, T
         <th>Lokacioni</th>
         <th>Kursi</th>
         <th>Trajneri</th>
-        <th>Numri i Participanteve</th>
+        <th>Numri i Pjesmarresve</th>
         <th>M</th>
         <th>F</th>
         <th>Suksesi i Para-testit</th>

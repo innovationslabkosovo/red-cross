@@ -7,7 +7,7 @@
  */
 
 include '../../core/init.php';
-$page_title = 'Perditeso Fjalkalimin';
+$page_title = 'Ndrysho Fjalkalimin';
 protect_page();
 include $project_root . '/views/layout/header.php';
 ?>
@@ -19,19 +19,19 @@ include $project_root . '/views/layout/header.php';
           method="post">
         <ul>
             <li>
-                <label for="current_password">Current password <span class="required">*</span></label><br>
-                <input type="password" name="current_password" id="current_password" class="txfform-wrapper input" placeholder="Current password">
+                <label for="current_password">Fjalkalimi i tanishem <span class="required">*</span></label><br>
+                <input type="password" name="current_password" id="current_password" class="txfform-wrapper input">
             </li>
             <li>
-                <label for="password">New password <span class="required">*</span></label><br>
-                <input type="password" name="password" id="password" class="txfform-wrapper input" placeholder="New password">
+                <label for="password">Fjalkalimi i ri <span class="required">*</span></label><br>
+                <input type="password" name="password" id="password" class="txfform-wrapper input">
             </li>
             <li>
-                <label for="password_again">Repeat new password <span class="required">*</span></label><br>
-                <input type="password" name="password_again" id="password_again" class="txfform-wrapper input" placeholder="Repeat new password">
+                <label for="password_again">Konfirmo fjalekalimin e ri <span class="required">*</span></label><br>
+                <input type="password" name="password_again" id="password_again" class="txfform-wrapper input">
             </li>
             <li>
-                <input type="submit" value="Change">
+                <input type="submit" value="Ndrysho">
             </li>
         </ul>
     </form>

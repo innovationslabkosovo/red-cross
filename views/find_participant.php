@@ -1,5 +1,5 @@
 <?php
-$page_title = "Shto pergjegje per participantet";
+$page_title = "Shto pergjegje per pjesmarresit";
 
 include '../core/init.php';
 protect_page();
@@ -15,7 +15,7 @@ else
 $get_municipalities = $mun_qs;
 $municipalities = mysql_query($get_municipalities);
 ?>
-<h1>Participantet sipas kurseve</h1>
+<h1>Pjesmarresit sipas kurseve</h1>
 
 <div class="row">
     <div class="dropdown">

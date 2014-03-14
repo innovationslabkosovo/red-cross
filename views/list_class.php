@@ -200,7 +200,7 @@ echo $pages->prev_page;
 
         echo " <td><input type='hidden' name='id' class='editbox_{$row_class["class_id"]} editbox' value='{$row_class["class_id"]}' />"
             ."<input type='button' value='Ruaj' class='save_{$row_class["class_id"]} save submitSmlBtn' id='{$row_class["class_id"]}'>"
-            ."<input type='button' value='Perditeso' class='edit_{$row_class["class_id"]} edit submitSmlBtn' id='{$row_class["class_id"]}'>"
+            ."<input type='button' value='Ndrysho' class='edit_{$row_class["class_id"]} edit submitSmlBtn' id='{$row_class["class_id"]}'>"
             ."<input type='button' value='Anulo' class='cancel_{$row_class["class_id"]} cancel submitSmlBtn' id='{$row_class["class_id"]}' style='display:none;'> </td >";
 
         echo "</tr>";

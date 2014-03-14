@@ -46,7 +46,7 @@ else {
         <th>Lokacioni</th>
         <th>Kursi</th>
         <th>Trajneri</th>
-        <th>Numri i Participanteve</th>
+        <th>Numri i Pjesmarresve</th>
         <th>M</th>
         <th>F</th>
         <th>Suksesi i Para-testit</th>

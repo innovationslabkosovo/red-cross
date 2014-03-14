@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$page_title = "Lista e Participanteve";
+$page_title = "Lista e Pjesmarresve";
 include '../core/init.php';
 require_once('../core/application/Paginator.php');
 protect_page();
@@ -59,7 +59,7 @@ $part_class = mysql_query($get_participants_class);
 
 </span>
 
-<h1>Lista e Participanteve</h1>
+<h1>Lista e Pjesmarresve</h1>
 <?php $base_url = BASE_URL; ?>
 <?php echo "<div id='url' url='{$base_url}/core/application/edit_participant.php' ></div>";?>
 <?php
@@ -90,6 +90,8 @@ while ($row_participant = mysql_fetch_assoc($participants))
     $gender = $row_participant["gender"];
     $class_id = $row_participant["class_id"];
     $class_name = $row_participant["class_name"];
+  
+    $current_class = $row_participant['class_id'];
 
     $get_class = "SELECT class_id, name FROM Class ";
     $classes = mysql_query($get_class);
@@ -122,16 +124,15 @@ while ($row_participant = mysql_fetch_assoc($participants))
                 <option value=''>Zgjedh Kursin</option> ";
                
                 <?php
-mysql_data_seek($part_class, 0);
-                    create_options($part_class, "municipality_id", "c_name");
-
+                    mysql_data_seek($part_class, 0);
+                    create_options($part_class, "class_id", "c_name", $current_class);
                 ?>
              
         </td>
         <td>
             <input type='hidden' name='id' class='editbox_<?=$participant_id?> editbox' id='' value='<?=$participant_id?>' />
             <input type='button' value='Ruaj' class='save_<?=$participant_id?> save submitSmlBtn' id='<?=$participant_id?>'>
-            <input type='button' value='Perditeso' class='edit_<?=$participant_id?> edit submitSmlBtn' id='<?=$participant_id?>'>
+            <input type='button' value='Ndrysho' class='edit_<?=$participant_id?> edit submitSmlBtn' id='<?=$participant_id?>'>
             <input type="button" value="Anulo" class="cancel_<?=$participant_id?> cancel submitSmlBtn" id="<?=$participant_id?>" style="display: none;">
         </td>
     </tr>

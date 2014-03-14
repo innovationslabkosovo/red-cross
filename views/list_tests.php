@@ -34,7 +34,7 @@
 
 			echo "<td>"."<input type='hidden' name='id' class='editbox_{$result["test_id"]} editbox' value='{$result["test_id"]}' />"
 			."<input type='button' value='Ruaj' class='save_{$result["test_id"]} save submitSmlBtn' id='{$result["test_id"]}'>"
-	        ."<input type='button' value='Perditeso' class='edit_{$result["test_id"]} edit submitSmlBtn' id='{$result["test_id"]}'>"
+	        ."<input type='button' value='Ndrysho' class='edit_{$result["test_id"]} edit submitSmlBtn' id='{$result["test_id"]}'>"
 	        ."<input type='button' value='Anulo' class='cancel_{$result["test_id"]} cancel submitSmlBtn' id='{$result["test_id"]}' style='display:none;' >"
 			."</td>";
 

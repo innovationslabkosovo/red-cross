@@ -17,7 +17,7 @@ $query = mysql_query("SELECT * FROM ParticipantAnswer pa inner join Question q i
 
 ?>
 
-<h3>Tabela per pergjigjjet e participantit me id:  <?php echo $id; ?></h3>
+<h3>Tabela per pergjigjjet e pjesemarresit me id:  <?php echo $id; ?></h3>
 <form action="" method="post">  <!-- forma per shtimin e pergjigjjeve -->
 
 <table border="1">
