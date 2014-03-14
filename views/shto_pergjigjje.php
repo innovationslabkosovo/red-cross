@@ -9,7 +9,7 @@
 
 <form action="" method="post">
 
-<label>Id e participantit: </label> <input type="text" id="part_id" name="part_id"><br>
+<label>Id e pjesemarresit: </label> <input type="text" id="part_id" name="part_id"><br>
 <input type="submit" value="Shto pergjigjje">
 
 
@@ -21,7 +21,7 @@
 	{
 		if(empty ($_POST['part_id']) == true)
 		{
-			$errors[] = "Ju lutem shkruani id e participantit...";
+			$errors[] = "Ju lutem shkruani id e pjesemarresit...";
 		}
 	}	
 	
@@ -48,7 +48,7 @@
 		else
 		{
 
-			$errors[] = "Nuk egziston participant me id: " . $id;
+			$errors[] = "Nuk egziston pjesemarres me id: " . $id;
 			echo implode("", $errors);
 			
 		}

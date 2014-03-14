@@ -10,7 +10,7 @@ if(empty($_POST) === false)
         if(empty($value) && in_array($key, $required_fields) === true)
         {
 
-            $errors[] = 'Fields marked with an asterisk are required';
+            $errors[] = 'Fushat me nje yll te kuq jane te detyrueshme';
             break 1;
         }
     }
@@ -19,11 +19,11 @@ if(empty($_POST) === false)
     {
         if(trim($_POST['password']) !== trim($_POST['password_again']))
         {
-            $errors[] = 'Your new passwords do not match';
+            $errors[] = 'Fjalekalimet e reja tuaja nuk perputhen';
         }
         else if(strlen($_POST['password']) < 6)
         {
-            $errors[] = 'Your password must be at least 6 characters';
+            $errors[] = 'Fjalkalimi duhet te jete te pakten 6 karaktere';
         }
     }
     else
@@ -37,7 +37,7 @@ if(empty($_POST) === false)
 <?php
 if(isset($_GET['success']) && empty($_GET['success']))
 {
-    echo 'Your password has been changed';
+    echo 'Fjalkalimi u nderrua me sukses';
 }
 else
 {

@@ -70,7 +70,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category ORDER BY categ
                     <td>
                         <input type="hidden" name="id" class="editbox_<?php echo $id; ?> editbox" value="<?php echo $id;?>">
                         <input type="button" value="Ruaj" class="save_<?php echo $id; ?> save submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Perditeso" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="button" value="Ndrysho" class="edit_<?php echo $id; ?> edit submitSmlBtn" id="<?php echo $id; ?>">
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
                         <input type="button" value="Anulo" class="cancel_<?php echo $id; ?> cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>

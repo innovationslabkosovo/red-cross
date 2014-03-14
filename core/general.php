@@ -6,12 +6,12 @@ $display_messages = array(
         "fail" => "Kursi nuk u shtua!"
     ),
     "participant" => array(
-        "success" => "Participanti u shtua me sukses",
-        "fail" => "Participanti nuk u shtua !"
+        "success" => "Pjesemarresi u shtua me sukses",
+        "fail" => "Pjesemarresi nuk u shtua!"
     ),
     "participant_answer" => array(
-        "success" => "Pergjegjet e participantit u shtuan me sukses",
-        "fail" => "Pergjegjet e participantit nuk u shtua !"
+        "success" => "Pergjegjet e pjesemarresit u shtuan me sukses",
+        "fail" => "Pergjegjet e pjesemarresit nuk u shtua !"
     ),
     "user" => array(
         "success" => "Fjalkalimi u perditsu",
@@ -121,8 +121,8 @@ function create_options($query_result , $value , $text, $selected=NULL)
 
     while ($data = mysql_fetch_assoc($query_result))
     {
-        print_r($data);
-        echo $text;
+        // print_r($data);
+        // echo $text;
 
         if ($data[$value] == $selected)
             echo "<option value=\"{$data[$value]}\" selected>$data[$text]</option>";

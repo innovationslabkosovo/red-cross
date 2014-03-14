@@ -117,6 +117,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
         <div class="row">
 
             <h4>Temat</h4>
+            <h3 style="text-align:center;">Orari</h3>
 
             <table border="1" style="width: 100%" class="create_class bordered">
 
@@ -154,7 +155,7 @@ while ($row = mysql_fetch_assoc($topic_groups)) {
         </div>
 
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Regjistro">
 
     </form>
 

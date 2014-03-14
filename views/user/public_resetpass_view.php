@@ -1,7 +1,7 @@
 <?php 
 error_reporting(0);
 include '../../core/init.php';
-$page_title = 'Nderro Fjalkalimin';
+$page_title = 'Ndrysho Fjalkalimin';
 include $project_root . '/views/layout/header.php';
 $base_url = BASE_URL;
 
@@ -28,7 +28,7 @@ if (mysql_num_rows($check_validate)) {
 		<input type="password" name="password_again" id="password_again" class="txfform-wrapper input" placeholder="Perserisni fjalkalimin e ri">
 		</li>
 		<li><br>
-		<input type="submit" value="Nderro">
+		<input type="submit" value="Ndrysho">
 		</li>
 		</ul>
 		</form>';

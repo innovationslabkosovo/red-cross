@@ -48,7 +48,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
             <tr>
                 <th>ID</th>
                 <th>Kategoria</th>
-                <th>Fshije/Perditeso</th>
+                <th>Fshije/Ndrysho</th>
             </tr>
             <?php
 
@@ -76,7 +76,7 @@ $categories = mysql_query("SELECT category_id, name FROM Category $pages->limit"
                     <td>
                         <input type="hidden" name="id" class="editbox" id="editbox_<?php echo $id; ?>" value="<?php echo $id;?>">
                         <input type="button" value="Ruaj" class="save submitSmlBtn" id="<?php echo $id; ?>">
-                        <input type="button" value="Perditeso" class="edit submitSmlBtn" id="<?php echo $id; ?>">
+                        <input type="button" value="Ndrysho" class="edit submitSmlBtn" id="<?php echo $id; ?>">
                         <input type="button" value="Fshij" class="submitSmlBtn" onclick="ajaxCall(<?php echo $id; ?>)">
                         <input type="button" value="Anulo" class="cancel submitSmlBtn" id="<?php echo $id; ?>" style="display:none;">
                     </td>

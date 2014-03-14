@@ -1,5 +1,5 @@
 <?php
-$page_title = "Pergjegjet e participanteve";
+$page_title = "Pergjegjet e Pjesmarresve";
 
 include '../core/init.php';
 protect_page();
@@ -69,7 +69,7 @@ while($row_a = mysql_fetch_assoc($participant_answers_query))
 }
 ?>
 
-Participanti: <strong><?=$p_name?> <?=$p_surname?></strong>
+Pjesemarresi: <strong><?=$p_name?> <?=$p_surname?></strong>
 <br>
 Gjinia:<strong> <?=$p_gender?></strong>
 <br>
@@ -160,7 +160,7 @@ foreach ($participant_question as $key=>$value)
 <br>
     <input type="submit" value="Dergo" id="submit">
     <input type="button" value="Anulo" id="cancel_answer" class="submitSmlBtn" onclick="location.href='participant_answer.php?p_id=<?=$participant_id?>';">
-    <input type="button" value="Lista e Participanteve"  class="submitSmlBtn" id="list_part" onclick="location.href='find_participant.php';">
+    <input type="button" value="Lista e Pjesmarresve"  class="submitSmlBtn" id="list_part" onclick="location.href='find_participant.php';">
 </form>
 <?php
 }else{

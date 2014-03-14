@@ -53,7 +53,7 @@
 
 			echo "</td><td>"."<input type='hidden' name='id' class='editbox_{$result["question_id"]} editbox' value='{$result["question_id"]}' />"
 			."<input type='button' value='Ruaj' class='save_{$result["question_id"]} save submitSmlBtn' id='{$result["question_id"]}' />"
-	        ."<input type='button'  value='Perditeso' class='edit_{$result["question_id"]} edit submitSmlBtn' id='{$result["question_id"]}'  />"
+	        ."<input type='button'  value='Ndrysho' class='edit_{$result["question_id"]} edit submitSmlBtn' id='{$result["question_id"]}'  />"
 	        ."<input type='button'  value='Anulo' class='cancel_{$result["question_id"]} cancel submitSmlBtn' id='{$result["question_id"]}' style='display:none;' />";
 			
 		}

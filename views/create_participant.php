@@ -1,5 +1,5 @@
 <?php
-$page_title = "Shto Participantet";
+$page_title = "Shto Pjesemarresit";
 
 include '../core/init.php';
 protect_page();
@@ -19,7 +19,7 @@ $get_class = "SELECT c.class_id, c.name FROM Class c".$include_user.$mun_access;
 $classes = mysql_query($get_class);
 
 ?>
-<h1>Shto Participantet</h1>
+<h1>Shto Pjesemarresit</h1>
 
 <br>
 <form action="../core/application/create_participant.php" method="post" class="create_participant_view">
@@ -83,7 +83,7 @@ $classes = mysql_query($get_class);
 
     
     <br>
-    <input type="submit" id="Shto_Participant" value="Shto Participant">
+    <input type="submit" id="Shto_Participant" value="Shto Pjesemarres">
 
 </form>
 <?php 
