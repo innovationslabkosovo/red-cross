@@ -30,6 +30,7 @@ if (isset($_GET['p_id']))
 $participant_id= $_GET['p_id'];
 $mun_id = $_GET['mun_id'];
 $class_id = $_GET['class_id'];
+
 $get_details = "SELECT p.name as p_name, p.surname, p.gender,p.age , t.test_id as test_id, t.name as test_name, cs.name as class_name FROM Participant p INNER JOIN ParticipantClass pc on  p.participant_id=pc.participant_id
                                                              INNER JOIN Class cs on cs.class_id=pc.class_id
                                                              INNER JOIN Test t on cs.test_id=t.test_id
@@ -111,6 +112,8 @@ foreach ($participant_question as $key=>$value)
     <tr>
         <td>
             <input type="hidden" name="ps[question_id][]" value="<?=$value['question_id']?>">
+            <input type="hidden" name="mun_id" value="<?php echo $mun_id; ?>">
+            <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
             <?=$value['description']?>
         </td>
 

@@ -5,6 +5,8 @@ if(empty($_POST) === false) {
 
     $participant_id = $_POST["participant_id"];
     $test_id = $_POST['test_id'];
+    $mun_id = $_POST['mun_id'];
+    $class_id = $_POST['class_id'];
     $participant_answers = $_POST['pa'];
     $participant_success = 1;
 
@@ -21,7 +23,10 @@ if(empty($_POST) === false) {
                 foreach($answers as $q_id => $answer)
                 {
                     // add answers for each question, before and after test
+
                     $add_answers_qs = "INSERT INTO ParticipantAnswer (test_id, question_id, participant_id, answer, type) VALUES ('".$test_id."', '".$q_id."', '".$participant_id."', '".$answer."', '".$answer_type."')";
+                    mysql_query("UPDATE Participant set answered = 'Jeni pergjigjur' where participant_id = '{$participant_id}' ");
+
                     if (mysql_query($add_answers_qs))
                     {
                         $participant_success =1;
@@ -39,7 +44,7 @@ if(empty($_POST) === false) {
         }
         if ($participant_success)
         {
-            header("location: ../../views/participant_answer.php?p_id=$participant_id&message=success&object=participant_answer");
+            header("location: ../../views/participant_answer.php?p_id=$participant_id&mun_id=$mun_id&class_id=$class_id&message=success&object=participant_answer");
         }
         else
         {

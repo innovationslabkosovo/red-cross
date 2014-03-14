@@ -47,6 +47,7 @@ $municipalities = mysql_query($get_municipalities);
             <th >Mbiemri</th>
             <th >Gjinia</th>
             <th >Shto Pergjegje</th>
+            <th >Eshte pergjigjur</th>
         </tr>
     </table>
 
@@ -116,14 +117,12 @@ $municipalities = mysql_query($get_municipalities);
                             $('#participants').show();
 
                             jQuery.each(data, function(i, val) {
-
-                                $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+<?php echo $mun_id; ?>+'">Shto Pergjegje</a></td></tr>');
+                                $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+<?php echo $mun_id; ?>+'">Shto Pergjegje</a></td><td>'+val['answered']+'</td></tr>');
                             });
                         },
                         error:function(){
                             $('#participants').hide();
                             $('#empty_result').show();
-
                         }
             });
 
@@ -170,7 +169,8 @@ $municipalities = mysql_query($get_municipalities);
 
     $("#class_id").change(function () {
 
-        // var mun_id = $('#municipality_id').va();
+        var mun_id = $('#municipality_id').val();
+
         class_val = $(this).val();
         var dataString = 'class_id='+class_val;
         var class_id = $(this).val();
@@ -186,8 +186,7 @@ $municipalities = mysql_query($get_municipalities);
             success: function (data) {
                 $('#participants').show();
                 jQuery.each(data, function(i, val) {
-
-                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+mun_val+'">Shto Pergjegje</a></td></tr>');
+                    $('#participants tr:last').after('<tr><td>'+val['name']+'</td><td>'+val['surname']+'</td><td>'+val['gender']+'</td><td><a href="participant_answer.php?class_id='+class_id+'&p_id='+val['participant_id']+'&mun_id='+mun_id+'">Shto Pergjegje</a></td><td>'+val['answered']+'</td></tr>');
                 });
             },
             error:function(){
