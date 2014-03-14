@@ -18,6 +18,7 @@ if($trainer_id){
 
 		}
 	?>
+	<div id = 'content'>
 	<h1>Vleresimet per 3 muajt e fundit per <?php echo $trainer ." ".$trainer_surname; ?></h1>
 	<table class="bordered">
 		
@@ -66,13 +67,23 @@ if($trainer_id){
 
 	?>
 	</table>
+	</div>
+
+<form>
+<input id="printBtn" type="button" value="print" />
+</form>
+
 	<?php
 }
 
 
 
 ?>
-
+<script type="text/javascript">
+$("#printBtn").click(function(){
+    printcontent($("#content").html());
+});
+</script>
 <?php include $project_root . 'views/layout/footer.php'; ?>
 
 <div id="message"></div>

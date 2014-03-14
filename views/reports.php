@@ -59,7 +59,6 @@ if (is_admin($user_id)){
 
     <input type="submit" name="GO" value="Gjenero" class="align-top"/>
 
-
 </form>
 <hr>
 <br>
