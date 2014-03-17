@@ -97,7 +97,7 @@ ON m.municipality_id = s.municipality_id ORDER BY supervisor_id desc $pages->lim
                     <!-- Municipality -->
                     <td>
                         <span id="results_<?php echo $id; ?>" class="text"><?php echo $municipality; ?></span>
-                        <input name="email" type="text" value="<?php echo $email; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
+                        <input name="email" type="text" value="<?php echo $municipality; ?>" class="editbox_<?php echo $id; ?> editbox" id="editbox_<?php //echo $id; ?>" />
                     </td>
 
                     <!-- IF the logged in user is an admin 
