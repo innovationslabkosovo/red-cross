@@ -28,7 +28,7 @@ if(empty($_POST) === false)
     }
     else
     {
-        $errors[] = 'Your current password is incorrect.';
+        $errors[] = 'Fjalkalimi i tanishem nuk eshte i sakte.';
     }
 
 }
@@ -37,14 +37,14 @@ if(empty($_POST) === false)
 <?php
 if(isset($_GET['success']) && empty($_GET['success']))
 {
-    echo 'Fjalkalimi u nderrua me sukses';
+    // echo 'Fjalkalimi u nderrua me sukses';
 }
 else
 {
     if(empty($_POST) === false && empty($errors) === true)
     {
         change_password($_SESSION['id'], $_POST['password']);
-        //header("location: ../../views/user/change_password_view.php?message=success&object=user");
+        echo 'Fjalkalimi u ndryshua me sukses!';
     }
     else if (empty($errors) === false)
     {
